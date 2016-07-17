@@ -1,0 +1,83 @@
+
+	<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+		xmlns:ui="http://java.sun.com/jsf/facelets"
+		xmlns:h="http://java.sun.com/jsf/html"
+		xmlns:f="http://java.sun.com/jsf/core"
+		xmlns:p="http://primefaces.org/ui"
+		template="/pages/includes/templatePage.xhtml">
+		<ui:define name="title">Lab Software</ui:define>
+		<ui:define name="top">Lab Software</ui:define>
+		<ui:define name="content">
+
+<h:form>
+ 
+ 
+				 	
+  	<p:panel id="panel2" header="Search Client">
+					<p:panelGrid style="margin-top:20px; width: 70%; margin: 0 auto"
+					columns="2">
+					
+					 
+					<p:outputLabel value="Client ID"></p:outputLabel>
+ 					 <h:inputText value="#{registerClientBean.toSearchClient.id}"></h:inputText>
+					<p:outputLabel value="RDC Token"></p:outputLabel>
+ 					 <h:inputText value="#{registerClientBean.toSearchClient.rdcTokenNo}"></h:inputText>
+ 					 <p:outputLabel value="GAMCA Slip"></p:outputLabel>
+ 					 <h:inputText value="#{registerClientBean.toSearchClient.gamcaSlipNo}"></h:inputText>
+ 					 <p:outputLabel value="Cash Payment Status"/>
+ 					 <h:selectOneMenu value="#{registerClientBean.toSearchClient.cashPayment.cashPaidStatus}">
+ 					 	<f:selectItem itemLabel="Paid" itemValue="Paid"></f:selectItem>
+ 					 </h:selectOneMenu>
+ 					
+					</p:panelGrid>
+				</p:panel>
+ 
+ 
+ 
+  	<h:commandButton value="Search" action="#{registerClientBean.searchClients}"/>
+  	
+  	<br/>
+  	
+  	<p:dataTable value="#{registerClientBean.clientsList}" var="mylist"
+					paginatorPosition="top" editable="true" rows="12" paginator="true"
+					paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+					id="tbl1">
+
+					<p:column headerText="Client ID">
+						<h:outputText value="#{mylist.id}" />
+					</p:column>
+					
+					<p:column headerText="RDC Token / GAMCA Slip">
+						<h:outputText value="#{mylist.rdcTokenNo}" /> / 
+						<h:outputText value="#{mylist.gamcaSlipNo}" />
+					</p:column>
+
+					<p:column headerText="First Name / Last Name">
+						<h:outputText value="#{mylist.firstName}" />/
+						<h:outputText value="#{mylist.lastName}" />
+					</p:column>
+
+					<p:column headerText="CNIC">
+						<h:outputText value="#{mylist.cnicNo}" />
+					</p:column>
+					
+					<p:column headerText="Passport No">
+						<h:outputText value="#{mylist.passportNo}" />
+					</p:column>
+					
+					<p:column headerText="Lab Results Details">
+						<p:commandButton value="Update Details" action="#{navBean.navPathoVerifyLabResultDetails}">
+							<f:setPropertyActionListener 
+							target="#{registerClientBean.selectedClient}" value="#{mylist}" />
+						</p:commandButton>
+					</p:column>		
+
+				</p:dataTable>
+				
+				
+				<br/>
+				
+</h:form>
+</ui:define>
+	</ui:composition>
+

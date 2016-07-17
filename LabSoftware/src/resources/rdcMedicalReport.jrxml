@@ -1,0 +1,853 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="rdcMedicalReport" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="02768d53-feaa-4aec-9d81-0413f48c29ab">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="157"/>
+	<style name="table">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_TH" mode="Opaque" backcolor="#D9C3C3">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_CH" mode="Opaque" backcolor="#FFE6E6">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<subDataset name="Table Dataset 1" uuid="d3a16aad-3796-4cc2-88df-85a26a259eb9"/>
+	<subDataset name="dataset1" uuid="71030387-7ecd-4057-a447-8f20523eb265"/>
+	<parameter name="clientId" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[SELECT
+     wf_client.`RDC_TOKEN_NO` AS wf_client_RDC_TOKEN_NO,
+     wf_client.`GAMCA_SLIP_NO` AS wf_client_GAMCA_SLIP_NO,
+     wf_client.`FIRST_NAME` AS wf_client_FIRST_NAME,
+     wf_client.`LAST_NAME` AS wf_client_LAST_NAME,
+     wf_client.`FATHER_NAME` AS wf_client_FATHER_NAME,
+	(SELECT TIMESTAMPDIFF( YEAR, w.dob, CURDATE( ) )
+FROM `wf_client`w where w.id = wf_client.id) as AGE,
+     wf_client.gender,
+wf_client.nationality,
+wf_client.marital_status,
+wf_client.cnic_no,
+(select g.height||g.height_scale from wf_client_gpe g where g.client_id = wf_client.id)as HEIGHT,
+(select g.weight||g.weight_scale from wf_client_gpe g where g.client_id = wf_client.id)as WEIGHT,
+wf_client.applied_for_country as TRAVELLING_TO,
+wf_client.applied_for_position as FOR_JOB,
+wf_client.passport_no as PASSPORT_NO,
+date_format(wf_client.passport_Issue_date,'%d/%b/%Y') as ISSUE_DATE,
+wf_client.passport_issue_place as ISSUE_PLACE,
+g.neuro_pe, g.allergy,
+g.eye_left, g.eye_right, g.ear_left, g.ear_right, g.bp,g.heart, g.lungs, g.abdominal, g.other,
+g.hernia, g.ext_vericose, g.ext_deformity,g.skin, g.cns,g.venereal, g.psychiatry,
+u.sugar,u.albumin,
+s.helminthes, s.giardia, s.bilharzias, s.salmonella, s.shigella, s.cholera,
+b.blood_gp, b.haemoglobin, b.tf_malaria, b.tf_micro_filaria, b.blood_glucose, b.lft, b.sgot, b.sgpt, b.rft, b.urea, b.creatinine,
+b.anti_hiv, b.anti_hcv, b.hbs_ag, b.vdrl, b.tpha,
+a.name as director_name,
+f.scanned_photo
+     ,wf_client.`ID` AS wf_client_ID
+FROM
+     `wf_client` wf_client, wf_client_gpe g,wf_lab_result_urine u, wf_lab_result_stool s, wf_lab_result_blood b, appl_users a, wf_client_Scanned_files f
+where
+wf_client.id = g.client_id
+and wf_client.id = u.client_id
+and wf_client.id = s.client_id
+and wf_client.id = b.client_id
+and a.id = wf_client.final_declared_by
+and wf_client.id = f.client_id
+and  wf_client.id = $P{clientId}]]>
+	</queryString>
+	<field name="wf_client_RDC_TOKEN_NO" class="java.lang.String"/>
+	<field name="wf_client_GAMCA_SLIP_NO" class="java.lang.String"/>
+	<field name="wf_client_FIRST_NAME" class="java.lang.String"/>
+	<field name="wf_client_LAST_NAME" class="java.lang.String"/>
+	<field name="wf_client_FATHER_NAME" class="java.lang.String"/>
+	<field name="AGE" class="java.lang.Long"/>
+	<field name="gender" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="nationality" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="marital_status" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="cnic_no" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="HEIGHT" class="java.lang.Long">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="WEIGHT" class="java.lang.Long">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="TRAVELLING_TO" class="java.lang.String"/>
+	<field name="FOR_JOB" class="java.lang.String"/>
+	<field name="PASSPORT_NO" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="ISSUE_DATE" class="java.lang.String"/>
+	<field name="ISSUE_PLACE" class="java.lang.String"/>
+	<field name="neuro_pe" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="allergy" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="eye_left" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="eye_right" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="ear_left" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="ear_right" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="bp" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="heart" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="lungs" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="abdominal" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="other" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="hernia" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="ext_vericose" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="ext_deformity" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="skin" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="cns" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="venereal" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="psychiatry" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="sugar" class="java.lang.String">
+		<fieldDescription><![CDATA[Nil, Present]]></fieldDescription>
+	</field>
+	<field name="albumin" class="java.lang.String">
+		<fieldDescription><![CDATA[Nil, trace, present]]></fieldDescription>
+	</field>
+	<field name="helminthes" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="giardia" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="bilharzias" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="salmonella" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="shigella" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="cholera" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="blood_gp" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="haemoglobin" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="tf_malaria" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="tf_micro_filaria" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="blood_glucose" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="lft" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="sgot" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="sgpt" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="rft" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="urea" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="creatinine" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="anti_hiv" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="anti_hcv" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="hbs_ag" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="vdrl" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="tpha" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="director_name" class="java.lang.String"/>
+	<field name="scanned_photo" class="java.io.InputStream">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="wf_client_ID" class="java.lang.Integer"/>
+	<group name="BASIC_DATA2">
+		<groupHeader>
+			<band height="50">
+				<staticText>
+					<reportElement x="295" y="0" width="54" height="20" uuid="518084aa-82be-4057-9120-725fb473e96c"/>
+					<textElement>
+						<font isBold="true" isUnderline="true"/>
+					</textElement>
+					<text><![CDATA[Gender]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="368" y="0" width="64" height="20" uuid="8e9f3453-c580-4802-8d28-0b956f54e180"/>
+					<textElement>
+						<font isBold="true" isUnderline="true"/>
+					</textElement>
+					<text><![CDATA[Nationality]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="209" y="0" width="66" height="20" uuid="718672d6-2560-4e51-be76-84884970d892"/>
+					<textElement>
+						<font isBold="true" isUnderline="true"/>
+					</textElement>
+					<text><![CDATA[Age]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="0" y="0" width="126" height="20" uuid="ec43b1a1-196b-46d1-b794-517ffb29db4b"/>
+					<textElement>
+						<font isBold="true" isUnderline="true"/>
+					</textElement>
+					<text><![CDATA[Name]]></text>
+				</staticText>
+				<textField>
+					<reportElement x="0" y="20" width="126" height="20" uuid="50dd7bc1-f41d-4983-8456-b750f543f97a"/>
+					<textFieldExpression><![CDATA[$F{wf_client_FIRST_NAME}+" "+$F{wf_client_LAST_NAME}+" S/O "+$F{wf_client_FATHER_NAME}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="209" y="20" width="66" height="20" uuid="14333b26-750a-4ff7-ac09-6be56405b642"/>
+					<textFieldExpression><![CDATA[$F{AGE}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="295" y="21" width="54" height="19" uuid="99172811-e9f9-4d3e-b174-254962c3bf2f"/>
+					<textFieldExpression><![CDATA[$F{gender}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="370" y="21" width="62" height="20" uuid="c53aa16d-53fd-40b7-9684-4aaada9ac335"/>
+					<textFieldExpression><![CDATA[$F{nationality}]]></textFieldExpression>
+				</textField>
+				<image>
+					<reportElement x="463" y="0" width="92" height="50" uuid="37821c52-8933-4c48-ab10-8348fcae3714"/>
+					<imageExpression><![CDATA[$F{scanned_photo}]]></imageExpression>
+				</image>
+			</band>
+		</groupHeader>
+	</group>
+	<group name="BASIC_DATA3">
+		<groupHeader>
+			<band height="38">
+				<staticText>
+					<reportElement x="4" y="0" width="71" height="20" uuid="7032829e-fbbb-4716-9596-77832fc991d5"/>
+					<textElement>
+						<font isBold="true" isUnderline="true"/>
+					</textElement>
+					<text><![CDATA[Travelling To]]></text>
+				</staticText>
+				<textField>
+					<reportElement x="3" y="18" width="72" height="20" uuid="b63d0370-f22b-4156-95c8-ca282530f69e"/>
+					<textFieldExpression><![CDATA[$F{TRAVELLING_TO}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="104" y="18" width="72" height="20" uuid="2eefc81f-25c0-4f29-9d9a-e07a3df780fe"/>
+					<textFieldExpression><![CDATA[$F{FOR_JOB}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="105" y="0" width="71" height="20" uuid="074c1a6d-5cfa-4db2-852d-179ee71e6c56"/>
+					<textElement>
+						<font isBold="true" isUnderline="true"/>
+					</textElement>
+					<text><![CDATA[For Job]]></text>
+				</staticText>
+				<textField>
+					<reportElement x="205" y="18" width="72" height="20" uuid="563e0d64-b25d-4c2a-a6b9-cad71b312e50"/>
+					<textFieldExpression><![CDATA[$F{PASSPORT_NO}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="206" y="0" width="71" height="20" uuid="e6f2a7fd-8383-4a73-ba92-597008fa75bd"/>
+					<textElement>
+						<font isBold="true" isUnderline="true"/>
+					</textElement>
+					<text><![CDATA[Passpot No]]></text>
+				</staticText>
+				<textField>
+					<reportElement x="293" y="20" width="72" height="18" uuid="4758c4b4-6401-46c5-9ca8-3f535b584039"/>
+					<textFieldExpression><![CDATA[$F{ISSUE_DATE}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="293" y="1" width="71" height="20" uuid="c4ea4c56-c346-4637-a59c-ee14f1330158"/>
+					<textElement>
+						<font isBold="true" isUnderline="true"/>
+					</textElement>
+					<text><![CDATA[Date of Issue]]></text>
+				</staticText>
+				<textField>
+					<reportElement x="370" y="21" width="72" height="17" uuid="c0e644bf-ea8c-44ef-8753-a841b961ef51"/>
+					<textFieldExpression><![CDATA[$F{ISSUE_PLACE}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="368" y="1" width="71" height="20" uuid="7a2b3a4c-a39f-4a3e-a4a2-7d18115b45c9"/>
+					<textElement>
+						<font isBold="true" isUnderline="true"/>
+					</textElement>
+					<text><![CDATA[Place of Issue]]></text>
+				</staticText>
+			</band>
+			<band height="48">
+				<staticText>
+					<reportElement x="5" y="0" width="272" height="48" uuid="fcfdcf70-e4b7-4082-8575-19ca7d8249d9"/>
+					<text><![CDATA[Hisory of any significant past illness including :
+1. Psychiatric and Neurological Disorders:
+2.Allergy:		3. Other:]]></text>
+				</staticText>
+				<textField>
+					<reportElement x="211" y="13" width="64" height="15" uuid="781b9d83-f255-4edf-b6de-a5f3f3dd159e"/>
+					<textFieldExpression><![CDATA[$F{neuro_pe}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="56" y="26" width="64" height="15" uuid="f5470677-cf81-4719-956a-7eb0428394c2"/>
+					<textFieldExpression><![CDATA[$F{allergy}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="174" y="26" width="64" height="15" uuid="840f93dc-2356-4c79-afb1-3d58105e96ad"/>
+					<textFieldExpression><![CDATA[$F{other}]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupHeader>
+	</group>
+	<group name="MEDICAL_EXAM">
+		<groupHeader>
+			<band height="413">
+				<staticText>
+					<reportElement x="2" y="0" width="149" height="20" uuid="5b9574bd-3836-4d33-9cda-9e94f5698a3f"/>
+					<textElement>
+						<font isBold="true" isUnderline="true"/>
+					</textElement>
+					<text><![CDATA[MEDICAL EXAMINATION]]></text>
+				</staticText>
+				<staticText>
+					<reportElement style="table" mode="Opaque" x="5" y="20" width="171" height="20" backcolor="#CCCCCC" uuid="6eeeee22-1d22-4dfb-b841-89c874b27585"/>
+					<textElement textAlignment="Center">
+						<font isBold="true" isUnderline="true"/>
+					</textElement>
+					<text><![CDATA[TYPE OF MEDICAL EXAMINATION]]></text>
+				</staticText>
+				<staticText>
+					<reportElement style="table" mode="Opaque" x="176" y="20" width="102" height="20" backcolor="#CCCCCC" uuid="6915eeb4-9201-4785-9742-c369e9d465a0"/>
+					<textElement textAlignment="Center"/>
+					<text><![CDATA[RESULTS]]></text>
+				</staticText>
+				<frame>
+					<reportElement style="table" x="5" y="40" width="171" height="72" uuid="52db5bcc-42fc-4a4a-b506-40c59718c745"/>
+					<staticText>
+						<reportElement style="table" x="0" y="0" width="87" height="20" uuid="6844e2dd-5b9d-431b-91bb-75f2fc6b615e"/>
+						<textElement>
+							<font isBold="true"/>
+						</textElement>
+						<text><![CDATA[EYE]]></text>
+					</staticText>
+					<staticText>
+						<reportElement style="table" x="87" y="0" width="84" height="20" uuid="f807921a-5cff-4466-b220-7692187f75b2"/>
+						<textElement textAlignment="Right" verticalAlignment="Top"/>
+						<text><![CDATA[Without glasses]]></text>
+					</staticText>
+					<staticText>
+						<reportElement style="table" x="0" y="20" width="171" height="20" uuid="122ea403-c8af-42ea-a07c-46d48f36c521"/>
+						<textElement>
+							<font isBold="true"/>
+						</textElement>
+						<text><![CDATA[EAR]]></text>
+					</staticText>
+					<staticText>
+						<reportElement style="table" x="0" y="40" width="171" height="31" uuid="a869ba2d-357f-4dfd-afcb-a5481a85c78d"/>
+						<textElement>
+							<font isBold="true"/>
+						</textElement>
+						<text><![CDATA[CARDIO VASCULAR]]></text>
+					</staticText>
+					<staticText>
+						<reportElement x="112" y="42" width="57" height="29" uuid="c1876dd7-41dc-453a-bfd4-1af652e8437b"/>
+						<textElement>
+							<font size="8"/>
+						</textElement>
+						<text><![CDATA[BP
+Heart]]></text>
+					</staticText>
+				</frame>
+				<staticText>
+					<reportElement style="table" x="5" y="111" width="171" height="36" uuid="39725a19-67ac-443c-9053-2ec310a09199"/>
+					<textElement>
+						<font isBold="true"/>
+					</textElement>
+					<text><![CDATA[RESPIRATORY
+SYSTEM]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="117" y="112" width="57" height="24" uuid="a4566d98-2692-4a34-a42d-237249283566"/>
+					<textElement>
+						<font size="8"/>
+					</textElement>
+					<text><![CDATA[Lungs
+Chest Xray]]></text>
+				</staticText>
+				<textField>
+					<reportElement style="table" x="176" y="40" width="102" height="21" uuid="efd0edc1-3649-4f1d-83ec-71e9a85a0496"/>
+					<textElement textAlignment="Center">
+						<font size="8"/>
+					</textElement>
+					<textFieldExpression><![CDATA["Rt. "+$F{eye_right}+"  Lt. "+$F{eye_left}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement style="table" x="176" y="61" width="102" height="21" uuid="f6c3916b-8d81-48fe-aaef-674e1badf12e"/>
+					<textElement textAlignment="Center">
+						<font size="8"/>
+					</textElement>
+					<textFieldExpression><![CDATA["Rt. "+$F{ear_right}+"  Lt. "+$F{ear_left}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement style="table" x="176" y="82" width="102" height="29" uuid="2d75f9b9-ca56-433a-a2f1-683aef6dedc0"/>
+					<textElement markup="none">
+						<font size="8"/>
+					</textElement>
+					<textFieldExpression><![CDATA[" "+$F{bp}+" mm Hg"+
+"\r\n "+$F{heart}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement style="table" x="176" y="111" width="102" height="36" uuid="ba17aced-9f28-4b40-b78c-ef6791f9908c"/>
+					<textElement markup="none">
+						<font size="8"/>
+					</textElement>
+					<textFieldExpression><![CDATA[" "+$F{lungs}+
+"\r\n "+$F{lungs}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement style="table" x="5" y="147" width="171" height="35" uuid="5603134c-709d-42d9-9af5-c220b1d73da7"/>
+					<textElement>
+						<font isBold="true"/>
+					</textElement>
+					<text><![CDATA[GASTRO INTESTINAL SYSTEM]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="117" y="159" width="57" height="24" uuid="44840c41-fdb9-43e3-86bc-c764ca4ce28b"/>
+					<textElement>
+						<font size="8"/>
+					</textElement>
+					<text><![CDATA[Abdomen
+Other]]></text>
+				</staticText>
+				<textField>
+					<reportElement style="table" x="176" y="147" width="102" height="35" uuid="3b6d3bb8-114e-49ad-8502-cf029569d24c"/>
+					<textElement verticalAlignment="Middle" markup="none">
+						<font size="8"/>
+					</textElement>
+					<textFieldExpression><![CDATA["\r\n "+$F{abdominal}+
+"\r\n "+$F{other}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement style="table" x="5" y="182" width="171" height="17" uuid="94ac2303-bede-4ba9-bedc-fdc1fb87a1ea"/>
+					<textElement>
+						<font isBold="true"/>
+					</textElement>
+					<text><![CDATA[HERNIA]]></text>
+				</staticText>
+				<staticText>
+					<reportElement style="table" x="5" y="199" width="171" height="16" uuid="d602ac81-038c-4b56-936f-85a544a43fe3"/>
+					<textElement>
+						<font isBold="true"/>
+					</textElement>
+					<text><![CDATA[VARICOSE VEINS]]></text>
+				</staticText>
+				<textField>
+					<reportElement style="table" x="176" y="182" width="102" height="17" uuid="d67edb54-064b-41c5-9ff3-01f24c081653"/>
+					<textElement>
+						<font size="8"/>
+					</textElement>
+					<textFieldExpression><![CDATA[" "+$F{hernia}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement style="table" x="176" y="199" width="102" height="16" uuid="6d2b85b6-d475-46ef-94e8-0191c1f40c2f"/>
+					<textElement>
+						<font size="8"/>
+					</textElement>
+					<textFieldExpression><![CDATA[" "+$F{ext_vericose}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement style="table" x="5" y="215" width="171" height="16" uuid="d5b38be2-cb30-49e3-b2cc-6f14dbaf5f45"/>
+					<textElement>
+						<font isBold="true"/>
+					</textElement>
+					<text><![CDATA[EXTREMITIES]]></text>
+				</staticText>
+				<staticText>
+					<reportElement style="table" x="5" y="231" width="171" height="16" uuid="f8424a18-5dba-43b6-81c8-b30b563e9319"/>
+					<textElement>
+						<font isBold="true"/>
+					</textElement>
+					<text><![CDATA[DEFORMITIES]]></text>
+				</staticText>
+				<staticText>
+					<reportElement style="table" x="5" y="247" width="171" height="16" uuid="cb95c2ba-fe18-496e-a05f-ab031c624032"/>
+					<textElement>
+						<font isBold="true"/>
+					</textElement>
+					<text><![CDATA[SKIN]]></text>
+				</staticText>
+				<staticText>
+					<reportElement style="table" x="5" y="263" width="171" height="16" uuid="fe7410e5-a9be-4b6d-a9f9-36fa8c692224"/>
+					<textElement>
+						<font isBold="true"/>
+					</textElement>
+					<text><![CDATA[VENERAL DISEASE CLINICALLY]]></text>
+				</staticText>
+				<staticText>
+					<reportElement style="table" x="5" y="279" width="171" height="16" uuid="d7b26396-9750-493e-9d0d-d51aeed2fe27"/>
+					<textElement>
+						<font isBold="true"/>
+					</textElement>
+					<text><![CDATA[C.N.S]]></text>
+				</staticText>
+				<staticText>
+					<reportElement style="table" x="5" y="295" width="171" height="16" uuid="34c24508-ac72-4773-b671-0bae1798b951"/>
+					<textElement>
+						<font isBold="true"/>
+					</textElement>
+					<text><![CDATA[PSYCHIATRY]]></text>
+				</staticText>
+				<staticText>
+					<reportElement style="table" mode="Opaque" x="278" y="20" width="171" height="20" backcolor="#CCCCCC" uuid="5b882c37-7894-4ec8-97e3-5f2d6e082a65"/>
+					<textElement textAlignment="Center">
+						<font isBold="true" isUnderline="true"/>
+					</textElement>
+					<text><![CDATA[LAB INVESTIGATIONS]]></text>
+				</staticText>
+				<staticText>
+					<reportElement style="table" mode="Opaque" x="449" y="20" width="99" height="20" backcolor="#CCCCCC" uuid="b563ac9f-75c7-4f69-b1f2-cbed3c34a660"/>
+					<textElement textAlignment="Center"/>
+					<text><![CDATA[RESULTS]]></text>
+				</staticText>
+				<textField>
+					<reportElement style="table" x="176" y="231" width="102" height="16" uuid="4ea2b2a4-c8ad-406c-9fbe-dc5521260092"/>
+					<textElement>
+						<font size="8"/>
+					</textElement>
+					<textFieldExpression><![CDATA[" "+$F{ext_deformity}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement style="table" x="176" y="247" width="102" height="16" uuid="c73fbe8d-e137-4f09-b5de-d7ff720d5c16"/>
+					<textElement>
+						<font size="8"/>
+					</textElement>
+					<textFieldExpression><![CDATA[" "+$F{skin}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement style="table" x="176" y="279" width="102" height="16" uuid="165306b3-df4f-4bc8-8e21-53f755964886"/>
+					<textElement>
+						<font size="8"/>
+					</textElement>
+					<textFieldExpression><![CDATA[" "+$F{cns}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement style="table" x="176" y="295" width="102" height="16" uuid="0d13f021-e4dd-45e3-b6ca-4657e37448ea"/>
+					<textElement>
+						<font size="8"/>
+					</textElement>
+					<textFieldExpression><![CDATA[" "+$F{psychiatry}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement style="table" x="278" y="40" width="171" height="42" uuid="a23335e3-47ca-4f65-bbc4-f30675aeef30"/>
+					<textElement>
+						<font size="9" isBold="false"/>
+					</textElement>
+					<text><![CDATA[ URINE
+      SUGAR
+      ALBUMIN]]></text>
+				</staticText>
+				<textField>
+					<reportElement style="table" x="449" y="40" width="99" height="42" uuid="82ab61d3-361a-4bc5-a23f-081678488290"/>
+					<textElement markup="none">
+						<font size="9"/>
+					</textElement>
+					<textFieldExpression><![CDATA["\r\n "+$F{sugar}+
+"\r\n "+$F{albumin}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement style="table" x="278" y="82" width="171" height="77" uuid="5ebb1da5-53c9-4957-bae0-6c02a205af95"/>
+					<textElement>
+						<font size="10" isBold="true"/>
+					</textElement>
+					<text><![CDATA[STOOL]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="293" y="92" width="155" height="67" uuid="527408ba-2e78-4f3c-92f3-ba3089110aa4"/>
+					<textElement>
+						<font size="8"/>
+					</textElement>
+					<text><![CDATA[1. HELMINTHIS
+2. GIARDIASIS
+3. BILHARZIASIS (Of Endemic Culture)
+4. SALMONELLA
+5. SHIGELLA
+6. V.CHOLERA     (Of Endemic)]]></text>
+				</staticText>
+				<textField>
+					<reportElement style="table" x="449" y="82" width="99" height="78" uuid="dc08a39d-563b-4449-9534-a63a98c6dce3"/>
+					<textElement markup="none">
+						<font size="8"/>
+					</textElement>
+					<textFieldExpression><![CDATA["\r\n "+$F{helminthes}+
+"\r\n "+$F{giardia}+
+"\r\n "+$F{bilharzias}+
+"\r\n "+$F{salmonella}+
+"\r\n "+$F{shigella}+
+"\r\n "+$F{cholera}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement style="table" x="278" y="159" width="171" height="63" uuid="95938112-a721-45a0-9e7a-f12f5ed5955f"/>
+					<textElement>
+						<font size="10" isBold="true"/>
+					</textElement>
+					<text><![CDATA[BLOOD]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="293" y="169" width="155" height="55" uuid="e0564b9b-8680-4ab2-b35d-33d626b05ed4"/>
+					<textElement>
+						<font size="8"/>
+					</textElement>
+					<text><![CDATA[BLOOD GROUP
+HAEMOGLOBIN
+THICK FILM FOR
+    1. MALARIA
+    2. MICRO FILARIA
+]]></text>
+				</staticText>
+				<textField>
+					<reportElement style="table" x="449" y="160" width="99" height="62" uuid="6287d372-c5b9-4553-8ac7-b20a059c2738"/>
+					<textElement markup="none">
+						<font size="8"/>
+					</textElement>
+					<textFieldExpression><![CDATA["\r\n "+$F{blood_gp}+
+"\r\n "+$F{haemoglobin}+ "g/dl"+
+"\r\n\r\n "+$F{tf_malaria}+
+"\r\n "+$F{tf_micro_filaria}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement style="table" x="278" y="222" width="171" height="101" uuid="d270c616-50be-4820-963c-008815c78f7c"/>
+					<textElement>
+						<font size="10" isBold="true"/>
+					</textElement>
+					<text><![CDATA[CHEMISTRY]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="292" y="236" width="155" height="43" uuid="1b61bc5b-8994-4d71-bfbb-bce3f0c23ff3"/>
+					<textElement>
+						<font size="8"/>
+					</textElement>
+					<text><![CDATA[1. BLOOD GLUCOSE (R)
+2. LFTs
+         i. SGOT/AST
+        ii. SGPT/ALT]]></text>
+				</staticText>
+				<textField>
+					<reportElement style="table" x="449" y="222" width="99" height="57" uuid="8a6fd27b-e811-4f20-8ad9-42c8ed97cf9a"/>
+					<textElement markup="none">
+						<font size="8"/>
+					</textElement>
+					<textFieldExpression><![CDATA["\r\n "+$F{blood_glucose}+" mg/dl"+
+"\r\n "+$F{lft}+
+"\r\n "+$F{sgot}+" mg/dl"+
+"\r\n "+$F{sgpt}+" U/L"]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement style="table" x="278" y="323" width="171" height="48" uuid="c1ca301d-bf6f-488e-9f62-218350a3c62d"/>
+					<textElement>
+						<font size="10" isBold="true"/>
+					</textElement>
+					<text><![CDATA[ SEROLOGY]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="294" y="334" width="155" height="31" uuid="8500c283-b8ba-474d-a919-2a723fd78303"/>
+					<textElement>
+						<font size="8"/>
+					</textElement>
+					<text><![CDATA[1. HIV 1+2
+2. HBs Ag
+3. Anti HCV
+]]></text>
+				</staticText>
+				<textField>
+					<reportElement style="table" x="449" y="323" width="99" height="48" uuid="f6b14ac9-46cf-4027-8ed5-3c6df467bb32"/>
+					<textElement markup="none">
+						<font size="8"/>
+					</textElement>
+					<textFieldExpression><![CDATA["\r\n "+$F{anti_hiv}+
+"\r\n "+$F{hbs_ag}+
+"\r\n "+$F{anti_hcv}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement style="table" x="278" y="371" width="171" height="42" uuid="5e2b8172-7dff-40ac-a2d1-7657920dbff4"/>
+					<textElement>
+						<font size="10" isBold="true"/>
+					</textElement>
+					<text><![CDATA[VDRL
+TPHA (If VDRL Positive)]]></text>
+				</staticText>
+				<textField>
+					<reportElement style="table" x="449" y="371" width="99" height="42" uuid="3e38f99d-9aae-4bef-a3b6-e7883a6d6dea"/>
+					<textElement markup="none">
+						<font size="8"/>
+					</textElement>
+					<textFieldExpression><![CDATA[" "+$F{vdrl}+
+"\r\n "+$F{tpha}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="295" y="2" width="253" height="18" uuid="0c37416c-1a94-4c6a-b362-076e51c73231"/>
+					<textElement textAlignment="Right"/>
+					<text><![CDATA[Signature of Examinee: _____________]]></text>
+				</staticText>
+				<staticText>
+					<reportElement style="table" x="5" y="311" width="273" height="102" uuid="52c38166-21df-43da-840e-b54a42350d85"/>
+					<text><![CDATA[
+
+
+
+ MEDICAL DIRECTOR
+ NAME: ]]></text>
+				</staticText>
+				<textField>
+					<reportElement x="43" y="371" width="219" height="20" uuid="489672b4-916f-4574-95ed-86ccd11abc98"/>
+					<textElement>
+						<font size="12" isBold="true" isUnderline="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{director_name}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement style="table" x="176" y="263" width="102" height="16" uuid="077bfacf-a19a-4efd-9b7f-986baae0fe17"/>
+					<textElement>
+						<font size="8"/>
+					</textElement>
+					<textFieldExpression><![CDATA[" "+$F{venereal}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="292" y="279" width="155" height="44" uuid="abbbbe81-fba2-422a-ab8c-4605f320508e"/>
+					<textElement>
+						<font size="8"/>
+					</textElement>
+					<text><![CDATA[3. RFTs
+         i. Urea
+        ii. Creatinine]]></text>
+				</staticText>
+				<textField>
+					<reportElement style="table" x="449" y="279" width="99" height="44" uuid="912c47a7-9c3e-4697-9f74-3dc387e6ebad"/>
+					<textElement markup="none">
+						<font size="8"/>
+					</textElement>
+					<textFieldExpression><![CDATA[" "+$F{rft}+
+"\r\n "+$F{urea}+" U/L"+
+"\r\n "+$F{creatinine}+" mg/dl"]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupHeader>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="55" splitType="Stretch">
+			<staticText>
+				<reportElement x="2" y="0" width="133" height="20" uuid="d6b0612f-e225-405e-9995-9eee09aa7234"/>
+				<textElement>
+					<font size="13" isBold="true" isUnderline="true"/>
+				</textElement>
+				<text><![CDATA[Medical Test Report]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="2" y="20" width="152" height="13" uuid="e02ca422-6bfc-4083-8a4c-aab0c5d769fd"/>
+				<textElement>
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Rawalpindi Diagnostic Centre]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="2" y="35" width="149" height="20" uuid="79202157-a2e8-4714-98c3-be7a513c8270"/>
+				<text><![CDATA[626, St 8, Chaklala Scheme 3]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="364" y="0" width="191" height="20" uuid="d4e18161-f31a-4533-ae1c-d10a98bfc800"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[Executive Board of the Health Ministers]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="364" y="21" width="191" height="20" uuid="97d78ae2-de61-4d92-a20c-a34a9e7420af"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[Council for G.C.C States]]></text>
+			</staticText>
+			<image>
+				<reportElement x="302" y="0" width="60" height="55" uuid="eb8b42a4-ddec-4d0e-8524-bdf8c7e3a1ad"/>
+				<imageExpression><![CDATA["d:\\rdc_docs\\config\\gcc.jpg"]]></imageExpression>
+			</image>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="23" splitType="Stretch">
+			<staticText>
+				<reportElement x="2" y="0" width="151" height="20" uuid="91cea0d1-2b5a-4d0d-80f3-a4e5247a3f26"/>
+				<textElement>
+					<font isBold="true" isUnderline="true"/>
+				</textElement>
+				<text><![CDATA[CANDIDATE INFORMATION]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

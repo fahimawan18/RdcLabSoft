@@ -1,0 +1,140 @@
+
+	<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+		xmlns:ui="http://java.sun.com/jsf/facelets"
+		xmlns:h="http://java.sun.com/jsf/html"
+		xmlns:f="http://java.sun.com/jsf/core"
+		xmlns:p="http://primefaces.org/ui"
+		template="/pages/includes/templatePage.xhtml">
+		<ui:define name="title">Lab Software</ui:define>
+		<ui:define name="top">Lab Software</ui:define>
+		<ui:define name="content">
+
+<h:form>
+  
+
+  	<p:panel id="panel2" header="Manage Users">
+					<p:panelGrid style="margin-top:20px; width: 70%; margin: 0 auto"
+					columns="2">
+					
+					<p:outputLabel value="Enter ID"></p:outputLabel>
+ 					 <h:inputText value="#{adminBean.toSearchUser.id}"></h:inputText>
+ 					 
+					<p:outputLabel value="Enter Username"></p:outputLabel>
+ 					 <h:inputText value="#{adminBean.toSearchUser.userName}"></h:inputText>
+ 
+  						<p:outputLabel value="Enter Name"></p:outputLabel>
+  						<h:inputText value="#{adminBean.toSearchUser.name}"></h:inputText>
+  						
+  						<p:outputLabel value="Select Profile Status"></p:outputLabel>
+  						<p:selectOneMenu value="#{adminBean.toSearchUser.profileStatus}">
+							<f:selectItem itemLabel="Select One" itemValue="" />
+							<f:selectItem itemLabel="Current" itemValue="Current" />
+							<f:selectItem itemLabel="Deleted" itemValue="Deleted" />
+						</p:selectOneMenu>
+					
+					
+ 					 
+					</p:panelGrid>
+				</p:panel>
+ 
+ 
+ 
+  	<h:commandButton value="Search" action="#{adminBean.searchUsers}"/>
+  	
+  	<br/>
+  	
+  	<p:dataTable value="#{adminBean.usersList}" var="mylist"
+					paginatorPosition="top" editable="true" rows="12" paginator="true"
+					paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+					>
+
+					<p:column headerText="ID">
+						<h:outputText value="#{mylist.id}" />
+					</p:column>
+					
+					<p:column headerText="User Name">
+						<h:outputText value="#{mylist.userName}" />
+					</p:column>
+
+					<p:column headerText="Name">
+						<h:outputText value="#{mylist.name}" />
+					</p:column>
+
+					<p:column headerText="Appointment">
+						<h:outputText value="#{mylist.appointment}" />
+					</p:column>
+
+					 <p:column headerText="System Admin">
+					  <h:selectOneMenu value="#{mylist.roleAdmin}">
+  						<f:selectItem itemLabel="N" itemValue="N"></f:selectItem>
+  						<f:selectItem itemLabel="Y" itemValue="Y"></f:selectItem>
+  						</h:selectOneMenu>
+  					</p:column>
+  					
+  					<p:column headerText="Regn Counter">
+					  <h:selectOneMenu value="#{mylist.roleRegn}">
+  						<f:selectItem itemLabel="N" itemValue="N"></f:selectItem>
+  						<f:selectItem itemLabel="Y" itemValue="Y"></f:selectItem>
+  						</h:selectOneMenu>
+  					</p:column>
+  					
+  					<p:column headerText="Cashier">
+					  <h:selectOneMenu value="#{mylist.roleFinance}">
+  						<f:selectItem itemLabel="N" itemValue="N"></f:selectItem>
+  						<f:selectItem itemLabel="Y" itemValue="Y"></f:selectItem>
+  						</h:selectOneMenu>
+  					</p:column>
+  					
+  					<p:column headerText="Medical(GPE)">
+					  <h:selectOneMenu value="#{mylist.roleMedical}">
+  						<f:selectItem itemLabel="N" itemValue="N"></f:selectItem>
+  						<f:selectItem itemLabel="Y" itemValue="Y"></f:selectItem>
+  						</h:selectOneMenu>
+  					</p:column>
+  					
+  					<p:column headerText="Sample and Lab">
+					  <h:selectOneMenu value="#{mylist.roleSample}">
+  						<f:selectItem itemLabel="N" itemValue="N"></f:selectItem>
+  						<f:selectItem itemLabel="Y" itemValue="Y"></f:selectItem>
+  						</h:selectOneMenu>
+  					</p:column>
+  					
+  					<p:column headerText="Pathology">
+					  <h:selectOneMenu value="#{mylist.rolePathology}">
+  						<f:selectItem itemLabel="N" itemValue="N"></f:selectItem>
+  						<f:selectItem itemLabel="Y" itemValue="Y"></f:selectItem>
+  						</h:selectOneMenu>
+  					</p:column>
+  					
+  					<p:column headerText="Director">
+					  <h:selectOneMenu value="#{mylist.roleDirector}">
+  						<f:selectItem itemLabel="N" itemValue="N"></f:selectItem>
+  						<f:selectItem itemLabel="Y" itemValue="Y"></f:selectItem>
+  						</h:selectOneMenu>
+  					</p:column>
+  					
+					<p:column headerText="Profile Status">
+						<p:selectOneMenu value="#{mylist.profileStatus}">
+							<f:selectItem itemLabel="Current" itemValue="Current" />
+							<f:selectItem itemLabel="Deleted" itemValue="Deleted" />
+						</p:selectOneMenu>
+					</p:column>		
+					
+					<p:column headerText="Reset Password">
+					<p:commandButton action="#{adminBean.resetPassword}" icon="ui-icon-refresh" value="Reset"
+					>
+							<f:setPropertyActionListener target="#{adminBean.toSearchUser}" value="#{mylist}" />
+						</p:commandButton>
+						
+					</p:column>
+
+				</p:dataTable>
+				
+				
+				<br/>
+				
+					<h:commandButton value="Update" action="#{adminBean.updateUsers}" ></h:commandButton>
+</h:form>
+</ui:define>
+	</ui:composition>
+

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration SYSTEM 
+    "classpath://org/hibernate/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+ <session-factory name="LabSoftFactory">
+  <!-- Database connection settings -->
+  <property name="connection.driver_class">com.mysql.jdbc.Driver</property>
+  <property name="connection.url">jdbc:mysql://localhost:3306/labsoft</property>
+  <property name="connection.username">fahim</property>
+  <property name="connection.password">1234</property>
+  <property name="hibernate.show_sql">true</property>
+  
+  
+  <mapping class="com.lab.dal.dao.ApplicationUsers"/>
+  <mapping class="com.lab.dal.dao.WfClient"/>
+  <mapping class="com.lab.dal.dao.WfClientScannedFiles"/>
+  <mapping class="com.lab.dal.dao.WfClientFinance"/>
+  <mapping class="com.lab.dal.dao.WfClientGpe"/>
+  <mapping class="com.lab.dal.dao.WfClientXray"/>
+  <mapping class="com.lab.dal.dao.WfClientSamples"/>
+  <mapping class="com.lab.dal.dao.WfClientProgress"/>
+  <mapping class="com.lab.dal.dao.WfLabResultUrine"/>
+  <mapping class="com.lab.dal.dao.WfLabResultMicro"/>
+  <mapping class="com.lab.dal.dao.WfLabResultBlood"/>
+  <mapping class="com.lab.dal.dao.WfLabResultSputum"/>
+  <mapping class="com.lab.dal.dao.WfLabResultStool"/>
+  
+  
+ </session-factory>
+</hibernate-configuration>

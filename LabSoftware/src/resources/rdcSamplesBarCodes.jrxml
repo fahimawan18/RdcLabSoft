@@ -1,0 +1,225 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="rdcSamplesBarCodes" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="eb74bead-02f9-4d03-9269-1350fed37430">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="77"/>
+	<parameter name="clientId" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[select c.rdc_token_no,
+c.gamca_slip_no, concat(c.first_name," ",c.last_name)as client_name,
+c.father_name, c.passport_no,
+s.id as sample_id, s.blood_sample, s.urine_sample, s.sputum_sample,
+s.stool_sample,
+s.client_id
+from  wf_client_samples s, wf_client c
+where s.client_id = c.id
+and c.id = $P{clientId}]]>
+	</queryString>
+	<field name="rdc_token_no" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="gamca_slip_no" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="client_name" class="java.lang.String"/>
+	<field name="father_name" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="passport_no" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="sample_id" class="java.lang.Integer"/>
+	<field name="blood_sample" class="java.lang.String">
+		<fieldDescription><![CDATA[Yes, No]]></fieldDescription>
+	</field>
+	<field name="urine_sample" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="sputum_sample" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="stool_sample" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="client_id" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="56" splitType="Stretch">
+			<staticText>
+				<reportElement x="394" y="0" width="161" height="26" uuid="ba5e32cf-f172-46c8-965f-1cc02a4656bb"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="SansSerif" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[SAMPLE's BAR CODES]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Transparent" x="467" y="26" width="88" height="18" uuid="ac8765e8-f6ac-4289-8d29-358fbc5a28ea"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="SansSerif" size="10" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Format : Code39]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="0" width="249" height="26" uuid="42b21645-5868-432f-a4ba-1f8544f93ce7"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement verticalAlignment="Top">
+					<font fontName="SansSerif" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[RAWALPINDI DIAGNOSTIC CENTRE]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="26" width="249" height="26" uuid="25f38fae-d503-46f8-b89d-10d2cb1b21d2"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement verticalAlignment="Top">
+					<font fontName="SansSerif" size="10" isBold="false"/>
+				</textElement>
+				<text><![CDATA[626, Street 8, Chalklala Scheme 3
+Rawalpindi]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="75" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="79" height="20" uuid="1165edbb-f9de-455b-994d-83d88990ddfd"/>
+				<text><![CDATA[RDC Token No:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="79" y="0" width="100" height="20" uuid="191590cd-ce35-4b2b-b261-fe3938de1860"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{rdc_token_no}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="79" y="32" width="100" height="20" uuid="fb559b3b-e826-453e-b5a2-fbc808a0fafb"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{gamca_slip_no}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="32" width="79" height="20" uuid="09c0f4b4-03cc-4f69-9850-4dfe91da38f7"/>
+				<text><![CDATA[GAMCA Slip No:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="259" y="0" width="117" height="20" uuid="74f8cae4-d588-420d-8f8c-7a6aaa66494c"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{client_name}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="180" y="0" width="79" height="20" uuid="b0b2c842-33d0-458c-9dde-2fa6b3e0f050"/>
+				<text><![CDATA[Client Name:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="259" y="32" width="117" height="20" uuid="5bb9b60f-b199-4136-9354-07949abcc490"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{father_name}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="180" y="32" width="79" height="20" uuid="a6a9a246-1409-4e4d-9df6-d16841e22a71"/>
+				<text><![CDATA[Father Name:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="448" y="0" width="107" height="20" uuid="4c81751a-5a9a-4b8d-bdad-f9ed1054b2d5"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{passport_no}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="394" y="0" width="54" height="20" uuid="6ab02829-a32c-4ac4-806f-ca0661e97d0d"/>
+				<text><![CDATA[Passport #]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<detail>
+		<band height="254" splitType="Stretch">
+			<componentElement>
+				<reportElement x="79" y="0" width="100" height="36" uuid="aec64c9d-53c4-46e7-a5ea-81b23e18dc37">
+					<printWhenExpression><![CDATA[($F{blood_sample}!=null && $F{blood_sample}.equals("Yes"))]]></printWhenExpression>
+				</reportElement>
+				<jr:Code39 xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd" textPosition="bottom">
+					<jr:codeExpression><![CDATA[$F{client_id}+$F{passport_no}+$F{rdc_token_no}+"-blood"]]></jr:codeExpression>
+				</jr:Code39>
+			</componentElement>
+			<staticText>
+				<reportElement x="0" y="0" width="79" height="36" uuid="b287a071-b773-4ccf-86c5-3e581d006eef"/>
+				<text><![CDATA[Blood Sample]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1" y="58" width="79" height="36" uuid="64730e82-ab6b-4d3c-8174-b9fc2470ef74"/>
+				<text><![CDATA[Urine Sample]]></text>
+			</staticText>
+			<componentElement>
+				<reportElement x="80" y="58" width="100" height="36" uuid="8b1074fc-e9ec-42c9-9770-7bf7904d6b6f">
+					<printWhenExpression><![CDATA[($F{urine_sample}!=null && $F{urine_sample}.equals("Yes"))]]></printWhenExpression>
+				</reportElement>
+				<jr:Code39 xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd" textPosition="bottom">
+					<jr:codeExpression><![CDATA[$F{client_id}+$F{passport_no}+$F{rdc_token_no}+"-urine"]]></jr:codeExpression>
+				</jr:Code39>
+			</componentElement>
+			<staticText>
+				<reportElement x="1" y="197" width="79" height="36" uuid="6ff17d1b-b94e-4772-b0d0-e9c26fb072e9"/>
+				<text><![CDATA[Stool Sample]]></text>
+			</staticText>
+			<componentElement>
+				<reportElement x="80" y="197" width="100" height="36" uuid="c74c61d2-37f5-4804-b3f6-9951d102d991">
+					<printWhenExpression><![CDATA[($F{stool_sample}!=null && $F{stool_sample}.equals("Yes"))]]></printWhenExpression>
+				</reportElement>
+				<jr:Code39 xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd" textPosition="bottom">
+					<jr:codeExpression><![CDATA[$F{client_id}+$F{passport_no}+$F{rdc_token_no}+"-stool"]]></jr:codeExpression>
+				</jr:Code39>
+			</componentElement>
+			<staticText>
+				<reportElement x="0" y="123" width="79" height="36" uuid="57ccd32e-3a4b-4ace-87af-9f52d0a11916"/>
+				<text><![CDATA[Sputum Sample]]></text>
+			</staticText>
+			<componentElement>
+				<reportElement x="79" y="123" width="100" height="36" uuid="2c79a80c-9fee-4b94-baa3-b67231bd3eb6">
+					<printWhenExpression><![CDATA[($F{sputum_sample}!=null && $F{sputum_sample}.equals("Yes"))]]></printWhenExpression>
+				</reportElement>
+				<jr:Code39 xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd" textPosition="bottom">
+					<jr:codeExpression><![CDATA[$F{client_id}+$F{passport_no}+$F{rdc_token_no}+"-sputum"]]></jr:codeExpression>
+				</jr:Code39>
+			</componentElement>
+		</band>
+	</detail>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

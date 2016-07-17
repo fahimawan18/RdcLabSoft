@@ -1,0 +1,105 @@
+
+	<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+		xmlns:ui="http://java.sun.com/jsf/facelets"
+		xmlns:h="http://java.sun.com/jsf/html"
+		xmlns:f="http://java.sun.com/jsf/core"
+		xmlns:p="http://primefaces.org/ui"
+		template="/pages/includes/templatePage.xhtml">
+		<ui:define name="title">Lab Software</ui:define>
+		<ui:define name="top">Lab Software</ui:define>
+		<ui:define name="content">
+
+<h:form>
+  
+				 	
+  	<p:panel id="panel2" header="Client's Basic Details">
+					
+					<p:panelGrid style="margin-top:20px; width: 70%; margin: 0 auto"
+					columns="2" id="printGrid">					 
+					 
+					 
+					 <h:outputText value="RDC Token No:" />
+   					 <h:outputText value="#{registerClientBean.selectedClient.rdcTokenNo}"/>
+ 
+    				<h:outputText value="GAMCA Slip No:" />
+    				<h:outputText value="#{registerClientBean.selectedClient.gamcaSlipNo}"/>
+ 
+    				<h:outputText value="First Name/ Last Name:" />
+    				<h:outputText value="#{registerClientBean.selectedClient.firstName} / #{registerClientBean.selectedClient.lastName}"/>					
+					</p:panelGrid>			
+				</p:panel>
+				
+				
+				<p:panel id="panel3" header="Samples Collection">
+					
+					
+					<p:panelGrid style="margin-top:10px; width: 70%; margin: 0 auto"
+					columns="1" id="printGrid1">
+					<h:panelGroup>
+						<h2>SAMPLES COLLECTION DETAILS</h2>
+						
+					</h:panelGroup>
+					 
+ 					
+					</p:panelGrid>
+					
+					
+					<p:panelGrid style="margin-top:20px; width: 70%; margin: 0 auto"
+					columns="4" id="addGrid">					 
+					 
+					 
+					 <h:outputText value="Blood Sample Collected:" />
+				    <h:panelGroup>
+				    <h:selectOneMenu value="#{registerClientBean.selectedClient.samples.bloodSample}">				    	
+				    	<f:selectItems value="#{crit.twoOptionsList}"></f:selectItems>
+				    </h:selectOneMenu>
+				    </h:panelGroup>
+				    
+				    <h:outputText value="Urine Sample Collected:" />
+				    <h:panelGroup>
+				    <h:selectOneMenu value="#{registerClientBean.selectedClient.samples.urineSample}">				    	
+				    	<f:selectItems value="#{crit.twoOptionsList}"></f:selectItems>
+				    </h:selectOneMenu>
+				    </h:panelGroup>
+				    
+				     <h:outputText value="Sputum Sample Collected:" />
+				    <h:panelGroup>
+				    <h:selectOneMenu value="#{registerClientBean.selectedClient.samples.sputumSample}">				    	
+				    	<f:selectItems value="#{crit.twoOptionsList}"></f:selectItems>
+				    </h:selectOneMenu>
+				    </h:panelGroup>
+				     
+				    <h:outputText value="Stool Sample Collected:" />
+				    <h:panelGroup>
+				    <h:selectOneMenu value="#{registerClientBean.selectedClient.samples.stoolSample}">				    	
+				    	<f:selectItems value="#{crit.twoOptionsList}"></f:selectItems>
+				    </h:selectOneMenu>
+				    </h:panelGroup>
+				    
+				  
+				    <h:outputText value="Remarks/Observation:" />
+				    <h:panelGroup>				    
+				    <h:inputTextarea value="#{registerClientBean.selectedClient.samples.remarks}"/>
+				    </h:panelGroup>
+				    
+				   
+				    
+				    
+				    </p:panelGrid>
+					
+				</p:panel>
+				
+				
+				<h:commandButton value="Save" 
+				 action="#{registerClientBean.addSamples}">
+				</h:commandButton>
+				
+				<h:commandButton value="Back" 
+				 action="sampleCollection">
+				</h:commandButton>
+				
+				
+</h:form>
+</ui:define>
+	</ui:composition>
+

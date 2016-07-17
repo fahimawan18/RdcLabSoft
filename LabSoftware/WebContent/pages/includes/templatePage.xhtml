@@ -1,0 +1,48 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<h:outputStylesheet library="css" name="style.css" />
+</h:head>
+<h:body>
+	<p:layout fullPage="false"> 
+
+		<p:layoutUnit position="center" style="margin-top:70px;">
+			<f:facet name="header">
+
+				<div style="float: left;">
+					<em>Rawalpindi Diagnostic Centre</em>
+				</div>
+
+				<div align="right">
+
+					<p:outputLabel value="#{userBean.loggedUserString}"></p:outputLabel>
+					
+					<p:spacer width="30" height="20" />
+					<p:commandLink style="color:white;text-decoration: none;"
+						action="#{userBean.logoutUser}">LogOut</p:commandLink>
+				</div>
+			</f:facet>
+			<ui:include src="/pages/includes/header.xhtml" />
+
+			<br></br>
+			<p:panel id="content">
+				<ui:insert name="content">
+					<ui:include src="#{navBean.pageName}" />
+				</ui:insert>
+			</p:panel>
+			<f:facet name="footer">
+				<div align="center">Powered by : 
+				<a href ="http://www.techovative.co" style="color:white">Techovative Solutions</a>
+				</div>
+				
+			</f:facet>
+			
+		</p:layoutUnit>
+	</p:layout>
+</h:body>
+</html>

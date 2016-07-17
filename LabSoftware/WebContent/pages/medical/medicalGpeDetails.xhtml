@@ -1,0 +1,301 @@
+
+	<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+		xmlns:ui="http://java.sun.com/jsf/facelets"
+		xmlns:h="http://java.sun.com/jsf/html"
+		xmlns:f="http://java.sun.com/jsf/core"
+		xmlns:p="http://primefaces.org/ui"
+		template="/pages/includes/templatePage.xhtml">
+		<ui:define name="title">Lab Software</ui:define>
+		<ui:define name="top">Lab Software</ui:define>
+		<ui:define name="content">
+
+<h:form>
+  
+				 	
+  	<p:panel id="panel2" header="Client's Basic Details">
+					
+					<p:panelGrid style="margin-top:20px; width: 70%; margin: 0 auto"
+					columns="2" id="printGrid">					 
+					 
+					 
+					 <h:outputText value="RDC Token No:" />
+   					 <h:outputText value="#{registerClientBean.selectedClient.rdcTokenNo}"/>
+ 
+    				<h:outputText value="GAMCA Slip No:" />
+    				<h:outputText value="#{registerClientBean.selectedClient.gamcaSlipNo}"/>
+ 
+    				<h:outputText value="First Name/ Last Name:" />
+    				<h:outputText value="#{registerClientBean.selectedClient.firstName} / #{registerClientBean.selectedClient.lastName}"/>					
+					</p:panelGrid>			
+				</p:panel>
+				
+				
+				<p:panel id="panel3" header="Client GPE Details">
+					
+					
+					<p:panelGrid style="margin-top:10px; width: 70%; margin: 0 auto"
+					columns="1" id="printGrid1">
+					<h:panelGroup>
+						<h2>GENERAL PHYSICIAN EXAMINATION</h2>
+						
+					</h:panelGroup>
+					 
+ 					
+					</p:panelGrid>
+					
+					
+					<p:panelGrid style="margin-top:20px; width: 70%; margin: 0 auto"
+					columns="4" id="addGrid">					 
+					 
+					 
+					 <h:outputText value="BP:" />
+				    <h:inputText value="#{registerClientBean.selectedClient.gpe.bp}"/>
+				    
+				    <h:outputText value="Temperature:" />
+				    <h:panelGroup>
+				    <h:inputText value="#{registerClientBean.selectedClient.gpe.temperature}"/>
+				    <h:selectOneMenu value="#{registerClientBean.selectedClient.gpe.temperatureScale}">				    	
+				    	<f:selectItem itemLabel="F" itemValue="F"></f:selectItem>
+				    	<f:selectItem itemLabel="C" itemValue="C"></f:selectItem>
+				    </h:selectOneMenu>
+				    </h:panelGroup>
+				    
+				     <h:outputText value="Height:" />
+				    <h:panelGroup>
+				    <h:inputText value="#{registerClientBean.selectedClient.gpe.height}"/>
+				    <h:selectOneMenu value="#{registerClientBean.selectedClient.gpe.heightScale}">				    	
+				    	<f:selectItem itemLabel="cm" itemValue="cm"></f:selectItem>				    	
+				    	<f:selectItem itemLabel="inch" itemValue="inch"></f:selectItem>
+				    	<f:selectItem itemLabel="Ft" itemValue="Ft"></f:selectItem>
+				    </h:selectOneMenu>
+				    </h:panelGroup>
+				     
+				     <h:outputText value="Weight:" />
+				    <h:panelGroup>
+				    <h:inputText value="#{registerClientBean.selectedClient.gpe.weight}"/>
+				    <h:selectOneMenu value="#{registerClientBean.selectedClient.gpe.weightScale}">
+				    	<f:selectItem itemLabel="Kgs" itemValue="Kgs"></f:selectItem>
+				    	<f:selectItem itemLabel="Lbs" itemValue="Lbs"></f:selectItem>
+				    </h:selectOneMenu>
+				    </h:panelGroup>
+				    
+				    <h:outputText value="Skin:" />
+				    <h:panelGroup>				    
+				    <h:selectOneMenu value="#{registerClientBean.selectedClient.gpe.skin}">
+				    	<f:selectItem itemLabel="Normal" itemValue="Normal"></f:selectItem>
+				    	<f:selectItem itemLabel="Abnormal" itemValue="Abnormal"></f:selectItem>
+				    </h:selectOneMenu>
+				    </h:panelGroup>
+				    
+				    <h:outputText value="Fingers:" />
+				    <h:panelGroup>				    
+				    <h:selectOneMenu value="#{registerClientBean.selectedClient.gpe.extFingers}">
+				    	<f:selectItem itemLabel="Normal" itemValue="Normal"></f:selectItem>
+				    	<f:selectItem itemLabel="Abnormal" itemValue="Abnormal"></f:selectItem>
+				    </h:selectOneMenu>
+				    </h:panelGroup>
+				    
+
+				    
+				    <h:outputText value="Deformity:" />
+				    <h:panelGroup>				    
+				    <h:selectOneMenu value="#{registerClientBean.selectedClient.gpe.extDeformity}">
+				    	<f:selectItem itemLabel="No" itemValue="No"></f:selectItem>
+				    	<f:selectItem itemLabel="Yes" itemValue="Yes"></f:selectItem>
+				    </h:selectOneMenu>
+				    </h:panelGroup>
+				    
+				    <h:outputText value="Varicose Veins:" />
+				    <h:panelGroup>				    
+				    <h:selectOneMenu value="#{registerClientBean.selectedClient.gpe.extVericose}">
+				    	<f:selectItem itemLabel="No" itemValue="No"></f:selectItem>
+				    	<f:selectItem itemLabel="Yes" itemValue="Yes"></f:selectItem>
+				    </h:selectOneMenu>
+				    </h:panelGroup>
+				    
+				    <h:outputText value="Neck:" />
+				    <h:panelGroup>				    
+				    <h:selectOneMenu value="#{registerClientBean.selectedClient.gpe.neck}">
+				    	<f:selectItem itemLabel="Normal" itemValue="Normal"></f:selectItem>
+				    	<f:selectItem itemLabel="Goiter" itemValue="Goiter"></f:selectItem>
+				    </h:selectOneMenu>
+				    </h:panelGroup>
+				    
+				    <h:outputText value="Neuro PE" />
+				    <h:panelGroup>				    
+				    <h:selectOneMenu value="#{registerClientBean.selectedClient.gpe.neuroPe}">
+				    	<f:selectItem itemLabel="Normal" itemValue="Normal"></f:selectItem>
+				    	<f:selectItem itemLabel="Abnormal" itemValue="Abnormal"></f:selectItem>
+				    </h:selectOneMenu>
+				    </h:panelGroup>
+				    
+				    <h:outputText value="CNS:" />
+				    <h:panelGroup>				    
+				    <h:selectOneMenu value="#{registerClientBean.selectedClient.gpe.cns}">
+				    	<f:selectItem itemLabel="Normal" itemValue="Normal"></f:selectItem>
+				    	<f:selectItem itemLabel="Abnormal" itemValue="Abnormal"></f:selectItem>
+				    </h:selectOneMenu>
+				    </h:panelGroup>
+				    
+				    <h:outputText value="Lungs:" />
+				    <h:panelGroup>				    
+				    <h:selectOneMenu value="#{registerClientBean.selectedClient.gpe.lungs}">
+				    	<f:selectItem itemLabel="Normal" itemValue="Normal"></f:selectItem>
+				    	<f:selectItem itemLabel="Abnormal" itemValue="Abnormal"></f:selectItem>
+				    </h:selectOneMenu>
+				    </h:panelGroup>
+				    
+				    <h:outputText value="Heart:" />
+				    <h:panelGroup>				    
+				    <h:selectOneMenu value="#{registerClientBean.selectedClient.gpe.heart}">
+				    	<f:selectItem itemLabel="Normal" itemValue="Normal"></f:selectItem>
+				    	<f:selectItem itemLabel="Abnormal" itemValue="Abnormal"></f:selectItem>
+				    </h:selectOneMenu>
+				    </h:panelGroup>
+				    
+				    <h:outputText value="Abdominal:" />
+				    <h:panelGroup>				    
+				    <h:inputText value="#{registerClientBean.selectedClient.gpe.abdominal}"/>
+				    </h:panelGroup>	
+				    
+				    <h:outputText value="Liver:" />
+				    <h:panelGroup>				    
+				    <h:selectOneMenu value="#{registerClientBean.selectedClient.gpe.liver}">
+				    	<f:selectItem itemLabel="Normal" itemValue="Normal"></f:selectItem>
+				    	<f:selectItem itemLabel="Enlarged" itemValue="Enlarged"></f:selectItem>
+				    </h:selectOneMenu>
+				    </h:panelGroup>
+				    
+				    <h:outputText value="Kidneys:" />
+				    <h:panelGroup>				    
+				    <h:selectOneMenu value="#{registerClientBean.selectedClient.gpe.kidneys}">
+				    	<f:selectItem itemLabel="Normal" itemValue="Normal"></f:selectItem>
+				    	<f:selectItem itemLabel="Abnormal" itemValue="Abnormal"></f:selectItem>
+				    </h:selectOneMenu>
+				    </h:panelGroup>
+				    
+				    <h:outputText value="Spleen:" />
+				    <h:panelGroup>				    
+				    <h:selectOneMenu value="#{registerClientBean.selectedClient.gpe.spleen}">
+				    	<f:selectItem itemLabel="Normal" itemValue="Normal"></f:selectItem>
+				    	<f:selectItem itemLabel="Palpable" itemValue="Palpable"></f:selectItem>
+				    </h:selectOneMenu>
+				    </h:panelGroup>
+				    
+				    <h:outputText value="Hernia:" />
+				    <h:panelGroup>				    
+				    <h:selectOneMenu value="#{registerClientBean.selectedClient.gpe.hernia}">
+				    	<f:selectItem itemLabel="Nil" itemValue="Nil"></f:selectItem>
+				    	<f:selectItem itemLabel="Present" itemValue="Present"></f:selectItem>
+				    </h:selectOneMenu>
+				    </h:panelGroup>
+				    
+				    <h:outputText value="Venereal:" />
+				    <h:panelGroup>				    
+				    <h:selectOneMenu value="#{registerClientBean.selectedClient.gpe.venereal}">
+				    	<f:selectItem itemLabel="Nill" itemValue="Nill"></f:selectItem>
+				    	<f:selectItem itemLabel="Present" itemValue="Present"></f:selectItem>
+				    </h:selectOneMenu>
+				    </h:panelGroup>
+				    
+				    <h:outputText value="Allergy:" />
+				    <h:panelGroup>				    
+				    <h:inputText value="#{registerClientBean.selectedClient.gpe.allergy}"/>
+				    </h:panelGroup>
+				    
+				    <h:outputText value="Any other abnormality:" />
+				    <h:panelGroup>				    
+				    <h:inputText value="#{registerClientBean.selectedClient.gpe.other}"/>
+				    </h:panelGroup>
+				    
+				    <h:outputText value="Psychiatry:" />
+				    <h:panelGroup>				    
+				    <h:inputText value="#{registerClientBean.selectedClient.gpe.psychiatry}"/>
+				    </h:panelGroup>
+				    
+				    <h:outputText value="Ear(Left):" />
+				    <h:panelGroup>				    
+				    <h:selectOneMenu value="#{registerClientBean.selectedClient.gpe.earLeft}">
+				    	<f:selectItem itemLabel="Normal" itemValue="Normal"></f:selectItem>
+				    	<f:selectItem itemLabel="Wax" itemValue="Wax"></f:selectItem>
+				    	<f:selectItem itemLabel="Perforation" itemValue="Perforation"></f:selectItem>
+				    </h:selectOneMenu>
+				    </h:panelGroup>
+				    
+				    <h:outputText value="Ear(Right):" />
+				    <h:panelGroup>				    
+				    <h:selectOneMenu value="#{registerClientBean.selectedClient.gpe.earRight}">
+				    	<f:selectItem itemLabel="Normal" itemValue="Normal"></f:selectItem>
+				    	<f:selectItem itemLabel="Wax" itemValue="Wax"></f:selectItem>
+				    	<f:selectItem itemLabel="Perforation" itemValue="Perforation"></f:selectItem>
+				    </h:selectOneMenu>
+				    </h:panelGroup>
+				    
+				    <h:outputText value="Eye(Left):" />
+				    <h:panelGroup>				    
+				    <h:selectOneMenu value="#{registerClientBean.selectedClient.gpe.eyeLeft}">
+				    	<f:selectItem itemLabel="6/6" itemValue="6/6"></f:selectItem>
+				    	<f:selectItem itemLabel="6/9" itemValue="6/9"></f:selectItem>
+				    	<f:selectItem itemLabel="6/3" itemValue="6/3"></f:selectItem>
+				    	
+				    </h:selectOneMenu>
+				    </h:panelGroup>
+				    
+				    <h:outputText value="Eye(Right):" />
+				    <h:panelGroup>				    
+				    <h:selectOneMenu value="#{registerClientBean.selectedClient.gpe.eyeRight}">
+				    	<f:selectItem itemLabel="6/6" itemValue="6/6"></f:selectItem>
+				    	<f:selectItem itemLabel="6/9" itemValue="6/9"></f:selectItem>
+				    	<f:selectItem itemLabel="6/3" itemValue="6/3"></f:selectItem>
+				    	
+				    </h:selectOneMenu>
+				    </h:panelGroup>
+				    
+				    <h:outputText value="Pregnancy:" />
+				    <h:panelGroup>				    
+				    <h:selectOneMenu value="#{registerClientBean.selectedClient.gpe.pregnancy}">
+				    	<f:selectItem itemLabel="N/A" itemValue="N/A"></f:selectItem>
+				    	<f:selectItem itemLabel="Not present" itemValue="Not present"></f:selectItem>
+				    	<f:selectItem itemLabel="Present" itemValue="Present"></f:selectItem>
+				    </h:selectOneMenu>
+				    </h:panelGroup>
+				    
+				    <h:outputText value="Medical Status:" />
+				    <h:panelGroup>				    
+				    <h:selectOneMenu value="#{registerClientBean.selectedClient.gpe.medicalStatus}">
+				    	<f:selectItem itemLabel="Select " itemValue="#{null}"></f:selectItem>
+				    	<f:selectItem itemLabel="Fit" itemValue="Fit"></f:selectItem>
+				    	<f:selectItem itemLabel="Unfit" itemValue="Unfit"></f:selectItem>
+				    	<f:selectItem itemLabel="On hold" itemValue="On hold"></f:selectItem>
+				    </h:selectOneMenu>
+				    </h:panelGroup>
+				    
+				   			    
+				    </p:panelGrid>
+				    
+				    <p:panelGrid style="margin-top:20px; width: 70%; margin: 0 auto"
+					columns="2" id="addGrid2">
+					
+					 <h:outputText value="Remarks/Observation:" />
+				    <h:panelGroup>				    
+				    <h:inputTextarea value="#{registerClientBean.selectedClient.gpe.remarks}"/>
+				    </h:panelGroup>	
+					
+					</p:panelGrid>
+					
+				</p:panel>
+				
+				
+				<h:commandButton value="Save" id="btnGpe"
+				 action="#{registerClientBean.addGpe}">
+				</h:commandButton>
+				
+				<h:commandButton value="Back" 
+				 action="medicalGpe">
+				</h:commandButton>
+				
+				
+</h:form>
+</ui:define>
+	</ui:composition>
+

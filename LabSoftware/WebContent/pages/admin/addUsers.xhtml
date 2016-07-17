@@ -1,0 +1,80 @@
+
+	<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+		xmlns:ui="http://java.sun.com/jsf/facelets"
+		xmlns:h="http://java.sun.com/jsf/html"
+		xmlns:f="http://java.sun.com/jsf/core"
+		xmlns:p="http://primefaces.org/ui"
+		template="/pages/includes/templatePage.xhtml">
+		<ui:define name="title">Lab Software</ui:define>
+		<ui:define name="top">Lab Software</ui:define>
+		<ui:define name="content">
+
+<h:form>
+  
+
+				<p:panel id="panel1" header="Add new User">
+					<p:panelGrid style="margin-top:20px; width: 90%; margin: 0 auto"
+					columns="2">
+					
+					<p:outputLabel value="Enter Username"></p:outputLabel>
+  <h:inputText value="#{adminBean.toAddUser.userName}"></h:inputText>
+ 
+  <p:outputLabel value="Enter Name"></p:outputLabel>
+  <h:inputText value="#{adminBean.toAddUser.name}"></h:inputText>
+  
+  <p:outputLabel value="Enter Appt/Designation"></p:outputLabel>
+  <h:inputText value="#{adminBean.toAddUser.appointment}"></h:inputText>
+ 
+  <p:outputLabel value="System Admin"></p:outputLabel>
+  <h:selectOneMenu value="#{adminBean.toAddUser.roleAdmin}">
+  	<f:selectItem itemLabel="N" itemValue="N"></f:selectItem>
+  	<f:selectItem itemLabel="Y" itemValue="Y"></f:selectItem>
+  </h:selectOneMenu>
+  
+ 
+  <p:outputLabel value="Regn Counter"></p:outputLabel>
+  <h:selectOneMenu value="#{adminBean.toAddUser.roleRegn}">
+  	<f:selectItem itemLabel="N" itemValue="N"></f:selectItem>
+  	<f:selectItem itemLabel="Y" itemValue="Y"></f:selectItem>
+  </h:selectOneMenu>
+  
+  <p:outputLabel value="Cashier"></p:outputLabel>
+  <h:selectOneMenu value="#{adminBean.toAddUser.roleFinance}">
+  	<f:selectItem itemLabel="N" itemValue="N"></f:selectItem>
+  	<f:selectItem itemLabel="Y" itemValue="Y"></f:selectItem>
+  </h:selectOneMenu>
+  
+  <p:outputLabel value="Medical (GPE)"></p:outputLabel>
+  <h:selectOneMenu value="#{adminBean.toAddUser.roleMedical}">
+  	<f:selectItem itemLabel="N" itemValue="N"></f:selectItem>
+  	<f:selectItem itemLabel="Y" itemValue="Y"></f:selectItem>
+  </h:selectOneMenu>
+  
+  <p:outputLabel value="Lab and Sample Counter"></p:outputLabel>
+  <h:selectOneMenu value="#{adminBean.toAddUser.roleSample}">
+  	<f:selectItem itemLabel="N" itemValue="N"></f:selectItem>
+  	<f:selectItem itemLabel="Y" itemValue="Y"></f:selectItem>
+  </h:selectOneMenu>
+					
+<p:outputLabel value="Pathology"></p:outputLabel>
+  <h:selectOneMenu value="#{adminBean.toAddUser.rolePathology}">
+  	<f:selectItem itemLabel="N" itemValue="N"></f:selectItem>
+  	<f:selectItem itemLabel="Y" itemValue="Y"></f:selectItem>
+  </h:selectOneMenu>
+  
+  <p:outputLabel value="Director"></p:outputLabel>
+  <h:selectOneMenu value="#{adminBean.toAddUser.roleDirector}">
+  	<f:selectItem itemLabel="N" itemValue="N"></f:selectItem>
+  	<f:selectItem itemLabel="Y" itemValue="Y"></f:selectItem>
+  </h:selectOneMenu>
+					</p:panelGrid>
+				</p:panel>
+ 
+ 
+ 
+  	<p:commandButton value="Save" action="#{adminBean.addNewUser}"></p:commandButton>
+  	
+</h:form>
+</ui:define>
+	</ui:composition>
+

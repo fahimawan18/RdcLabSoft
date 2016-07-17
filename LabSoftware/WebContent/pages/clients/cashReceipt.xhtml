@@ -1,0 +1,86 @@
+
+	<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+		xmlns:ui="http://java.sun.com/jsf/facelets"
+		xmlns:h="http://java.sun.com/jsf/html"
+		xmlns:f="http://java.sun.com/jsf/core"
+		xmlns:p="http://primefaces.org/ui"
+		template="/pages/includes/templatePage.xhtml">
+		<ui:define name="title">Lab Software</ui:define>
+		<ui:define name="top">Lab Software</ui:define>
+		<ui:define name="content">
+
+<h:form>
+
+				 	
+  	<p:panel id="panel2" header="Cash Receipt">
+					<p:panelGrid style="margin-top:5px; width: 100%; margin: 0 auto"
+					columns="1" id="printGridMain">
+					<p:panelGrid style="margin-top:20px; width: 70%; margin: 0 auto"
+					columns="2" id="printGrid1">
+					<h:panelGroup>
+						<h2>RAWALPINDI DIAGNOSTIC CENTRE</h2>
+						<p:outputLabel value="Address: 626, Street 8, Chaklala Scheme 3, Rawalpindi "></p:outputLabel>
+					</h:panelGroup>
+					<h:panelGroup>
+ 					 RDC Token No: 
+ 						<h:outputText value="#{registerClientBean.selectedClient.rdcTokenNo}" style="font-size:20px"/> 
+ 					 </h:panelGroup>
+ 					 <h2>CASH RECEIPT</h2>
+ 					 <h:panelGroup>
+ 					 GAMCA Slip No: 
+ 						<h:outputText value="#{registerClientBean.selectedClient.gamcaSlipNo}" style="font-size:20px"/> 
+ 					 </h:panelGroup>
+ 					 
+ 					
+					</p:panelGrid>
+					
+					<p:panelGrid style="margin-top:20px; width: 70%; margin: 0 auto"
+					columns="1" id="printGrid">					 
+					 
+					 
+					 <h:panelGroup>
+					 Cash Receipt No:
+					 <h:outputText style="font-size:20px" 
+					 value="#{registerClientBean.selectedClient.cashPayment.id}"/>
+					 </h:panelGroup>
+					 <h:panelGroup>Date: <h:outputText style="font-size:20px" value="#{now}" /></h:panelGroup> 
+ 					 
+ 					 <h:panelGroup>
+ 					 Received from: 
+ 					 <h:outputText style="font-size:20px"  
+ 					 value="#{registerClientBean.selectedClient.firstName} #{registerClientBean.selectedClient.lastName}"/>
+ 					 </h:panelGroup>
+ 					 
+ 					 
+ 					 <h:panelGroup>
+					 	Cash Amount:
+					 
+ 					 		  					 
+ 					 		<h:outputText style="font-size:20px" 
+ 					 		value="#{registerClientBean.selectedClient.cashPayment.cashAmount} /- PKR "/>
+ 						
+ 					 </h:panelGroup>
+ 					 
+ 					 <h:panelGroup style="display:block; text-align:center">
+
+           				Techovative Solutions
+
+   					</h:panelGroup>	
+ 					
+					</p:panelGrid>
+					</p:panelGrid>
+					<p:commandButton value="Print" type="button" icon="ui-icon-print"
+				 style="display:block;margin-bottom: 20px">
+    				<p:printer target="printGridMain" />
+				</p:commandButton>
+				</p:panel>	
+				
+						
+				
+				
+				
+				
+</h:form>
+</ui:define>
+	</ui:composition>
+
