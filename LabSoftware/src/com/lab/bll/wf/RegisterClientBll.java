@@ -1,5 +1,6 @@
 package com.lab.bll.wf;
 
+import java.awt.image.BufferedImage;
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
 import java.io.Closeable;
@@ -22,6 +23,7 @@ import java.util.Map;
 
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
+import javax.imageio.ImageIO;
 import javax.persistence.JoinTable;
 import javax.servlet.http.HttpServletResponse;
 
@@ -955,8 +957,11 @@ public class RegisterClientBll
 				    .getResourceAsStream(Environment.getReportsTemplatePath()+Environment.getMedicalReportTemplateFile());//"/resources/rdcMedicalReport.jrxml");
 			JasperReport jasperReport = JasperCompileManager.compileReport(template);
 			
+			BufferedImage image = ImageIO.read(getClass().getResource("/resources/gcc.jpg"));
+			
 			Map<String, Object> parameters = new HashMap<String, Object>();
 		    parameters.put("clientId", clientId);
+		    parameters.put("imgLogo", image );
 		    
 		     
 		    JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport,parameters, connection);

@@ -2,7 +2,7 @@
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="rdcMedicalReport" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="02768d53-feaa-4aec-9d81-0413f48c29ab">
 	<property name="ireport.zoom" value="1.0"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="157"/>
+	<property name="ireport.y" value="0"/>
 	<style name="table">
 		<box>
 			<pen lineWidth="1.0" lineColor="#000000"/>
@@ -26,6 +26,9 @@
 	<subDataset name="Table Dataset 1" uuid="d3a16aad-3796-4cc2-88df-85a26a259eb9"/>
 	<subDataset name="dataset1" uuid="71030387-7ecd-4057-a447-8f20523eb265"/>
 	<parameter name="clientId" class="java.lang.String"/>
+	<parameter name="imgLogo" class="Object" isForPrompting="false">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
 	<queryString>
 		<![CDATA[SELECT
      wf_client.`RDC_TOKEN_NO` AS wf_client_RDC_TOKEN_NO,
@@ -832,7 +835,7 @@ TPHA (If VDRL Positive)]]></text>
 			</staticText>
 			<image>
 				<reportElement x="302" y="0" width="60" height="55" uuid="eb8b42a4-ddec-4d0e-8524-bdf8c7e3a1ad"/>
-				<imageExpression><![CDATA["d:\\rdc_docs\\config\\gcc.jpg"]]></imageExpression>
+				<imageExpression><![CDATA[$P{imgLogo}]]></imageExpression>
 			</image>
 		</band>
 	</title>
