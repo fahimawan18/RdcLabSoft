@@ -957,7 +957,7 @@ public class RegisterClientBll
 				    .getResourceAsStream(Environment.getReportsTemplatePath()+Environment.getMedicalReportTemplateFile());//"/resources/rdcMedicalReport.jrxml");
 			JasperReport jasperReport = JasperCompileManager.compileReport(template);
 			
-			BufferedImage image = ImageIO.read(getClass().getResource("/resources/gcc.jpg"));
+			BufferedImage image = ImageIO.read(getClass().getResource(Environment.getReportIconFile()));
 			
 			Map<String, Object> parameters = new HashMap<String, Object>();
 		    parameters.put("clientId", clientId);

@@ -27,6 +27,11 @@ public class Environment
 		return getProperty("applName");
 	}
 	
+	public static String getReportIconFile()
+	{
+		return getProperty("reportIconFile");
+	}
+	
 	public static String getBarCodesStoragePath()
 	{
 		return getProperty("barCodesStoragePath");
