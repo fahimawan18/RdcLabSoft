@@ -11,7 +11,7 @@
 		<f:ajax render=":content">
 			<p:menubar>
 				<p:menuitem value="Home" ajax="true" action="#{navBean.navHomePage}"
-					update=":content" icon="ui-icon-home">
+					update=":content" icon="ui-icon-home" rendered="false">
 				</p:menuitem>
 
 				<p:submenu label="Registration" icon="ui-icon-clock" rendered="#{userBean.currentUser.roleRegn=='Y'}">
