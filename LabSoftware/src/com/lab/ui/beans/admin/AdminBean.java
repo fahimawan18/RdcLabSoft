@@ -105,7 +105,7 @@ public class AdminBean
 	public String resetPassword()
 	{
 		AdminBll bll =new AdminBll();
-		newPassword = MessageConstants.Constants.DEFAULT_PASSWORD;
+		newPassword = Environment.getDefaultPassword();
 		if(bll.changePassword(toSearchUser,newPassword))
 		{
 //			FacesUtils.addInfoMessage("Login credentials", MessageConstants.Messages.UPDATE_SUCCESS);

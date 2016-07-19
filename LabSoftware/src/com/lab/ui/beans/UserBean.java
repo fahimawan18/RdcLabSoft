@@ -17,6 +17,7 @@ import org.jasypt.util.text.StrongTextEncryptor;
 import com.iac.web.util.FacesUtils;
 import com.lab.dal.UserDal;
 import com.lab.dal.dao.ApplicationUsers;
+import com.lab.utils.Environment;
 import com.lab.utils.HibernateUtilsAnnot;
 import com.lab.utils.MessageConstants;
 import com.lab.utils.MessageUtils;
@@ -32,12 +33,14 @@ public class UserBean
 	private boolean checkSession ;
 	public static String KEY_CURRENT_USER = "currentUser";
 	private Date currDate = new Date();
+	private String defaultPassword;
 	
 	public UserBean() 
 	{
 		// TODO Auto-generated constructor stub
 		this.toSearchUser = new ApplicationUsers();
 		this.checkSession = true;
+		this.defaultPassword = Environment.getDefaultPassword();
 	}
 	
 	
@@ -220,6 +223,20 @@ public class UserBean
 
 	public void setCurrDate(Date currDate) {
 		this.currDate = currDate;
+	}
+
+
+
+
+	public String getDefaultPassword() {
+		return defaultPassword;
+	}
+
+
+
+
+	public void setDefaultPassword(String defaultPassword) {
+		this.defaultPassword = defaultPassword;
 	}
 	
 

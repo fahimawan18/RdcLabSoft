@@ -51,19 +51,34 @@
     </h:selectOneMenu>
     
     <h:outputText value="Date of Birth:" />
-    <p:calendar value="#{registerClientBean.toAddClient.dob}" maxdate="#{userBean.currDate}">
+    <h:panelGroup>
+    <p:calendar value="#{registerClientBean.toAddClient.dob}" navigator="true"
+    pattern="dd-MM-yy" mask="true" 
+    maxdate="#{userBean.currDate}">
     </p:calendar>
+    <h:outputText value="dd-mm-yy"/>
+    </h:panelGroup>
     
     <h:outputText value="Passport No:" />
     <h:inputText value="#{registerClientBean.toAddClient.passportNo}"/>
     
     <h:outputText value="Passport Issue Date:" />
-    <p:calendar value="#{registerClientBean.toAddClient.passportIssueDate}" maxdate="#{userBean.currDate}">
+    <h:panelGroup>
+    <p:calendar value="#{registerClientBean.toAddClient.passportIssueDate}" navigator="true"
+    pattern="dd-MM-yy" mask="true"
+    maxdate="#{userBean.currDate}">
     </p:calendar>
+    <h:outputText value="dd-mm-yy"/>
+    </h:panelGroup>
     
     <h:outputText value="Passport Expiry Date:" />
-    <p:calendar value="#{registerClientBean.toAddClient.passportExpiryDate}" mindate="#{userBean.currDate}">
+    <h:panelGroup>
+    <p:calendar value="#{registerClientBean.toAddClient.passportExpiryDate}" navigator="true"
+    pattern="dd-MM-yy" mask="true"  
+    mindate="#{userBean.currDate}">
     </p:calendar>
+    <h:outputText value="dd-mm-yy"/>
+    </h:panelGroup>
     
     <h:outputText value="Place of Issue:" />
     <h:selectOneMenu value="#{registerClientBean.toAddClient.passportIssuePlace}">

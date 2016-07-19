@@ -2,7 +2,7 @@
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="rdcMedicalReport" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="02768d53-feaa-4aec-9d81-0413f48c29ab">
 	<property name="ireport.zoom" value="1.0"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="0"/>
+	<property name="ireport.y" value="17"/>
 	<style name="table">
 		<box>
 			<pen lineWidth="1.0" lineColor="#000000"/>
@@ -29,6 +29,7 @@
 	<parameter name="imgLogo" class="Object" isForPrompting="false">
 		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
 	</parameter>
+	<parameter name="expiryDate" class="java.util.Date" isForPrompting="false"/>
 	<queryString>
 		<![CDATA[SELECT
      wf_client.`RDC_TOKEN_NO` AS wf_client_RDC_TOKEN_NO,
@@ -804,7 +805,7 @@ TPHA (If VDRL Positive)]]></text>
 		<band splitType="Stretch"/>
 	</background>
 	<title>
-		<band height="55" splitType="Stretch">
+		<band height="98" splitType="Stretch">
 			<staticText>
 				<reportElement x="2" y="0" width="133" height="20" uuid="d6b0612f-e225-405e-9995-9eee09aa7234"/>
 				<textElement>
@@ -837,6 +838,36 @@ TPHA (If VDRL Positive)]]></text>
 				<reportElement x="302" y="0" width="60" height="55" uuid="eb8b42a4-ddec-4d0e-8524-bdf8c7e3a1ad"/>
 				<imageExpression><![CDATA[$P{imgLogo}]]></imageExpression>
 			</image>
+			<staticText>
+				<reportElement x="403" y="41" width="133" height="20" uuid="b4ea5901-e454-4e87-8754-4f98a4119aea"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="0.0"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font size="11" isBold="true" isUnderline="false"/>
+				</textElement>
+				<text><![CDATA[REPORT DATE]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="411" y="61" width="68" height="20" uuid="a653f3b5-8acb-43b8-af5e-ba3db8e41320"/>
+				<text><![CDATA[Examined:]]></text>
+			</staticText>
+			<textField pattern="dd/MM/yyyy">
+				<reportElement x="411" y="81" width="68" height="17" uuid="02dbc681-a218-47e1-8386-1744fa7e65c5"/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="487" y="61" width="68" height="20" uuid="661575ae-4db2-410d-99ff-6ceee0251975"/>
+				<text><![CDATA[Expiry:]]></text>
+			</staticText>
+			<textField pattern="dd/MM/yyyy">
+				<reportElement x="487" y="81" width="68" height="17" uuid="88f6615d-1d52-4a48-a3fa-85fa61975360"/>
+				<textFieldExpression><![CDATA[$P{expiryDate}]]></textFieldExpression>
+			</textField>
 		</band>
 	</title>
 	<pageHeader>

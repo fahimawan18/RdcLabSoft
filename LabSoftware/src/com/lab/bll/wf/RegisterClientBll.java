@@ -16,6 +16,7 @@ import java.nio.file.Paths;
 import java.sql.Blob;
 import java.sql.Connection;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -959,9 +960,16 @@ public class RegisterClientBll
 			
 			BufferedImage image = ImageIO.read(getClass().getResource(Environment.getReportIconFile()));
 			
+			Date referenceDate = new Date();
+			Calendar c = Calendar.getInstance(); 
+			c.setTime(referenceDate); 
+			c.add(Calendar.MONTH, +3);
+			
+			
 			Map<String, Object> parameters = new HashMap<String, Object>();
 		    parameters.put("clientId", clientId);
 		    parameters.put("imgLogo", image );
+		    parameters.put("expiryDate", c.getTime());
 		    
 		     
 		    JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport,parameters, connection);

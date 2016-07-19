@@ -11,6 +11,7 @@ import org.hibernate.criterion.Restrictions;
 import org.jasypt.util.text.StrongTextEncryptor;
 
 import com.lab.dal.dao.ApplicationUsers;
+import com.lab.utils.Environment;
 import com.lab.utils.HibernateUtilsAnnot;
 import com.lab.utils.MessageConstants;
 
@@ -35,7 +36,7 @@ public class AdminBll
 			
 			StrongTextEncryptor textEncryptor = new StrongTextEncryptor();
 			textEncryptor.setPassword(MessageConstants.Constants.PASSWORD_KEY);
-			String myEncryptedText = textEncryptor.encrypt(MessageConstants.Constants.DEFAULT_PASSWORD);
+			String myEncryptedText = textEncryptor.encrypt(Environment.getDefaultPassword());
 			toAddUser.setPassword(myEncryptedText);
 			toAddUser.setProfileStatus(MessageConstants.Constants.PROFILE_CURRENT);
 			session.save(toAddUser);

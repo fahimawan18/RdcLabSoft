@@ -27,6 +27,11 @@ public class Environment
 		return getProperty("applName");
 	}
 	
+	public static String getDefaultPassword()
+	{
+		return getProperty("defaultPassword");
+	}
+	
 	public static String getReportIconFile()
 	{
 		return getProperty("reportIconFile");

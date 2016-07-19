@@ -3,6 +3,8 @@ package com.lab.ui.beans;
 import java.io.File;
 import java.io.IOException;
 import java.sql.Connection;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -27,33 +29,15 @@ public class TestJasper
 	public static void main(String[] args) throws HibernateException, JRException, IOException 
 	{
 		// TODO Auto-generated method stub
-		System.out.println("Hello world");
-		JasperReport jasperReport = JasperCompileManager
-	               .compileReport("d:/reports/rdcMedicalReport.jrxml");
-		// Parameters for report
-	       Map<String, Object> parameters = new HashMap<String, Object>();
-	       parameters.put("clientId", 3);
-	 
-	       // DataSource
-	       // This is simple example, no database.
-	       // then using empty datasource.
-	       JRDataSource dataSource = new JREmptyDataSource();
-	       
-	       Session session = HibernateUtilsAnnot.currentSession();
-	       Connection connection = session.connection();
-//	       Connection connection = HibernateUtilsAnnot.getSessionFactory().openStatelessSession().connection();
-	 
-//	       JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport,parameters, dataSource);
-	       JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport,parameters, connection);
-	 
-	    
-	       // Make sure the output directory exists.
-	       File outDir = new File("d:/jasperoutput");
-	       outDir.mkdirs();
-	 
-	       // Export to PDF.
-	       JasperExportManager.exportReportToPdfFile(jasperPrint,
-	               "d:/jasperoutput/StyledTextReport.pdf");
+		System.out.println("Hello world"+new java.util.Date());
+		
+		Date referenceDate = new Date();
+		Calendar c = Calendar.getInstance(); 
+		c.setTime(referenceDate); 
+		c.add(Calendar.MONTH, +3);
+		System.out.println("Hello world"+c.getTime());
+		
+		
 	        
 	       System.out.println("Done!");
 
