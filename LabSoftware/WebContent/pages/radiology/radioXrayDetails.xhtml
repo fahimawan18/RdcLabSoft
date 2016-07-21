@@ -1,0 +1,69 @@
+
+	<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+		xmlns:ui="http://java.sun.com/jsf/facelets"
+		xmlns:h="http://java.sun.com/jsf/html"
+		xmlns:f="http://java.sun.com/jsf/core"
+		xmlns:p="http://primefaces.org/ui"
+		template="/pages/includes/templatePage.xhtml">
+		<ui:define name="title">Lab Software</ui:define>
+		<ui:define name="top">Lab Software</ui:define>
+		<ui:define name="content">
+
+<h:form>
+  
+				 	
+  	<p:panel id="panel2" header="Client's Basic Details">
+					
+						
+					
+					<ui:include src="/pages/includes/clientDetails.xhtml" />
+						
+				</p:panel>
+				
+				
+				<p:panel id="panel3" header="Radiology Details">
+					
+					
+					<p:panelGrid style="margin-top:20px; width: 70%; margin: 0 auto"
+					columns="2" id="addGrid">					 
+					 
+					 
+					 <h:outputText value="Lungs:" />
+				    <h:panelGroup>
+				    <h:selectOneMenu value="#{registerClientBean.selectedClient.xray.lungs}">
+				    	<f:selectItem itemLabel="Normal" itemValue="Normal"></f:selectItem>
+				    	<f:selectItem itemLabel="Abnormal" itemValue="Abnormal"></f:selectItem>
+				    </h:selectOneMenu>
+				    </h:panelGroup>
+				    
+				    <h:outputText value="Chest X-Ray:" />
+				    <h:panelGroup>
+				    <h:selectOneMenu value="#{registerClientBean.selectedClient.xray.chest}">
+				    	<f:selectItem itemLabel="Normal" itemValue="Normal"></f:selectItem>
+				    	<f:selectItem itemLabel="Abnormal" itemValue="Abnormal"></f:selectItem>
+				    </h:selectOneMenu>
+				    </h:panelGroup>
+				    
+				    
+				    
+				   
+				    
+				    
+				    </p:panelGrid>
+					
+				</p:panel>
+				
+				
+				<h:commandButton value="Save" 
+				 action="#{registerClientBean.saveRadiology}">
+				</h:commandButton>
+				
+				<h:commandButton value="Back" 
+				 action="radioXray">
+				</h:commandButton>
+				
+				
+</h:form>
+</ui:define>
+	</ui:composition>
+

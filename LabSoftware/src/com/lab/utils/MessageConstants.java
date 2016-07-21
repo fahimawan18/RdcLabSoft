@@ -17,6 +17,7 @@ public final class MessageConstants {
 		public static final String INVALID_FILE_SIZE = "Selected File size exceeds the limit";
 		public static final String FILE_UPLOAD_SUCCESS = "Selected File has been uploaded";
 		public static final String FILE_UPLOAD_FAILURE = "Error in uploading File";
+		public static final String FILE_UPLOAD_SIZE = "Max allowed file size: ";
 		
 	}
 
@@ -61,7 +62,9 @@ public final class MessageConstants {
 			
 			public static final String CASH_PAYMENT = "Cash and Accounts";
 			
-			public static final String GPE_XRAY = "G.P.E and X-Ray";
+			public static final String GPE_XRAY = "G.P.E";
+			
+			public static final String RADIOLOGY = "Radiology";
 			
 			public static final String SAMPLE_COLLECTION = "Sample Collection";
 			public static final String LAB_MGMT = "Lab Mgmt.";

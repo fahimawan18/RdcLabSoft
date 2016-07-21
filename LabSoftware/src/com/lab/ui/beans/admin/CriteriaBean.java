@@ -26,6 +26,7 @@ public class CriteriaBean
 	private List<SelectItem> negPosOptionsList ; //Negative, positive
 	private List<SelectItem> gccCountryList;	// GCC countries
 	private String maxFileSize;
+	private String invalidFileSizeMessage; 
 	
 	private URL clsPath=getClass().getResource("..\\..\\..\\..\\..\\resources\\");
 	private File medReportTemplateFile;
@@ -319,6 +320,34 @@ public class CriteriaBean
 
 	public void setMaxFileSize(String maxFileSize) {
 		this.maxFileSize = maxFileSize;
+	}
+
+
+
+
+	public String getInvalidFileSizeMessage() 
+	{
+		if(invalidFileSizeMessage==null || invalidFileSizeMessage.trim().length()==0)
+		{
+			int size=1;
+			try
+			{
+				 size = Integer.valueOf(maxFileSize);
+			}
+			catch(NumberFormatException e)
+			{
+				size = 1;
+			}
+			this.invalidFileSizeMessage = MessageConstants.Messages.FILE_UPLOAD_SIZE+(size/(1024*1024))+" MB";
+		}
+		return invalidFileSizeMessage;
+	}
+
+
+
+
+	public void setInvalidFileSizeMessage(String invalidFileSizeMessage) {
+		this.invalidFileSizeMessage = invalidFileSizeMessage;
 	}
 	
 	

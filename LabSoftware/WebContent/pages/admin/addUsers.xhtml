@@ -50,6 +50,12 @@
   	<f:selectItem itemLabel="Y" itemValue="Y"></f:selectItem>
   </h:selectOneMenu>
   
+  <p:outputLabel value="Radiologist"></p:outputLabel>
+  <h:selectOneMenu value="#{adminBean.toAddUser.roleRadiologist}">
+  	<f:selectItem itemLabel="N" itemValue="N"></f:selectItem>
+  	<f:selectItem itemLabel="Y" itemValue="Y"></f:selectItem>
+  </h:selectOneMenu>
+  
   <p:outputLabel value="Lab and Sample Counter"></p:outputLabel>
   <h:selectOneMenu value="#{adminBean.toAddUser.roleSample}">
   	<f:selectItem itemLabel="N" itemValue="N"></f:selectItem>

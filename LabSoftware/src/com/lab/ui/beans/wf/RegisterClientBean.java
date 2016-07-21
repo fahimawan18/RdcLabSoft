@@ -63,6 +63,12 @@ public class RegisterClientBean
 			this.toSearchClient.setProgress(new WfClientProgress());
 		}
 		
+		if(this.toSearchClient.getXray() == null || 
+				this.toSearchClient.getXray().getId()==null)
+		{
+			this.toSearchClient.setXray(new WfClientXray());
+		}
+		
 		this.toAddGpe= new WfClientGpe();
 	}
 	
@@ -189,6 +195,28 @@ public class RegisterClientBean
 			this.selectedClient = new WfClient();
 			searchClients();
 			return NavigationConstants.SAMPLE_DATA_NAVIGATION;
+			
+		}
+		else
+		{
+//			FacesUtils.addErrorMessage("Error adding data");
+			MessageUtils.error(MessageConstants.Messages.UPDATE_FAILURE);
+		}
+		
+		return "";
+	}
+	
+	public String saveRadiology()
+	{
+		System.out.println("in save radiology method");
+		bll =new RegisterClientBll();
+		if(bll.saveRadiology(this.selectedClient))
+		{
+//			FacesUtils.addInfoMessage("Samples Details added successfully");
+			MessageUtils.info(MessageConstants.Messages.UPDATE_SUCCESS);
+			this.selectedClient = new WfClient();
+			searchClients();
+			return NavigationConstants.RADIO_XRAY_NAVIGATION;
 			
 		}
 		else

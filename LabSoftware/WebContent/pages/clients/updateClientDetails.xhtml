@@ -14,6 +14,11 @@
 					<p:panelGrid style="margin-top:20px; width: 90%; margin: 0 auto"
 					columns="4">
 					
+					<f:facet name="header" >
+					<p:graphicImage width="100" height="150" 
+					 url="#{registerClientBean.toAddClient.picPath}"/>
+					</f:facet>
+					
 					<h:outputText value="RDC Token No:" />
     <h:inputText value="#{registerClientBean.toAddClient.rdcTokenNo}"></h:inputText>
  

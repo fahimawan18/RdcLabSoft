@@ -92,6 +92,13 @@
   						</h:selectOneMenu>
   					</p:column>
   					
+  					<p:column headerText="Radiologist">
+					  <h:selectOneMenu value="#{mylist.roleRadiologist}">
+  						<f:selectItem itemLabel="N" itemValue="N"></f:selectItem>
+  						<f:selectItem itemLabel="Y" itemValue="Y"></f:selectItem>
+  						</h:selectOneMenu>
+  					</p:column>
+  					
   					<p:column headerText="Sample and Lab">
 					  <h:selectOneMenu value="#{mylist.roleSample}">
   						<f:selectItem itemLabel="N" itemValue="N"></f:selectItem>

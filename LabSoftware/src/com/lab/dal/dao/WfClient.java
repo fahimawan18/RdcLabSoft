@@ -1,5 +1,6 @@
 package com.lab.dal.dao;
 
+import java.beans.Transient;
 import java.util.Date;
 
 import javax.persistence.CascadeType;
@@ -15,6 +16,8 @@ import javax.persistence.Table;
 
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
+
+import com.lab.utils.Environment;
 
 
 
@@ -136,6 +139,9 @@ public class WfClient
 	
 	@OneToOne(mappedBy="clientId")  
 	private WfClientProgress progress;
+	
+	@javax.persistence.Transient
+	private String picPath;
 	
 	
 	
@@ -441,6 +447,16 @@ public class WfClient
 
 	public void setFinalDeclaredDate(Date finalDeclaredDate) {
 		this.finalDeclaredDate = finalDeclaredDate;
+	}
+
+	public String getPicPath() 
+	{
+		this.picPath = Environment.getFilePreviewPath()+this.id+"photo.jpg";
+		return picPath;
+	}
+
+	public void setPicPath(String picPath) {
+		this.picPath = picPath;
 	}
 
 

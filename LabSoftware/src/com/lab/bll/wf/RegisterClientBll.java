@@ -173,7 +173,7 @@ public class RegisterClientBll
 				}
 				if(toSearchClient.getPassportNo()!=null && toSearchClient.getPassportNo().trim().length()>0)
 				{
-					cr.add(Restrictions.eq("passportNo", toSearchClient.getPassportNo()));
+					cr.add(Restrictions.ilike("passportNo", toSearchClient.getPassportNo()));
 				}
 				if(toSearchClient.getClientStatus()!=null && toSearchClient.getClientStatus().trim().length()>0)
 				{
@@ -529,6 +529,57 @@ public class RegisterClientBll
 		return flag;
 	}
 	
+	public boolean saveRadiology(WfClient toUpdate)
+	{
+		System.out.println("in saveRadiology bll method");
+		boolean flag = true;
+		
+		Session session = null;
+		Transaction tx = null;
+		
+		try
+		{
+			session = HibernateUtilsAnnot.currentSession();
+			tx = session.beginTransaction();
+			
+			if(toUpdate.getXray().getId()==null
+					|| toUpdate.getXray().getId()<1)
+			{
+				System.out.println("saving new Radiology");
+				toUpdate.getGpe().setClientId(toUpdate);
+				session.save(toUpdate.getXray());				
+			}
+			else
+			{
+				System.out.println("updating Radiology ");
+				session.update(toUpdate.getXray());
+			}
+			
+			
+			tx.commit();
+					
+		}
+		catch(HibernateException e)
+		{
+			e.printStackTrace();
+			tx.rollback();
+			flag = false;
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+			tx.rollback();
+			flag = false;
+		}
+		finally
+		{
+			HibernateUtilsAnnot.closeSession();
+		}
+		
+		
+		return flag;
+	}
+	
 	
 	public boolean addSamples(WfClient toAdd)
 	{
@@ -593,6 +644,8 @@ public class RegisterClientBll
 		
 		return flag;
 	}
+	
+	
 	
 	public boolean addLabResults(WfClient toAdd)
 	{

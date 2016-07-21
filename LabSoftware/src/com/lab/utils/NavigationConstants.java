@@ -22,6 +22,9 @@ public class NavigationConstants {
 	public static String MEDICAL_GPE_DETAILS_NAVIGATION = "/pages/medical/medicalGpeDetails.xhtml?faces-redirect=true";
 	public static String MEDICAL_XRAY_NAVIGATION = "/pages/medical/medicalXray.xhtml?faces-redirect=true";
 	
+	public static String RADIO_XRAY_NAVIGATION = "/pages/radiology/radioXray.xhtml?faces-redirect=true";
+	public static String RADIO_XRAY_DETAILS_NAVIGATION = "/pages/radiology/radioXrayDetails.xhtml?faces-redirect=true";
+	
 	public static String SAMPLE_DATA_NAVIGATION = "/pages/lab/sampleCollection.xhtml?faces-redirect=true";
 	public static String SAMPLE_DATA_DETAILS_NAVIGATION = "/pages/lab/sampleCollectionDetails.xhtml?faces-redirect=true";
 	public static String LAB_DATA_NAVIGATION = "/pages/lab/labDept.xhtml?faces-redirect=true";

@@ -36,6 +36,10 @@ public class Environment
 	{
 		return getProperty("reportIconFile");
 	}
+	public static String getFilePreviewPath()
+	{
+		return getProperty("filePreviewPath");
+	}
 	
 	public static String getBarCodesStoragePath()
 	{

@@ -13,19 +13,7 @@
 				 	
   	<p:panel id="panel2" header="Client's Basic Details">
 					
-					<p:panelGrid style="margin-top:20px; width: 70%; margin: 0 auto"
-					columns="2" id="printGrid">					 
-					 
-					 
-					 <h:outputText value="RDC Token No:" />
-   					 <h:outputText value="#{registerClientBean.selectedClient.rdcTokenNo}"/>
- 
-    				<h:outputText value="GAMCA Slip No:" />
-    				<h:outputText value="#{registerClientBean.selectedClient.gamcaSlipNo}"/>
- 
-    				<h:outputText value="First Name/ Last Name:" />
-    				<h:outputText value="#{registerClientBean.selectedClient.firstName} / #{registerClientBean.selectedClient.lastName}"/>					
-					</p:panelGrid>			
+					<ui:include src="/pages/includes/clientDetails.xhtml" />			
 				</p:panel>
 				
 				

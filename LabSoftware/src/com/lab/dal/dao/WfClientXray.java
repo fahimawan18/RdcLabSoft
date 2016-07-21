@@ -24,6 +24,13 @@ public class WfClientXray
 	@Column(name = "xray_status")
 	private String xrayStatus;
 	
+	@Column(name = "lungs")
+	private String lungs;
+	
+	@Column(name = "chest")
+	private String chest;
+	
+	
 	public WfClientXray() 
 	{
 		// TODO Auto-generated constructor stub
@@ -51,6 +58,22 @@ public class WfClientXray
 
 	public void setXrayStatus(String xrayStatus) {
 		this.xrayStatus = xrayStatus;
+	}
+
+	public String getLungs() {
+		return lungs;
+	}
+
+	public void setLungs(String lungs) {
+		this.lungs = lungs;
+	}
+
+	public String getChest() {
+		return chest;
+	}
+
+	public void setChest(String chest) {
+		this.chest = chest;
 	}
 
 }

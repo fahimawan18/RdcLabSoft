@@ -116,6 +116,21 @@ public class PageNavigationBean implements Serializable
 		cb.setPageTitle(MessageConstants.Constants.PageTitles.GPE_XRAY);
 		return pageName;
 	}
+	
+	public String navRadioXray() 
+	{
+		FacesUtils.resetManagedBean("registerClientBean");
+		pageName = NavigationConstants.RADIO_XRAY_NAVIGATION;
+		cb.setPageTitle(MessageConstants.Constants.PageTitles.RADIOLOGY);
+		return pageName;
+	}
+	
+	public String navRadioXrayDetails() 
+	{
+		pageName = NavigationConstants.RADIO_XRAY_DETAILS_NAVIGATION;
+		cb.setPageTitle(MessageConstants.Constants.PageTitles.RADIOLOGY);
+		return pageName;
+	}
 
 	
 	public String navSample() {

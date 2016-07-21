@@ -35,14 +35,22 @@
 						action="#{navBean.navCashPayment}" update=":content" />				
 				</p:submenu>
 				
-				<p:submenu label="Medical" icon="ui-icon-plushthick" rendered="#{userBean.currentUser.roleMedical=='Y'}">
+				<p:submenu label="Medical" icon="ui-icon-plushthick" 
+				rendered="#{userBean.currentUser.roleMedical=='Y'}">
 					<p:menuitem value="GPE" icon="ui-icon-plusthick"
 						ajax="true" name="pageViewID"
 						action="#{navBean.navMedicalGpe}" update=":content" />
-					<p:separator />
-					<p:menuitem value="X-Ray" icon="ui-icon-plusthick"
+				</p:submenu>
+				
+				<p:submenu label="Radiology" icon="ui-icon-plushthick" 
+				rendered="#{userBean.currentUser.roleRadiologist=='Y'}">
+					<p:menuitem value="X-Ray Room" icon="ui-icon-plusthick"
 						ajax="true" name="pageViewID"
 						action="#{navBean.navMedicalXray}" update=":content" />
+					<p:separator />
+					<p:menuitem value="Radiologist" icon="ui-icon-plusthick"
+						ajax="true" name="pageViewID"
+						action="#{navBean.navRadioXray}" update=":content" />
 								
 				</p:submenu>
 				

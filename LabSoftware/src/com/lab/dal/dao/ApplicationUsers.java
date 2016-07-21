@@ -48,6 +48,9 @@ public class ApplicationUsers
 	@Column(name="ROLE_SAMPLE")
 	private String roleSample;
 	
+	@Column(name="ROLE_RADIOLOGIST")
+	private String roleRadiologist;
+	
 	@Column(name="PROFILE_STATUS")
 	private String profileStatus;
 	
@@ -62,6 +65,7 @@ public class ApplicationUsers
 		this.roleSample = "N";
 		this.roleDirector = "N";
 		this.rolePathology = "N";
+		this.roleRadiologist = "N";
 	}
 
 	
@@ -188,6 +192,16 @@ public class ApplicationUsers
 
 	public void setRolePathology(String rolePathology) {
 		this.rolePathology = rolePathology;
+	}
+
+
+	public String getRoleRadiologist() {
+		return roleRadiologist;
+	}
+
+
+	public void setRoleRadiologist(String roleRadiologist) {
+		this.roleRadiologist = roleRadiologist;
 	}
 
 
