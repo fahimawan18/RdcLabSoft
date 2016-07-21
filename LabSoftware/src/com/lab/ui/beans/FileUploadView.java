@@ -29,7 +29,7 @@ public class FileUploadView
     public void uploadEvent(FileUploadEvent event) {
 		
 		System.out.println("in upload file listener");
-		FacesMessage message = new FacesMessage("Succesful", event.getFile().getFileName() + " is uploaded.");
+		FacesMessage message = new FacesMessage("Successful", event.getFile().getFileName() + " is uploaded.");
         FacesContext.getCurrentInstance().addMessage(null, message);
         file1=event.getFile();
         fileBinary1 = file1.getContents();

@@ -25,7 +25,7 @@ public class CriteriaBean
 	private List<SelectItem> bloodGpList ;
 	private List<SelectItem> negPosOptionsList ; //Negative, positive
 	private List<SelectItem> gccCountryList;	// GCC countries
-	
+	private String maxFileSize;
 	
 	private URL clsPath=getClass().getResource("..\\..\\..\\..\\..\\resources\\");
 	private File medReportTemplateFile;
@@ -46,6 +46,7 @@ public class CriteriaBean
 		this.bloodGpList = new ArrayList<SelectItem>();
 		this.negPosOptionsList = new ArrayList<SelectItem>();
 		this.gccCountryList = new ArrayList<SelectItem>();
+		this.maxFileSize = Environment.getFileMaxSize();
 	
 //		ClassLoader classLoader = getClass().getClassLoader();
 //		File file = new File(classLoader.getResource("resources/rdcCashReceipt.jrxml").getFile());
@@ -299,6 +300,25 @@ public class CriteriaBean
 
 	public void setPageTitle(String pageTitle) {
 		this.pageTitle = pageTitle;
+	}
+
+
+
+
+	public String getMaxFileSize() 
+	{
+		if(maxFileSize==null || maxFileSize.trim().length()==0)
+		{
+			maxFileSize = Environment.getFileMaxSize();
+		}
+		return maxFileSize;
+	}
+
+
+
+
+	public void setMaxFileSize(String maxFileSize) {
+		this.maxFileSize = maxFileSize;
 	}
 	
 	

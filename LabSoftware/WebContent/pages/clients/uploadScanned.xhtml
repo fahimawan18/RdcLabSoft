@@ -91,7 +91,8 @@
 						<p:fileUpload  
   							fileUploadListener="#{registerClientBean.fileUpload.uploadEvent}" 
   							mode="advanced"
-							auto="true" sizeLimit="5000000" 
+							auto="true" sizeLimit="#{crit.maxFileSize}" 
+							invalidSizeMessage="Max allowed size: 5MB"
 							allowTypes="/(\.|\/)(pdf|jpe?g)$/" />
 					</p:column>
 					
@@ -99,7 +100,7 @@
 						<p:fileUpload  
   							fileUploadListener="#{registerClientBean.fileUpload.uploadEvent2}" 
   							mode="advanced"
-							auto="true" sizeLimit="5000000" 
+							auto="true" sizeLimit="#{crit.maxFileSize}" 
 							allowTypes="/(\.|\/)(pdf|jpe?g)$/" />
 					</p:column>
 					
@@ -107,7 +108,7 @@
 						<p:fileUpload  
   							fileUploadListener="#{registerClientBean.fileUpload.uploadEvent3}" 
   							mode="advanced"
-							auto="true" sizeLimit="5000000" 
+							auto="true" sizeLimit="#{crit.maxFileSize}" 
 							allowTypes="/(\.|\/)(pdf|jpe?g)$/" />
 					</p:column>	
 					
