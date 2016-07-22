@@ -127,8 +127,6 @@ public class RegisterClientBean
 		System.out.println("in update cash status method");
 		if(bll.updateCashStatus(clientsList))
 		{
-//			FacesUtils.addInfoMessage("Cash Payment Status updated successfully");
-//			this.selectedClient = new WfClientRegister();
 			MessageUtils.info("Cash Payment Status updated successfully");
 			searchClients();
 			

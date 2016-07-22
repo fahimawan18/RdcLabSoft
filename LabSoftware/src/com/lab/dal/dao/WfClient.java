@@ -451,7 +451,17 @@ public class WfClient
 
 	public String getPicPath() 
 	{
-		this.picPath = Environment.getFilePreviewPath()+this.id+"photo.jpg";
+		if(this.scannedFiles!=null && this.scannedFiles.getPhotoMime()!=null &&
+				this.scannedFiles.getPhotoMime().trim().length()>0)
+		{
+			this.picPath = Environment.getFilePreviewPath()+this.id+Environment.getPhotoNameFormat()
+				+this.scannedFiles.getPhotoMime();
+		}
+		else
+		{
+			this.picPath = Environment.getFilePreviewPath()+this.id+Environment.getPhotoNameFormat()
+					+"jpg";
+		}
 		return picPath;
 	}
 

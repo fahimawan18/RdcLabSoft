@@ -57,6 +57,7 @@ import com.lab.dal.dao.WfClientScannedFiles;
 import com.lab.dal.dao.WfClientXray;
 import com.lab.ui.beans.FileUploadView;
 import com.lab.ui.beans.UserBean;
+import com.lab.ui.beans.admin.AdminBean;
 import com.lab.ui.beans.admin.CriteriaBean;
 import com.lab.utils.Environment;
 import com.lab.utils.HibernateUtilsAnnot;
@@ -249,7 +250,13 @@ public class RegisterClientBll
 		
 		Session session = null;
 		Transaction tx = null;
+		AdminBean adb = (AdminBean)FacesUtils.getManagedBean("adminBean");
 		
+		File files = new File(Environment.getScannedFilesStoragePath());
+	    if(!files.exists())
+	    {
+	    	files.mkdirs();
+	    }		
 		try
 		{
 			session = HibernateUtilsAnnot.currentSession();
@@ -259,22 +266,33 @@ public class RegisterClientBll
 			currentUser = ub.getCurrentUser();
 			toUpdate.setUpdateBy(currentUser);
 			toUpdate.setUpdateDate(new Date());
+			String path = Environment.getScannedFilesStoragePath();
+			String fileName="";
+			
 			if(toUpdate.getScannedFiles()!=null && toUpdate.getScannedFiles().getId()>0)
 			{
 				if(fileView.getFileBinary1()!=null)
-				{
+				{			
+					
 					toUpdate.getScannedFiles().setScannedGamca(fileView.getFileBinary1());
 					toUpdate.getScannedFiles().setGamcaMime(fileView.getFile1Mime());
+					
+					fileName=toUpdate.getId().toString()+Environment.getGamcaNameFormat()+fileView.getFile1Mime();
+					adb.makeFileFromByte(path+fileName, fileView.getFileBinary1());
 				}
 				if(fileView.getFileBinary2()!=null)
 				{
 					toUpdate.getScannedFiles().setScannedPassport(fileView.getFileBinary2());
 					toUpdate.getScannedFiles().setPassportMime(fileView.getFile2Mime());
+					fileName=toUpdate.getId().toString()+Environment.getPassportNameFormat()+fileView.getFile2Mime();
+					adb.makeFileFromByte(path+fileName, fileView.getFileBinary2());
 				}
 				if(fileView.getFileBinary3()!=null)
 				{
 					toUpdate.getScannedFiles().setScannedPhoto(fileView.getFileBinary3());
 					toUpdate.getScannedFiles().setPhotoMime(fileView.getFile3Mime());
+					fileName=toUpdate.getId().toString()+Environment.getPhotoNameFormat()+fileView.getFile3Mime();
+					adb.makeFileFromByte(path+fileName, fileView.getFileBinary3());
 				}
 			}
 			else
@@ -285,16 +303,22 @@ public class RegisterClientBll
 				{
 					scannedFilesObj.setScannedGamca(fileView.getFileBinary1());
 					scannedFilesObj.setGamcaMime(fileView.getFile1Mime());
+					fileName = fileName+Environment.getGamcaNameFormat()+fileView.getFile1Mime();
+					adb.makeFileFromByte(path+fileName, fileView.getFileBinary1());
 				}
 				if(fileView.getFileBinary2()!=null)
 				{
 					scannedFilesObj.setScannedPassport(fileView.getFileBinary2());
 					scannedFilesObj.setPassportMime(fileView.getFile2Mime());
+					fileName = fileName+Environment.getPassportNameFormat()+fileView.getFile2Mime();
+					adb.makeFileFromByte(path+fileName, fileView.getFileBinary2());
 				}
 				if(fileView.getFileBinary3()!=null)
 				{
 					scannedFilesObj.setScannedPhoto(fileView.getFileBinary3());
 					scannedFilesObj.setPhotoMime(fileView.getFile3Mime());
+					fileName = fileName+Environment.getPhotoNameFormat()+fileView.getFile3Mime();
+					adb.makeFileFromByte(path+fileName, fileView.getFileBinary3());
 				}
 				session.save(scannedFilesObj);
 				

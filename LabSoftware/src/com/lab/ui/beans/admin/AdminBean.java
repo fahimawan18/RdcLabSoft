@@ -178,20 +178,20 @@ public class AdminBean
 			if(this.scannedFileType.equals(MessageConstants.Constants.ScannedFileTypes.GAMCA))
 			{
 				mime = this.selectedClient.getScannedFiles().getGamcaMime();
-				fileName = this.selectedClient.getId()+"gamca."+mime;
+				fileName = this.selectedClient.getId()+Environment.getGamcaNameFormat()+mime;
 				makeFileFromByte(filePath+fileName,this.selectedClient.getScannedFiles().getScannedGamca());
 				 
 			}
 			else if (this.scannedFileType.equals(MessageConstants.Constants.ScannedFileTypes.PASSPORT))
 			{
 				mime = this.selectedClient.getScannedFiles().getPassportMime();
-				fileName = this.selectedClient.getId()+"passport."+mime;
+				fileName = this.selectedClient.getId()+Environment.getPassportNameFormat()+mime;
 				makeFileFromByte(filePath+fileName,this.selectedClient.getScannedFiles().getScannedPassport());
 			}
 			else if (this.scannedFileType.equals(MessageConstants.Constants.ScannedFileTypes.PHOTO))
 			{
 				mime = this.selectedClient.getScannedFiles().getPhotoMime();
-				fileName = this.selectedClient.getId()+"photo."+mime;
+				fileName = this.selectedClient.getId()+Environment.getPhotoNameFormat()+mime;
 				makeFileFromByte(filePath+fileName,this.selectedClient.getScannedFiles().getScannedPhoto());
 			}
 			
@@ -222,7 +222,7 @@ public class AdminBean
 	}
 	
 	
-	private void makeFileFromByte(String path, byte[] bytes)throws FileNotFoundException, Exception
+	public void makeFileFromByte(String path, byte[] bytes)throws FileNotFoundException, Exception
 	{
 		FileOutputStream stream = new FileOutputStream(path);
 		stream.write(bytes);

@@ -21,8 +21,8 @@
 					<p:outputLabel value="Client ID"></p:outputLabel>
  					 <h:inputText value="#{registerClientBean.toSearchClient.id}"></h:inputText>
  					 
-					<p:outputLabel value="RDC Token"></p:outputLabel>
- 					 <h:inputText value="#{registerClientBean.toSearchClient.rdcTokenNo}"></h:inputText>
+					<p:outputLabel value="Passport No"></p:outputLabel>
+ 					 <h:inputText value="#{registerClientBean.toSearchClient.passportNo}"></h:inputText>
  					 <p:outputLabel value="GAMCA Slip"></p:outputLabel>
  					 <h:inputText value="#{registerClientBean.toSearchClient.gamcaSlipNo}"></h:inputText>
  					 
@@ -78,14 +78,6 @@
 						<h:inputText value="#{mylist.cashPayment.cashAmount}"/>
 					</p:column>
 				
-					
-					
-					<p:column headerText="Print" rendered="false">
-						<p:commandButton action="cashReceipt" icon="ui-icon-print" value="Print" 
-						rendered="#{mylist.cashPayment.cashPaidStatus == 'Paid' and mylist.cashPayment.cashAmount!=null}">
-							<f:setPropertyActionListener target="#{registerClientBean.selectedClient}" value="#{mylist}" />
-						</p:commandButton>
-					</p:column>
 					
 					<p:column headerText="Receipt">
 						<h:commandLink target="_blank" 

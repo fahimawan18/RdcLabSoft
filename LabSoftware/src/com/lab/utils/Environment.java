@@ -32,6 +32,22 @@ public class Environment
 		return getProperty("defaultPassword");
 	}
 	
+	public static String getPhotoNameFormat()
+	{
+		return getProperty("photoNameFormat");
+	}
+	
+	public static String getGamcaNameFormat()
+	{
+		return getProperty("gamcaNameFormat");
+	}
+	
+	public static String getPassportNameFormat()
+	{
+		return getProperty("passportNameFormat");
+	}
+	
+	
 	public static String getReportIconFile()
 	{
 		return getProperty("reportIconFile");
