@@ -29,13 +29,21 @@
  					 <p:outputLabel value="Cash Receipt No"></p:outputLabel>
  					 <h:inputText value="#{registerClientBean.toSearchClient.cashPayment.id}"></h:inputText>
  					 
+ 					 <p:outputLabel value="Cash Payment Status"/>
+ 					 <h:selectOneMenu value="#{registerClientBean.toSearchClient.cashPayment.cashPaidStatus}">
+ 					 	<f:selectItem itemLabel="Unpaid" itemValue="Unpaid"/>
+ 					 	<f:selectItem itemLabel="Paid" itemValue="Paid"></f:selectItem>
+ 					 </h:selectOneMenu>
  					
 					</p:panelGrid>
 				</p:panel>
  
  
  
-  	<h:commandButton value="Search" action="#{registerClientBean.searchClients}"/>
+  	<h:commandButton value="Search" styleClass="richButton"
+  	action="#{registerClientBean.searchClients}"/>
+  	
+  	<p:poll interval="15" rendered="false" listener="#{registerClientBean.searchClients}" update="tbl1" />
   	
   	<br/>
   	
@@ -91,7 +99,7 @@
 				
 				
 				<br/>
-				<h:commandButton value="Update" 
+				<h:commandButton value="Update" styleClass="richButton"
 				action="#{registerClientBean.updateCashStatus}"></h:commandButton>
 				
 </h:form>

@@ -20,7 +20,9 @@
 					 
 					<p:outputLabel value="Client ID"></p:outputLabel>
  					 <h:inputText value="#{registerClientBean.toSearchClient.id}"></h:inputText>
-					<p:outputLabel value="RDC Token"></p:outputLabel>
+					<p:outputLabel value="Passport No"></p:outputLabel>
+ 					 <h:inputText value="#{registerClientBean.toSearchClient.passportNo}"></h:inputText>
+ 					 <p:outputLabel value="RDC Token"></p:outputLabel>
  					 <h:inputText value="#{registerClientBean.toSearchClient.rdcTokenNo}"></h:inputText>
  					 <p:outputLabel value="GAMCA Slip"></p:outputLabel>
  					 <h:inputText value="#{registerClientBean.toSearchClient.gamcaSlipNo}"></h:inputText>
@@ -34,7 +36,8 @@
  
  
  
-  	<h:commandButton value="Search" action="#{registerClientBean.searchClients}"/>
+  	<h:commandButton value="Search" styleClass="richButton" 
+  	action="#{registerClientBean.searchClients}"/>
   	
   	<br/>
   	

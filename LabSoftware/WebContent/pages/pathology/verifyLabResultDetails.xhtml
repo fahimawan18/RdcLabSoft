@@ -264,26 +264,32 @@
 					
 				</p:panel>
 				
+				<p:panelGrid style="margin-top:20px; width: 70%; margin: 0 auto"
+					columns="2">					
 				
-				<h:commandButton value="Verify" 
+				
+				<h:commandButton value="Verify" styleClass="richButton"
 				 action="#{registerClientBean.verifyResults}">
 				</h:commandButton>
 				
+				<h:panelGroup>
 				<h:commandButton value="Repeat (fresh sample)" 
+				styleClass="richButton" style="width:200px;"
 				 action="#{registerClientBean.repeatWithFreshSamples}">
 				</h:commandButton>
-				<h:selectOneMenu value="#{registerClientBean.selectedClient.clientStatus}">
+				<p:selectOneMenu style="width:200px;" 
+				value="#{registerClientBean.selectedClient.clientStatus}">
 					<f:selectItem itemLabel="1 Week" itemValue="Repeat after 1 Week"/>
 					<f:selectItem itemLabel="2 Week" itemValue="Repeat after 2 Week"/>
 					<f:selectItem itemLabel="3 Week" itemValue="Repeat after 3 Week"/>
 					<f:selectItem itemLabel="4 Week" itemValue="Repeat after 4 Week"/>					
-				</h:selectOneMenu>
-				
-				<h:commandButton value="Back" 
+				</p:selectOneMenu>
+				</h:panelGroup>
+				<h:commandButton value="Back" styleClass="richButton"
 				 action="verifyLabResult">
 				</h:commandButton>
 				
-				
+				</p:panelGrid>
 </h:form>
 </ui:define>
 	</ui:composition>

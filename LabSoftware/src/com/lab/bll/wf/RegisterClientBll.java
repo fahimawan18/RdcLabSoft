@@ -202,8 +202,16 @@ public class RegisterClientBll
 					if(toSearchClient.getCashPayment().getCashPaidStatus()!=null &&
 							toSearchClient.getCashPayment().getCashPaidStatus().trim().length()>0)
 					{
-						cr2.add(Restrictions.like("cashPaidStatus", MessageConstants.Constants.CashPaymentStatus.PAID));
-						cr2.add(Restrictions.isNotNull("cashAmount"));
+						if(toSearchClient.getCashPayment().getCashPaidStatus().equals(MessageConstants.Constants.CashPaymentStatus.PAID))
+						{
+							cr2.add(Restrictions.like("cashPaidStatus", MessageConstants.Constants.CashPaymentStatus.PAID));
+							cr2.add(Restrictions.isNotNull("cashAmount"));
+						}
+						else
+						{
+							cr2.add(Restrictions.like("cashPaidStatus", MessageConstants.Constants.CashPaymentStatus.UNPAID));
+						}
+						
 		                        
 					}
 					

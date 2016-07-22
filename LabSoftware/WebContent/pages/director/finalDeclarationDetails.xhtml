@@ -19,6 +19,8 @@
 				</p:panel>
 				
 				
+				
+				
 				<p:panel id="panel1" header="Pathologist Endorsement">
 					
 					<h3> 
@@ -267,19 +269,23 @@
 					
 				</p:panel>
 				
-				<p:panelGrid columns="2">
-				<p:commandButton value="Declare " 
+				<p:panelGrid style="margin-top:10px; width: 70%; margin: 0 auto"
+					columns="2">
+				<h:panelGroup>
+				<p:commandButton value="Declare " styleClass="richButton" 
 				 action="#{registerClientBean.declareFinalResults}">
 				</p:commandButton>
-				<h:selectOneMenu value="#{registerClientBean.selectedClient.clientStatus}">
+				<p:selectOneMenu value="#{registerClientBean.selectedClient.clientStatus}">
 					<f:selectItem itemLabel="Fit" itemValue="Fit"/>
 					<f:selectItem itemLabel="Unfit" itemValue="Unfit"/>
 					<f:selectItem itemLabel="Repeat after 1 Week" itemValue="Repeat after 1 Week"/>
 					<f:selectItem itemLabel="Repeat after 2 Week" itemValue="Repeat after 2 Week"/>
 					<f:selectItem itemLabel="Repeat after 3 Week" itemValue="Repeat after 3 Week"/>
 					<f:selectItem itemLabel="Repeat after 4 Week" itemValue="Repeat after 4 Week"/>					
-				</h:selectOneMenu>
-				
+				</p:selectOneMenu>
+				</h:panelGroup>
+				<p:commandButton value="Back " styleClass="richButton" 
+				 action="finalDeclaration"/>
 				</p:panelGrid>
 				
 </h:form>

@@ -1,5 +1,13 @@
 @charset "utf-8";
 
+.centered {
+position: absolute;
+height: 100px;
+top: 0;
+bottom: 0;
+margin:auto;
+}
+
 .footer_menu {
 	border: 0 none;
 	overflow: hidden !important;
@@ -116,4 +124,117 @@ background-image: none ;
 }
 .ul {
 	style:list-style: none !important;
+}
+.richButton {
+    margin:0 10px 0 0;
+    padding:5px 10px 5px 10px;
+    height:35px;
+    width:90px;
+    font-size:15px;
+    color:#462626;
+    font-weight:bold;
+    border:1px #ccc solid;
+    border-radius:5px;
+    cursor:pointer;
+    font-family:Arial, Helvetica, sans-serif;
+    /* IE10 Consumer Preview */
+    background: -ms-linear-gradient(top, #FFFFFF 0%, #E3E3E3 100%);
+    /* Mozilla Firefox */
+    background: -moz-linear-gradient(top, #FFFFFF 0%, #E5E3E3 100%);
+    /* Opera */
+    background: -o-linear-gradient(top, #FFFFFF 0%, #E3E3E3 100%);
+    /* Webkit (Safari/Chrome 10) */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0, #FFFFFF), color-stop(1, #E3E3E3));
+    /* Webkit (Chrome 11+) */
+    background: -webkit-linear-gradient(top, #FFFFFF 0%, #E3E3E3 100%);
+    /* W3C Markup, IE10 Release Preview */
+    background: linear-gradient(to bottom, #FFFFFF 0%, #E3E3E3 100%);
+}
+.richButton:hover:enabled {
+    /* IE10 Consumer Preview */
+    background: -ms-linear-gradient(top, #FFFFFF 0%, #CCCCCC 100%);
+    /* Mozilla Firefox */
+    background: -moz-linear-gradient(top, #FFFFFF 0%, #CCCCCC 100%);
+    /* Opera */
+    background: -o-linear-gradient(top, #FFFFFF 0%, #CCCCCC 100%);
+    /* Webkit (Safari/Chrome 10) */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0, #FFFFFF), color-stop(1, #CCCCCC));
+    /* Webkit (Chrome 11+) */
+    background: -webkit-linear-gradient(top, #FFFFFF 0%, #CCCCCC 100%);
+    /* W3C Markup, IE10 Release Preview */
+    background: linear-gradient(to bottom, #FFFFFF 0%, #CCCCCC 100%);
+}
+.richButton:active:enabled {
+    /* IE10 Consumer Preview */
+    background: -ms-linear-gradient(top, #F0F0F0 0%, #CCCCCC 100%);
+    /* Mozilla Firefox */
+    background: -moz-linear-gradient(top, #F0F0F0 0%, #CCCCCC 100%);
+    /* Opera */
+    background: -o-linear-gradient(top, #F0F0F0 0%, #CCCCCC 100%);
+    /* Webkit (Safari/Chrome 10) */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0, #F0F0F0), color-stop(1, #CCCCCC));
+    /* Webkit (Chrome 11+) */
+    background: -webkit-linear-gradient(top, #F0F0F0 0%, #CCCCCC 100%);
+    /* W3C Markup, IE10 Release Preview */
+    background: linear-gradient(to bottom, #F0F0F0 0%, #CCCCCC 100%);
+}
+.richButton:disabled {
+    font-weight: normal;
+    color: #888888;
+}
+
+.button {
+  display: inline-block;
+  border-radius: 4px;
+  background-color: #f4511e;
+  border: none;
+  color: #FFFFFF;
+  text-align: center;
+  font-size: 28px;
+  padding: 20px;
+  width: 200px;
+  transition: all 0.5s;
+  cursor: pointer;
+  margin: 5px;
+}
+
+.button span {
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  transition: 0.5s;
+}
+
+.button span:after {
+  content: '»';
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  right: -20px;
+  transition: 0.5s;
+}
+
+.button:hover span {
+  padding-right: 25px;
+}
+
+.button:hover span:after {
+  opacity: 1;
+  right: 0;
+}
+
+.mybutton {
+    margin: 2px;
+    padding: 0;
+    border: 0;
+    width: 100px;
+    height: 20px;
+    background: url("#{resource['images/blue_check.png']}"); 
+    cursor: pointer;
+    overflow: visible;
+}
+
+.mybutton:hover {
+	border: 1;
+    background: url("#{resource['images/blue_check.png']}");
 }

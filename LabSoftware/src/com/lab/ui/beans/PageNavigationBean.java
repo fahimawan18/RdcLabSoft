@@ -113,7 +113,7 @@ public class PageNavigationBean implements Serializable
 //		System.out.println("PageNavigationBean uploadScanned.xhtml");
 		FacesUtils.resetManagedBean("registerClientBean");
 		pageName = NavigationConstants.MEDICAL_XRAY_NAVIGATION;
-		cb.setPageTitle(MessageConstants.Constants.PageTitles.GPE_XRAY);
+		cb.setPageTitle(MessageConstants.Constants.PageTitles.RADIOLOGY);
 		return pageName;
 	}
 	
