@@ -92,6 +92,13 @@ public class PageNavigationBean implements Serializable
 		return pageName;
 	}
 	
+	public String navCashPaymentDetails() 
+	{
+		pageName = NavigationConstants.CLIENT_PAYMENY_DETAILS_NAVIGATION;
+		cb.setPageTitle(MessageConstants.Constants.PageTitles.CASH_PAYMENT);
+		return pageName;
+	}
+	
 	public String navMedicalGpe() {
 //		System.out.println("PageNavigationBean uploadScanned.xhtml");
 		FacesUtils.resetManagedBean("registerClientBean");

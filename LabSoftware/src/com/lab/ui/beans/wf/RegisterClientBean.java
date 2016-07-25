@@ -1,11 +1,13 @@
 package com.lab.ui.beans.wf;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.event.ValueChangeEvent;
 
+import org.hibernate.Hibernate;
 import org.primefaces.model.UploadedFile;
 
 import com.iac.web.util.FacesUtils;
@@ -125,7 +127,15 @@ public class RegisterClientBean
 	{		
 		RegisterClientBll bll =new RegisterClientBll();
 		System.out.println("in update cash status method");
-		if(bll.updateCashStatus(clientsList))
+		
+		/*
+		 * Following updateList added on 23-jul-16
+		 * Just to avoid amending already written code in bll that takes a list instead of a singe object
+		 */		
+		List<WfClient> updateList = new ArrayList<WfClient>();
+		updateList.add(selectedClient);
+		
+		if(bll.updateCashStatus(updateList))
 		{
 			MessageUtils.info("Cash Payment Status updated successfully");
 			searchClients();
@@ -392,6 +402,8 @@ public class RegisterClientBean
 			{
 				r.setProgress(new WfClientProgress());
 			}
+			
+			
 
 			
 		}

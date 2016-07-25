@@ -121,6 +121,31 @@ public final class MessageConstants {
 			public static final String AB_NEG = "AB Negative";
 			public static final String O_NEG = "O Negative";			
 		}
+		
+		public static final class TrackActions 
+		{
+			public static final String REGN_SAVED = "Registration Saved";
+			public static final String REGN_UPDATED = "Registration Updated";
+			
+			public static final String SCANNED_UPDATED = "Scanned files Uploaded";
+			
+			public static final String CASH = "Cash payment updated";
+			
+			public static final String GPE = "GPE Status updated";
+			
+			public static final String XRAY = "Xray status updated";
+			
+			public static final String RADIOLOGY = "Radiologist updated status";
+			
+			public static final String SAMPLES = "Samples collected";
+			
+			public static final String LAB = "Lab manager updated values";
+			
+			public static final String PATHOLOGIST = "Pathologist updated status";
+			
+			public static final String DIRECTOR = "Medical Director updated status";
+			
+		}
 	}
 
 }

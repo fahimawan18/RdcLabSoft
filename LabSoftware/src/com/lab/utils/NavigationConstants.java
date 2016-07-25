@@ -17,6 +17,7 @@ public class NavigationConstants {
 	public static String UPDATE_CLIENT_DETAILS_NAVIGATION = "/pages/clients/updateClientDetails.xhtml?faces-redirect=true";
 	public static String UPOAD_CLIENT_DATA_NAVIGATION = "/pages/clients/uploadScanned.xhtml?faces-redirect=true";
 	public static String CLIENT_PAYMENY_NAVIGATION = "/pages/clients/cashPayment.xhtml?faces-redirect=true";
+	public static String CLIENT_PAYMENY_DETAILS_NAVIGATION = "/pages/clients/cashPaymentDetails.xhtml?faces-redirect=true";
 	
 	public static String MEDICAL_GPE_NAVIGATION = "/pages/medical/medicalGpe.xhtml?faces-redirect=true";
 	public static String MEDICAL_GPE_DETAILS_NAVIGATION = "/pages/medical/medicalGpeDetails.xhtml?faces-redirect=true";

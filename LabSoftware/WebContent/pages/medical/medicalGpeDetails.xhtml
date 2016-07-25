@@ -248,15 +248,7 @@
 				    </h:selectOneMenu>
 				    </h:panelGroup>
 				    
-				    <h:outputText value="Medical Status:" />
-				    <h:panelGroup>				    
-				    <h:selectOneMenu value="#{registerClientBean.selectedClient.gpe.medicalStatus}">
-				    	<f:selectItem itemLabel="Select " itemValue="#{null}"></f:selectItem>
-				    	<f:selectItem itemLabel="Fit" itemValue="Fit"></f:selectItem>
-				    	<f:selectItem itemLabel="Unfit" itemValue="Unfit"></f:selectItem>
-				    	<f:selectItem itemLabel="On hold" itemValue="On hold"></f:selectItem>
-				    </h:selectOneMenu>
-				    </h:panelGroup>
+				    
 				    
 				   			    
 				    </p:panelGrid>
@@ -273,6 +265,19 @@
 					
 				</p:panel>
 				
+				<p:panelGrid style="margin-top:20px; width: 25%; margin: 0 auto"
+					columns="2">
+				
+				<h:outputText value="Medical Status:" style="font-size:20px;" />
+				    <h:panelGroup>				    
+				    <h:selectOneMenu style="font-size:18px;" 
+				    value="#{registerClientBean.selectedClient.gpe.medicalStatus}">
+				    	<f:selectItem itemLabel="Select " itemValue="#{null}"></f:selectItem>
+				    	<f:selectItem itemLabel="Fit" itemValue="Fit"></f:selectItem>
+				    	<f:selectItem itemLabel="Unfit" itemValue="Unfit"></f:selectItem>
+				    	<f:selectItem itemLabel="On hold" itemValue="On hold"></f:selectItem>
+				    </h:selectOneMenu>
+				    </h:panelGroup>
 				
 				<h:commandButton value="Save" id="btnGpe" styleClass="richButton"
 				 action="#{registerClientBean.addGpe}">
@@ -281,6 +286,8 @@
 				<h:commandButton value="Back" styleClass="richButton"
 				 action="medicalGpe">
 				</h:commandButton>
+				
+				</p:panelGrid>
 				
 				
 </h:form>

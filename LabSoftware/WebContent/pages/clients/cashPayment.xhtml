@@ -43,7 +43,7 @@
   	<h:commandButton value="Search" styleClass="richButton"
   	action="#{registerClientBean.searchClients}"/>
   	
-  	<p:poll interval="15" rendered="false" listener="#{registerClientBean.searchClients}" update="tbl1" />
+  	<p:poll interval="10" rendered="true" listener="#{registerClientBean.searchClients}" update="tbl1" />
   	
   	<br/>
   	
@@ -72,20 +72,16 @@
 					
 					<p:column headerText="Passport No">
 						<h:outputText value="#{mylist.passportNo}" />
-					</p:column>
+					</p:column>			
 					
-					<p:column headerText="Payment Status">
-						<h:selectOneMenu value="#{mylist.cashPayment.cashPaidStatus}">
-							<f:selectItem itemLabel="Unpaid" itemValue="Unpaid"/>
-							<f:selectItem itemLabel="Paid" itemValue="Paid"/>
-						</h:selectOneMenu>
-						
-					</p:column>
 					
-					<p:column headerText="Cash Amount">
-						<h:inputText value="#{mylist.cashPayment.cashAmount}"/>
-					</p:column>
-				
+					
+				<p:column headerText="Payment Details">
+						<p:commandButton action="#{navBean.navCashPaymentDetails}" 
+						value="Update Details">
+							<f:setPropertyActionListener target="#{registerClientBean.selectedClient}" value="#{mylist}" />
+						</p:commandButton>
+					</p:column>	
 					
 					<p:column headerText="Receipt">
 						<h:commandLink target="_blank" 
@@ -99,8 +95,9 @@
 				
 				
 				<br/>
-				<h:commandButton value="Update" styleClass="richButton"
-				action="#{registerClientBean.updateCashStatus}"></h:commandButton>
+				
+				
+				
 				
 </h:form>
 </ui:define>

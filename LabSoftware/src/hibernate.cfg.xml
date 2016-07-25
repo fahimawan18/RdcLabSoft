@@ -24,6 +24,7 @@
   <mapping class="com.lab.dal.dao.WfLabResultBlood"/>
   <mapping class="com.lab.dal.dao.WfLabResultSputum"/>
   <mapping class="com.lab.dal.dao.WfLabResultStool"/>
+  <mapping class="com.lab.dal.dao.WfTrackReport"/>
   
   
  </session-factory>

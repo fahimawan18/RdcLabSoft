@@ -1,5 +1,25 @@
 @charset "utf-8";
 
+.forty-percent {
+     width: 40%;
+}
+
+.fifty-percent {
+     width: 50%;
+}
+
+.sixty-percent {
+     width: 60%;
+}
+
+.ninty-percent {
+     width: 90%;
+}
+.top-alg {
+     vertical-align: top;
+}
+
+
 .centered {
 position: absolute;
 height: 100px;

@@ -2,6 +2,9 @@ package com.lab.dal.dao;
 
 import java.beans.Transient;
 import java.util.Date;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -11,7 +14,9 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+import javax.persistence.OrderBy;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.Fetch;
@@ -140,6 +145,10 @@ public class WfClient
 	@OneToOne(mappedBy="clientId")  
 	private WfClientProgress progress;
 	
+	@OneToMany(mappedBy = "clientId" , cascade = CascadeType.ALL)
+	@OrderBy("activityTime DESC")
+	private  List<WfTrackReport> trackReport;
+	
 	@javax.persistence.Transient
 	private String picPath;
 	
@@ -150,7 +159,7 @@ public class WfClient
 	{
 		// TODO Auto-generated constructor stub
 		this.insertDate = new Date();
-		
+//		this.trackReport = new HashSet<WfTrackReport>();
 	}
 
 	public Integer getId() {
@@ -469,5 +478,12 @@ public class WfClient
 		this.picPath = picPath;
 	}
 
+	public List<WfTrackReport> getTrackReport() {
+		return trackReport;
+	}
 
+	public void setTrackReport(List<WfTrackReport> trackReport) {
+		this.trackReport = trackReport;
+	}
+	
 }

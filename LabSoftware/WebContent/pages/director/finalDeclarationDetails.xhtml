@@ -12,13 +12,24 @@
 <h:form>
   
 
-				 	
-  	<p:panel id="panel2" header="Client's Basic Details">
+				 	<h:panelGrid columns="2" columnClasses="fifty-percent top-alg, fifty-percent top-alg" style="width:100%">
+  	<p:panel id="panel2" header="Client's Basic Details" >
 					
-					<ui:include src="/pages/includes/clientDetails.xhtml" />		
+					
+					<ui:include src="/pages/includes/clientDetails.xhtml" />
+					
+							
 				</p:panel>
 				
+				<p:panel id="panelTr" header="Client's Track Report" >
+					
+					
+					
+					<ui:include src="/pages/includes/trackReport.xhtml" />
+							
+				</p:panel>
 				
+				</h:panelGrid>
 				
 				
 				<p:panel id="panel1" header="Pathologist Endorsement">
@@ -269,13 +280,14 @@
 					
 				</p:panel>
 				
-				<p:panelGrid style="margin-top:10px; width: 70%; margin: 0 auto"
+				<p:panelGrid style="margin-top:10px; width: 25%; margin: 0 auto"
 					columns="2">
-				<h:panelGroup>
+				
 				<p:commandButton value="Declare " styleClass="richButton" 
 				 action="#{registerClientBean.declareFinalResults}">
 				</p:commandButton>
-				<p:selectOneMenu value="#{registerClientBean.selectedClient.clientStatus}">
+				<p:selectOneMenu style="font-size:15px;" 
+				value="#{registerClientBean.selectedClient.clientStatus}">
 					<f:selectItem itemLabel="Fit" itemValue="Fit"/>
 					<f:selectItem itemLabel="Unfit" itemValue="Unfit"/>
 					<f:selectItem itemLabel="Repeat after 1 Week" itemValue="Repeat after 1 Week"/>
@@ -283,10 +295,11 @@
 					<f:selectItem itemLabel="Repeat after 3 Week" itemValue="Repeat after 3 Week"/>
 					<f:selectItem itemLabel="Repeat after 4 Week" itemValue="Repeat after 4 Week"/>					
 				</p:selectOneMenu>
-				</h:panelGroup>
+				
 				<p:commandButton value="Back " styleClass="richButton" 
 				 action="finalDeclaration"/>
 				</p:panelGrid>
+				
 				
 </h:form>
 </ui:define>

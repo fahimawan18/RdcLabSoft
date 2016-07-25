@@ -55,6 +55,7 @@ import com.lab.dal.dao.WfClientProgress;
 import com.lab.dal.dao.WfClient;
 import com.lab.dal.dao.WfClientScannedFiles;
 import com.lab.dal.dao.WfClientXray;
+import com.lab.dal.dao.WfTrackReport;
 import com.lab.ui.beans.FileUploadView;
 import com.lab.ui.beans.UserBean;
 import com.lab.ui.beans.admin.AdminBean;
@@ -111,9 +112,17 @@ public class RegisterClientBll
 				progress.setClientId(toAdd);
 				progress.setRegn(MessageConstants.Constants.YES_STRING);
 				session.save(progress);
+				
+//				Adding track report
+				saveTrackReport(MessageConstants.Constants.TrackActions.REGN_SAVED, toAdd, session);
+				
 			}
 			else if(toAdd.getId() != null && toAdd.getId()>=1)
 			{
+//				Adding track report
+				saveTrackReport(MessageConstants.Constants.TrackActions.REGN_UPDATED, toAdd, session);
+				
+				
 				toAdd.setUpdateBy(currentUser);
 				toAdd.setUpdateDate(new Date());
 				session.update(toAdd);
@@ -236,6 +245,11 @@ public class RegisterClientBll
 				}
 			}
 			list = cr.list();
+			
+			for(WfClient c:list)
+			{
+				Hibernate.initialize(c.getTrackReport());
+			}
 	
 		}
 		catch(HibernateException e)
@@ -333,6 +347,7 @@ public class RegisterClientBll
 			}
 			
 			session.update(toUpdate);
+			saveTrackReport(MessageConstants.Constants.TrackActions.SCANNED_UPDATED, toUpdate, session);
 			
 			tx.commit();
 					
@@ -405,7 +420,11 @@ public class RegisterClientBll
 					toUpdate.getProgress().setCash(toUpdate.getCashPayment().getCashPaidStatus());
 					session.update(toUpdate.getProgress());
 				}
+				
+				saveTrackReport(MessageConstants.Constants.TrackActions.CASH, toUpdate, session);
 			}
+			
+			
 			tx.commit();
 					
 		}
@@ -469,7 +488,7 @@ public class RegisterClientBll
 				session.update(toAdd.getProgress());
 			}		
 			
-						
+			saveTrackReport(MessageConstants.Constants.TrackActions.GPE, toAdd, session);			
 			tx.commit();
 					
 		}
@@ -536,6 +555,8 @@ public class RegisterClientBll
 					session.update(toUpdate.getProgress());
 				}
 				
+				saveTrackReport(MessageConstants.Constants.TrackActions.XRAY, toUpdate, session);
+				
 			}
 			tx.commit();
 					
@@ -578,7 +599,7 @@ public class RegisterClientBll
 					|| toUpdate.getXray().getId()<1)
 			{
 				System.out.println("saving new Radiology");
-				toUpdate.getGpe().setClientId(toUpdate);
+				toUpdate.getXray().setClientId(toUpdate);
 				session.save(toUpdate.getXray());				
 			}
 			else
@@ -587,7 +608,7 @@ public class RegisterClientBll
 				session.update(toUpdate.getXray());
 			}
 			
-			
+			saveTrackReport(MessageConstants.Constants.TrackActions.RADIOLOGY, toUpdate, session);
 			tx.commit();
 					
 		}
@@ -652,6 +673,7 @@ public class RegisterClientBll
 				session.update(toAdd.getProgress());
 			}	
 			
+			saveTrackReport(MessageConstants.Constants.TrackActions.SAMPLES, toAdd, session);
 						
 			tx.commit();
 					
@@ -756,7 +778,8 @@ public class RegisterClientBll
 				System.out.println("updating lab results (stool)");
 				session.update(toAdd.getStool());
 			}
-						
+					
+			saveTrackReport(MessageConstants.Constants.TrackActions.LAB, toAdd, session);
 			tx.commit();
 					
 		}
@@ -807,7 +830,7 @@ public class RegisterClientBll
 				session.update(toAdd.getProgress());
 			}	
 			
-						
+			saveTrackReport(MessageConstants.Constants.TrackActions.PATHOLOGIST, toAdd, session);			
 			tx.commit();
 					
 		}
@@ -857,7 +880,7 @@ public class RegisterClientBll
 				toAdd.getProgress().setPathologist(toAdd.getClientStatus());
 				session.update(toAdd.getProgress());
 			}	
-			
+			saveTrackReport(MessageConstants.Constants.TrackActions.PATHOLOGIST, toAdd, session);
 						
 			tx.commit();
 					
@@ -903,7 +926,7 @@ public class RegisterClientBll
 			
 			session.update(toAdd);
 				
-			
+			saveTrackReport(MessageConstants.Constants.TrackActions.DIRECTOR, toAdd, session);
 						
 			tx.commit();
 					
@@ -1430,6 +1453,16 @@ public class RegisterClientBll
 //        fileInputStream.close();
 //        Blob blob = Hibernate.createBlob(fileContents);
         return null;
+	}
+	
+	public void saveTrackReport(String activity, WfClient client, Session session)throws HibernateException
+	{
+		WfTrackReport report = new WfTrackReport();
+		report.setOperator(ub.getCurrentUser());
+		report.setActivity(activity);
+		report.setClientId(client);
+		
+		session.save(report);
 	}
 	
 }
