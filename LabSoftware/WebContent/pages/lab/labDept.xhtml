@@ -12,16 +12,10 @@
 <h:form>
   
   	<p:panel id="panel2" header="Search Client">
-					<p:panelGrid style="margin-top:20px; width: 70%; margin: 0 auto"
-					columns="2">
+					<ui:include src="/pages/includes/basicSearchFields.xhtml"></ui:include>
 					
-					 
-					<p:outputLabel value="RDC Token"></p:outputLabel>
- 					 <h:inputText value="#{registerClientBean.toSearchClient.rdcTokenNo}"></h:inputText>
- 					 <p:outputLabel value="Passport No"></p:outputLabel>
- 					 <h:inputText value="#{registerClientBean.toSearchClient.passportNo}"></h:inputText>
- 					 <p:outputLabel value="GAMCA Slip"></p:outputLabel>
- 					 <h:inputText value="#{registerClientBean.toSearchClient.gamcaSlipNo}"></h:inputText>
+					<p:panelGrid style="margin-top:20px; width: 60%; margin: 0 auto"
+					columns="2" columnClasses="fifty-percent, fifty-percent">
  					 <p:outputLabel value="Cash Payment Status"/>
  					 <h:selectOneMenu value="#{registerClientBean.toSearchClient.cashPayment.cashPaidStatus}">
  					 	<f:selectItem itemLabel="Paid" itemValue="Paid"></f:selectItem>

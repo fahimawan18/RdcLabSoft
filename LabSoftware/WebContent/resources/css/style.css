@@ -1,5 +1,20 @@
 @charset "utf-8";
 
+
+.labels {
+     font-weight: bold;
+     font-size: 12px;
+}
+
+.contents {
+     font-weight: bold;
+     font-size: 16px;
+}
+
+.tw-five-percent {
+     width: 25%;
+}
+
 .forty-percent {
      width: 40%;
 }

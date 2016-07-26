@@ -30,6 +30,9 @@ public class WfClientXray
 	@Column(name = "chest")
 	private String chest;
 	
+	@Column(name = "opinion")
+	private String opinion;
+	
 	
 	public WfClientXray() 
 	{
@@ -74,6 +77,14 @@ public class WfClientXray
 
 	public void setChest(String chest) {
 		this.chest = chest;
+	}
+
+	public String getOpinion() {
+		return opinion;
+	}
+
+	public void setOpinion(String opinion) {
+		this.opinion = opinion;
 	}
 
 }
