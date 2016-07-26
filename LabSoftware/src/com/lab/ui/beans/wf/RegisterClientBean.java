@@ -348,7 +348,8 @@ public class RegisterClientBean
 	{
 		System.out.println("in printBarCodes method");
 		bll =new RegisterClientBll();
-		bll.printBarCodes(selectedClient.getId());
+//		bll.printBarCodes(selectedClient.getId());
+		bll.printOnlyBarCodes(selectedClient.getId());
 		
 		return "";
 	}

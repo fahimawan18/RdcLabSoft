@@ -14,10 +14,13 @@
  
 				 	
   	<p:panel id="panel2" header="Search Client">
-					<ui:include src="/pages/includes/basicSearchFields.xhtml"></ui:include>
 					
+					<ui:include src="/pages/includes/basicSearchFields.xhtml"></ui:include>
 					<p:panelGrid style="margin-top:20px; width: 60%; margin: 0 auto"
 					columns="2" columnClasses="fifty-percent, fifty-percent">
+					
+ 					
+ 					 
  					 <p:outputLabel value="Cash Payment Status"/>
  					 <h:selectOneMenu value="#{registerClientBean.toSearchClient.cashPayment.cashPaidStatus}">
  					 	<f:selectItem itemLabel="Paid" itemValue="Paid"></f:selectItem>

@@ -37,6 +37,11 @@ public class Environment
 		return getProperty("photoNameFormat");
 	}
 	
+	public static String getBarCodePrinterName()
+	{
+		return getProperty("barCodePrinterName");
+	}
+	
 	public static String getGamcaNameFormat()
 	{
 		return getProperty("gamcaNameFormat");

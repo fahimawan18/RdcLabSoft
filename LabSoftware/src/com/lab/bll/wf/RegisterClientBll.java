@@ -1,6 +1,7 @@
 package com.lab.bll.wf;
 
 import java.awt.image.BufferedImage;
+import java.awt.print.PrinterJob;
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
 import java.io.Closeable;
@@ -26,15 +27,26 @@ import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import javax.imageio.ImageIO;
 import javax.persistence.JoinTable;
+import javax.print.PrintService;
+import javax.print.PrintServiceLookup;
+import javax.print.attribute.HashPrintRequestAttributeSet;
+import javax.print.attribute.PrintRequestAttributeSet;
+import javax.print.attribute.standard.Copies;
+import javax.print.attribute.standard.MediaPrintableArea;
+import javax.print.attribute.standard.MediaSize;
+import javax.print.attribute.standard.MediaSizeName;
 import javax.servlet.http.HttpServletResponse;
 
 import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JRExporterParameter;
 import net.sf.jasperreports.engine.JasperCompileManager;
 import net.sf.jasperreports.engine.JasperExportManager;
 import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.engine.JasperReport;
 import net.sf.jasperreports.engine.JasperRunManager;
+import net.sf.jasperreports.engine.export.JRPrintServiceExporter;
+import net.sf.jasperreports.engine.export.JRPrintServiceExporterParameter;
 import net.sf.jasperreports.view.JasperViewer;
 
 import org.apache.tomcat.util.http.fileupload.IOUtils;
@@ -1172,6 +1184,82 @@ public class RegisterClientBll
 		    ViewScannedFilesUtils fu = new ViewScannedFilesUtils();
 		    fu.viewScannedFile("application/pdf", Environment.getCashReceiptsStoragePath(), clientId+
 		    		Environment.getCashReceiptNameFormat());
+		    
+		}
+		catch(JRException e)
+		{
+			e.printStackTrace();
+		}
+		catch(HibernateException e)
+		{
+			e.printStackTrace();
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		}
+		finally
+		{
+			HibernateUtilsAnnot.closeSession();
+		}
+		
+	}
+	
+	public void printOnlyBarCodes(Integer clientId)
+	{
+		System.out.println("in printOnlyBarCodes bll method");
+		
+		Session session = null;
+		
+		try
+		{
+			session = HibernateUtilsAnnot.currentSession();
+			Connection connection = session.connection();
+//			JasperReport jasperReport = JasperCompileManager.compileReport(cb.getCashReceiptTemplateFile().getPath());
+			
+			InputStream template = JasperReport.class
+				    .getResourceAsStream(Environment.getReportsTemplatePath()+
+				    		Environment.getBarCodesTemplateFile());
+			
+			Map<String, Object> parameters = new HashMap<String, Object>();
+		    parameters.put("clientId", clientId);
+		    
+			JasperReport jasperReport = JasperCompileManager.compileReport(template);
+			JasperPrint print = JasperFillManager.fillReport(jasperReport, parameters, connection);
+			PrinterJob job = PrinterJob.getPrinterJob();
+			PrintService[] services = PrintServiceLookup.lookupPrintServices(null, null);
+			int selectedService = 0;
+			for(int i = 0; i < services.length;i++)
+		    {
+				
+//		        if(services[i].getName().toUpperCase().contains(Environment.getBarCodePrinterName()))
+				if(services[i].getName().contains(Environment.getBarCodePrinterName()))
+		        {
+		            /*If the service is named as what we are querying we select it */
+					System.out.println(services[i].getName());
+		                 selectedService = i;
+		        }
+		    }
+			
+			
+			job.setPrintService(services[selectedService]);
+		    PrintRequestAttributeSet printRequestAttributeSet = new HashPrintRequestAttributeSet();
+		    MediaSizeName mediaSizeName = MediaSize.findMedia(2,1,MediaPrintableArea.INCH);
+		    printRequestAttributeSet.add(mediaSizeName);
+		    printRequestAttributeSet.add(new Copies(1));
+		    JRPrintServiceExporter exporter;
+		    exporter = new JRPrintServiceExporter();
+		    exporter.setParameter(JRExporterParameter.JASPER_PRINT, print);
+		    /* We set the selected service and pass it as a paramenter */
+		    exporter.setParameter(JRPrintServiceExporterParameter.PRINT_SERVICE, services[selectedService]);
+		    exporter.setParameter(JRPrintServiceExporterParameter.PRINT_SERVICE_ATTRIBUTE_SET, services[selectedService].getAttributes());
+		    exporter.setParameter(JRPrintServiceExporterParameter.PRINT_REQUEST_ATTRIBUTE_SET, printRequestAttributeSet);
+		    exporter.setParameter(JRPrintServiceExporterParameter.DISPLAY_PAGE_DIALOG, Boolean.FALSE);
+		    exporter.setParameter(JRPrintServiceExporterParameter.DISPLAY_PRINT_DIALOG, Boolean.TRUE);
+		    exporter.exportReport();
+		    
+		    System.out.println("Done!");		
+		    connection.close();
 		    
 		}
 		catch(JRException e)

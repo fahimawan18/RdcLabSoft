@@ -11,11 +11,21 @@
 
 <h:form>
   
+  <p:defaultCommand target="search"></p:defaultCommand>
   	<p:panel id="panel2" header="Search Client">
-					<ui:include src="/pages/includes/basicSearchFields.xhtml"></ui:include>
 					
+					<p:focus context="panel2"></p:focus>
 					<p:panelGrid style="margin-top:20px; width: 60%; margin: 0 auto"
 					columns="2" columnClasses="fifty-percent, fifty-percent">
+					
+ 					 
+ 					 <p:outputLabel value="Bar Code"/>
+					 
+ 					 <h:inputText value="#{registerClientBean.toSearchClient.passportNo}"
+ 					 id="barCodeInput">
+ 					 
+ 					 </h:inputText>
+					
  					 <p:outputLabel value="Cash Payment Status"/>
  					 <h:selectOneMenu value="#{registerClientBean.toSearchClient.cashPayment.cashPaidStatus}">
  					 	<f:selectItem itemLabel="Paid" itemValue="Paid"></f:selectItem>
@@ -26,7 +36,7 @@
  
  
  
-  	<h:commandButton value="Search" styleClass="richButton" 
+  	<h:commandButton value="Search" styleClass="richButton"  id="search"
   	action="#{registerClientBean.searchClients}"/>
   	
   	<br/>

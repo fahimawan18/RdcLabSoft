@@ -73,7 +73,7 @@
 					</p:column>	
 					
 					<p:column headerText="Bar Code">
-						<h:commandLink target="_blank" 
+						<h:commandLink  
 						action="#{registerClientBean.printBarCodes}" value="View/Print">
 						<f:setPropertyActionListener target="#{registerClientBean.selectedClient}" value="#{mylist}" />
 						</h:commandLink>
