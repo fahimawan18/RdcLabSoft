@@ -106,5 +106,4 @@ public class WfClientProgress
 	public void setPathologist(String pathologist) {
 		this.pathologist = pathologist;
 	}
-
 }

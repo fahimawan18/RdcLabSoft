@@ -21,23 +21,11 @@
 							
 				</p:panel>
 				
-				<p:panel id="panelTr" header="Client's Track Report" >
-					
-					
-					
 					<ui:include src="/pages/includes/trackReport.xhtml" />
-							
-				</p:panel>
-				
-				</h:panelGrid>
 				
 				
-				<p:panel id="panel1" header="Pathologist Endorsement">
-					
-					<h3> 
-					<h:outputText value="#{registerClientBean.selectedClient.progress.pathologist}"/>
-						by Pathologist</h3>
-				</p:panel>
+				
+				
 				<p:panel id="panel3" header="Lab Deatils">
 					
 					
@@ -284,6 +272,23 @@
 				    </p:panelGrid>
 					
 				</p:panel>
+				
+				
+				<p:panel id="panel1" header="Pathologist Endorsement">
+					
+					<h3> 
+					<h:outputText value="#{registerClientBean.selectedClient.progress.pathologist}"/>
+						(Endorsed by Pathologist)</h3>
+				</p:panel>
+					
+		
+				
+				
+				</h:panelGrid>
+				
+				
+				
+				
 				
 				<p:panelGrid style="margin-top:10px; width: 25%; margin: 0 auto"
 					columns="2">

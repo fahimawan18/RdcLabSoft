@@ -31,10 +31,13 @@ import javax.print.PrintService;
 import javax.print.PrintServiceLookup;
 import javax.print.attribute.HashPrintRequestAttributeSet;
 import javax.print.attribute.PrintRequestAttributeSet;
+import javax.print.attribute.Size2DSyntax;
 import javax.print.attribute.standard.Copies;
+import javax.print.attribute.standard.Media;
 import javax.print.attribute.standard.MediaPrintableArea;
 import javax.print.attribute.standard.MediaSize;
 import javax.print.attribute.standard.MediaSizeName;
+import javax.print.attribute.standard.MediaTray;
 import javax.servlet.http.HttpServletResponse;
 
 import net.sf.jasperreports.engine.JRException;
@@ -43,6 +46,7 @@ import net.sf.jasperreports.engine.JasperCompileManager;
 import net.sf.jasperreports.engine.JasperExportManager;
 import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperPrintManager;
 import net.sf.jasperreports.engine.JasperReport;
 import net.sf.jasperreports.engine.JasperRunManager;
 import net.sf.jasperreports.engine.export.JRPrintServiceExporter;
@@ -197,7 +201,13 @@ public class RegisterClientBll
 				{
 					cr.add(Restrictions.ilike("passportNo", toSearchClient.getPassportNo()));
 				}
-				if(toSearchClient.getClientStatus()!=null && toSearchClient.getClientStatus().trim().length()>0)
+				
+				if(toSearchClient.getClientStatus()!=null && 
+						toSearchClient.getClientStatus().contains(MessageConstants.Constants.ClientStatus.REPEATER))
+				{
+					cr.add(Restrictions.ilike("clientStatus", MessageConstants.Constants.ClientStatus.REPEATER+"%"));
+				}
+				else if(toSearchClient.getClientStatus()!=null && toSearchClient.getClientStatus().trim().length()>0)
 				{
 					cr.add(Restrictions.eq("clientStatus", toSearchClient.getClientStatus()));
 				}
@@ -205,7 +215,7 @@ public class RegisterClientBll
 				{
 					
 					cr.add(Restrictions.disjunction()
-	                        .add(Restrictions.ilike("clientStatus", MessageConstants.Constants.ClientStatus.REPEATER+"%"))
+//	                        .add(Restrictions.ilike("clientStatus", MessageConstants.Constants.ClientStatus.REPEATER+"%"))
 	                        .add(Restrictions.eq("clientStatus", MessageConstants.Constants.ClientStatus.REGISTERED))
 	                        );
 				}
@@ -360,6 +370,65 @@ public class RegisterClientBll
 			
 			session.update(toUpdate);
 			saveTrackReport(MessageConstants.Constants.TrackActions.SCANNED_UPDATED, toUpdate, session);
+			
+			tx.commit();
+					
+		}
+		catch(HibernateException e)
+		{
+			e.printStackTrace();
+			tx.rollback();
+			flag = false;
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+			tx.rollback();
+			flag = false;
+		}
+		finally
+		{
+			HibernateUtilsAnnot.closeSession();
+		}
+		
+		
+		return flag;
+	}
+	
+	public boolean resetRepeaterList(List<WfClient> toUpdateList)
+	{
+		System.out.println("in update cash bll method");
+		boolean flag = true;
+		
+		Session session = null;
+		Transaction tx = null;
+		
+		try
+		{
+			session = HibernateUtilsAnnot.currentSession();
+			tx = session.beginTransaction();
+			
+			ApplicationUsers currentUser = new ApplicationUsers(); 
+			currentUser = ub.getCurrentUser();
+			for(WfClient toUpdate:toUpdateList)
+			{
+				
+				toUpdate.setUpdateBy(currentUser);
+				toUpdate.setUpdateDate(new Date());
+				toUpdate.setClientStatus(MessageConstants.Constants.ClientStatus.REGISTERED);
+				toUpdate.setFinalDeclaredBy(null);
+				toUpdate.setFinalDeclaredDate(null);
+								
+				initCashObj(toUpdate.getCashPayment(), session);
+				
+				session.update(toUpdate);
+				
+				
+				
+				
+				saveTrackReport(MessageConstants.Constants.TrackActions.RESET_REPEATER, toUpdate, session);
+			}
+			
 			
 			tx.commit();
 					
@@ -1244,19 +1313,80 @@ public class RegisterClientBll
 			
 			job.setPrintService(services[selectedService]);
 		    PrintRequestAttributeSet printRequestAttributeSet = new HashPrintRequestAttributeSet();
-		    MediaSizeName mediaSizeName = MediaSize.findMedia(2,1,MediaPrintableArea.INCH);
-		    printRequestAttributeSet.add(mediaSizeName);
+//		    MediaSizeName mediaSizeName = MediaSize.findMedia(2,1,Size2DSyntax.INCH);
+		    
+		    System.out.println("Closet media size is ="+MediaSize.findMedia(2,1,MediaPrintableArea.INCH));
+		    System.out.println("Closet media size is ="+MediaSize.findMedia(2,1,Size2DSyntax.INCH));
+//		    printRequestAttributeSet.add(mediaSizeName);
+		    printRequestAttributeSet.add(MediaSizeName.ISO_A10);
 		    printRequestAttributeSet.add(new Copies(1));
-		    JRPrintServiceExporter exporter;
-		    exporter = new JRPrintServiceExporter();
-		    exporter.setParameter(JRExporterParameter.JASPER_PRINT, print);
-		    /* We set the selected service and pass it as a paramenter */
-		    exporter.setParameter(JRPrintServiceExporterParameter.PRINT_SERVICE, services[selectedService]);
-		    exporter.setParameter(JRPrintServiceExporterParameter.PRINT_SERVICE_ATTRIBUTE_SET, services[selectedService].getAttributes());
-		    exporter.setParameter(JRPrintServiceExporterParameter.PRINT_REQUEST_ATTRIBUTE_SET, printRequestAttributeSet);
-		    exporter.setParameter(JRPrintServiceExporterParameter.DISPLAY_PAGE_DIALOG, Boolean.FALSE);
-		    exporter.setParameter(JRPrintServiceExporterParameter.DISPLAY_PRINT_DIALOG, Boolean.TRUE);
-		    exporter.exportReport();
+//		    JRPrintServiceExporter exporter;
+//		    exporter = new JRPrintServiceExporter();
+//		    exporter.setParameter(JRExporterParameter.JASPER_PRINT, print);
+//		    /* We set the selected service and pass it as a paramenter */
+//		    exporter.setParameter(JRPrintServiceExporterParameter.PRINT_SERVICE, services[selectedService]);
+//		    exporter.setParameter(JRPrintServiceExporterParameter.PRINT_SERVICE_ATTRIBUTE_SET, services[selectedService].getAttributes());
+//		    exporter.setParameter(JRPrintServiceExporterParameter.PRINT_REQUEST_ATTRIBUTE_SET, printRequestAttributeSet);
+//		    exporter.setParameter(JRPrintServiceExporterParameter.DISPLAY_PAGE_DIALOG, Boolean.FALSE);
+//		    exporter.setParameter(JRPrintServiceExporterParameter.DISPLAY_PRINT_DIALOG, Boolean.TRUE);
+		    
+//		    exporter.exportReport();
+		    JasperViewer.viewReport(print);
+		    
+		    System.out.println("Done!");		
+		    connection.close();
+		    
+		}
+		catch(JRException e)
+		{
+			e.printStackTrace();
+		}
+		catch(HibernateException e)
+		{
+			e.printStackTrace();
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		}
+		finally
+		{
+			HibernateUtilsAnnot.closeSession();
+		}
+		
+	}
+	
+	public void printOnlyBarCodesNew(Integer clientId)
+	{
+		System.out.println("in printOnlyBarCodesNew bll method");
+		
+		Session session = null;
+		
+		try
+		{
+			session = HibernateUtilsAnnot.currentSession();
+			Connection connection = session.connection();
+//			JasperReport jasperReport = JasperCompileManager.compileReport(cb.getCashReceiptTemplateFile().getPath());
+			
+			InputStream template = JasperReport.class
+				    .getResourceAsStream(Environment.getReportsTemplatePath()+
+				    		Environment.getBarCodesTemplateFile());
+			 String sourceFileName = "d://rdc_docs/templates/rdcSamplesBarCodes.jasper";
+			         
+			String printFileName = null;
+			
+			Map<String, Object> parameters = new HashMap<String, Object>();
+		    parameters.put("clientId", clientId);
+		    
+//			JasperReport jasperReport = JasperCompileManager.compileReport(template);
+//			JasperPrint print = JasperFillManager.fillReport(jasperReport, parameters, connection);
+			printFileName = JasperFillManager.fillReportToFile( 
+		            sourceFileName, parameters, connection);
+			if(printFileName != null){
+	            JasperPrintManager.printReport( printFileName, true);
+			}
+			
+			
 		    
 		    System.out.println("Done!");		
 		    connection.close();
@@ -1551,6 +1681,14 @@ public class RegisterClientBll
 		report.setClientId(client);
 		
 		session.save(report);
+	}
+	
+	private void initCashObj(WfClientFinance obj, Session session)throws HibernateException, Exception
+	{
+		obj.setCashAmount(null);
+		obj.setCashPaidDate(null);
+		obj.setCashPaidStatus(MessageConstants.Constants.CashPaymentStatus.UNPAID);
+		session.update(obj);
 	}
 	
 }

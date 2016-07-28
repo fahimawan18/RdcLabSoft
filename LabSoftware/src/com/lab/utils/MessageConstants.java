@@ -60,6 +60,8 @@ public final class MessageConstants {
 			public static final String UPDATE_CLIENT = "Update Existing Client";
 			public static final String UPLOAD_SCANNED = "Upload Scanned Files";
 			
+			public static final String RESET_REPEATER = "Reset Repeater Clients";
+			
 			public static final String CASH_PAYMENT = "Cash and Accounts";
 			
 			public static final String GPE_XRAY = "G.P.E";
@@ -144,6 +146,8 @@ public final class MessageConstants {
 			public static final String PATHOLOGIST = "Pathologist updated status";
 			
 			public static final String DIRECTOR = "Medical Director updated status";
+			
+			public static final String RESET_REPEATER = "Repeater declared as Registered";
 			
 		}
 	}

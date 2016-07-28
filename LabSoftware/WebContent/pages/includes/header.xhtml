@@ -25,7 +25,11 @@
 					<p:separator />
 					<p:menuitem value="Upload Scanned Data" icon="ui-icon-plusthick"
 						ajax="true" name="pageViewID"
-						action="#{navBean.navUploadScanned}" update=":content" />				
+						action="#{navBean.navUploadScanned}" update=":content" />
+					<p:separator />
+					<p:menuitem value="Reset Repeater Clients" icon="ui-icon-plusthick"
+						ajax="true" name="pageViewID"
+						action="#{navBean.navResetRepeater}" update=":content" />				
 				</p:submenu>
 				
 				<p:submenu label="Cashier" icon="ui-icon-clock" rendered="#{userBean.currentUser.roleFinance=='Y'}">

@@ -2,7 +2,7 @@
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="rdcCashReceipt" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="dae0d09f-9b2d-4806-8194-42db847e9111">
 	<property name="ireport.zoom" value="1.0"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="295"/>
+	<property name="ireport.y" value="0"/>
 	<parameter name="clientId" class="java.lang.String"/>
 	<queryString>
 		<![CDATA[SELECT
@@ -71,6 +71,12 @@ Rawalpindi]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="0" y="24" width="145" height="34" uuid="df519f9b-e441-456d-900c-df171f191781"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
 				<textElement>
 					<font size="12" isBold="true"/>
 				</textElement>
@@ -286,6 +292,12 @@ Rawalpindi]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="0" y="24" width="145" height="34" uuid="abf6f617-e438-4d81-9a95-d80c207a1e18"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
 				<textElement>
 					<font size="12" isBold="true"/>
 				</textElement>

@@ -84,6 +84,14 @@ public class PageNavigationBean implements Serializable
 		return pageName;
 	}
 	
+	public String navResetRepeater() 
+	{		
+		FacesUtils.resetManagedBean("registerClientBean");
+		pageName = NavigationConstants.RESET_REPEATER_NAVIGATION;
+		cb.setPageTitle(MessageConstants.Constants.PageTitles.RESET_REPEATER);
+		return pageName;
+	}
+	
 	public String navCashPayment() {
 //		System.out.println("PageNavigationBean uploadScanned.xhtml");
 		FacesUtils.resetManagedBean("registerClientBean");

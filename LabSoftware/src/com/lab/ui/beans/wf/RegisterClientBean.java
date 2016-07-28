@@ -123,6 +123,27 @@ public class RegisterClientBean
 		return "";
 	}
 	
+	public String resetRepeater()
+	{		
+		RegisterClientBll bll =new RegisterClientBll();
+		System.out.println("in reset repeater method");
+		
+		
+		if(bll.resetRepeaterList(clientsList))
+		{
+			MessageUtils.info("Reset Successfull");
+			searchClients();
+			
+		}
+		else
+		{
+			MessageUtils.error(MessageConstants.Messages.UPDATE_FAILURE);
+		}
+		
+		return "";
+	}
+	
+	
 	public String updateCashStatus()
 	{		
 		RegisterClientBll bll =new RegisterClientBll();
@@ -350,6 +371,7 @@ public class RegisterClientBean
 		bll =new RegisterClientBll();
 //		bll.printBarCodes(selectedClient.getId());
 		bll.printOnlyBarCodes(selectedClient.getId());
+//		bll.printOnlyBarCodesNew(selectedClient.getId());
 		
 		return "";
 	}

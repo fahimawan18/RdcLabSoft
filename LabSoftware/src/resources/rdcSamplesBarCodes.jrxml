@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="rdcSamplesBarCodes" pageWidth="144" pageHeight="72" columnWidth="128" leftMargin="8" rightMargin="8" topMargin="8" bottomMargin="8" uuid="eb74bead-02f9-4d03-9269-1350fed37430">
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="rdcSamplesBarCodes" pageWidth="144" pageHeight="72" columnWidth="136" leftMargin="8" rightMargin="0" topMargin="0" bottomMargin="0" uuid="eb74bead-02f9-4d03-9269-1350fed37430">
 	<property name="ireport.zoom" value="2.0"/>
 	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
@@ -47,7 +47,7 @@ and c.id = $P{clientId}]]>
 	<detail>
 		<band height="56" splitType="Stretch">
 			<componentElement>
-				<reportElement x="6" y="9" width="122" height="36" uuid="aec64c9d-53c4-46e7-a5ea-81b23e18dc37">
+				<reportElement x="27" y="8" width="109" height="43" uuid="aec64c9d-53c4-46e7-a5ea-81b23e18dc37">
 					<printWhenExpression><![CDATA[($F{blood_sample}!=null && $F{blood_sample}.equals("Yes"))]]></printWhenExpression>
 				</reportElement>
 				<jr:Code39 xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd" textPosition="bottom">
