@@ -1,6 +1,9 @@
 package com.lab.bll.wf;
 
 import java.awt.image.BufferedImage;
+import java.awt.print.Book;
+import java.awt.print.PageFormat;
+import java.awt.print.Paper;
 import java.awt.print.PrinterJob;
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
@@ -49,8 +52,10 @@ import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.engine.JasperPrintManager;
 import net.sf.jasperreports.engine.JasperReport;
 import net.sf.jasperreports.engine.JasperRunManager;
+import net.sf.jasperreports.engine.design.JasperDesign;
 import net.sf.jasperreports.engine.export.JRPrintServiceExporter;
 import net.sf.jasperreports.engine.export.JRPrintServiceExporterParameter;
+import net.sf.jasperreports.engine.xml.JRXmlLoader;
 import net.sf.jasperreports.view.JasperViewer;
 
 import org.apache.tomcat.util.http.fileupload.IOUtils;
@@ -61,6 +66,7 @@ import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.criterion.Restrictions;
 import org.hibernate.mapping.Join;
+import org.primefaces.mobile.component.page.Page;
 import org.primefaces.model.UploadedFile;
 
 import com.iac.web.util.FacesUtils;
@@ -121,6 +127,7 @@ public class RegisterClientBll
 //				Adding cash payment data
 				WfClientFinance fin = new WfClientFinance();
 				fin.setClientId(toAdd);
+				fin.setCashPaidStatus(MessageConstants.Constants.CashPaymentStatus.UNPAID);
 				session.save(fin);
 				
 //				Adding progress status of regn
@@ -143,6 +150,91 @@ public class RegisterClientBll
 				toAdd.setUpdateDate(new Date());
 				session.update(toAdd);
 				
+			}
+			
+			
+			tx.commit();
+					
+		}
+		catch(HibernateException e)
+		{
+			e.printStackTrace();
+			tx.rollback();
+			flag = false;
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+			tx.rollback();
+			flag = false;
+		}
+		finally
+		{
+			HibernateUtilsAnnot.closeSession();
+		}
+		
+		
+		return flag;
+	}
+	
+	public boolean resetRepeaterList(List<WfClient> toUpdateList)
+	{
+		System.out.println("in update cash bll method");
+		boolean flag = true;
+		
+		Session session = null;
+		Transaction tx = null;
+		
+		try
+		{
+			session = HibernateUtilsAnnot.currentSession();
+			tx = session.beginTransaction();
+			
+			ApplicationUsers currentUser = new ApplicationUsers(); 
+			currentUser = ub.getCurrentUser();
+			for(WfClient toUpdate:toUpdateList)
+			{
+				
+				toUpdate.setUpdateBy(currentUser);
+				toUpdate.setUpdateDate(new Date());
+				toUpdate.setClientStatus(MessageConstants.Constants.ClientStatus.REGISTERED);
+				toUpdate.setFinalDeclaredBy(null);
+				toUpdate.setFinalDeclaredDate(null);
+								
+				session.delete(toUpdate.getCashPayment());
+				session.delete(toUpdate.getSamples());
+				session.delete(toUpdate.getBlood());
+				session.delete(toUpdate.getMicro());
+				session.delete(toUpdate.getSputum());
+				session.delete(toUpdate.getStool());
+				session.delete(toUpdate.getUrine());
+				
+				
+				toUpdate.setCashPayment(null);
+				toUpdate.setSamples(null);
+				toUpdate.setBlood(null);
+				toUpdate.setMicro(null);
+				toUpdate.setSputum(null);
+				toUpdate.setStool(null);
+				toUpdate.setUrine(null);
+				
+				toUpdate.getProgress().setCash(null);
+				toUpdate.getProgress().setSample(null);
+				toUpdate.getProgress().setPathologist(null);
+				
+				session.update(toUpdate.getProgress());
+				session.update(toUpdate);
+				session.flush();
+				
+//				Adding new cash data
+				WfClientFinance fin = new WfClientFinance();
+				fin.setClientId(toUpdate);
+				fin.setCashPaidStatus(MessageConstants.Constants.CashPaymentStatus.UNPAID);
+				session.save(fin);				
+				
+				
+				
+				saveTrackReport(MessageConstants.Constants.TrackActions.RESET_REPEATER, toUpdate, session);
 			}
 			
 			
@@ -395,64 +487,7 @@ public class RegisterClientBll
 		return flag;
 	}
 	
-	public boolean resetRepeaterList(List<WfClient> toUpdateList)
-	{
-		System.out.println("in update cash bll method");
-		boolean flag = true;
-		
-		Session session = null;
-		Transaction tx = null;
-		
-		try
-		{
-			session = HibernateUtilsAnnot.currentSession();
-			tx = session.beginTransaction();
-			
-			ApplicationUsers currentUser = new ApplicationUsers(); 
-			currentUser = ub.getCurrentUser();
-			for(WfClient toUpdate:toUpdateList)
-			{
-				
-				toUpdate.setUpdateBy(currentUser);
-				toUpdate.setUpdateDate(new Date());
-				toUpdate.setClientStatus(MessageConstants.Constants.ClientStatus.REGISTERED);
-				toUpdate.setFinalDeclaredBy(null);
-				toUpdate.setFinalDeclaredDate(null);
-								
-				initCashObj(toUpdate.getCashPayment(), session);
-				
-				session.update(toUpdate);
-				
-				
-				
-				
-				saveTrackReport(MessageConstants.Constants.TrackActions.RESET_REPEATER, toUpdate, session);
-			}
-			
-			
-			tx.commit();
-					
-		}
-		catch(HibernateException e)
-		{
-			e.printStackTrace();
-			tx.rollback();
-			flag = false;
-		}
-		catch(Exception e)
-		{
-			e.printStackTrace();
-			tx.rollback();
-			flag = false;
-		}
-		finally
-		{
-			HibernateUtilsAnnot.closeSession();
-		}
-		
-		
-		return flag;
-	}
+	
 	
 	public boolean updateCashStatus(List<WfClient> toUpdateList)
 	{
@@ -1274,7 +1309,7 @@ public class RegisterClientBll
 		
 	}
 	
-	public void printOnlyBarCodes(Integer clientId)
+	public void printOnlyBarCodes(Integer clientId, int printCopies)
 	{
 		System.out.println("in printOnlyBarCodes bll method");
 		
@@ -1293,9 +1328,11 @@ public class RegisterClientBll
 			Map<String, Object> parameters = new HashMap<String, Object>();
 		    parameters.put("clientId", clientId);
 		    
+		    
 			JasperReport jasperReport = JasperCompileManager.compileReport(template);
 			JasperPrint print = JasperFillManager.fillReport(jasperReport, parameters, connection);
 			PrinterJob job = PrinterJob.getPrinterJob();
+			
 			PrintService[] services = PrintServiceLookup.lookupPrintServices(null, null);
 			int selectedService = 0;
 			for(int i = 0; i < services.length;i++)
@@ -1312,81 +1349,27 @@ public class RegisterClientBll
 			
 			
 			job.setPrintService(services[selectedService]);
+			
 		    PrintRequestAttributeSet printRequestAttributeSet = new HashPrintRequestAttributeSet();
-//		    MediaSizeName mediaSizeName = MediaSize.findMedia(2,1,Size2DSyntax.INCH);
-		    
-		    System.out.println("Closet media size is ="+MediaSize.findMedia(2,1,MediaPrintableArea.INCH));
-		    System.out.println("Closet media size is ="+MediaSize.findMedia(2,1,Size2DSyntax.INCH));
+//		    MediaSizeName mediaSizeName = MediaSize.findMedia(2,1,MediaPrintableArea.INCH);
+//		    System.out.println("Closet media size is ="+MediaSize.findMedia(2,1,Size2DSyntax.INCH));
 //		    printRequestAttributeSet.add(mediaSizeName);
-		    printRequestAttributeSet.add(MediaSizeName.ISO_A10);
-		    printRequestAttributeSet.add(new Copies(1));
-//		    JRPrintServiceExporter exporter;
-//		    exporter = new JRPrintServiceExporter();
-//		    exporter.setParameter(JRExporterParameter.JASPER_PRINT, print);
+		    
+
+		    printRequestAttributeSet.add(new Copies(printCopies));
+		    
+		    JRPrintServiceExporter exporter;
+		    exporter = new JRPrintServiceExporter();
+		    exporter.setParameter(JRExporterParameter.JASPER_PRINT, print);
 //		    /* We set the selected service and pass it as a paramenter */
-//		    exporter.setParameter(JRPrintServiceExporterParameter.PRINT_SERVICE, services[selectedService]);
-//		    exporter.setParameter(JRPrintServiceExporterParameter.PRINT_SERVICE_ATTRIBUTE_SET, services[selectedService].getAttributes());
-//		    exporter.setParameter(JRPrintServiceExporterParameter.PRINT_REQUEST_ATTRIBUTE_SET, printRequestAttributeSet);
-//		    exporter.setParameter(JRPrintServiceExporterParameter.DISPLAY_PAGE_DIALOG, Boolean.FALSE);
-//		    exporter.setParameter(JRPrintServiceExporterParameter.DISPLAY_PRINT_DIALOG, Boolean.TRUE);
+		    exporter.setParameter(JRPrintServiceExporterParameter.PRINT_SERVICE, services[selectedService]);
+		    exporter.setParameter(JRPrintServiceExporterParameter.PRINT_SERVICE_ATTRIBUTE_SET, services[selectedService].getAttributes());
+		    exporter.setParameter(JRPrintServiceExporterParameter.PRINT_REQUEST_ATTRIBUTE_SET, printRequestAttributeSet);
+		    exporter.setParameter(JRPrintServiceExporterParameter.DISPLAY_PAGE_DIALOG, Boolean.FALSE);
+		    exporter.setParameter(JRPrintServiceExporterParameter.DISPLAY_PRINT_DIALOG, Boolean.TRUE);
 		    
-//		    exporter.exportReport();
-		    JasperViewer.viewReport(print);
-		    
-		    System.out.println("Done!");		
-		    connection.close();
-		    
-		}
-		catch(JRException e)
-		{
-			e.printStackTrace();
-		}
-		catch(HibernateException e)
-		{
-			e.printStackTrace();
-		}
-		catch(Exception e)
-		{
-			e.printStackTrace();
-		}
-		finally
-		{
-			HibernateUtilsAnnot.closeSession();
-		}
-		
-	}
-	
-	public void printOnlyBarCodesNew(Integer clientId)
-	{
-		System.out.println("in printOnlyBarCodesNew bll method");
-		
-		Session session = null;
-		
-		try
-		{
-			session = HibernateUtilsAnnot.currentSession();
-			Connection connection = session.connection();
-//			JasperReport jasperReport = JasperCompileManager.compileReport(cb.getCashReceiptTemplateFile().getPath());
-			
-			InputStream template = JasperReport.class
-				    .getResourceAsStream(Environment.getReportsTemplatePath()+
-				    		Environment.getBarCodesTemplateFile());
-			 String sourceFileName = "d://rdc_docs/templates/rdcSamplesBarCodes.jasper";
-			         
-			String printFileName = null;
-			
-			Map<String, Object> parameters = new HashMap<String, Object>();
-		    parameters.put("clientId", clientId);
-		    
-//			JasperReport jasperReport = JasperCompileManager.compileReport(template);
-//			JasperPrint print = JasperFillManager.fillReport(jasperReport, parameters, connection);
-			printFileName = JasperFillManager.fillReportToFile( 
-		            sourceFileName, parameters, connection);
-			if(printFileName != null){
-	            JasperPrintManager.printReport( printFileName, true);
-			}
-			
-			
+		    exporter.exportReport();
+//		    JasperViewer.viewReport(print);
 		    
 		    System.out.println("Done!");		
 		    connection.close();
@@ -1411,7 +1394,8 @@ public class RegisterClientBll
 		
 	}
 	
-	public void printBarCodes(Integer clientId)
+	
+	public void viewAndPrintBarCodes(Integer clientId)
 	{
 		System.out.println("in printBarCodes bll method");
 		

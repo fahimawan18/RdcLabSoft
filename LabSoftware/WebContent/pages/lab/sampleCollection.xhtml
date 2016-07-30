@@ -74,13 +74,14 @@
 					
 					<p:column headerText="Bar Code">
 						<h:commandLink  
-						action="#{registerClientBean.printBarCodes}" value="View/Print">
+						action="#{registerClientBean.printBarCodes}" value="Print">
 						<f:setPropertyActionListener target="#{registerClientBean.selectedClient}" value="#{mylist}" />
 						</h:commandLink>
 					</p:column>		
 
 				</p:dataTable>
 				
+								
 				
 				<br/>
 				

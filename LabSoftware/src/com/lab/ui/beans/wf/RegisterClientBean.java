@@ -5,17 +5,16 @@ import java.util.List;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import javax.faces.event.ActionEvent;
 import javax.faces.event.ValueChangeEvent;
 
-import org.hibernate.Hibernate;
 import org.primefaces.model.UploadedFile;
 
-import com.iac.web.util.FacesUtils;
 import com.lab.bll.wf.RegisterClientBll;
+import com.lab.dal.dao.WfClient;
 import com.lab.dal.dao.WfClientFinance;
 import com.lab.dal.dao.WfClientGpe;
 import com.lab.dal.dao.WfClientProgress;
-import com.lab.dal.dao.WfClient;
 import com.lab.dal.dao.WfClientSamples;
 import com.lab.dal.dao.WfClientScannedFiles;
 import com.lab.dal.dao.WfClientXray;
@@ -25,6 +24,7 @@ import com.lab.dal.dao.WfLabResultSputum;
 import com.lab.dal.dao.WfLabResultStool;
 import com.lab.dal.dao.WfLabResultUrine;
 import com.lab.ui.beans.FileUploadView;
+import com.lab.utils.Environment;
 import com.lab.utils.MessageConstants;
 import com.lab.utils.MessageUtils;
 import com.lab.utils.NavigationConstants;
@@ -42,7 +42,7 @@ public class RegisterClientBean
 	private UploadedFile uploadedFile;
 	
 	private WfClientGpe toAddGpe;
-	
+	private int printCopies;
 	
 	
 	
@@ -72,6 +72,7 @@ public class RegisterClientBean
 		}
 		
 		this.toAddGpe= new WfClientGpe();
+		 
 	}
 	
 	public String addCient()
@@ -368,14 +369,33 @@ public class RegisterClientBean
 	public String printBarCodes()
 	{
 		System.out.println("in printBarCodes method");
+		
+		initPrintCopies();
+		
 		bll =new RegisterClientBll();
-//		bll.printBarCodes(selectedClient.getId());
-		bll.printOnlyBarCodes(selectedClient.getId());
-//		bll.printOnlyBarCodesNew(selectedClient.getId());
+//		bll.viewAndPrintBarCodes(selectedClient.getId());
+		bll.printOnlyBarCodes(selectedClient.getId(),this.printCopies);
 		
 		return "";
 	}
 
+	private void initPrintCopies()
+	{
+		try
+		{
+			this.printCopies = Integer.valueOf(Environment.getPrintCopies());
+		}
+		catch(NumberFormatException e)
+		{
+			System.out.println("Invalid Number");
+			this.printCopies = 1;
+		}
+	}
+	
+	public void addPrintCopiesNo(ActionEvent e)
+	{
+		System.out.println("No of copies ="+this.printCopies);
+	}
 	
 	private void initializeNullObjs()
 	{
@@ -506,6 +526,14 @@ public class RegisterClientBean
 
 	public void setToAddGpe(WfClientGpe toAddGpe) {
 		this.toAddGpe = toAddGpe;
+	}
+
+	public int getPrintCopies() {
+		return printCopies;
+	}
+
+	public void setPrintCopies(int printCopies) {
+		this.printCopies = printCopies;
 	}
 	
 

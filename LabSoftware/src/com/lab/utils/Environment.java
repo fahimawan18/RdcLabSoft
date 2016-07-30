@@ -83,6 +83,11 @@ public class Environment
 		return getProperty("reportTemplatePath");
 	}
 	
+	public static String getPrintCopies()
+	{
+		return getProperty("noOfPrintCopies");
+	}
+	
 	public static String getMedicalReportsNameFormat()
 	{
 		return getProperty("medicalReportsNameFormat");
