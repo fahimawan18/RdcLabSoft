@@ -152,6 +152,9 @@ public class WfClient
 	@javax.persistence.Transient
 	private String picPath;
 	
+	@Column(name ="barcode_id")
+	private String barcodeId;
+	
 	
 	
 	
@@ -484,6 +487,14 @@ public class WfClient
 
 	public void setTrackReport(List<WfTrackReport> trackReport) {
 		this.trackReport = trackReport;
+	}
+
+	public String getBarcodeId() {
+		return barcodeId;
+	}
+
+	public void setBarcodeId(String barcodeId) {
+		this.barcodeId = barcodeId;
 	}
 	
 }

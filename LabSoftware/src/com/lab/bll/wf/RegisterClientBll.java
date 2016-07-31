@@ -116,8 +116,12 @@ public class RegisterClientBll
 			if(toAdd.getId() == null || toAdd.getId()<1)
 			{
 				toAdd.setClientStatus(MessageConstants.Constants.ClientStatus.REGISTERED);				
-				toAdd.setInsertBy(currentUser);				
+				toAdd.setInsertBy(currentUser);		
 				session.save(toAdd);
+				session.flush();
+				System.out.println("Generated client's id is ="+toAdd.getId());
+//				Adding bar code id
+				toAdd.setBarcodeId(toAdd.getId().toString()+"bc"+String.valueOf(new Date().getTime()));
 				
 //				Adding null scanned files data 
 				WfClientScannedFiles scannedFilesObj = new WfClientScannedFiles();
@@ -135,6 +139,7 @@ public class RegisterClientBll
 				progress.setClientId(toAdd);
 				progress.setRegn(MessageConstants.Constants.YES_STRING);
 				session.save(progress);
+				
 				
 //				Adding track report
 				saveTrackReport(MessageConstants.Constants.TrackActions.REGN_SAVED, toAdd, session);
@@ -277,6 +282,12 @@ public class RegisterClientBll
 				{
 					cr.add(Restrictions.eq("id", toSearchClient.getId()));
 				}
+				
+				if(toSearchClient.getBarcodeId()!=null && toSearchClient.getBarcodeId().trim().length()>0)
+				{
+					cr.add(Restrictions.eq("barcodeId", toSearchClient.getBarcodeId()));
+				}
+				
 				if(toSearchClient.getRdcTokenNo()!=null && toSearchClient.getRdcTokenNo().trim().length()>0)
 				{
 					cr.add(Restrictions.ilike("rdcTokenNo", toSearchClient.getRdcTokenNo()));

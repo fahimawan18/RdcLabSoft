@@ -72,14 +72,33 @@
 						</p:commandButton>
 					</p:column>	
 					
+					
 					<p:column headerText="Bar Code">
-						<h:commandLink  
-						action="#{registerClientBean.printBarCodes}" value="Print">
+						<p:commandLink  
+						value="Print" oncomplete="PF('dlg').show();" >
 						<f:setPropertyActionListener target="#{registerClientBean.selectedClient}" value="#{mylist}" />
-						</h:commandLink>
+						</p:commandLink>
 					</p:column>		
 
 				</p:dataTable>
+				
+				<p:dialog header="Print Copies" widgetVar="dlg" resizable="false">
+        <h:panelGrid columns="2" cellpadding="5">
+            <h:outputLabel for="username" value="No of Prints:" />
+            <p:inputText id="username" value="#{registerClientBean.printCopies}" 
+            required="true" label="username" />
+ 
+            <f:facet name="footer">
+                <h:commandButton value="Print"  
+                action="#{registerClientBean.printBarCodes}"
+                onclick="PF('dlg').hide();"
+                  />
+                 <h:commandButton value="Cancel"
+                	onclick="PF('dlg').hide();"
+                  />
+            </f:facet>  
+        </h:panelGrid>
+    </p:dialog>
 				
 								
 				

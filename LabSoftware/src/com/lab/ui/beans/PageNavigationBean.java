@@ -10,6 +10,7 @@ import javax.faces.bean.ViewScoped;
 
 import com.iac.web.util.FacesUtils;
 import com.lab.ui.beans.admin.CriteriaBean;
+import com.lab.ui.beans.wf.RegisterClientBean;
 import com.lab.utils.MessageConstants;
 import com.lab.utils.NavigationConstants;
 
@@ -151,6 +152,7 @@ public class PageNavigationBean implements Serializable
 	public String navSample() {
 //		System.out.println("PageNavigationBean uploadScanned.xhtml");
 		FacesUtils.resetManagedBean("registerClientBean");
+		((RegisterClientBean)FacesUtils.getManagedBean("registerClientBean")).initPrintCopies();
 		pageName = NavigationConstants.SAMPLE_DATA_NAVIGATION;
 		cb.setPageTitle(MessageConstants.Constants.PageTitles.SAMPLE_COLLECTION);
 		return pageName;

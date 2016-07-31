@@ -370,16 +370,24 @@ public class RegisterClientBean
 	{
 		System.out.println("in printBarCodes method");
 		
-		initPrintCopies();
-		
 		bll =new RegisterClientBll();
 //		bll.viewAndPrintBarCodes(selectedClient.getId());
 		bll.printOnlyBarCodes(selectedClient.getId(),this.printCopies);
 		
 		return "";
 	}
+	
+	public void printBarCodes(ActionEvent e)
+	{
+		System.out.println("in printBarCodes actionlistener");
+		
+		bll =new RegisterClientBll();
+//		bll.viewAndPrintBarCodes(selectedClient.getId());
+		bll.printOnlyBarCodes(selectedClient.getId(),this.printCopies);
+		
+	}
 
-	private void initPrintCopies()
+	public void initPrintCopies()
 	{
 		try
 		{
@@ -387,7 +395,7 @@ public class RegisterClientBean
 		}
 		catch(NumberFormatException e)
 		{
-			System.out.println("Invalid Number");
+			System.out.println(this.printCopies+" is not a valid number. Going to set its value as 1");
 			this.printCopies = 1;
 		}
 	}
