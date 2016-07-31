@@ -116,12 +116,11 @@ public class RegisterClientBll
 			if(toAdd.getId() == null || toAdd.getId()<1)
 			{
 				toAdd.setClientStatus(MessageConstants.Constants.ClientStatus.REGISTERED);				
-				toAdd.setInsertBy(currentUser);		
+				toAdd.setInsertBy(currentUser);
+				toAdd.setBarcodeId(String.valueOf(new Date().getTime()));
 				session.save(toAdd);
-				session.flush();
-				System.out.println("Generated client's id is ="+toAdd.getId());
-//				Adding bar code id
-				toAdd.setBarcodeId(toAdd.getId().toString()+"bc"+String.valueOf(new Date().getTime()));
+				
+				
 				
 //				Adding null scanned files data 
 				WfClientScannedFiles scannedFilesObj = new WfClientScannedFiles();
@@ -1377,12 +1376,13 @@ public class RegisterClientBll
 		    exporter.setParameter(JRPrintServiceExporterParameter.PRINT_SERVICE_ATTRIBUTE_SET, services[selectedService].getAttributes());
 		    exporter.setParameter(JRPrintServiceExporterParameter.PRINT_REQUEST_ATTRIBUTE_SET, printRequestAttributeSet);
 		    exporter.setParameter(JRPrintServiceExporterParameter.DISPLAY_PAGE_DIALOG, Boolean.FALSE);
-		    exporter.setParameter(JRPrintServiceExporterParameter.DISPLAY_PRINT_DIALOG, Boolean.TRUE);
+//		    exporter.setParameter(JRPrintServiceExporterParameter.DISPLAY_PRINT_DIALOG, Boolean.TRUE);
+		    exporter.setParameter(JRPrintServiceExporterParameter.DISPLAY_PRINT_DIALOG, Boolean.FALSE);
 		    
 		    exporter.exportReport();
 //		    JasperViewer.viewReport(print);
 		    
-		    System.out.println("Done!");		
+		    System.out.println("Printing Done!");		
 		    connection.close();
 		    
 		}

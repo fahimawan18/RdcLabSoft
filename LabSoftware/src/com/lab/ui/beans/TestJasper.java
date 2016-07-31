@@ -10,6 +10,10 @@ public class TestJasper
 		 Date today = new Date();
 		 System.out.println(today);
 		 System.out.println(today.getTime());
+		 System.out.println(today.toLocaleString());
+		 today = new Date(170,0, 1);
+		 System.out.println(today);
+		 System.out.println(today.getTime());
 
 	}
 
