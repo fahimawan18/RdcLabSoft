@@ -116,9 +116,12 @@ public class RegisterClientBll
 			if(toAdd.getId() == null || toAdd.getId()<1)
 			{
 				toAdd.setClientStatus(MessageConstants.Constants.ClientStatus.REGISTERED);				
-				toAdd.setInsertBy(currentUser);
-				toAdd.setBarcodeId(String.valueOf(new Date().getTime()));
+				toAdd.setInsertBy(currentUser);				
 				session.save(toAdd);
+				session.flush();
+				
+				Integer barCode = toAdd.getId()+MessageConstants.Constants.ID_OFFSET;
+				toAdd.setBarcodeId(barCode.toString());
 				
 				
 				

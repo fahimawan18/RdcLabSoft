@@ -28,7 +28,8 @@ public final class MessageConstants {
 		public static final String SELECT_ONE_STRING = "Select One";
 		public static final String YES_STRING = "Yes";
 		public static final String NO_STRING = "No";
-		public static final Integer AUTO_COMPLETE_SIZE = new Integer(30);
+		public static final Integer AUTO_COMPLETE_SIZE = new Integer(30);		
+		public static final Integer ID_OFFSET = new Integer(12345);
 		
 		public static final String NIL_STRING = "Nil";
 		public static final String TRACE_STRING = "Trace";
