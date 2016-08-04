@@ -43,7 +43,7 @@ public class RegisterClientBean
 	
 	private WfClientGpe toAddGpe;
 	private int printCopies;
-	
+	private boolean keepBarCodeDisplayed;
 	
 	
 	
@@ -72,6 +72,7 @@ public class RegisterClientBean
 		}
 		
 		this.toAddGpe= new WfClientGpe();
+		this.keepBarCodeDisplayed = false;
 		 
 	}
 	
@@ -99,7 +100,9 @@ public class RegisterClientBean
 	public String searchClients()
 	{		
 		RegisterClientBll bll =new RegisterClientBll();
+		
 		this.clientsList = bll.searchClients(toSearchClient);
+		this.toSearchClient.setBarcodeId("");
 		initializeNullObjs();
 		return "";
 	}
@@ -542,6 +545,14 @@ public class RegisterClientBean
 
 	public void setPrintCopies(int printCopies) {
 		this.printCopies = printCopies;
+	}
+
+	public boolean isKeepBarCodeDisplayed() {
+		return keepBarCodeDisplayed;
+	}
+
+	public void setKeepBarCodeDisplayed(boolean keepBarCodeDisplayed) {
+		this.keepBarCodeDisplayed = keepBarCodeDisplayed;
 	}
 	
 
