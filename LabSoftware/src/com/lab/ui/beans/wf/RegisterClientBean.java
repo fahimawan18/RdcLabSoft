@@ -371,11 +371,11 @@ public class RegisterClientBean
 	
 	public String printBarCodes()
 	{
-		System.out.println("in printBarCodes method");
+		System.out.println("***in printBarCodes method***");
 		
 		bll =new RegisterClientBll();
-//		bll.viewAndPrintBarCodes(selectedClient.getId());
-		bll.printOnlyBarCodes(selectedClient.getId(),this.printCopies);
+		bll.viewAndPrintBarCodes(selectedClient.getId());
+//		bll.printOnlyBarCodes(selectedClient.getId(),this.printCopies);
 		
 		return "";
 	}
@@ -385,8 +385,8 @@ public class RegisterClientBean
 		System.out.println("in printBarCodes actionlistener");
 		
 		bll =new RegisterClientBll();
-//		bll.viewAndPrintBarCodes(selectedClient.getId());
-		bll.printOnlyBarCodes(selectedClient.getId(),this.printCopies);
+		bll.viewAndPrintBarCodes(selectedClient.getId());
+//		bll.printOnlyBarCodes(selectedClient.getId(),this.printCopies);
 		
 	}
 

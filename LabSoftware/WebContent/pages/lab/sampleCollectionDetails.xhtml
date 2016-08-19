@@ -64,6 +64,14 @@
 				    </h:selectOneMenu>
 				    </h:panelGroup>
 				    
+				    
+				    <h:outputText value="Bar Code:" />
+				    <h:panelGroup>				    
+				    <h:commandLink value="View/Print" target="_blank" 
+						action="#{registerClientBean.printBarCodes}">
+							
+						</h:commandLink>
+				    </h:panelGroup>
 				  
 				    <h:outputText value="Remarks/Observation:" />
 				    <h:panelGroup>				    

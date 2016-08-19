@@ -72,8 +72,15 @@
 						</p:commandButton>
 					</p:column>	
 					
+					<p:column headerText="Bar Code" rendered="false">
+						<h:commandLink value="View/Print" target="_blank" 
+						action="#{registerClientBean.printBarCodes}">
+							<f:setPropertyActionListener 
+							target="#{registerClientBean.selectedClient}" value="#{mylist}" />
+						</h:commandLink>
+					</p:column>	
 					
-					<p:column headerText="Bar Code">
+					<p:column headerText="Bar Code" rendered="false">
 						<p:commandLink  
 						value="Print" oncomplete="PF('dlg').show();" >
 						<f:setPropertyActionListener target="#{registerClientBean.selectedClient}" value="#{mylist}" />

@@ -474,6 +474,7 @@ public class WfClient
 			this.picPath = Environment.getFilePreviewPath()+this.id+Environment.getPhotoNameFormat()
 					+"jpg";
 		}
+		System.out.println("Photo path = "+this.picPath);
 		return picPath;
 	}
 

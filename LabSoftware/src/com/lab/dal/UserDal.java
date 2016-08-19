@@ -24,7 +24,7 @@ public class UserDal
 		try {
 			session = HibernateUtilsAnnot.currentSession();
 			Criteria cr = session.createCriteria(ApplicationUsers.class);
-			cr.add(Restrictions.eq("userName", userName));
+			cr.add(Restrictions.ilike("userName", userName));
 			cr.add(Restrictions.eq("profileStatus", MessageConstants.Constants.PROFILE_CURRENT));
 			obj = (ApplicationUsers)cr.uniqueResult();
 		}
