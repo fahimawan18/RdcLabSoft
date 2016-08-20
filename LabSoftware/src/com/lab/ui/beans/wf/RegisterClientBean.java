@@ -270,7 +270,8 @@ public class RegisterClientBean
 //			FacesUtils.addInfoMessage("Lab Results added successfully");
 			MessageUtils.info(MessageConstants.Messages.UPDATE_SUCCESS);
 			this.selectedClient = new WfClient();
-			searchClients();
+			this.clientsList.clear();
+//			searchClients();
 			return NavigationConstants.LAB_DATA_NAVIGATION;
 			
 		}
