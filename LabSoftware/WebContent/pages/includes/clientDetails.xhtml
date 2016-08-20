@@ -5,13 +5,13 @@
     xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
     xmlns:p="http://primefaces.org/ui">
     
-    <p:panelGrid style="margin-top:20px; width: 60%; margin: 0 auto"
-					columns="2" id="clientDetaislGrid" columnClasses="fifty-percent, fifty-percent contents">					 
+    <p:panelGrid columns="2" style="margin-top:20px; width: 100%; margin: 0 auto" 
+    columnClasses="`seventy-percent, thirty-percent">
+   
+
+    <p:panelGrid style="margin-top:20px; width: 100%; margin: 0 auto"
+					columns="2" id="clientDetaislGrid" columnClasses="fifty-percent top-alg, fifty-percent contents top-alg">					 
 					 
-					<f:facet name="header" >
-					<p:graphicImage width="100" height="150" 
-					 url="#{registerClientBean.selectedClient.picPath}"/>
-					</f:facet>					 
 					
 					 
 					 <h:outputText value="Passport No:" />
@@ -23,7 +23,17 @@
     				<h:outputText value="First Name/ Last Name:" />
     				<h:outputText value="#{registerClientBean.selectedClient.firstName} / #{registerClientBean.selectedClient.lastName}"/>
     				
+    				<h:outputText value="Father Name:" />
+    				<h:outputText value="#{registerClientBean.selectedClient.fatherName}"/>
+    				
+    				<h:outputText value="Applied For / Position:" />
+    				<h:outputText value="#{registerClientBean.selectedClient.appliedForCountry} /  #{registerClientBean.selectedClient.appliedForPosition}"/>
+    				
     									
 					</p:panelGrid>	
+					
+		<p:graphicImage width="180" height="150" 
+					 url="#{registerClientBean.selectedClient.picPath}"/>
+		</p:panelGrid>
     
 </ui:composition>
