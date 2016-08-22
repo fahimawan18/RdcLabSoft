@@ -48,8 +48,17 @@ public class ApplicationUsers
 	@Column(name="ROLE_SAMPLE")
 	private String roleSample;
 	
+	@Column(name="ROLE_LAB")
+	private String roleLab;
+	
 	@Column(name="ROLE_RADIOLOGIST")
 	private String roleRadiologist;
+	
+	@Column(name="ROLE_XRAY")
+	private String roleXray;
+	
+	@Column(name="ROLE_PRINT_ROOM")
+	private String rolePrintRoom;	
 	
 	@Column(name="PROFILE_STATUS")
 	private String profileStatus;
@@ -66,6 +75,9 @@ public class ApplicationUsers
 		this.roleDirector = "N";
 		this.rolePathology = "N";
 		this.roleRadiologist = "N";
+		this.roleLab = "N";
+		this.roleXray = "N";
+		this.rolePrintRoom = "N";
 	}
 
 	
@@ -202,6 +214,36 @@ public class ApplicationUsers
 
 	public void setRoleRadiologist(String roleRadiologist) {
 		this.roleRadiologist = roleRadiologist;
+	}
+
+
+	public String getRoleLab() {
+		return roleLab;
+	}
+
+
+	public void setRoleLab(String roleLab) {
+		this.roleLab = roleLab;
+	}
+
+
+	public String getRoleXray() {
+		return roleXray;
+	}
+
+
+	public void setRoleXray(String roleXray) {
+		this.roleXray = roleXray;
+	}
+
+
+	public String getRolePrintRoom() {
+		return rolePrintRoom;
+	}
+
+
+	public void setRolePrintRoom(String rolePrintRoom) {
+		this.rolePrintRoom = rolePrintRoom;
 	}
 
 

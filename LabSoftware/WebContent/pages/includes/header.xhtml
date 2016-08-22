@@ -47,24 +47,25 @@
 				</p:submenu>
 				
 				<p:submenu label="Radiology" icon="ui-icon-plushthick" 
-				rendered="#{userBean.currentUser.roleRadiologist=='Y'}">
+				rendered="#{(userBean.currentUser.roleRadiologist=='Y') || (userBean.currentUser.roleXray=='Y')}">
 					<p:menuitem value="X-Ray Room" icon="ui-icon-plusthick"
-						ajax="true" name="pageViewID"
+						ajax="true" name="pageViewID" rendered="#{userBean.currentUser.roleXray=='Y'}"
 						action="#{navBean.navMedicalXray}" update=":content" />
 					<p:separator />
 					<p:menuitem value="Radiologist" icon="ui-icon-plusthick"
-						ajax="true" name="pageViewID"
+						ajax="true" name="pageViewID" rendered="#{userBean.currentUser.roleRadiologist=='Y'}"
 						action="#{navBean.navRadioXray}" update=":content" />
 								
 				</p:submenu>
 				
-				<p:submenu label="Sampling &amp; Lab" icon="ui-icon-plushthick" rendered="#{userBean.currentUser.roleSample=='Y'}">
+				<p:submenu label="Sampling &amp; Lab" icon="ui-icon-plushthick" 
+				rendered="#{(userBean.currentUser.roleSample=='Y') || (userBean.currentUser.roleLab=='Y')}">
 					<p:menuitem value="Sampling Room" icon="ui-icon-plusthick"
-						ajax="true" name="pageViewID"
+						ajax="true" name="pageViewID" rendered="#{userBean.currentUser.roleSample=='Y'}"
 						action="#{navBean.navSample}" update=":content" />
 					<p:separator />
 					<p:menuitem value="Lab Management" icon="ui-icon-plusthick"
-						ajax="true" name="pageViewID"
+						ajax="true" name="pageViewID" rendered="#{userBean.currentUser.roleLab=='Y'}"
 						action="#{navBean.navLab}" update=":content" />
 								
 				</p:submenu>
@@ -90,7 +91,8 @@
 					
 				</p:submenu>
 				
-				<p:submenu label="Reporting Room" icon="ui-icon-plushthick">
+				<p:submenu label="Reporting Room" icon="ui-icon-plushthick" 
+				rendered="#{userBean.currentUser.rolePrintRoom=='Y'}">
 					
 					<p:menuitem value="Print Report" icon="ui-icon-print"
 						ajax="true" name="pageViewID"
@@ -98,7 +100,9 @@
 					
 				</p:submenu>
 				
-				<p:submenu label="Advance Search" icon="ui-icon-search">
+				<p:submenu label="Advance Search" icon="ui-icon-search"
+				rendered="#{(userBean.currentUser.roleRegn=='Y') || (userBean.currentUser.roleAdmin=='Y')}"
+				>
 					
 					<p:menuitem value="Search Client" icon="ui-icon-search"
 						ajax="true" name="pageViewID"
