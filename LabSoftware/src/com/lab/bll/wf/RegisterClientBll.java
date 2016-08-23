@@ -966,6 +966,61 @@ public class RegisterClientBll
 		return flag;
 	}
 	
+	public boolean verifyResultsFitOrUnfit(WfClient toAdd, String status)
+	{
+		System.out.println("in verify Results bll method");
+		boolean flag = true;
+		
+		Session session = null;
+		Transaction tx = null;
+		
+		try
+		{
+			session = HibernateUtilsAnnot.currentSession();
+			tx = session.beginTransaction();
+			
+			if(toAdd.getProgress() == null || toAdd.getProgress().getId()==null)
+			{
+				WfClientProgress progress = new WfClientProgress();
+				progress.setClientId(toAdd);
+				progress.setPathologist(status);
+				session.save(progress);					
+			}
+			else
+			{
+				toAdd.getProgress().setPathologist(status);
+				session.update(toAdd.getProgress());
+			}	
+			String trackStatus = MessageConstants.Constants.TrackActions.PATHOLOGIST_FIT;
+			if(status.equals(MessageConstants.Constants.PathologistStatus.UNFIT))
+			{
+				trackStatus = MessageConstants.Constants.TrackActions.PATHOLOGIST_UNFIT;
+			}
+			saveTrackReport(trackStatus, toAdd, session);			
+			tx.commit();
+					
+		}
+		catch(HibernateException e)
+		{
+			e.printStackTrace();
+			tx.rollback();
+			flag = false;
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+			tx.rollback();
+			flag = false;
+		}
+		finally
+		{
+			HibernateUtilsAnnot.closeSession();
+		}
+		
+		
+		return flag;
+	}
+	
 	public boolean repeatWithFreshSamples(WfClient toAdd)
 	{
 		System.out.println("in repaet with fresh samples bll method");

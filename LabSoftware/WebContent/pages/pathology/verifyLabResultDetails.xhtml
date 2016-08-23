@@ -270,11 +270,19 @@
 				</p:panel>
 				
 				<p:panelGrid style="margin-top:20px; width: 70%; margin: 0 auto"
-					columns="2">					
+					columns="2" columnClasses="fifty-percent, fifty-percent">					
 				
 				
-				<h:commandButton value="Verify" styleClass="richButton"
+				<h:commandButton value="Verify" styleClass="richButton" rendered="false"
 				 action="#{registerClientBean.verifyResults}">
+				</h:commandButton>
+				
+				<h:commandButton value="Fit" styleClass="richButton" 
+				 action="#{registerClientBean.verifyResultsFit}">
+				</h:commandButton>
+				
+				<h:commandButton value="Unfit" styleClass="richButton" 
+				 action="#{registerClientBean.verifyResultsUnfit}">
 				</h:commandButton>
 				
 				<h:panelGroup>

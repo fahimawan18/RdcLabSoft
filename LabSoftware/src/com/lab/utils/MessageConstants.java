@@ -52,6 +52,13 @@ public final class MessageConstants {
 			public static final String UNFIT = "Unfit";
 			
 		}
+		
+		public static final class PathologistStatus 
+		{
+			public static final String FIT = "Fit";
+			public static final String UNFIT = "Unfit";
+			
+		}
 
 		
 		public static final class PageTitles 
@@ -145,6 +152,10 @@ public final class MessageConstants {
 			public static final String LAB = "Lab manager updated values";
 			
 			public static final String PATHOLOGIST = "Pathologist updated status";
+			
+			public static final String PATHOLOGIST_FIT = "Pathologist updated status as Fit";
+			
+			public static final String PATHOLOGIST_UNFIT = "Pathologist updated status as Unfit";
 			
 			public static final String DIRECTOR = "Medical Director updated status";
 			

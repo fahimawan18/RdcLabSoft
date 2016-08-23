@@ -284,11 +284,56 @@ public class RegisterClientBean
 		return "";
 	}
 	
+//	Not being used anymore because Patholoist will now declare Fit or Unfit
 	public String verifyResults()
 	{
 		System.out.println("in verify results method");
 		bll =new RegisterClientBll();
 		if(bll.verifyResults(this.selectedClient))
+		{
+//			FacesUtils.addInfoMessage("Lab Results verified successfully");
+			MessageUtils.info(MessageConstants.Messages.UPDATE_SUCCESS);
+			this.selectedClient = new WfClient();
+			searchClients();
+			return NavigationConstants.PATHO_VERIFY_NAVIGATION;
+			
+		}
+		else
+		{
+//			FacesUtils.addErrorMessage("Error verifying data");
+			MessageUtils.error(MessageConstants.Messages.UPDATE_FAILURE);
+		}
+		
+		return "";
+	}
+	
+	public String verifyResultsFit()
+	{
+		System.out.println("in verify results method Fit");
+		bll =new RegisterClientBll();
+		if(bll.verifyResultsFitOrUnfit(selectedClient, MessageConstants.Constants.PathologistStatus.FIT))
+		{
+//			FacesUtils.addInfoMessage("Lab Results verified successfully");
+			MessageUtils.info(MessageConstants.Messages.UPDATE_SUCCESS);
+			this.selectedClient = new WfClient();
+			searchClients();
+			return NavigationConstants.PATHO_VERIFY_NAVIGATION;
+			
+		}
+		else
+		{
+//			FacesUtils.addErrorMessage("Error verifying data");
+			MessageUtils.error(MessageConstants.Messages.UPDATE_FAILURE);
+		}
+		
+		return "";
+	}
+	
+	public String verifyResultsUnfit()
+	{
+		System.out.println("in verify results method Unfit");
+		bll =new RegisterClientBll();
+		if(bll.verifyResultsFitOrUnfit(selectedClient, MessageConstants.Constants.PathologistStatus.UNFIT))
 		{
 //			FacesUtils.addInfoMessage("Lab Results verified successfully");
 			MessageUtils.info(MessageConstants.Messages.UPDATE_SUCCESS);
