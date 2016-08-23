@@ -115,6 +115,9 @@ public class WfClient
 	@OneToOne(cascade=CascadeType.ALL, mappedBy="clientId")  
 	private WfClientScannedFiles scannedFiles;
 	
+	@OneToOne(cascade=CascadeType.ALL, mappedBy="clientId")  
+	private WfClientFingerPrint fingerPrint;
+	
 	@OneToOne(cascade=CascadeType.ALL, mappedBy="clientId")
 	private WfClientFinance cashPayment;
 	
@@ -496,6 +499,14 @@ public class WfClient
 
 	public void setBarcodeId(String barcodeId) {
 		this.barcodeId = barcodeId;
+	}
+
+	public WfClientFingerPrint getFingerPrint() {
+		return fingerPrint;
+	}
+
+	public void setFingerPrint(WfClientFingerPrint fingerPrint) {
+		this.fingerPrint = fingerPrint;
 	}
 	
 }

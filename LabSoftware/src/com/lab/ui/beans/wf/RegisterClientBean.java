@@ -10,9 +10,12 @@ import javax.faces.event.ValueChangeEvent;
 
 import org.primefaces.model.UploadedFile;
 
+import sun.misc.BASE64Decoder;
+
 import com.lab.bll.wf.RegisterClientBll;
 import com.lab.dal.dao.WfClient;
 import com.lab.dal.dao.WfClientFinance;
+import com.lab.dal.dao.WfClientFingerPrint;
 import com.lab.dal.dao.WfClientGpe;
 import com.lab.dal.dao.WfClientProgress;
 import com.lab.dal.dao.WfClientSamples;
@@ -44,7 +47,8 @@ public class RegisterClientBean
 	private WfClientGpe toAddGpe;
 	private int printCopies;
 	private boolean keepBarCodeDisplayed;
-	
+	private String fingerPrint;
+	private String fingerIndex;
 	
 	
 	public RegisterClientBean() 
@@ -79,18 +83,30 @@ public class RegisterClientBean
 	public String addCient()
 	{
 		System.out.println("in add client method");
-		this.bll = new RegisterClientBll();
-		if(bll.addCient(toAddClient))
-		{
-			this.toAddClient = new WfClient();
-			
-			
-			MessageUtils.info("Data saved/updated successfully");
-//			return NavigationConstants.HOME_NAVIGATION;
-		}
-		else
-		{
-			MessageUtils.error("Error saving data");
+		try{
+			byte[] fingerByteArray = new BASE64Decoder().decodeBuffer(fingerPrint);
+			System.out.println("Byte array size is :: " + fingerByteArray.length);
+			System.out.println("Finger Index :: " + fingerIndex);
+			WfClientFingerPrint fingerPrint = new WfClientFingerPrint();
+			fingerPrint.setFingerIndex(fingerIndex);
+			fingerPrint.setFingerPrint(fingerByteArray);
+			fingerPrint.setClientId(toAddClient);
+			toAddClient.setFingerPrint(fingerPrint);
+			this.bll = new RegisterClientBll();
+			if(bll.addCient(toAddClient))
+			{
+				this.toAddClient = new WfClient();
+				
+				
+				MessageUtils.info("Data saved/updated successfully");
+	//			return NavigationConstants.HOME_NAVIGATION;
+			}
+			else
+			{
+				MessageUtils.error("Error saving data");
+			}
+		}catch(Exception e){
+			e.printStackTrace();
 		}
 		
 		
@@ -554,6 +570,22 @@ public class RegisterClientBean
 
 	public void setKeepBarCodeDisplayed(boolean keepBarCodeDisplayed) {
 		this.keepBarCodeDisplayed = keepBarCodeDisplayed;
+	}
+	
+	public String getFingerIndex() {
+		return fingerIndex;
+	}
+
+	public void setFingerIndex(String fingerIndex) {
+		this.fingerIndex = fingerIndex;
+	}
+
+	public String getFingerPrint() {
+		return fingerPrint;
+	}
+
+	public void setFingerPrint(String fingerPrint) {
+		this.fingerPrint = fingerPrint;
 	}
 	
 
