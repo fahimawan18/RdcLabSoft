@@ -5,7 +5,7 @@
  <session-factory name="LabSoftFactory">
   <!-- Database connection settings -->
   <property name="connection.driver_class">com.mysql.jdbc.Driver</property>
-  <property name="connection.url">jdbc:mysql://localhost:3306/labsoft</property>
+  <property name="connection.url">jdbc:mysql://192.168.26.149:3306/labsoft</property>
   <property name="connection.username">rdc</property>
   <property name="connection.password">rdc123</property>
   <property name="hibernate.show_sql">true</property>
@@ -15,6 +15,7 @@
   <mapping class="com.lab.dal.dao.ApplicationUsers"/>
   <mapping class="com.lab.dal.dao.WfClient"/>
   <mapping class="com.lab.dal.dao.WfClientScannedFiles"/>
+  <mapping class="com.lab.dal.dao.WfClientFingerPrint"/>
   <mapping class="com.lab.dal.dao.WfClientFinance"/>
   <mapping class="com.lab.dal.dao.WfClientGpe"/>
   <mapping class="com.lab.dal.dao.WfClientXray"/>

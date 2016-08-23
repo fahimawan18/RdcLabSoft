@@ -17,7 +17,7 @@
 		<ui:define name="top">Lab Software</ui:define>
 		<ui:define name="content">
 
-<h:form>
+<h:form id="form1">
   
  				<p:panel id="panel1" header="Register a new Client">
 					<p:panelGrid style="margin-top:20px; width: 90%; margin: 0 auto"
@@ -106,15 +106,54 @@
     <h:inputText value="#{registerClientBean.toAddClient.appliedForPosition}"/>
     
     <h:outputText value="Recruiting Agency:" />
-    <h:inputText value="#{registerClientBean.toAddClient.rectAgency}"/>
-					
+    <h:inputText  value="#{registerClientBean.toAddClient.rectAgency}"/>
+    
+    </p:panelGrid>
+    <p:panelGrid style="margin-top:20px; width: 90%; margin: 0 auto"
+					>
+    <p:row>
+<!--     	<p:column> -->
+<!--     	 	<h:outputText value="Enroll Finger:" /> -->
+<!--     	</p:column> -->
+         <p:column >
+         <div align="center">
+            <object type="application/x-java-applet" id="Applet" codebase="../../clientlib/" 
+		    	archive="DPFingerEnrollment.jar" code="dpfingerenrollment.EnrollApplet.class"
+		    	height="400" width="400">
+		    </object>
+		    </div>
+    	</p:column>
+    </p:row>
+       
+    
+		 <!--   applet
+                                archive="http://localhost:8080/LabSoftware/clientlib/DPFingerEnrollment.jar"
+                                CODE="dpfingerenrollment.MainForm.class" CODEBASE="http://localhost:8080/LabSoftware/clientlib/" HEIGHT="300"
+                                NAME="recursionpanelapplet" WIDTH="300" id="appletID">
+                                
+                            </applet -->			
 					</p:panelGrid>
 				</p:panel>
  
  
   	<h:commandButton value="Save" styleClass="richButton" 
   	action="#{registerClientBean.addCient}"></h:commandButton>
+  	<input type="hidden" id="image" name="image" />
+  	<h:inputHidden id="imag1" value="#{registerClientBean.fingerPrint}"></h:inputHidden>
+  	<h:inputHidden id="fingerIndex" value="#{registerClientBean.fingerIndex}"></h:inputHidden>
 </h:form>
+<script>
+    function writeImageValue(imageValue) {
+        document.getElementById('form1:imag1').value = imageValue;//point 3
+        //document.getElementById('image-form:submit').click();//point 4
+        //document.getElementById('form1:finger').value = "Finger print received";
+    }
+    function writeFingerValue(fingerValue) {
+        document.getElementById('form1:fingerIndex').value = fingerValue;//point 3
+        //document.getElementById('image-form:submit').click();//point 4
+        
+    }
+</script>
 </ui:define>
 	</ui:composition>
 
