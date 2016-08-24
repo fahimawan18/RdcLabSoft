@@ -13,23 +13,42 @@
   
 
 				 	<h:panelGrid columns="2" columnClasses="fifty-percent top-alg, fifty-percent top-alg" style="width:100%">
-  	<p:panel id="panel2" header="Client's Basic Details" >
+  				
+  				<p:row>
+  				
+  				<p:column rowspan="2">
+  				<p:panel id="panel2" header="Client's Basic Details" >
 					
 					
 					<ui:include src="/pages/includes/clientDetails.xhtml" />
 					
 							
 				</p:panel>
+				</p:column>
 				
-					<ui:include src="/pages/includes/trackReport.xhtml" />
+				<p:column>
+					<p:panel id="panel1" header="Pathologist Endorsement">
+					
+					<h3> 
+					<h:outputText value="#{registerClientBean.selectedClient.progress.pathologist}"/>
+						(Endorsed by Pathologist)</h3>
+				</p:panel>
+				</p:column>
 				
+				<p:column>
+					<ui:include src="/pages/includes/trackReport.xhtml" />				
+				</p:column>
+				
+				
+				
+				</p:row>
 				
 				
 				
 				<p:panel id="panel3" header="Lab Deatils">
 					
 					
-					<p:panelGrid style="margin-top:10px; width: 70%; margin: 0 auto"
+					<p:panelGrid style="margin-top:10px; width: 100%; margin: 0 auto"
 					columns="1" id="printGrid1">
 					<h:panelGroup>
 						<h2>URINE R/E</h2>
@@ -40,7 +59,7 @@
 					</p:panelGrid>
 					
 					
-					<p:panelGrid style="margin-top:20px; width: 70%; margin: 0 auto"
+					<p:panelGrid style="margin-top:20px; width: 100%; margin: 0 auto"
 					columns="4" id="addGrid" columnClasses="labels tw-five-percent,contents tw-five-percent,
 					labels tw-five-percent,contents tw-five-percent">
 					 
@@ -55,7 +74,7 @@
 				    </h:panelGroup>
 				    </p:panelGrid>
 				    
-				    <p:panelGrid style="margin-top:10px; width: 70%; margin: 0 auto"
+				    <p:panelGrid style="margin-top:10px; width: 100%; margin: 0 auto"
 					columns="1">
 					<h:panelGroup>
 						<h2>MICROSCOPY</h2>
@@ -66,7 +85,7 @@
 					</p:panelGrid>
 					
 					
-					<p:panelGrid style="margin-top:20px; width: 70%; margin: 0 auto"
+					<p:panelGrid style="margin-top:20px; width: 100%; margin: 0 auto"
 					columns="4" columnClasses="labels tw-five-percent,contents tw-five-percent,
 					labels tw-five-percent,contents tw-five-percent">					 
 					 
@@ -92,7 +111,7 @@
 				    </p:panelGrid>
 				    
 				    
-				    <p:panelGrid style="margin-top:10px; width: 70%; margin: 0 auto"
+				    <p:panelGrid style="margin-top:10px; width: 100%; margin: 0 auto"
 					columns="1" >
 					<h:panelGroup>
 						<h2>BLOOD REPORTS</h2>
@@ -103,7 +122,7 @@
 					</p:panelGrid>
 					
 					
-					<p:panelGrid style="margin-top:20px; width: 70%; margin: 0 auto"
+					<p:panelGrid style="margin-top:20px; width: 100%; margin: 0 auto"
 					columns="4" columnClasses="labels tw-five-percent,contents tw-five-percent,
 					labels tw-five-percent,contents tw-five-percent">					 
 					 
@@ -197,7 +216,7 @@
 				    	    
 				    </p:panelGrid>
 				    
-				    <p:panelGrid style="margin-top:10px; width: 70%; margin: 0 auto"
+				    <p:panelGrid style="margin-top:10px; width: 100%; margin: 0 auto"
 					columns="1">
 					<h:panelGroup>
 						<h2>SPUTUM</h2>
@@ -208,7 +227,7 @@
 					</p:panelGrid>
 					
 					
-					<p:panelGrid style="margin-top:20px; width: 70%; margin: 0 auto"
+					<p:panelGrid style="margin-top:20px; width: 100%; margin: 0 auto"
 					columns="4" columnClasses="labels tw-five-percent,contents tw-five-percent,
 					labels tw-five-percent,contents tw-five-percent">					 
 					 
@@ -219,7 +238,7 @@
 				    </h:panelGroup>
 				    </p:panelGrid>
 				    
-				    <p:panelGrid style="margin-top:10px; width: 70%; margin: 0 auto"
+				    <p:panelGrid style="margin-top:10px; width: 100%; margin: 0 auto"
 					columns="1">
 					<h:panelGroup>
 						<h2>STOOL RE</h2>
@@ -230,7 +249,7 @@
 					</p:panelGrid>
 					
 					
-					<p:panelGrid style="margin-top:20px; width: 70%; margin: 0 auto"
+					<p:panelGrid style="margin-top:20px; width: 100%; margin: 0 auto"
 					columns="4" columnClasses="labels tw-five-percent,contents tw-five-percent,
 					labels tw-five-percent,contents tw-five-percent">					 
 					 
@@ -274,12 +293,7 @@
 				</p:panel>
 				
 				
-				<p:panel id="panel1" header="Pathologist Endorsement">
-					
-					<h3> 
-					<h:outputText value="#{registerClientBean.selectedClient.progress.pathologist}"/>
-						(Endorsed by Pathologist)</h3>
-				</p:panel>
+				
 					
 		
 				
