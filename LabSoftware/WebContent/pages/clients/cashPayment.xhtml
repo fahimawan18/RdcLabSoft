@@ -36,7 +36,7 @@
   	<h:commandButton value="Search" styleClass="richButton"
   	action="#{registerClientBean.searchClients}"/>
   	
-  	<p:poll interval="10" rendered="true" listener="#{registerClientBean.searchClients}" update="tbl1" />
+  	<p:poll interval="5" rendered="true" listener="#{registerClientBean.searchClients}" update="tbl1" />
   	
   	<br/>
   	
@@ -76,7 +76,7 @@
 						</p:commandButton>
 					</p:column>	
 					
-					<p:column headerText="Receipt">
+					<p:column headerText="Receipt" rendered="false">
 						<h:commandLink target="_blank" 
 						action="#{registerClientBean.printCashReceipt}" value="View/Print" 
 						rendered="#{mylist.cashPayment.cashPaidStatus == 'Paid' and mylist.cashPayment.cashAmount!=null}">

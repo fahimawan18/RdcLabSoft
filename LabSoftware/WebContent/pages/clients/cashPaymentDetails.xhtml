@@ -51,7 +51,15 @@
 				    </h:panelGroup>
 				    
 				    
-				    
+				    <h:outputText value="View/Print Receipt:" />
+				    <h:panelGroup>				    
+				    <h:commandLink value="View/Print" target="_blank" title="Applicable if Payment Status is 'Paid' and Amount is 'Valid' "
+						action="#{registerClientBean.printCashReceipt}"
+						disabled="#{!(registerClientBean.selectedClient.cashPayment.cashPaidStatus == 'Paid' and registerClientBean.selectedClient.cashPayment.cashAmount!=null)}"
+						>
+							
+						</h:commandLink>
+				    </h:panelGroup>
 				   
 				    
 				    
