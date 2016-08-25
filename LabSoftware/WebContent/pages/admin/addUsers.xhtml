@@ -50,14 +50,32 @@
   	<f:selectItem itemLabel="Y" itemValue="Y"></f:selectItem>
   </h:selectOneMenu>
   
+  <p:outputLabel value="X-Ray Room"></p:outputLabel>
+  <h:selectOneMenu value="#{adminBean.toAddUser.roleXray}">
+  	<f:selectItem itemLabel="N" itemValue="N"></f:selectItem>
+  	<f:selectItem itemLabel="Y" itemValue="Y"></f:selectItem>
+  </h:selectOneMenu>
+  
   <p:outputLabel value="Radiologist"></p:outputLabel>
   <h:selectOneMenu value="#{adminBean.toAddUser.roleRadiologist}">
   	<f:selectItem itemLabel="N" itemValue="N"></f:selectItem>
   	<f:selectItem itemLabel="Y" itemValue="Y"></f:selectItem>
   </h:selectOneMenu>
   
-  <p:outputLabel value="Lab and Sample Counter"></p:outputLabel>
+  <p:outputLabel value="Sample Collector"></p:outputLabel>
   <h:selectOneMenu value="#{adminBean.toAddUser.roleSample}">
+  	<f:selectItem itemLabel="N" itemValue="N"></f:selectItem>
+  	<f:selectItem itemLabel="Y" itemValue="Y"></f:selectItem>
+  </h:selectOneMenu>
+  
+  <p:outputLabel value="Lab Manager"></p:outputLabel>
+  <h:selectOneMenu value="#{adminBean.toAddUser.roleLab}">
+  	<f:selectItem itemLabel="N" itemValue="N"></f:selectItem>
+  	<f:selectItem itemLabel="Y" itemValue="Y"></f:selectItem>
+  </h:selectOneMenu>
+	
+	<p:outputLabel value="Printer Room"></p:outputLabel>
+  <h:selectOneMenu value="#{adminBean.toAddUser.rolePrintRoom}">
   	<f:selectItem itemLabel="N" itemValue="N"></f:selectItem>
   	<f:selectItem itemLabel="Y" itemValue="Y"></f:selectItem>
   </h:selectOneMenu>
@@ -73,6 +91,8 @@
   	<f:selectItem itemLabel="N" itemValue="N"></f:selectItem>
   	<f:selectItem itemLabel="Y" itemValue="Y"></f:selectItem>
   </h:selectOneMenu>
+  
+  
 					</p:panelGrid>
 				</p:panel>
  

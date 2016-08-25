@@ -48,7 +48,7 @@
 					paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
 					>
 
-					<p:column headerText="ID">
+					<p:column headerText="ID" style="width:20px;">
 						<h:outputText value="#{mylist.id}" />
 					</p:column>
 					
@@ -85,7 +85,7 @@
   						</h:selectOneMenu>
   					</p:column>
   					
-  					<p:column headerText="Medical(GPE)">
+  					<p:column headerText="Medical (GPE)">
 					  <h:selectOneMenu value="#{mylist.roleMedical}">
   						<f:selectItem itemLabel="N" itemValue="N"></f:selectItem>
   						<f:selectItem itemLabel="Y" itemValue="Y"></f:selectItem>
@@ -99,8 +99,29 @@
   						</h:selectOneMenu>
   					</p:column>
   					
-  					<p:column headerText="Sample and Lab">
+  					<p:column headerText="X-Ray Room">
+					  <h:selectOneMenu value="#{mylist.roleXray}">
+  						<f:selectItem itemLabel="N" itemValue="N"></f:selectItem>
+  						<f:selectItem itemLabel="Y" itemValue="Y"></f:selectItem>
+  						</h:selectOneMenu>
+  					</p:column>
+  					
+  					<p:column headerText="Sample Collector">
 					  <h:selectOneMenu value="#{mylist.roleSample}">
+  						<f:selectItem itemLabel="N" itemValue="N"></f:selectItem>
+  						<f:selectItem itemLabel="Y" itemValue="Y"></f:selectItem>
+  						</h:selectOneMenu>
+  					</p:column>
+  					
+  					<p:column headerText="Lab Manager">
+					  <h:selectOneMenu value="#{mylist.roleLab}">
+  						<f:selectItem itemLabel="N" itemValue="N"></f:selectItem>
+  						<f:selectItem itemLabel="Y" itemValue="Y"></f:selectItem>
+  						</h:selectOneMenu>
+  					</p:column>
+  					
+  					<p:column headerText="Printer Room">
+					  <h:selectOneMenu value="#{mylist.rolePrintRoom}">
   						<f:selectItem itemLabel="N" itemValue="N"></f:selectItem>
   						<f:selectItem itemLabel="Y" itemValue="Y"></f:selectItem>
   						</h:selectOneMenu>
