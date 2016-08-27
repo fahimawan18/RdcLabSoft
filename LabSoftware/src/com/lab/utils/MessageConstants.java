@@ -59,6 +59,13 @@ public final class MessageConstants {
 			public static final String UNFIT = "Unfit";
 			
 		}
+		
+		public static final class RepeatStatus 
+		{
+			public static final String FRESH = "Fresh Medical";
+			public static final String REPEAT = "Repeat";
+			
+		}
 
 		
 		public static final class PageTitles 

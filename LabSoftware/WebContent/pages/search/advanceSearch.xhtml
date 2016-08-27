@@ -120,7 +120,7 @@
 							<f:setPropertyActionListener target="#{adminBean.scannedFileType}" value="passport" />
 						</h:commandLink>
 					</p:column>
-					<p:column headerText="View Photo">
+					<p:column headerText="View Photo" rendered="false">
 						<h:commandLink value="Photo" target="_blank" 
 						action="#{adminBean.viewScannedFile}">
 							<f:setPropertyActionListener target="#{adminBean.selectedClient}" value="#{mylist}" />

@@ -97,7 +97,8 @@ public class RegisterClientBll
 			
 			if(toAdd.getId() == null || toAdd.getId()<1)
 			{
-				toAdd.setClientStatus(MessageConstants.Constants.ClientStatus.REGISTERED);				
+				toAdd.setClientStatus(MessageConstants.Constants.ClientStatus.REGISTERED);		
+				toAdd.setRepeatStatus(MessageConstants.Constants.RepeatStatus.FRESH);
 				toAdd.setInsertBy(currentUser);				
 				session.save(toAdd);
 				session.flush();
@@ -187,6 +188,7 @@ public class RegisterClientBll
 				toUpdate.setUpdateBy(currentUser);
 				toUpdate.setUpdateDate(new Date());
 				toUpdate.setClientStatus(MessageConstants.Constants.ClientStatus.REGISTERED);
+				toUpdate.setRepeatStatus(MessageConstants.Constants.RepeatStatus.REPEAT);
 				toUpdate.setFinalDeclaredBy(null);
 				toUpdate.setFinalDeclaredDate(null);
 								

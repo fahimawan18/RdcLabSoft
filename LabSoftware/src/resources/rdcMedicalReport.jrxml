@@ -2,7 +2,7 @@
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="rdcMedicalReport" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="02768d53-feaa-4aec-9d81-0413f48c29ab">
 	<property name="ireport.zoom" value="1.0"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="408"/>
+	<property name="ireport.y" value="0"/>
 	<style name="table">
 		<box>
 			<pen lineWidth="1.0" lineColor="#000000"/>
@@ -864,10 +864,6 @@ TPHA (If VDRL Positive)]]></text>
 				<reportElement x="487" y="61" width="68" height="20" uuid="661575ae-4db2-410d-99ff-6ceee0251975"/>
 				<text><![CDATA[Expiry:]]></text>
 			</staticText>
-			<textField pattern="dd/MM/yyyy">
-				<reportElement x="487" y="81" width="68" height="17" uuid="88f6615d-1d52-4a48-a3fa-85fa61975360"/>
-				<textFieldExpression><![CDATA[$P{expiryDate}]]></textFieldExpression>
-			</textField>
 		</band>
 	</title>
 	<pageHeader>
@@ -882,20 +878,6 @@ TPHA (If VDRL Positive)]]></text>
 		</band>
 	</pageHeader>
 	<summary>
-		<band height="42" splitType="Stretch">
-			<staticText>
-				<reportElement x="75" y="23" width="396" height="19" uuid="ce9ae6b1-ef5b-4037-9e08-42fe0ba4ed02"/>
-				<box>
-					<topPen lineWidth="0.5"/>
-					<leftPen lineWidth="0.5"/>
-					<bottomPen lineWidth="0.5"/>
-					<rightPen lineWidth="0.5"/>
-				</box>
-				<textElement textAlignment="Center">
-					<font size="10" isBold="true" isUnderline="false"/>
-				</textElement>
-				<text><![CDATA[Powered by www.techovative.co]]></text>
-			</staticText>
-		</band>
+		<band height="42" splitType="Stretch"/>
 	</summary>
 </jasperReport>

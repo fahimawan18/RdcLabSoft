@@ -7,26 +7,10 @@
 		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
 	</parameter>
 	<queryString>
-		<![CDATA[select c.rdc_token_no,
-c.gamca_slip_no, concat(c.first_name," ",c.last_name)as client_name,
-c.father_name, c.passport_no,c.barcode_id,
-c.id
+		<![CDATA[select c.barcode_id,c.id
 from  wf_client c
 where c.id =$P{clientId}]]>
 	</queryString>
-	<field name="rdc_token_no" class="java.lang.String">
-		<fieldDescription><![CDATA[]]></fieldDescription>
-	</field>
-	<field name="gamca_slip_no" class="java.lang.String">
-		<fieldDescription><![CDATA[]]></fieldDescription>
-	</field>
-	<field name="client_name" class="java.lang.String"/>
-	<field name="father_name" class="java.lang.String">
-		<fieldDescription><![CDATA[]]></fieldDescription>
-	</field>
-	<field name="passport_no" class="java.lang.String">
-		<fieldDescription><![CDATA[]]></fieldDescription>
-	</field>
 	<field name="barcode_id" class="java.lang.String">
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
@@ -36,11 +20,18 @@ where c.id =$P{clientId}]]>
 	<title>
 		<band height="56" splitType="Stretch">
 			<componentElement>
-				<reportElement stretchType="RelativeToBandHeight" mode="Opaque" x="16" y="6" width="113" height="50" uuid="c943f8af-d36d-4f78-a759-32a2e5133b31"/>
-				<jr:Code39 xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd" textPosition="bottom">
+				<reportElement stretchType="RelativeToBandHeight" mode="Opaque" x="16" y="2" width="128" height="38" uuid="c943f8af-d36d-4f78-a759-32a2e5133b31"/>
+				<jr:Code39 xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd" textPosition="none">
 					<jr:codeExpression><![CDATA[$F{barcode_id}]]></jr:codeExpression>
 				</jr:Code39>
 			</componentElement>
+			<textField>
+				<reportElement x="26" y="40" width="96" height="16" uuid="d000131f-6d10-4c5f-80a5-440041104123"/>
+				<textElement>
+					<font fontName="Arial" size="11" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{barcode_id}]]></textFieldExpression>
+			</textField>
 		</band>
 	</title>
 </jasperReport>

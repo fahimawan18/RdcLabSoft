@@ -158,6 +158,9 @@ public class WfClient
 	@Column(name ="barcode_id")
 	private String barcodeId;
 	
+	@Column(name ="repeat_status")
+	private String repeatStatus;
+	
 	
 	
 	
@@ -508,5 +511,12 @@ public class WfClient
 	public void setFingerPrint(WfClientFingerPrint fingerPrint) {
 		this.fingerPrint = fingerPrint;
 	}
-	
+
+	public String getRepeatStatus() {
+		return repeatStatus;
+	}
+
+	public void setRepeatStatus(String repeatStatus) {
+		this.repeatStatus = repeatStatus;
+	}	
 }
