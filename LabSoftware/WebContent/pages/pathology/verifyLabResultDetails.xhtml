@@ -11,9 +11,11 @@
 
 <h:form>
 				 	
-  	<p:panel id="panel2" header="Client's Basic Details">
+  	<p:panel id="panel2" header="Bar Code ID">
 					
-					<ui:include src="/pages/includes/clientDetails.xhtml" />		
+					<h2>
+						<h:outputLabel value="#{registerClientBean.selectedClient.barcodeId}"/>	
+							</h2>		
 				</p:panel>
 				
 				

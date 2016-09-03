@@ -321,7 +321,7 @@ and  wf_client.id = $P{clientId}]]>
 					<textElement>
 						<font isBold="true" isUnderline="true"/>
 					</textElement>
-					<text><![CDATA[Passpot No]]></text>
+					<text><![CDATA[Passport No]]></text>
 				</staticText>
 				<textField>
 					<reportElement x="293" y="20" width="72" height="18" uuid="4758c4b4-6401-46c5-9ca8-3f535b584039"/>
@@ -349,7 +349,7 @@ and  wf_client.id = $P{clientId}]]>
 			<band height="48">
 				<staticText>
 					<reportElement x="5" y="0" width="272" height="48" uuid="fcfdcf70-e4b7-4082-8575-19ca7d8249d9"/>
-					<text><![CDATA[Hisory of any significant past illness including :
+					<text><![CDATA[History of any significant past illness including :
 1. Psychiatric and Neurological Disorders:
 2.Allergy:		3. Other:]]></text>
 				</staticText>
