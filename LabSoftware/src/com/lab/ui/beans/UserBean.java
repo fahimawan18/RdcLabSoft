@@ -153,11 +153,13 @@ public class UserBean
 	
 	public String logoutUser() throws java.io.IOException 
 	{
+		System.out.println("Logging out");
 		UserBean.KEY_CURRENT_USER = null;
 		FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
 //		FacesContext.getCurrentInstance().getExternalContext().redirect("logout.xhtml");
 		this.checkSession = false;
-		return ((PageNavigationBean)FacesUtils.getManagedBean("navBean")).navLogOut();
+		//return ((PageNavigationBean)FacesUtils.getManagedBean("navBean")).navLogOut();
+		return "/pages/login.xhtml?faces-redirect=true";
 		
 	}
 
