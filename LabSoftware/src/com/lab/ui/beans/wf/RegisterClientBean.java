@@ -107,6 +107,41 @@ public class RegisterClientBean
 			}
 		}catch(Exception e){
 			e.printStackTrace();
+			MessageUtils.error("Error saving data..." + e.getMessage());
+		}
+		
+		
+		return "";
+	}
+	
+	public String updateCient()
+	{
+		System.out.println("in add client method");
+		try{
+//			byte[] fingerByteArray = new BASE64Decoder().decodeBuffer(fingerPrint);
+//			System.out.println("Byte array size is :: " + fingerByteArray.length);
+//			System.out.println("Finger Index :: " + fingerIndex);
+//			WfClientFingerPrint fingerPrint = new WfClientFingerPrint();
+//			fingerPrint.setFingerIndex(fingerIndex);
+//			fingerPrint.setFingerPrint(fingerByteArray);
+//			fingerPrint.setClientId(toAddClient);
+//			toAddClient.setFingerPrint(fingerPrint);
+			this.bll = new RegisterClientBll();
+			if(bll.addCient(toAddClient))
+			{
+				this.toAddClient = new WfClient();
+				
+				
+				MessageUtils.info("Data saved/updated successfully");
+	//			return NavigationConstants.HOME_NAVIGATION;
+			}
+			else
+			{
+				MessageUtils.error("Error saving data");
+			}
+		}catch(Exception e){
+			e.printStackTrace();
+			MessageUtils.error("Error saving data..." + e.getMessage());
 		}
 		
 		
