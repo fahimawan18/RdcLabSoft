@@ -67,9 +67,10 @@
 					
 					
 					<p:column headerText="Sample Collection Details">
-						<p:commandButton action="#{navBean.navSampleDetails}" 
+						<p:commandButton action="#{samplesBean.getClientDetails}" 
 						value="Update Details">
 							<f:setPropertyActionListener target="#{registerClientBean.selectedClient}" value="#{mylist}" />
+							<f:setPropertyActionListener target="#{samplesBean.selectedClient}" value="#{mylist}" />
 						</p:commandButton>
 					</p:column>	
 					
@@ -85,6 +86,7 @@
 						<p:commandLink  
 						value="Print" oncomplete="PF('dlg').show();" >
 						<f:setPropertyActionListener target="#{registerClientBean.selectedClient}" value="#{mylist}" />
+						
 						</p:commandLink>
 					</p:column>		
 

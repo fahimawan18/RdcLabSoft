@@ -158,11 +158,11 @@ public class PageNavigationBean implements Serializable
 		return pageName;
 	}
 
-	public String navSampleDetails() {
-		pageName = NavigationConstants.SAMPLE_DATA_DETAILS_NAVIGATION;
-		cb.setPageTitle(MessageConstants.Constants.PageTitles.SAMPLE_COLLECTION);
-		return pageName;
-	}
+//	public String navSampleDetails() {
+//		pageName = NavigationConstants.SAMPLE_DATA_DETAILS_NAVIGATION;
+//		cb.setPageTitle(MessageConstants.Constants.PageTitles.SAMPLE_COLLECTION);
+//		return pageName;
+//	}
 	
 	public String navLab() {
 //		System.out.println("PageNavigationBean uploadScanned.xhtml");

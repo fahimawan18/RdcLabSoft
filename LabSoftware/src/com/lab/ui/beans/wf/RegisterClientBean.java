@@ -233,27 +233,27 @@ public class RegisterClientBean
 		return "";
 	}
 	
-	public String addSamples()
-	{
-		System.out.println("in add Samples method");
-		bll =new RegisterClientBll();
-		if(bll.addSamples(this.selectedClient))
-		{
-//			FacesUtils.addInfoMessage("Samples Details added successfully");
-			MessageUtils.info(MessageConstants.Messages.UPDATE_SUCCESS);
-			this.selectedClient = new WfClient();
-			searchClients();
-			return NavigationConstants.SAMPLE_DATA_NAVIGATION;
-			
-		}
-		else
-		{
-//			FacesUtils.addErrorMessage("Error adding data");
-			MessageUtils.error(MessageConstants.Messages.UPDATE_FAILURE);
-		}
-		
-		return "";
-	}
+//	public String addSamples()
+//	{
+//		System.out.println("in add Samples method");
+//		bll =new RegisterClientBll();
+//		if(bll.addSamples(this.selectedClient))
+//		{
+////			FacesUtils.addInfoMessage("Samples Details added successfully");
+//			MessageUtils.info(MessageConstants.Messages.UPDATE_SUCCESS);
+//			this.selectedClient = new WfClient();
+//			searchClients();
+//			return NavigationConstants.SAMPLE_DATA_NAVIGATION;
+//			
+//		}
+//		else
+//		{
+////			FacesUtils.addErrorMessage("Error adding data");
+//			MessageUtils.error(MessageConstants.Messages.UPDATE_FAILURE);
+//		}
+//		
+//		return "";
+//	}
 	
 	public String saveRadiology()
 	{
@@ -431,26 +431,26 @@ public class RegisterClientBean
 		return "";
 	}
 	
-	public String printBarCodes()
-	{
-		System.out.println("***in printBarCodes method***");
-		
-		bll =new RegisterClientBll();
-		bll.viewAndPrintBarCodes(selectedClient.getId());
-//		bll.printOnlyBarCodes(selectedClient.getId(),this.printCopies);
-		
-		return "";
-	}
+//	public String printBarCodes()
+//	{
+//		System.out.println("***in printBarCodes method***");
+//		
+//		bll =new RegisterClientBll();
+//		bll.viewAndPrintBarCodes(selectedClient.getId());
+////		bll.printOnlyBarCodes(selectedClient.getId(),this.printCopies);
+//		
+//		return "";
+//	}
 	
-	public void printBarCodes(ActionEvent e)
-	{
-		System.out.println("in printBarCodes actionlistener");
-		
-		bll =new RegisterClientBll();
-		bll.viewAndPrintBarCodes(selectedClient.getId());
-//		bll.printOnlyBarCodes(selectedClient.getId(),this.printCopies);
-		
-	}
+//	public void printBarCodes(ActionEvent e)
+//	{
+//		System.out.println("in printBarCodes actionlistener");
+//		
+//		bll =new RegisterClientBll();
+//		bll.viewAndPrintBarCodes(selectedClient.getId());
+////		bll.printOnlyBarCodes(selectedClient.getId(),this.printCopies);
+//		
+//	}
 
 	public void initPrintCopies()
 	{

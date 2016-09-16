@@ -11,7 +11,16 @@
 
 <h:form>
   
-				 	
+<style>
+  @page {
+        size: 1.10in 2.00in ;
+        margin: 0;
+    }
+    @media print {
+    	#Header, #Footer { display: none !important; }
+	}
+    
+</style>				 	
   	<p:panel id="panel2" header="Client's Basic Details">
 					
 					<ui:include src="/pages/includes/clientDetails.xhtml" />			
@@ -66,16 +75,25 @@
 				    
 				    
 				    <h:outputText value="Bar Code:" />
-				    <h:panelGroup>				    
-				    <h:commandLink value="View/Print" target="_blank" 
-						action="#{registerClientBean.printBarCodes}">
-							
-						</h:commandLink>
+				    <h:panelGroup>	
+				    	<!--  p:barcode id="testbarcode" value="0123456789" type="code39" />
+				    	<iframe id="barCode" name="barCode" src="#{samplesBean.printUrl}"   width="300" height="200"></iframe>			    
+				    	<h:commandLink value="View/Print" target="_blank" 
+							onclick="printIt();"></h:commandLink>
+						
+						
+						
+						<p:commandButton value="Print" type="button" icon="ui-icon-print" style="display:block;margin-bottom: 20px">
+    						<p:printer target="barCodeMedia" />
+						</p:commandButton -->
+						
+						<p:media id="barCodeMedia" value="#{samplesBean.printUrl}" width="250" height="150"> 
+						</p:media>
 				    </h:panelGroup>
 				  
 				    <h:outputText value="Remarks/Observation:" />
 				    <h:panelGroup>				    
-				    <h:inputTextarea value="#{registerClientBean.selectedClient.samples.remarks}"/>
+				    <h:inputTextarea style="width:150px;height:150px;" value="#{registerClientBean.selectedClient.samples.remarks}"/>
 				    </h:panelGroup>
 				    
 				   
@@ -87,14 +105,22 @@
 				
 				
 				<h:commandButton value="Save" styleClass="richButton"
-				 action="#{registerClientBean.addSamples}">
+				 action="#{samplesBean.addSamples}">
 				</h:commandButton>
 				
 				<h:commandButton value="Back" styleClass="richButton"
 				 action="sampleCollection">
 				</h:commandButton>
 				
-				
+				<!--  script type="text/javascript">
+					function printIt(){
+						//window.print('http://192.168.18.131/rdc_docs/barcodes/11_barCode.pdf');
+						//var wnd = window.open('http://192.168.18.131/rdc_docs/barcodes/11_barCode.pdf');
+						//wnd.print();
+						window.frames["barCode"].focus();
+						window.frames["barCode"].print();
+					}
+				</script -->
 </h:form>
 </ui:define>
 	</ui:composition>

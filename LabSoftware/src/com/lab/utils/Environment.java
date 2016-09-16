@@ -61,6 +61,10 @@ public class Environment
 	{
 		return getProperty("filePreviewPath");
 	}
+	public static String getBarCodePreviewPath()
+	{
+		return getProperty("barCodePreviewPath");
+	}
 	
 	public static String getBarCodesStoragePath()
 	{

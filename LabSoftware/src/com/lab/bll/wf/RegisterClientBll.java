@@ -747,70 +747,70 @@ public class RegisterClientBll
 	}
 	
 	
-	public boolean addSamples(WfClient toAdd)
-	{
-		System.out.println("in add client Samples bll method");
-		boolean flag = true;
-		
-		Session session = null;
-		Transaction tx = null;
-		
-		try
-		{
-			session = HibernateUtilsAnnot.currentSession();
-			tx = session.beginTransaction();
-			
-			if(toAdd.getSamples().getId()==null
-					|| toAdd.getSamples().getId()<1)
-			{
-				System.out.println("saving new Samples ");
-				toAdd.getSamples().setClientId(toAdd);
-				session.save(toAdd.getSamples());				
-			}
-			else
-			{
-				System.out.println("updating Samples ");
-				session.update(toAdd.getSamples());
-			}
-			
-			if(toAdd.getProgress() == null || toAdd.getProgress().getId()==null)
-			{
-				WfClientProgress progress = new WfClientProgress();
-				progress.setClientId(toAdd);
-				progress.setSample(MessageConstants.Constants.YES_STRING);
-				session.save(progress);					
-			}
-			else
-			{
-				toAdd.getProgress().setSample(MessageConstants.Constants.YES_STRING);
-				session.update(toAdd.getProgress());
-			}	
-			
-			saveTrackReport(MessageConstants.Constants.TrackActions.SAMPLES, toAdd, session);
-						
-			tx.commit();
-					
-		}
-		catch(HibernateException e)
-		{
-			e.printStackTrace();
-			tx.rollback();
-			flag = false;
-		}
-		catch(Exception e)
-		{
-			e.printStackTrace();
-			tx.rollback();
-			flag = false;
-		}
-		finally
-		{
-			HibernateUtilsAnnot.closeSession();
-		}
-		
-		
-		return flag;
-	}
+//	public boolean addSamples(WfClient toAdd)
+//	{
+//		System.out.println("in add client Samples bll method");
+//		boolean flag = true;
+//		
+//		Session session = null;
+//		Transaction tx = null;
+//		
+//		try
+//		{
+//			session = HibernateUtilsAnnot.currentSession();
+//			tx = session.beginTransaction();
+//			
+//			if(toAdd.getSamples().getId()==null
+//					|| toAdd.getSamples().getId()<1)
+//			{
+//				System.out.println("saving new Samples ");
+//				toAdd.getSamples().setClientId(toAdd);
+//				session.save(toAdd.getSamples());				
+//			}
+//			else
+//			{
+//				System.out.println("updating Samples ");
+//				session.update(toAdd.getSamples());
+//			}
+//			
+//			if(toAdd.getProgress() == null || toAdd.getProgress().getId()==null)
+//			{
+//				WfClientProgress progress = new WfClientProgress();
+//				progress.setClientId(toAdd);
+//				progress.setSample(MessageConstants.Constants.YES_STRING);
+//				session.save(progress);					
+//			}
+//			else
+//			{
+//				toAdd.getProgress().setSample(MessageConstants.Constants.YES_STRING);
+//				session.update(toAdd.getProgress());
+//			}	
+//			
+//			saveTrackReport(MessageConstants.Constants.TrackActions.SAMPLES, toAdd, session);
+//						
+//			tx.commit();
+//					
+//		}
+//		catch(HibernateException e)
+//		{
+//			e.printStackTrace();
+//			tx.rollback();
+//			flag = false;
+//		}
+//		catch(Exception e)
+//		{
+//			e.printStackTrace();
+//			tx.rollback();
+//			flag = false;
+//		}
+//		finally
+//		{
+//			HibernateUtilsAnnot.closeSession();
+//		}
+//		
+//		
+//		return flag;
+//	}
 	
 	
 	
@@ -1447,68 +1447,68 @@ public class RegisterClientBll
 	}
 	
 	
-	public void viewAndPrintBarCodes(Integer clientId)
-	{
-		System.out.println("in printBarCodes bll method");
-		
-		Session session = null;
-		
-		try
-		{
-			session = HibernateUtilsAnnot.currentSession();
-			Connection connection = session.connection();
-//			JasperReport jasperReport = JasperCompileManager.compileReport(cb.getCashReceiptTemplateFile().getPath());
-			
-			InputStream template = JasperReport.class
-				    .getResourceAsStream(Environment.getReportsTemplatePath()+
-				    		Environment.getBarCodesTemplateFile());// "/resources/rdcCashReceipt.jrxml");
-			JasperReport jasperReport = JasperCompileManager.compileReport(template);
-			
-			Map<String, Object> parameters = new HashMap<String, Object>();
-		    parameters.put("clientId", clientId);
-		    JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport,parameters, connection);
-
-		    File files = new File(Environment.getBarCodesStoragePath());
-		    if(files.exists())
-		    {
-//		    	Do nothing
-		    }
-		    else
-		    {
-		    	files.mkdirs();
-		    }
-		    		 
-//		    Export to PDF.
-		    JasperExportManager.exportReportToPdfFile(jasperPrint,
-		    		Environment.getBarCodesStoragePath()+clientId+
-		    		Environment.getBarCodesNameFormat());
-		    System.out.println("Done!");		
-		    connection.close();
-		    
-//		    Going to display generated report in another browser window
-		    ViewScannedFilesUtils fu = new ViewScannedFilesUtils();
-		    fu.viewScannedFile("application/pdf", Environment.getBarCodesStoragePath(), clientId+
-		    		Environment.getBarCodesNameFormat());
-		    
-		}
-		catch(JRException e)
-		{
-			e.printStackTrace();
-		}
-		catch(HibernateException e)
-		{
-			e.printStackTrace();
-		}
-		catch(Exception e)
-		{
-			e.printStackTrace();
-		}
-		finally
-		{
-			HibernateUtilsAnnot.closeSession();
-		}
-		
-	}
+//	public void viewAndPrintBarCodes(Integer clientId)
+//	{
+//		System.out.println("in printBarCodes bll method");
+//		
+//		Session session = null;
+//		
+//		try
+//		{
+//			session = HibernateUtilsAnnot.currentSession();
+//			Connection connection = session.connection();
+////			JasperReport jasperReport = JasperCompileManager.compileReport(cb.getCashReceiptTemplateFile().getPath());
+//			
+//			InputStream template = JasperReport.class
+//				    .getResourceAsStream(Environment.getReportsTemplatePath()+
+//				    		Environment.getBarCodesTemplateFile());// "/resources/rdcCashReceipt.jrxml");
+//			JasperReport jasperReport = JasperCompileManager.compileReport(template);
+//			
+//			Map<String, Object> parameters = new HashMap<String, Object>();
+//		    parameters.put("clientId", clientId);
+//		    JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport,parameters, connection);
+//
+//		    File files = new File(Environment.getBarCodesStoragePath());
+//		    if(files.exists())
+//		    {
+////		    	Do nothing
+//		    }
+//		    else
+//		    {
+//		    	files.mkdirs();
+//		    }
+//		    		 
+////		    Export to PDF.
+//		    JasperExportManager.exportReportToPdfFile(jasperPrint,
+//		    		Environment.getBarCodesStoragePath()+clientId+
+//		    		Environment.getBarCodesNameFormat());
+//		    System.out.println("Done!");		
+//		    connection.close();
+//		    
+////		    Going to display generated report in another browser window
+//		    ViewScannedFilesUtils fu = new ViewScannedFilesUtils();
+//		    fu.viewScannedFile("application/pdf", Environment.getBarCodesStoragePath(), clientId+
+//		    		Environment.getBarCodesNameFormat());
+//		    
+//		}
+//		catch(JRException e)
+//		{
+//			e.printStackTrace();
+//		}
+//		catch(HibernateException e)
+//		{
+//			e.printStackTrace();
+//		}
+//		catch(Exception e)
+//		{
+//			e.printStackTrace();
+//		}
+//		finally
+//		{
+//			HibernateUtilsAnnot.closeSession();
+//		}
+//		
+//	}
 	
 	public void printMedicalReport(Integer clientId)
 	{
