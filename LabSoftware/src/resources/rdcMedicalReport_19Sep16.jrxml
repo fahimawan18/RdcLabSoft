@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="rdcMedicalReport" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="02768d53-feaa-4aec-9d81-0413f48c29ab">
-	<property name="ireport.zoom" value="1.6105100000000019"/>
+	<property name="ireport.zoom" value="1.0"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="672"/>
+	<property name="ireport.y" value="0"/>
 	<style name="table">
 		<box>
 			<pen lineWidth="1.0" lineColor="#000000"/>
@@ -43,14 +43,13 @@ FROM `wf_client`w where w.id = wf_client.id) as AGE,
 wf_client.nationality,
 wf_client.marital_status,
 wf_client.cnic_no,
-(select concat(g.height ,' ', g.height_scale) from wf_client_gpe g where g.client_id = wf_client.id)as HEIGHT,
-(select concat(g.weight ,' ', g.weight_scale) from wf_client_gpe g where g.client_id = wf_client.id)as WEIGHT,
+(select g.height||g.height_scale from wf_client_gpe g where g.client_id = wf_client.id)as HEIGHT,
+(select g.weight||g.weight_scale from wf_client_gpe g where g.client_id = wf_client.id)as WEIGHT,
 wf_client.applied_for_country as TRAVELLING_TO,
 wf_client.applied_for_position as FOR_JOB,
 wf_client.passport_no as PASSPORT_NO,
 date_format(wf_client.passport_Issue_date,'%d/%b/%Y') as ISSUE_DATE,
 wf_client.passport_issue_place as ISSUE_PLACE,
-f.scanned_photo,
 g.neuro_pe, g.allergy,
 g.eye_left, g.eye_right, g.ear_left, g.ear_right, g.bp,g.heart, g.lungs, g.abdominal, g.other,
 g.hernia, g.ext_vericose, g.ext_deformity,g.skin, g.cns,g.venereal, g.psychiatry,
@@ -58,18 +57,19 @@ u.sugar,u.albumin,
 s.helminthes, s.giardia, s.bilharzias, s.salmonella, s.shigella, s.cholera,
 b.blood_gp, b.haemoglobin, b.tf_malaria, b.tf_micro_filaria, b.blood_glucose, b.lft, b.sgot, b.sgpt, b.rft, b.urea, b.creatinine,
 b.anti_hiv, b.anti_hcv, b.hbs_ag, b.vdrl, b.tpha,
-a.name as director_name
+a.name as director_name,
+f.scanned_photo
      ,wf_client.`ID` AS wf_client_ID
 FROM
-     `wf_client` wf_client
-inner join wf_client_gpe g on wf_client.id = g.client_id
-inner join appl_users a on a.id = wf_client.final_declared_by
-inner join wf_client_Scanned_files f on wf_client.id = f.client_id
-left outer join wf_lab_result_urine u on wf_client.id = u.client_id
-left outer join wf_lab_result_stool s on wf_client.id = s.client_id
-left outer join wf_lab_result_blood b on wf_client.id = b.client_id
+     `wf_client` wf_client, wf_client_gpe g,wf_lab_result_urine u, wf_lab_result_stool s, wf_lab_result_blood b, appl_users a, wf_client_Scanned_files f
 where
-wf_client.id = $P{clientId}]]>
+wf_client.id = g.client_id
+and wf_client.id = u.client_id
+and wf_client.id = s.client_id
+and wf_client.id = b.client_id
+and a.id = wf_client.final_declared_by
+and wf_client.id = f.client_id
+and  wf_client.id = $P{clientId}]]>
 	</queryString>
 	<field name="wf_client_RDC_TOKEN_NO" class="java.lang.String"/>
 	<field name="wf_client_GAMCA_SLIP_NO" class="java.lang.String"/>
@@ -89,10 +89,10 @@ wf_client.id = $P{clientId}]]>
 	<field name="cnic_no" class="java.lang.String">
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
-	<field name="HEIGHT" class="java.lang.String">
+	<field name="HEIGHT" class="java.lang.Long">
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
-	<field name="WEIGHT" class="java.lang.String">
+	<field name="WEIGHT" class="java.lang.Long">
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
 	<field name="TRAVELLING_TO" class="java.lang.String"/>
@@ -758,15 +758,16 @@ TPHA (If VDRL Positive)]]></text>
 					<text><![CDATA[Signature of Examinee: _____________]]></text>
 				</staticText>
 				<staticText>
-					<reportElement style="table" x="5" y="327" width="273" height="86" uuid="52c38166-21df-43da-840e-b54a42350d85"/>
+					<reportElement style="table" x="5" y="311" width="273" height="102" uuid="52c38166-21df-43da-840e-b54a42350d85"/>
 					<text><![CDATA[
+
 
 
  MEDICAL DIRECTOR
  NAME: ]]></text>
 				</staticText>
 				<textField>
-					<reportElement x="40" y="375" width="219" height="20" uuid="489672b4-916f-4574-95ed-86ccd11abc98"/>
+					<reportElement x="43" y="371" width="219" height="20" uuid="489672b4-916f-4574-95ed-86ccd11abc98"/>
 					<textElement>
 						<font size="12" isBold="true" isUnderline="true"/>
 					</textElement>
@@ -797,38 +798,6 @@ TPHA (If VDRL Positive)]]></text>
 "\r\n "+$F{urea}+" U/L"+
 "\r\n "+$F{creatinine}+" mg/dl"]]></textFieldExpression>
 				</textField>
-				<staticText>
-					<reportElement style="table" x="5" y="311" width="70" height="16" uuid="a76a77b0-25fb-4458-a6b0-879647a7b849"/>
-					<box leftPadding="1"/>
-					<textElement>
-						<font isBold="true"/>
-					</textElement>
-					<text><![CDATA[HEIGHT]]></text>
-				</staticText>
-				<textField>
-					<reportElement style="table" x="75" y="311" width="60" height="16" uuid="23f96ac9-5403-47a6-a429-6bc3e5e6f89a"/>
-					<box topPadding="2"/>
-					<textElement>
-						<font size="8"/>
-					</textElement>
-					<textFieldExpression><![CDATA[" "+$F{HEIGHT}]]></textFieldExpression>
-				</textField>
-				<textField>
-					<reportElement style="table" x="205" y="311" width="72" height="16" uuid="3422577e-00dc-4e19-8ced-d79aa8ed4b06"/>
-					<box topPadding="2"/>
-					<textElement>
-						<font size="8"/>
-					</textElement>
-					<textFieldExpression><![CDATA[" "+$F{WEIGHT}]]></textFieldExpression>
-				</textField>
-				<staticText>
-					<reportElement style="table" x="135" y="311" width="70" height="16" uuid="eb839fd5-2d2b-4eb3-8aa2-09a5e5b72747"/>
-					<box leftPadding="2"/>
-					<textElement>
-						<font isBold="true"/>
-					</textElement>
-					<text><![CDATA[WEIGHT]]></text>
-				</staticText>
 			</band>
 		</groupHeader>
 	</group>
