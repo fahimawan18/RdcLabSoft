@@ -41,6 +41,8 @@ public class NavigationConstants {
 	public static String DIRECTOR_FINAL_NAVIGATION = "/pages/director/finalDeclaration.xhtml?faces-redirect=true";
 	public static String DIRECTOR_FINAL_DETAILS_NAVIGATION = "/pages/director/finalDeclarationDetails.xhtml?faces-redirect=true";
 	
+	public static String ADVANCE_SEARCH_DETAILS_NAVIGATION = "/pages/search/advanceSearchDetails.xhtml?faces-redirect=true";
+	
 	public static String PRINT_REPORT_NAVIGATION = "/pages/reporting/printMedicalReport.xhtml?faces-redirect=true";
 		
 	public static String SEARCH_NAVIGATION = "/pages/search/advanceSearch.xhtml?faces-redirect=true";

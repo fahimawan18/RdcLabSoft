@@ -2,6 +2,7 @@ package com.lab.dal.dao;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -17,7 +18,7 @@ public class WfClientScannedFiles
 	@Column(name = "ID")
 	private Integer id;
 	
-	@OneToOne 
+	@OneToOne(fetch=FetchType.LAZY) 
 	@JoinColumn (name = "client_id")
 	private WfClient clientId;
 	

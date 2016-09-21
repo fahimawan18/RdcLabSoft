@@ -27,11 +27,13 @@ public class AdvSearchBean
 {
 	private WfClient toSearchClient;
 	private List<WfClient> clientsList;
+	private WfClient selectedClient;
 	
 	public AdvSearchBean() 
 	{
 		// TODO Auto-generated constructor stub
 		this.toSearchClient = new WfClient();
+		this.selectedClient = new WfClient();
 		this.clientsList = new ArrayList<WfClient>();
 		if(this.toSearchClient.getCashPayment()==null || 
 				this.toSearchClient.getCashPayment().getId()==null )
@@ -50,6 +52,16 @@ public class AdvSearchBean
 	{		
 		RegisterClientBll bll =new RegisterClientBll();
 		this.clientsList = bll.advSearchClients(toSearchClient);
+//		for (WfClient wfClient : clientsList) {
+//			if(wfClient.getScannedFiles()!=null){
+//				if(wfClient.getScannedFiles().getScannedGamca()!=null)
+//					System.out.println("**************** GAMCA Length ... " + wfClient.getScannedFiles().getScannedGamca().length);
+//				if(wfClient.getScannedFiles().getScannedPassport()!=null)
+//					System.out.println("**************** Passport Length ... " + wfClient.getScannedFiles().getScannedPassport().length);
+//				if(wfClient.getScannedFiles().getScannedPhoto()!=null)
+//					System.out.println("**************** Picture length ... " + wfClient.getScannedFiles().getScannedPhoto().length);
+//			}
+//		}
 		initializeNullObjs();
 		return "";
 	}
@@ -129,6 +141,22 @@ public class AdvSearchBean
 
 	public void setClientsList(List<WfClient> clientsList) {
 		this.clientsList = clientsList;
+	}
+
+
+	/**
+	 * @return the selectedClient
+	 */
+	public WfClient getSelectedClient() {
+		return selectedClient;
+	}
+
+
+	/**
+	 * @param selectedClient the selectedClient to set
+	 */
+	public void setSelectedClient(WfClient selectedClient) {
+		this.selectedClient = selectedClient;
 	}
 	
 	

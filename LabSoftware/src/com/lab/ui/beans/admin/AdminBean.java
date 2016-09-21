@@ -175,6 +175,9 @@ public class AdminBean
 		    	files.mkdirs();
 		    }
 			filePath = Environment.getScannedFilesStoragePath();
+			
+			this.selectedClient.setScannedFiles(new AdminBll().getClientScannedFiles(selectedClient));
+			
 			if(this.scannedFileType.equals(MessageConstants.Constants.ScannedFileTypes.GAMCA))
 			{
 				mime = this.selectedClient.getScannedFiles().getGamcaMime();

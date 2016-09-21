@@ -10,7 +10,10 @@ import org.hibernate.Transaction;
 import org.hibernate.criterion.Restrictions;
 import org.jasypt.util.text.StrongTextEncryptor;
 
+import com.lab.dal.AdminDal;
 import com.lab.dal.dao.ApplicationUsers;
+import com.lab.dal.dao.WfClient;
+import com.lab.dal.dao.WfClientScannedFiles;
 import com.lab.utils.Environment;
 import com.lab.utils.HibernateUtilsAnnot;
 import com.lab.utils.MessageConstants;
@@ -164,6 +167,10 @@ public class AdminBll
 		}
 		
 		return true;
+	}
+	public WfClientScannedFiles getClientScannedFiles(WfClient selectedClient){
+		return new AdminDal().getClientScannedFiles(selectedClient);
+		
 	}
 
 }

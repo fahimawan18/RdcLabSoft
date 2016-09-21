@@ -9,6 +9,7 @@ import java.util.Set;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -21,6 +22,10 @@ import javax.persistence.Table;
 
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
+import org.hibernate.annotations.LazyToOne;
+import org.hibernate.annotations.LazyToOneOption;
+import org.hibernate.bytecode.javassist.FieldHandled;
+import org.hibernate.bytecode.javassist.FieldHandler;
 
 import com.lab.utils.Environment;
 
@@ -28,8 +33,12 @@ import com.lab.utils.Environment;
 
 @Entity
 @Table (name = "wf_client")
-public class WfClient 
+public class WfClient
+//Modified by Azeem Irshad to disable fetching of association
+implements FieldHandled
 {
+	
+	
 	@Id @GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name = "ID")
 	private Integer id;
@@ -111,8 +120,10 @@ public class WfClient
 	
 	@Column(name = "final_declared_date")
 	private Date finalDeclaredDate;
-	
-	@OneToOne(cascade=CascadeType.ALL, mappedBy="clientId")  
+	// Modified by Azeem Irshad to disable fetching of association
+	@OneToOne(fetch = FetchType.LAZY, optional = true, mappedBy = "clientId")
+	@LazyToOne(LazyToOneOption.NO_PROXY)
+	//@OneToOne(mappedBy="clientId", cascade=CascadeType.ALL )  
 	private WfClientScannedFiles scannedFiles;
 	
 	@OneToOne(cascade=CascadeType.ALL, mappedBy="clientId")  
@@ -162,7 +173,7 @@ public class WfClient
 	private String repeatStatus;
 	
 	
-	
+	private FieldHandler fieldHandler;
 	
 	public WfClient() 
 	{
@@ -362,12 +373,23 @@ public class WfClient
 	public void setUpdateDate(Date updateDate) {
 		this.updateDate = updateDate;
 	}
-
+	
 	public WfClientScannedFiles getScannedFiles() {
-		return scannedFiles;
+		
+		if (fieldHandler != null) {
+			   return (WfClientScannedFiles) fieldHandler.readObject(this, "scannedFiles", scannedFiles);
+			  }
+			  return scannedFiles;
+		
+		
 	}
 
 	public void setScannedFiles(WfClientScannedFiles scannedFiles) {
+		if (fieldHandler != null) {
+			   this.scannedFiles = (WfClientScannedFiles) fieldHandler.writeObject(this, "scannedFiles", this.scannedFiles, scannedFiles);
+			   return;
+		  }
+			  
 		this.scannedFiles = scannedFiles;
 	}
 
@@ -518,5 +540,18 @@ public class WfClient
 
 	public void setRepeatStatus(String repeatStatus) {
 		this.repeatStatus = repeatStatus;
+	}
+
+	@Override
+	public FieldHandler getFieldHandler() {
+		// TODO Auto-generated method stub
+		return fieldHandler;
+	}
+
+	@Override
+	public void setFieldHandler(FieldHandler arg0) {
+		// TODO Auto-generated method stub
+		this.fieldHandler = fieldHandler;
+		
 	}	
 }

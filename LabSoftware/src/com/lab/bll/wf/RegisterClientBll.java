@@ -45,6 +45,7 @@ import net.sf.jasperreports.view.JasperViewer;
 
 import org.apache.tomcat.util.http.fileupload.IOUtils;
 import org.hibernate.Criteria;
+import org.hibernate.FetchMode;
 import org.hibernate.Hibernate;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
@@ -262,6 +263,7 @@ public class RegisterClientBll
 		{
 			session = HibernateUtilsAnnot.currentSession();			
 			Criteria cr = session.createCriteria(WfClient.class);
+			
 			if(toSearchClient!=null)
 			{
 				if(toSearchClient.getId()!=null && toSearchClient.getId()>0)
@@ -311,12 +313,15 @@ public class RegisterClientBll
 				if(toSearchClient.getCashPayment()!=null 
 						)
 				{
-					Criteria cr2 = cr.createCriteria("cashPayment",Criteria.LEFT_JOIN);
+					System.out.println("*************** Adding cash payment");
+//					Criteria cr2 = cr.createCriteria("cashPayment",Criteria.LEFT_JOIN);
+					cr.createAlias("cashPayment", "cashP");
 					
 					if(toSearchClient.getCashPayment().getId()!=null && 
 							toSearchClient.getCashPayment().getId()>0)
 					{
-						cr2.add(Restrictions.eq("id", toSearchClient.getCashPayment().getId()));
+//						cr2.add(Restrictions.eq("id", toSearchClient.getCashPayment().getId()));
+						cr.add(Restrictions.eq("cashP.id", toSearchClient.getCashPayment().getId()));
 						
 					}
 					if(toSearchClient.getCashPayment().getCashPaidStatus()!=null &&
@@ -324,12 +329,15 @@ public class RegisterClientBll
 					{
 						if(toSearchClient.getCashPayment().getCashPaidStatus().equals(MessageConstants.Constants.CashPaymentStatus.PAID))
 						{
-							cr2.add(Restrictions.like("cashPaidStatus", MessageConstants.Constants.CashPaymentStatus.PAID));
-							cr2.add(Restrictions.isNotNull("cashAmount"));
+//							cr2.add(Restrictions.like("cashPaidStatus", MessageConstants.Constants.CashPaymentStatus.PAID));
+							cr.add(Restrictions.like("cashP.cashPaidStatus", MessageConstants.Constants.CashPaymentStatus.PAID));
+//							cr2.add(Restrictions.isNotNull("cashAmount"));
+							cr.add(Restrictions.isNotNull("cashP.cashAmount"));
 						}
 						else
 						{
-							cr2.add(Restrictions.like("cashPaidStatus", MessageConstants.Constants.CashPaymentStatus.UNPAID));
+//							cr2.add(Restrictions.like("cashPaidStatus", MessageConstants.Constants.CashPaymentStatus.UNPAID));
+							cr.add(Restrictions.like("cashP.cashPaidStatus", MessageConstants.Constants.CashPaymentStatus.UNPAID));
 						}
 						
 		                        
@@ -340,26 +348,33 @@ public class RegisterClientBll
 				if(toSearchClient.getProgress()!=null 
 						)
 				{
-					Criteria cr2 = cr.createCriteria("progress",Criteria.LEFT_JOIN);
+					System.out.println("*************** Adding progress");
+//					Criteria cr2 = cr.createCriteria("progress",Criteria.LEFT_JOIN);
+					cr.createAlias("progress", "pro");
 					
 					if(toSearchClient.getProgress().getId()!=null && 
 							toSearchClient.getProgress().getId()>0)
 					{
-						cr2.add(Restrictions.eq("id", toSearchClient.getProgress().getId()));
+//						cr2.add(Restrictions.eq("id", toSearchClient.getProgress().getId()));
+						cr.add(Restrictions.eq("pro.id", toSearchClient.getProgress().getId()));
 					}
 					if(toSearchClient.getProgress().getPathologist()!=null &&
 							toSearchClient.getProgress().getPathologist().trim().length()>0)
 					{
-						cr2.add(Restrictions.ilike("pathologist", toSearchClient.getProgress().getPathologist()+"%"));
+//						cr2.add(Restrictions.ilike("pathologist", toSearchClient.getProgress().getPathologist()+"%"));
+						cr.add(Restrictions.ilike("pro.pathologist", toSearchClient.getProgress().getPathologist()+"%"));
 					}
 					
 				}
 			}
+			//cr.setFetchMode("scannedFiles", FetchMode.LAZY);
+			
 			list = cr.list();
 			
 			for(WfClient c:list)
 			{
 				Hibernate.initialize(c.getTrackReport());
+				
 			}
 	
 		}
@@ -395,15 +410,35 @@ public class RegisterClientBll
 			session = HibernateUtilsAnnot.currentSession();
 			tx = session.beginTransaction();
 			
+//			Criteria cr = session.createCriteria(WfClient.class)
+//					.setFetchMode("scannedFiles", FetchMode.SELECT)
+//					.add(Restrictions.eq("id", client.getId()));
+//			WfClient toUpdate =(WfClient) cr.uniqueResult();
+//			Hibernate.initialize(toUpdate.getScannedFiles());
+			
+			
 			ApplicationUsers currentUser = new ApplicationUsers(); 
 			currentUser = ub.getCurrentUser();
 			toUpdate.setUpdateBy(currentUser);
 			toUpdate.setUpdateDate(new Date());
 			String path = Environment.getScannedFilesStoragePath();
 			String fileName="";
+			// Added by Azeem Irshad to fetch lazy association
+			WfClientScannedFiles scanndFiles = (WfClientScannedFiles) session.createQuery(
+					"from WfClientScannedFiles where clientId.id = :clientID ")
+					.setParameter("clientID", toUpdate.getId())
+					
+					.uniqueResult();
+//			toUpdate.setScannedFiles();
+//			WfClientScannedFiles temp = scanndFiles;
+//			session.evict(scanndFiles);
+//			temp.setClientId(toUpdate);
+			toUpdate.setScannedFiles(scanndFiles);
 			
-			if(toUpdate.getScannedFiles()!=null && toUpdate.getScannedFiles().getId()>0)
+			if(toUpdate.getScannedFiles()!=null// && toUpdate.getScannedFiles().getId()!=null 
+					&& toUpdate.getScannedFiles().getId()>0)
 			{
+				System.out.println("inside if .......");
 				if(fileView.getFileBinary1()!=null)
 				{			
 					
@@ -427,6 +462,8 @@ public class RegisterClientBll
 					fileName=toUpdate.getId().toString()+Environment.getPhotoNameFormat()+fileView.getFile3Mime();
 					adb.makeFileFromByte(path+fileName, fileView.getFileBinary3());
 				}
+				System.out.println("exiting if .......");
+				
 			}
 			else
 			{
@@ -1200,7 +1237,13 @@ public class RegisterClientBll
 					
 				}
 			}
+//			cr.createAlias("scannedFiles", "sc");
 			list = cr.list();
+			for(WfClient c:list)
+			{
+				Hibernate.initialize(c.getTrackReport());
+				
+			}
 	
 		}
 		catch(HibernateException e)

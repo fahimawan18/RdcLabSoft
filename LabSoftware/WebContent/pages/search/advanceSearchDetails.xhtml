@@ -1,0 +1,417 @@
+
+	<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+		xmlns:ui="http://java.sun.com/jsf/facelets"
+		xmlns:h="http://java.sun.com/jsf/html"
+		xmlns:f="http://java.sun.com/jsf/core"
+		xmlns:p="http://primefaces.org/ui"
+		template="/pages/includes/templatePage.xhtml">
+		<ui:define name="title">Lab Software</ui:define>
+		<ui:define name="top">Lab Software</ui:define>
+		<ui:define name="content">
+
+<h:form>
+  
+
+				 	<h:panelGrid columns="1" columnClasses="fifty-percent top-alg, fifty-percent top-alg" style="width:100%">
+  				
+  				<p:row>
+  				<p:column rowspan="2">
+  				<p:panel id="panel2" header="Client's Basic Details" >
+					
+					
+					<p:panelGrid columns="2" style="margin-top:20px; width: 100%; margin: 0 auto" 
+    columnClasses="`seventy-percent, thirty-percent">
+   
+
+    <p:panelGrid style="margin-top:20px; width: 100%; margin: 0 auto"
+					columns="4" id="clientDetaislGrid" columnClasses="top-alg, contents top-alg, top-alg, contents top-alg">					 
+					 
+					
+					 <h:outputText value="GAMCA Slip No:" />
+    				<h:outputText value="#{advSearchBean.selectedClient.gamcaSlipNo}"/>
+    				
+					 <h:outputText value="Passport No:" />
+   					 <h:outputText value="#{advSearchBean.selectedClient.passportNo}"/>
+ 
+    				
+ 
+    				<h:outputText value="First Name/ Last Name:" />
+    				<h:outputText value="#{advSearchBean.selectedClient.firstName} / #{advSearchBean.selectedClient.lastName}"/>
+    				
+    				<h:outputText value="Father Name:" />
+    				<h:outputText value="#{advSearchBean.selectedClient.fatherName}"/>
+    				
+    				<h:outputText value="Nationality:" />
+    				<h:outputText value="#{advSearchBean.selectedClient.nationality}"/>
+    				
+    				<h:outputText value="Date of Birth:" />
+    				<h:outputText value="#{advSearchBean.selectedClient.dob}">
+    				<f:convertDateTime pattern="MM-dd-yyyy" />
+    				</h:outputText>
+    				
+    				<h:outputText value="Passport Issue Date:" />
+    				<h:outputText value="#{advSearchBean.selectedClient.passportIssueDate}">
+    				<f:convertDateTime pattern="MM-dd-yyyy" />
+    				</h:outputText>
+    				
+    				<h:outputText value="Passport Expiry Date:" />
+    				<h:outputText value="#{advSearchBean.selectedClient.passportExpiryDate}">
+    				<f:convertDateTime pattern="MM-dd-yyyy" />
+    				</h:outputText>
+    				
+    				<h:outputText value="Gender:" />
+    				<h:outputText value="#{advSearchBean.selectedClient.gender}"/>
+    				
+    				<h:outputText value="Marital Status:" />
+    				<h:outputText value="#{advSearchBean.selectedClient.maritalStatus}"/>
+    				
+    				<h:outputText value="CNIC:" />
+    				<h:outputText value="#{advSearchBean.selectedClient.cnicNo}"/>
+    				
+    				<h:outputText value="Mob/Tel:" />
+    				<h:outputText value="#{advSearchBean.selectedClient.mobileNo}"/>
+    				
+    				<h:outputText value="Recruiting Agency:" />
+    				<h:outputText value="#{advSearchBean.selectedClient.rectAgency}"/>
+    				
+    				<h:outputText value="Applied For/Position:" />
+    				<h:outputText value="#{advSearchBean.selectedClient.appliedForCountry} /  #{advSearchBean.selectedClient.appliedForPosition}"/>
+    				
+    									
+					</p:panelGrid>	
+					
+		<p:graphicImage width="180" height="150" 
+					 url="#{advSearchBean.selectedClient.picPath}"/>
+		</p:panelGrid>
+					
+							
+				</p:panel>
+				</p:column>
+  				</p:row>
+  				</h:panelGrid>
+  				<h:panelGrid columns="2" columnClasses="fifty-percent top-alg, fifty-percent top-alg" style="width:100%">
+  				
+  				<p:row>
+  				
+  				
+				
+				<p:column>
+					<p:panel id="panel1" header="Pathologist Endorsement">
+					
+					<h3> 
+					<h:outputText value="#{advSearchBean.selectedClient.progress.pathologist}"/>
+						(Endorsed by Pathologist)</h3>
+				</p:panel>
+				</p:column>
+				
+				<p:column>
+					<p:panelGrid style="margin-top:20px; width: 100%; margin: 0 auto"
+					columns="1" id="trackReport">					 
+					 
+					<f:facet name="header" >
+					 <h:outputText value="Track Report"/>
+					</f:facet>					 
+					
+					<p:dataTable value="#{advSearchBean.selectedClient.trackReport}" var="mylist"
+					paginatorPosition="top" editable="true" rows="13" paginator="true"
+					paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+					id="tblTracking">
+
+					<p:column headerText="Activity">
+						<h:outputText value="#{mylist.activity}" />
+					</p:column>
+					
+					<p:column headerText="Operator">
+						<h:outputText value="#{mylist.operator.loggedUserString}" />
+					</p:column>
+
+					<p:column headerText="Time" sortable="true" sortBy="#{mylist.activityTime}">
+						<h:outputText value="#{mylist.activityTime}" >
+							<f:convertDateTime 
+							pattern="dd-MMM-yy hh:mm:ss a"></f:convertDateTime>
+						</h:outputText>						
+					</p:column>		
+
+				</p:dataTable>				
+					</p:panelGrid>			
+				</p:column>
+				
+				
+				
+				</p:row>
+				
+				
+				
+				<p:panel id="panel3" header="Lab Deatils">
+					
+					
+					<p:panelGrid style="margin-top:10px; width: 100%; margin: 0 auto"
+					columns="1" id="printGrid1">
+					<h:panelGroup>
+						<h2>URINE R/E</h2>
+						
+					</h:panelGroup>
+					 
+ 					
+					</p:panelGrid>
+					
+					
+					<p:panelGrid style="margin-top:20px; width: 100%; margin: 0 auto"
+					columns="4" id="addGrid" columnClasses="labels tw-five-percent,contents tw-five-percent,
+					labels tw-five-percent,contents tw-five-percent">
+					 
+					 <h:outputText value="Sugar:" />
+				    <h:panelGroup>
+				    <h:outputText value="#{advSearchBean.selectedClient.urine.sugar}"/>
+				    </h:panelGroup>
+				    
+				    <h:outputText value="Albumin:" />
+				    <h:panelGroup>
+				    <h:outputText value="#{advSearchBean.selectedClient.urine.albumin}"/>
+				    </h:panelGroup>
+				    </p:panelGrid>
+				    
+				    <p:panelGrid style="margin-top:10px; width: 100%; margin: 0 auto"
+					columns="1">
+					<h:panelGroup>
+						<h2>MICROSCOPY</h2>
+						
+					</h:panelGroup>
+					 
+ 					
+					</p:panelGrid>
+					
+					
+					<p:panelGrid style="margin-top:20px; width: 100%; margin: 0 auto"
+					columns="4" columnClasses="labels tw-five-percent,contents tw-five-percent,
+					labels tw-five-percent,contents tw-five-percent">					 
+					 
+					 
+					 <h:outputText value="Pus Cells:" />
+				    <h:panelGroup>
+				    <h:outputText value="#{advSearchBean.selectedClient.micro.pusCels}"/>
+				    HPF
+				    </h:panelGroup>
+				    
+				    <h:outputText value="RBC's:" />
+				    <h:panelGroup>
+				    <h:outputText value="#{advSearchBean.selectedClient.micro.rbc}"/>
+				    HPF
+				    </h:panelGroup>
+				    
+				    <h:outputText value="Others:" />
+				    <h:panelGroup>
+				    <h:outputText value="#{advSearchBean.selectedClient.micro.others}"/>			    	
+				    	
+				    </h:panelGroup>
+				    
+				    </p:panelGrid>
+				    
+				    
+				    <p:panelGrid style="margin-top:10px; width: 100%; margin: 0 auto"
+					columns="1" >
+					<h:panelGroup>
+						<h2>BLOOD REPORTS</h2>
+						
+					</h:panelGroup>
+					 
+ 					
+					</p:panelGrid>
+					
+					
+					<p:panelGrid style="margin-top:20px; width: 100%; margin: 0 auto"
+					columns="4" columnClasses="labels tw-five-percent,contents tw-five-percent,
+					labels tw-five-percent,contents tw-five-percent">					 
+					 
+					 
+					<h:outputText value="Haemoglobin:" />
+				    <h:panelGroup>
+				    <h:outputText value="#{advSearchBean.selectedClient.blood.haemoglobin}"/>
+				    g/dl
+				    </h:panelGroup>
+				    
+				    <h:outputText value="Blood Gp:" />
+				    <h:panelGroup>
+				    <h:outputText value="#{advSearchBean.selectedClient.blood.bloodGp}"/>
+				    </h:panelGroup>
+				    
+				    <h:outputText value="Thick Film for(Malaria):" />
+				    <h:panelGroup>
+				    <h:outputText value="#{advSearchBean.selectedClient.blood.tfMalaria}"/>
+				    </h:panelGroup>
+				    
+				    
+				    <h:outputText value="Thick Film for(Micro Filalaria):" />
+				    <h:panelGroup>
+				    <h:outputText value="#{advSearchBean.selectedClient.blood.tfMicroFilaria}"/>
+				    </h:panelGroup>
+				    
+				    <h:outputText value="Blood Glucose:" />
+				    <h:panelGroup>
+				    <h:outputText value="#{advSearchBean.selectedClient.blood.bloodGlucose}"/>
+				    	mg/dl
+				    </h:panelGroup>
+				    
+				     <h:outputText value="L.F.Ts:" />
+				    <h:panelGroup>
+				    <h:outputText value="#{advSearchBean.selectedClient.blood.lft}"/>
+				    </h:panelGroup>
+				    
+				    <h:outputText value="SGOT/AST:" />
+				    <h:panelGroup>
+				    <h:outputText value="#{advSearchBean.selectedClient.blood.sgot}"/>
+				    	mg/dl
+				    </h:panelGroup>
+				    
+				    <h:outputText value="SGPT/ALT:" />
+				    <h:panelGroup>
+				    <h:outputText value="#{advSearchBean.selectedClient.blood.sgpt}"/>
+				    	mg/dl
+				    </h:panelGroup>
+				    
+				    <h:outputText value="Urea:" />
+				    <h:panelGroup>
+				    <h:outputText value="#{advSearchBean.selectedClient.blood.urea}"/>
+				    	mg/dl
+				    </h:panelGroup>
+				    
+				    <h:outputText value="Creatinine:" />
+				    <h:panelGroup>
+				    <h:outputText value="#{advSearchBean.selectedClient.blood.creatinine}"/>
+				    	mg/dl
+				    </h:panelGroup>
+				    
+				    <h:outputText value="Anti HIV:" />
+				    <h:panelGroup>
+				    <h:outputText value="#{advSearchBean.selectedClient.blood.antiHiv}"/>
+				    </h:panelGroup>
+				    
+				    <h:outputText value="Anti HCV:" />
+				    <h:panelGroup>
+				    <h:outputText value="#{advSearchBean.selectedClient.blood.antiHcv}"/>
+				    </h:panelGroup>
+				    
+				    <h:outputText value="HbsAg:" />
+				    <h:panelGroup>
+				    <h:outputText value="#{advSearchBean.selectedClient.blood.hbsAg}"/>
+				    </h:panelGroup>
+				    
+				    <h:outputText value="VDRL:" />
+				    <h:panelGroup>
+				    <h:outputText value="#{advSearchBean.selectedClient.blood.vdrl}"/>
+				    </h:panelGroup>
+				    
+				    <h:outputText id="_tpha_out" 
+				    rendered="#{advSearchBean.selectedClient.blood.vdrl=='Positive'}"
+				     value="TPHA (if VDRL is positive)"/>
+				    <h:panelGroup rendered="#{advSearchBean.selectedClient.blood.vdrl=='Positive'}" 
+				    id="_tpha_panel">
+				    <h:outputText value="#{advSearchBean.selectedClient.blood.tpha}"/>
+				    </h:panelGroup>		
+				    
+				  
+				    	    
+				    </p:panelGrid>
+				    
+				    <p:panelGrid style="margin-top:10px; width: 100%; margin: 0 auto"
+					columns="1">
+					<h:panelGroup>
+						<h2>SPUTUM</h2>
+						
+					</h:panelGroup>
+					 
+ 					
+					</p:panelGrid>
+					
+					
+					<p:panelGrid style="margin-top:20px; width: 100%; margin: 0 auto"
+					columns="4" columnClasses="labels tw-five-percent,contents tw-five-percent,
+					labels tw-five-percent,contents tw-five-percent">					 
+					 
+					 
+					 <h:outputText value="AFB:" />
+				    <h:panelGroup>
+				    <h:outputText value="#{advSearchBean.selectedClient.sputum.afb}"/>
+				    </h:panelGroup>
+				    </p:panelGrid>
+				    
+				    <p:panelGrid style="margin-top:10px; width: 100%; margin: 0 auto"
+					columns="1">
+					<h:panelGroup>
+						<h2>STOOL RE</h2>
+						
+					</h:panelGroup>
+					 
+ 					
+					</p:panelGrid>
+					
+					
+					<p:panelGrid style="margin-top:20px; width: 100%; margin: 0 auto"
+					columns="4" columnClasses="labels tw-five-percent,contents tw-five-percent,
+					labels tw-five-percent,contents tw-five-percent">					 
+					 
+					 
+					 <h:outputText value="Helminthes:" />
+				    <h:panelGroup>
+				    <h:outputText value="#{advSearchBean.selectedClient.stool.helminthes}"/>
+				    </h:panelGroup>
+				    
+				    <h:outputText value="Giardia:" />
+				    <h:panelGroup>
+				    <h:outputText value="#{advSearchBean.selectedClient.stool.giardia}"/>
+				    </h:panelGroup>
+				    
+				    <h:outputText value="Bilharzias (if endemic culture):" />
+				    <h:panelGroup>
+				    <h:outputText value="#{advSearchBean.selectedClient.stool.bilharzias}"/>
+				    </h:panelGroup>
+				    
+				    <h:outputText value="Salmonella:" />
+				    <h:panelGroup>
+				    <h:outputText value="#{advSearchBean.selectedClient.stool.salmonella}"/>				    	
+				    	
+				    </h:panelGroup>
+				    
+				    <h:outputText value="Shigella:" />
+				    <h:panelGroup>
+				    <h:outputText value="#{advSearchBean.selectedClient.stool.shigella}"/>
+				    
+				    </h:panelGroup>
+				    
+				    <h:outputText value="V.Cholera:" />
+				    <h:panelGroup>
+				    <h:outputText value="#{advSearchBean.selectedClient.stool.cholera}"/>
+				    </h:panelGroup>
+				    
+				    
+				    
+				    </p:panelGrid>
+					
+				</p:panel>
+				
+				
+				
+					
+		
+				
+				
+				</h:panelGrid>
+				
+				
+				
+				
+				
+				<p:panelGrid style="margin-top:10px;  margin: 0 auto"
+					columns="1">
+				
+				
+				<p:commandButton value="Back " styleClass="richButton" 
+				 action="advanceSearch"/>
+				
+				</p:panelGrid>
+				
+				
+</h:form>
+</ui:define>
+	</ui:composition>
+

@@ -218,6 +218,12 @@ public class PageNavigationBean implements Serializable
 		cb.setPageTitle(MessageConstants.Constants.PageTitles.DIRECTOR);
 		return pageName;
 	}
+	public String navAdvanceSearchDetails() 
+	{
+		pageName = NavigationConstants.ADVANCE_SEARCH_DETAILS_NAVIGATION;
+		cb.setPageTitle(MessageConstants.Constants.PageTitles.ADV_SEARCH);
+		return pageName;
+	}
 	
 	public String navPrintReport() 
 	{

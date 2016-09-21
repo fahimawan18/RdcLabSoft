@@ -2,7 +2,7 @@
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="rdcMedicalReport" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="02768d53-feaa-4aec-9d81-0413f48c29ab">
 	<property name="ireport.zoom" value="1.6105100000000019"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="672"/>
+	<property name="ireport.y" value="709"/>
 	<style name="table">
 		<box>
 			<pen lineWidth="1.0" lineColor="#000000"/>
@@ -52,12 +52,13 @@ date_format(wf_client.passport_Issue_date,'%d/%b/%Y') as ISSUE_DATE,
 wf_client.passport_issue_place as ISSUE_PLACE,
 f.scanned_photo,
 g.neuro_pe, g.allergy,
-g.eye_left, g.eye_right, g.ear_left, g.ear_right, g.bp,g.heart, g.lungs, g.abdominal, g.other,
+g.eye_left, g.eye_right, g.ear_left, g.ear_right, g.bp,g.heart,  g.abdominal, g.other,
 g.hernia, g.ext_vericose, g.ext_deformity,g.skin, g.cns,g.venereal, g.psychiatry,
 u.sugar,u.albumin,
 s.helminthes, s.giardia, s.bilharzias, s.salmonella, s.shigella, s.cholera,
 b.blood_gp, b.haemoglobin, b.tf_malaria, b.tf_micro_filaria, b.blood_glucose, b.lft, b.sgot, b.sgpt, b.rft, b.urea, b.creatinine,
 b.anti_hiv, b.anti_hcv, b.hbs_ag, b.vdrl, b.tpha,
+x.lungs, x.chest,
 a.name as director_name
      ,wf_client.`ID` AS wf_client_ID
 FROM
@@ -68,6 +69,7 @@ inner join wf_client_Scanned_files f on wf_client.id = f.client_id
 left outer join wf_lab_result_urine u on wf_client.id = u.client_id
 left outer join wf_lab_result_stool s on wf_client.id = s.client_id
 left outer join wf_lab_result_blood b on wf_client.id = b.client_id
+left outer join wf_client_xray x on wf_client.id = x.client_id
 where
 wf_client.id = $P{clientId}]]>
 	</queryString>
@@ -102,6 +104,9 @@ wf_client.id = $P{clientId}]]>
 	</field>
 	<field name="ISSUE_DATE" class="java.lang.String"/>
 	<field name="ISSUE_PLACE" class="java.lang.String"/>
+	<field name="scanned_photo" class="java.io.InputStream">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
 	<field name="neuro_pe" class="java.lang.String">
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
@@ -124,9 +129,6 @@ wf_client.id = $P{clientId}]]>
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
 	<field name="heart" class="java.lang.String">
-		<fieldDescription><![CDATA[]]></fieldDescription>
-	</field>
-	<field name="lungs" class="java.lang.String">
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
 	<field name="abdominal" class="java.lang.String">
@@ -228,10 +230,13 @@ wf_client.id = $P{clientId}]]>
 	<field name="tpha" class="java.lang.String">
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
-	<field name="director_name" class="java.lang.String"/>
-	<field name="scanned_photo" class="java.io.InputStream">
+	<field name="lungs" class="java.lang.String">
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
+	<field name="chest" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="director_name" class="java.lang.String"/>
 	<field name="wf_client_ID" class="java.lang.Integer"/>
 	<group name="BASIC_DATA2">
 		<groupHeader>
@@ -471,7 +476,7 @@ Chest Xray]]></text>
 						<font size="8"/>
 					</textElement>
 					<textFieldExpression><![CDATA[" "+$F{lungs}+
-"\r\n "+$F{lungs}]]></textFieldExpression>
+"\r\n "+$F{chest}]]></textFieldExpression>
 				</textField>
 				<staticText>
 					<reportElement style="table" x="5" y="147" width="171" height="35" uuid="5603134c-709d-42d9-9af5-c220b1d73da7"/>
@@ -750,7 +755,8 @@ TPHA (If VDRL Positive)]]></text>
 						<font size="8"/>
 					</textElement>
 					<textFieldExpression><![CDATA[" "+$F{vdrl}+
-"\r\n "+$F{tpha}]]></textFieldExpression>
+"\r\n "+
+($F{vdrl}.equals("Positive") ? $F{tpha} : "NA")]]></textFieldExpression>
 				</textField>
 				<staticText>
 					<reportElement x="295" y="2" width="253" height="18" uuid="0c37416c-1a94-4c6a-b362-076e51c73231"/>

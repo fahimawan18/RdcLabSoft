@@ -153,6 +153,17 @@ public class RegisterClientBean
 		RegisterClientBll bll =new RegisterClientBll();
 		
 		this.clientsList = bll.searchClients(toSearchClient);
+		System.out.println("**************** List retreived ... " + clientsList.size());
+//		for (WfClient wfClient : clientsList) {
+//			if(wfClient.getScannedFiles()!=null){
+//				if(wfClient.getScannedFiles().getScannedGamca()!=null)
+//					System.out.println("**************** GAMCA Length ... " + wfClient.getScannedFiles().getScannedGamca().length);
+//				if(wfClient.getScannedFiles().getScannedPassport()!=null)
+//					System.out.println("**************** Passport Length ... " + wfClient.getScannedFiles().getScannedPassport().length);
+//				if(wfClient.getScannedFiles().getScannedPhoto()!=null)
+//					System.out.println("**************** Picture length ... " + wfClient.getScannedFiles().getScannedPhoto().length);
+//			}
+//		}
 		this.toSearchClient.setBarcodeId("");
 		initializeNullObjs();
 		return "";
