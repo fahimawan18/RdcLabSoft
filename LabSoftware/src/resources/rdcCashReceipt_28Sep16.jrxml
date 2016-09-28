@@ -2,7 +2,7 @@
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="rdcCashReceipt" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="dae0d09f-9b2d-4806-8194-42db847e9111">
 	<property name="ireport.zoom" value="1.0"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="240"/>
+	<property name="ireport.y" value="56"/>
 	<parameter name="clientId" class="java.lang.String"/>
 	<queryString>
 		<![CDATA[SELECT
@@ -89,14 +89,14 @@ and w.id = $P{clientId}]]>
 				<textElement>
 					<font size="12" isBold="true"/>
 				</textElement>
-				<text><![CDATA[CLIENT ID #  ]]></text>
+				<text><![CDATA[TOKEN# ]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="69" y="24" width="89" height="34" uuid="de4f1648-412b-4ee2-9839-1c4a9deb3fca"/>
+				<reportElement x="56" y="24" width="89" height="34" uuid="de4f1648-412b-4ee2-9839-1c4a9deb3fca"/>
 				<textElement>
 					<font size="12" isBold="true"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{client_id}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{rdc_token_no}]]></textFieldExpression>
 			</textField>
 		</band>
 	</title>
@@ -328,14 +328,14 @@ Agent:]]></text>
 		</band>
 		<band height="60">
 			<textField>
-				<reportElement x="70" y="29" width="89" height="31" uuid="8d58de4d-91a3-4c74-8be0-cde61d0cd754"/>
+				<reportElement x="56" y="29" width="89" height="31" uuid="8d58de4d-91a3-4c74-8be0-cde61d0cd754"/>
 				<textElement>
 					<font size="12" isBold="true"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{client_id}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{rdc_token_no}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="0" y="28" width="145" height="31" uuid="d04e2415-4dc8-4344-8958-c84868a48512"/>
+				<reportElement x="0" y="29" width="145" height="31" uuid="d04e2415-4dc8-4344-8958-c84868a48512"/>
 				<box>
 					<topPen lineWidth="1.0"/>
 					<leftPen lineWidth="1.0"/>
@@ -345,7 +345,7 @@ Agent:]]></text>
 				<textElement>
 					<font size="12" isBold="true"/>
 				</textElement>
-				<text><![CDATA[CLIENT ID #  ]]></text>
+				<text><![CDATA[TOKEN# ]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="310" y="5" width="245" height="24" backcolor="#CCCCCC" uuid="457e9bbe-9aa9-41c3-b615-2b18cb88a69b"/>

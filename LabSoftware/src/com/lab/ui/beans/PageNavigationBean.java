@@ -268,6 +268,15 @@ public class PageNavigationBean implements Serializable
 		cb.setPageTitle(MessageConstants.Constants.PageTitles.ADMIN);
 		return pageName;
 	}
+	
+	public String navAdminResetClient() 
+	{
+		FacesUtils.resetManagedBean("resetClientBean");
+		pageName = NavigationConstants.ADMIN_RESET_CLIENT;
+		cb.setPageTitle(MessageConstants.Constants.PageTitles.ADMIN);
+		return pageName;
+	}
+
 
 	
 	

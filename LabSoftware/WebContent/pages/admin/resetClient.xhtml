@@ -1,0 +1,137 @@
+
+	<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+		xmlns:ui="http://java.sun.com/jsf/facelets"
+		xmlns:h="http://java.sun.com/jsf/html"
+		xmlns:f="http://java.sun.com/jsf/core"
+		xmlns:p="http://primefaces.org/ui"
+		template="/pages/includes/templatePage.xhtml">
+		<ui:define name="title">Lab Software</ui:define>
+		<ui:define name="top">Lab Software</ui:define>
+		<ui:define name="content">
+
+<h:form>
+ 
+				 	
+  	<p:panel id="panel2" header="Reset Client Status">
+					<p:panelGrid style="margin-top:20px; width: 70%; margin: 0 auto"
+					columns="4">
+					
+					 
+					<p:outputLabel value="Client ID"></p:outputLabel>
+ 					 <h:inputText value="#{resetClientBean.toSearchClient.id}"></h:inputText>
+					<p:outputLabel value="RDC Token"></p:outputLabel>
+					<h:inputText value="#{resetClientBean.toSearchClient.rdcTokenNo}"></h:inputText>
+ 					 <p:outputLabel value="Passport No"></p:outputLabel>
+ 					 <h:inputText value="#{resetClientBean.toSearchClient.passportNo}"></h:inputText>
+ 					 <p:outputLabel value="GAMCA Slip"></p:outputLabel>
+ 					 <h:inputText value="#{resetClientBean.toSearchClient.gamcaSlipNo}"></h:inputText>
+ 					
+ 					<p:outputLabel value="Client Status" />
+ 					 <h:selectOneMenu  
+ 					 value="#{resetClientBean.toSearchClient.clientStatus}">
+ 					 	<f:selectItem itemLabel="Select" itemValue="#{null}"/>
+ 					 	<f:selectItem itemLabel="Registered" itemValue="Registered"/> 					 	
+ 					 	<f:selectItem itemLabel="Fit" itemValue="Fit"/>
+					<f:selectItem itemLabel="Unfit" itemValue="Unfit"/>
+					<f:selectItem itemLabel="Repeat after 1 Week" itemValue="Repeat after 1 Week"/>
+					<f:selectItem itemLabel="Repeat after 2 Week" itemValue="Repeat after 2 Week"/>
+					<f:selectItem itemLabel="Repeat after 3 Week" itemValue="Repeat after 3 Week"/>
+					<f:selectItem itemLabel="Repeat after 4 Week" itemValue="Repeat after 4 Week"/>
+ 					 </h:selectOneMenu>
+ 					 
+ 					 <p:outputLabel value="Cash Payment Status" />
+ 					 <h:selectOneMenu  
+ 					 value="#{resetClientBean.toSearchClient.cashPayment.cashPaidStatus}">
+ 					 	<f:selectItem itemLabel="Select" itemValue="#{null}"/>
+ 					 	<f:selectItem itemLabel="Paid" itemValue="Paid"/> 					 	
+ 					 	<f:selectItem itemLabel="Unpaid" itemValue="Unpaid"/>
+ 					 </h:selectOneMenu>
+ 					 
+ 					 <p:outputLabel value="Pathologist Remarks"/>
+ 					 <h:selectOneMenu value="#{resetClientBean.toSearchClient.progress.pathologist}">
+ 					 	<f:selectItem itemLabel="Select" itemValue="#{null}"/>
+ 					 	<f:selectItem itemLabel="Verified" itemValue="Verified"></f:selectItem>
+ 					 	<f:selectItem itemLabel="Repeat" itemValue="Repeat"></f:selectItem>
+ 					 </h:selectOneMenu>
+ 					 
+ 					 
+ 					 <p:outputLabel value="Applied Country"/>
+ 					 <h:selectOneMenu value="#{resetClientBean.toSearchClient.appliedForCountry}">
+ 					 	<f:selectItem itemLabel="Select" itemValue="#{null}"/>
+ 					 	<f:selectItems value="#{crit.gccCountryList}"/>
+ 					 </h:selectOneMenu>
+ 					
+					</p:panelGrid>
+				</p:panel>
+ 
+ 
+ 
+  	<h:commandButton value="Search" styleClass="richButton"
+  	action="#{resetClientBean.advacneSearchClients}"/>
+  	
+  	<br/>
+  	
+  	<p:dataTable value="#{resetClientBean.clientsList}" var="mylist"
+					paginatorPosition="top" editable="true" rows="12" paginator="true"
+					paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+					id="tbl1">
+
+					<p:column headerText="Client ID">
+						<h:outputText value="#{mylist.id}" />
+					</p:column>
+					
+					<p:column headerText="RDC Token / GAMCA Slip">
+						<h:outputText value="#{mylist.rdcTokenNo}" /> / 
+						<h:outputText value="#{mylist.gamcaSlipNo}" />
+					</p:column>
+
+					<p:column headerText="First Name / Last Name">
+						
+					 	<h:outputText value="#{mylist.firstName}" />/
+						<h:outputText value="#{mylist.lastName}" />
+					</p:column>
+					
+					<p:column headerText="Passport No">
+						<h:outputText value="#{mylist.passportNo}"/>
+					</p:column>
+					
+					<p:column headerText="Director Status">
+						<h:outputText value="#{mylist.clientStatus}  " />
+						
+						<p:commandLink action="#{resetClientBean.resetDirectorStatus}" rendered="#{mylist.clientStatus=='Fit'}">
+							<p:confirm header="Confirmation" message="Are you sure?" icon="ui-icon-alert" />
+							<p:graphicImage name="/images/resetbutton.png" height="100%" width="80px"></p:graphicImage>
+							<f:setPropertyActionListener target="#{resetClientBean.selectedClient}" value="#{mylist}" />
+						</p:commandLink>
+					</p:column>	
+					<p:column headerText="Pathology">
+						<h:outputText value="#{mylist.progress.pathologist}  " />
+						<p:commandLink action="#{resetClientBean.resetDirectorStatus}" rendered="#{mylist.progress.pathologist!=NULL}">
+							<p:confirm header="Confirmation" message="Are you sure?" icon="ui-icon-alert" />
+							<p:graphicImage name="/images/resetbutton.png" height="100%" width="80px"></p:graphicImage>
+							<f:setPropertyActionListener target="#{resetClientBean.selectedClient}" value="#{mylist}" />
+						</p:commandLink>
+					</p:column>
+					<p:column headerText="GPE">
+						<h:outputText value="#{mylist.progress.gpe}  " />
+						<p:commandLink action="#{resetClientBean.resetDirectorStatus}" rendered="#{mylist.progress.gpe!=NULL}">
+							<p:confirm header="Confirmation" message="Are you sure?" icon="ui-icon-alert" />
+							<p:graphicImage name="/images/resetbutton.png" height="100%" width="80px"></p:graphicImage>
+							<f:setPropertyActionListener target="#{resetClientBean.selectedClient}" value="#{mylist}" />
+						</p:commandLink>
+					</p:column>
+
+				</p:dataTable>
+				 <p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+				        <p:commandButton value="Yes" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+				        <p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+    			</p:confirmDialog>
+				
+				
+				<br/>
+				
+				
+</h:form>
+</ui:define>
+	</ui:composition>
+

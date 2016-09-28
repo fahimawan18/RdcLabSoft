@@ -27,11 +27,23 @@
 				</p:column>
 				
 				<p:column>
-					<p:panel id="panel1" header="Pathologist Endorsement">
+					<p:panel id="panel1" header="Endorsements">
+					<p:panelGrid style="margin-top:20px; width: 100%; margin: 0 auto"
+					columns="2" id="statusGrid" columnClasses="labels tw-five-percent,contents tw-five-percent">
 					
-					<h3> 
+						<h:outputText value="GPE"/>
+						<h:outputText value="#{registerClientBean.selectedClient.progress.gpe}"/>
+						
+						<h:outputText value="Pathologist"/>
+						<h:outputText value="#{registerClientBean.selectedClient.progress.pathologist}"/>
+						
+						<h:outputText value="Radiologist"/>
+						<h:outputText value="Chest: #{registerClientBean.selectedClient.xray.chest} - Opinion: #{registerClientBean.selectedClient.xray.opinion}"/>
+					
+					</p:panelGrid>
+					<!--  h3> 
 					<h:outputText value="#{registerClientBean.selectedClient.progress.pathologist}"/>
-						(Endorsed by Pathologist)</h3>
+						(Endorsed by Pathologist)</h3 -->
 				</p:panel>
 				</p:column>
 				
