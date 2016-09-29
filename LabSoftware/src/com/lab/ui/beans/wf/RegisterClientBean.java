@@ -378,7 +378,8 @@ public class RegisterClientBean
 //			FacesUtils.addInfoMessage("Lab Results verified successfully");
 			MessageUtils.info(MessageConstants.Messages.UPDATE_SUCCESS);
 			this.selectedClient = new WfClient();
-			searchClients();
+			this.clientsList = new ArrayList<WfClient>();
+//			searchClients();
 			return NavigationConstants.PATHO_VERIFY_NAVIGATION;
 			
 		}
@@ -400,7 +401,8 @@ public class RegisterClientBean
 //			FacesUtils.addInfoMessage("Lab Results verified successfully");
 			MessageUtils.info(MessageConstants.Messages.UPDATE_SUCCESS);
 			this.selectedClient = new WfClient();
-			searchClients();
+			this.clientsList = new ArrayList<WfClient>();
+//			searchClients();
 			return NavigationConstants.PATHO_VERIFY_NAVIGATION;
 			
 		}
@@ -422,7 +424,8 @@ public class RegisterClientBean
 //			FacesUtils.addInfoMessage("Data saved successfully");
 			MessageUtils.info(MessageConstants.Messages.UPDATE_SUCCESS);
 			this.selectedClient = new WfClient();
-			searchClients();
+			this.clientsList = new ArrayList<WfClient>();
+//			searchClients();
 			return NavigationConstants.PATHO_VERIFY_NAVIGATION;
 			
 		}

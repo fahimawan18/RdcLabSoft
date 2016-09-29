@@ -131,7 +131,7 @@
 						action="#{navBean.navAdminChangePassword}" update=":content"
 						icon=" ui-icon-wrench" />
 					<p:separator />
-					<p:menuitem value="Reset Client Status"
+					<p:menuitem value="Reset Client Status" rendered="#{userBean.currentUser.roleAdmin == 'Y'}"
 						action="#{navBean.navAdminResetClient}" update=":content"
 						icon=" ui-icon-wrench" />
 					
