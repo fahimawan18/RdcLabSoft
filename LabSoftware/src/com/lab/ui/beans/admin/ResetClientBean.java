@@ -6,6 +6,8 @@ import java.util.List;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 
+import com.iac.web.util.FacesUtils;
+import com.lab.bll.admin.ResetClientBll;
 import com.lab.bll.wf.RegisterClientBll;
 import com.lab.dal.dao.WfClientFinance;
 import com.lab.dal.dao.WfClientGpe;
@@ -19,6 +21,7 @@ import com.lab.dal.dao.WfLabResultMicro;
 import com.lab.dal.dao.WfLabResultSputum;
 import com.lab.dal.dao.WfLabResultStool;
 import com.lab.dal.dao.WfLabResultUrine;
+import com.lab.ui.beans.UserBean;
 
 
 @ManagedBean(name="resetClientBean")
@@ -28,7 +31,7 @@ public class ResetClientBean
 	private WfClient toSearchClient;
 	private List<WfClient> clientsList;
 	private WfClient selectedClient;
-	
+	private UserBean ub = ((UserBean)FacesUtils.getManagedBean("userBean"));
 	public ResetClientBean() 
 	{
 		// TODO Auto-generated constructor stub
@@ -49,9 +52,27 @@ public class ResetClientBean
 	
 	
 	public String resetDirectorStatus(){
-		
 		System.out.println("Selected client .... " + selectedClient.getId());
-		return "";
+		new ResetClientBll().resetDirectorStatus(selectedClient, ub.getCurrentUser());
+		
+		
+		return advacneSearchClients();
+	}
+	
+	public String resetPathologyStatus(){
+		System.out.println("Selected client .... " + selectedClient.getId());
+		new ResetClientBll().resetPathologyStatus(selectedClient, ub.getCurrentUser());
+		
+		
+		return advacneSearchClients();
+	}
+	
+	public String resetGpeStatus(){
+			System.out.println("Selected client .... " + selectedClient.getId());
+			new ResetClientBll().resetGpeStatus(selectedClient, ub.getCurrentUser());
+			
+			
+			return advacneSearchClients();
 	}
 	
 	

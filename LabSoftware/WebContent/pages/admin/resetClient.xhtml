@@ -94,19 +94,23 @@
 					<p:column headerText="Passport No">
 						<h:outputText value="#{mylist.passportNo}"/>
 					</p:column>
+					<p:column headerText="Barcode ID">
+						<h:outputText value="#{mylist.barcodeId}"/>
+					</p:column>
 					
 					<p:column headerText="Director Status">
 						<h:outputText value="#{mylist.clientStatus}  " />
 						
-						<p:commandLink action="#{resetClientBean.resetDirectorStatus}" rendered="#{mylist.clientStatus=='Fit'}">
+						<p:commandLink action="#{resetClientBean.resetDirectorStatus}" rendered="#{mylist.clientStatus=='Fit'}" update="tbl1">
 							<p:confirm header="Confirmation" message="Are you sure?" icon="ui-icon-alert" />
 							<p:graphicImage name="/images/resetbutton.png" height="100%" width="80px"></p:graphicImage>
 							<f:setPropertyActionListener target="#{resetClientBean.selectedClient}" value="#{mylist}" />
 						</p:commandLink>
 					</p:column>	
+					
 					<p:column headerText="Pathology">
 						<h:outputText value="#{mylist.progress.pathologist}  " />
-						<p:commandLink action="#{resetClientBean.resetDirectorStatus}" rendered="#{mylist.progress.pathologist!=NULL}">
+						<p:commandLink action="#{resetClientBean.resetPathologyStatus}" rendered="#{mylist.progress.pathologist!=NULL}" update="tbl1">
 							<p:confirm header="Confirmation" message="Are you sure?" icon="ui-icon-alert" />
 							<p:graphicImage name="/images/resetbutton.png" height="100%" width="80px"></p:graphicImage>
 							<f:setPropertyActionListener target="#{resetClientBean.selectedClient}" value="#{mylist}" />
@@ -114,7 +118,7 @@
 					</p:column>
 					<p:column headerText="GPE">
 						<h:outputText value="#{mylist.progress.gpe}  " />
-						<p:commandLink action="#{resetClientBean.resetDirectorStatus}" rendered="#{mylist.progress.gpe!=NULL}">
+						<p:commandLink action="#{resetClientBean.resetGpeStatus}" rendered="#{mylist.progress.gpe!=NULL}" update="tbl1">
 							<p:confirm header="Confirmation" message="Are you sure?" icon="ui-icon-alert" />
 							<p:graphicImage name="/images/resetbutton.png" height="100%" width="80px"></p:graphicImage>
 							<f:setPropertyActionListener target="#{resetClientBean.selectedClient}" value="#{mylist}" />

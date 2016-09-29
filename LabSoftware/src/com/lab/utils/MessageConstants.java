@@ -168,6 +168,13 @@ public final class MessageConstants {
 			
 			public static final String RESET_REPEATER = "Repeater declared as Registered";
 			
+			public static final String RESET_ADMIN_DIRECTOR = "Director status reset";
+			
+			public static final String RESET_ADMIN_PATHOLOGY = "Pathologist status reset";
+			
+			public static final String RESET_ADMIN_GPE = "GPE status reset";
+			
+			
 		}
 	}
 
