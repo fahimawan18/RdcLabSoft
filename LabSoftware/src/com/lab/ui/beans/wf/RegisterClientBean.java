@@ -149,11 +149,48 @@ public class RegisterClientBean
 	}
 	
 	public String searchClients()
-	{		
+	{	
 		RegisterClientBll bll =new RegisterClientBll();
+		if(this.toSearchClient.getCashPayment()!=null && this.toSearchClient.getCashPayment().getCashPaidStatus()!=null
+			&& this.toSearchClient.getCashPayment().getCashPaidStatus().equals(MessageConstants.Constants.CashPaymentStatus.UNPAID)){
+				this.clientsList = bll.searchClients(toSearchClient);
+				System.out.println("**************** List retreived ... " + clientsList.size());
+				this.toSearchClient.setBarcodeId("");
+				initializeNullObjs();
+//			}
+		}
+		else if(toSearchClient.getBarcodeId()!=null && toSearchClient.getBarcodeId().trim().length()>0
+				|| 	(toSearchClient.getProgress().getPathologist()!=null &&
+					toSearchClient.getProgress().getPathologist().trim().length()>0)
+					)
+		{
+			this.clientsList = bll.searchClients(toSearchClient);
+			System.out.println("**************** List retreived ... " + clientsList.size());
+			this.toSearchClient.setBarcodeId("");
+			initializeNullObjs();
+		}
+		else{
+			if(toSearchClient.getId()!=null && toSearchClient.getId()>0 
 		
-		this.clientsList = bll.searchClients(toSearchClient);
-		System.out.println("**************** List retreived ... " + clientsList.size());
+					|| (toSearchClient.getPassportNo()!=null && toSearchClient.getPassportNo().trim().length()>0)
+					|| (toSearchClient.getGamcaSlipNo()!=null && toSearchClient.getGamcaSlipNo().trim().length()>0)){
+				this.clientsList = bll.searchClients(toSearchClient);
+				System.out.println("**************** List retreived ... " + clientsList.size());
+				this.toSearchClient.setBarcodeId("");
+				initializeNullObjs();
+				
+			}else
+				MessageUtils.error(MessageConstants.Messages.REQUIRED_CRITERIA);
+		}
+		//}
+		//}
+//		else{
+//			this.clientsList = bll.searchClients(toSearchClient);
+//		}
+//		
+		
+		
+		
 //		for (WfClient wfClient : clientsList) {
 //			if(wfClient.getScannedFiles()!=null){
 //				if(wfClient.getScannedFiles().getScannedGamca()!=null)
@@ -164,8 +201,7 @@ public class RegisterClientBean
 //					System.out.println("**************** Picture length ... " + wfClient.getScannedFiles().getScannedPhoto().length);
 //			}
 //		}
-		this.toSearchClient.setBarcodeId("");
-		initializeNullObjs();
+		
 		return "";
 	}
 	

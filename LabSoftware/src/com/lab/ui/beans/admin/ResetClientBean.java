@@ -22,6 +22,8 @@ import com.lab.dal.dao.WfLabResultSputum;
 import com.lab.dal.dao.WfLabResultStool;
 import com.lab.dal.dao.WfLabResultUrine;
 import com.lab.ui.beans.UserBean;
+import com.lab.utils.MessageConstants;
+import com.lab.utils.MessageUtils;
 
 
 @ManagedBean(name="resetClientBean")
@@ -79,7 +81,23 @@ public class ResetClientBean
 	public String advacneSearchClients()
 	{		
 		RegisterClientBll bll =new RegisterClientBll();
-		this.clientsList = bll.advSearchClients(toSearchClient);
+		if((toSearchClient.getId()!=null && toSearchClient.getId()>0)
+				|| (toSearchClient.getRdcTokenNo()!=null && toSearchClient.getRdcTokenNo().trim().length()>0)
+				|| (toSearchClient.getGamcaSlipNo()!=null && toSearchClient.getGamcaSlipNo().trim().length()>0)
+				|| (toSearchClient.getPassportNo()!=null && toSearchClient.getPassportNo().trim().length()>0)
+				|| (toSearchClient.getClientStatus()!=null && toSearchClient.getClientStatus().trim().length()>0)
+				|| (toSearchClient.getCashPayment().getCashPaidStatus()!=null &&
+						toSearchClient.getCashPayment().getCashPaidStatus().trim().length()>0)
+				|| (toSearchClient.getProgress().getPathologist()!=null &&
+						toSearchClient.getProgress().getPathologist().trim().length()>0)
+				|| (toSearchClient.getAppliedForCountry()!=null && toSearchClient.getAppliedForCountry().trim().length()>0)){
+			this.clientsList = bll.advSearchClients(toSearchClient);
+			initializeNullObjs();
+		}
+		else
+		{
+			MessageUtils.error(MessageConstants.Messages.REQUIRED_CRITERIA);
+		}
 //		for (WfClient wfClient : clientsList) {
 //			if(wfClient.getScannedFiles()!=null){
 //				if(wfClient.getScannedFiles().getScannedGamca()!=null)
@@ -90,7 +108,7 @@ public class ResetClientBean
 //					System.out.println("**************** Picture length ... " + wfClient.getScannedFiles().getScannedPhoto().length);
 //			}
 //		}
-		initializeNullObjs();
+		
 		return "";
 	}
 	

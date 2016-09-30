@@ -48,25 +48,25 @@
 					paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
 					id="tbl1">
 
-					<p:column headerText="Client ID">
+					<p:column headerText="Client ID" sortBy="#{mylist.id}">
 						<h:outputText value="#{mylist.id}" />
 					</p:column>
 					
-					<p:column headerText="RDC Token / GAMCA Slip">
+					<p:column headerText="RDC Token / GAMCA Slip" sortBy="#{mylist.rdcTokenNo}/#{mylist.gamcaSlipNo}">
 						<h:outputText value="#{mylist.rdcTokenNo}" /> / 
 						<h:outputText value="#{mylist.gamcaSlipNo}" />
 					</p:column>
 
-					<p:column headerText="First Name / Last Name">
+					<p:column headerText="First Name / Last Name" sortBy="#{mylist.firstName}/#{mylist.lastName}">
 						<h:outputText value="#{mylist.firstName}" />/
 						<h:outputText value="#{mylist.lastName}" />
 					</p:column>
 
-					<p:column headerText="CNIC">
+					<p:column headerText="CNIC" sortBy="#{mylist.cnicNo}">
 						<h:outputText value="#{mylist.cnicNo}" />
 					</p:column>
 					
-					<p:column headerText="Passport No">
+					<p:column headerText="Passport No" sortBy="#{mylist.passportNo}">
 						<h:outputText value="#{mylist.passportNo}" />
 					</p:column>
 					
