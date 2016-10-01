@@ -1,0 +1,55 @@
+
+	<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+		xmlns:ui="http://java.sun.com/jsf/facelets"
+		xmlns:h="http://java.sun.com/jsf/html"
+		xmlns:f="http://java.sun.com/jsf/core"
+		xmlns:p="http://primefaces.org/ui"
+		template="/pages/includes/templatePage.xhtml">
+		<ui:define name="title">Lab Software</ui:define>
+		<ui:define name="top">Lab Software</ui:define>
+		<ui:define name="content">
+		
+		
+
+<h:form>
+
+
+				 	
+  	<p:panel id="panel2" header="Director's Summary">
+  	
+  		<h:outputText value="From :"/>
+  				<h:panelGroup>
+    <p:calendar value="#{chartBean.fromDate}" navigator="true"
+    pattern="dd-MM-yy" mask="true"
+    maxdate="#{userBean.currDate}">
+    <p:ajax event="dateSelect" listener="#{chartBean.onDateSelect}" update="chart1" />
+    </p:calendar>
+    <h:outputText value="dd-mm-yy"/>
+    </h:panelGroup>
+    
+    <h:outputText value="To :"/>
+  	<h:panelGroup>
+    <p:calendar value="#{chartBean.toDate}" navigator="true"
+    pattern="dd-MM-yy" mask="true" 
+    maxdate="#{userBean.currDate}">
+    <p:ajax event="dateSelect" listener="#{chartBean.onDateSelect}" update="chart1" />
+    </p:calendar>
+    <h:outputText value="dd-mm-yy"/>
+    </h:panelGroup>
+  				
+					<p:chart type="bar" model="#{chartBean.dateWiseChart}" style="height:300px"
+					responsive="true" id="chart1"/>
+					
+					
+				</p:panel>
+ 
+ 
+ 
+				
+				
+				<br/>
+				
+</h:form>
+</ui:define>
+	</ui:composition>
+

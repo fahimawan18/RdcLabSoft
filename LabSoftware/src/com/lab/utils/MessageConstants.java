@@ -176,6 +176,15 @@ public final class MessageConstants {
 			
 			
 		}
+		
+		public static final class ChartLabels 
+		{
+			public static final String REGN = "Registration";
+			public static final String CASH = "Cash";
+			public static final String GPE = "GPE";
+			public static final String SAMPLES = "Samples";
+						
+		}
 	}
 
 }
