@@ -50,7 +50,9 @@
  					 <p:outputLabel value="Pathologist Remarks"/>
  					 <h:selectOneMenu value="#{resetClientBean.toSearchClient.progress.pathologist}">
  					 	<f:selectItem itemLabel="Select" itemValue="#{null}"/>
- 					 	<f:selectItem itemLabel="Verified" itemValue="Verified"></f:selectItem>
+ 					 	<!--  f:selectItem itemLabel="Verified" itemValue="Verified"></f:selectItem -->
+ 					 	<f:selectItem itemLabel="Fit" itemValue="Fit"></f:selectItem>
+ 					 	<f:selectItem itemLabel="Unfit" itemValue="Unfit"></f:selectItem>
  					 	<f:selectItem itemLabel="Repeat" itemValue="Repeat"></f:selectItem>
  					 </h:selectOneMenu>
  					 
@@ -76,29 +78,29 @@
 					paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
 					id="tbl1">
 
-					<p:column headerText="Client ID">
+					<p:column headerText="Client ID" sortBy="#{mylist.id}">
 						<h:outputText value="#{mylist.id}" />
 					</p:column>
 					
-					<p:column headerText="RDC Token / GAMCA Slip">
+					<p:column headerText="RDC Token / GAMCA Slip" sortBy="#{mylist.rdcTokenNo}/#{mylist.gamcaSlipNo}">
 						<h:outputText value="#{mylist.rdcTokenNo}" /> / 
 						<h:outputText value="#{mylist.gamcaSlipNo}" />
 					</p:column>
 
-					<p:column headerText="First Name / Last Name">
+					<p:column headerText="First Name / Last Name" sortBy="#{mylist.firstName}/#{mylist.lastName}">
 						
 					 	<h:outputText value="#{mylist.firstName}" />/
 						<h:outputText value="#{mylist.lastName}" />
 					</p:column>
 					
-					<p:column headerText="Passport No">
+					<p:column headerText="Passport No" sortBy="#{mylist.passportNo}">
 						<h:outputText value="#{mylist.passportNo}"/>
 					</p:column>
-					<p:column headerText="Barcode ID">
+					<p:column headerText="Barcode ID" sortBy="#{mylist.barcodeId}">
 						<h:outputText value="#{mylist.barcodeId}"/>
 					</p:column>
 					
-					<p:column headerText="Director Status">
+					<p:column headerText="Director Status" sortBy="#{mylist.clientStatus}">
 						<h:outputText value="#{mylist.clientStatus}  " />
 						
 						<p:commandLink action="#{resetClientBean.resetDirectorStatus}" rendered="#{mylist.clientStatus=='Fit'}" update="tbl1">
@@ -108,7 +110,7 @@
 						</p:commandLink>
 					</p:column>	
 					
-					<p:column headerText="Pathology">
+					<p:column headerText="Pathology" sortBy="#{mylist.progress.pathologist}">
 						<h:outputText value="#{mylist.progress.pathologist}  " />
 						<p:commandLink action="#{resetClientBean.resetPathologyStatus}" rendered="#{mylist.progress.pathologist!=NULL}" update="tbl1">
 							<p:confirm header="Confirmation" message="Are you sure?" icon="ui-icon-alert" />
@@ -116,7 +118,7 @@
 							<f:setPropertyActionListener target="#{resetClientBean.selectedClient}" value="#{mylist}" />
 						</p:commandLink>
 					</p:column>
-					<p:column headerText="GPE">
+					<p:column headerText="GPE" sortBy="#{mylist.progress.gpe}">
 						<h:outputText value="#{mylist.progress.gpe}  " />
 						<p:commandLink action="#{resetClientBean.resetGpeStatus}" rendered="#{mylist.progress.gpe!=NULL}" update="tbl1">
 							<p:confirm header="Confirmation" message="Are you sure?" icon="ui-icon-alert" />

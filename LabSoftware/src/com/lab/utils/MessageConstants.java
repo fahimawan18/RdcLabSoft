@@ -10,7 +10,7 @@ public final class MessageConstants {
 		public static final String SAVE_FAILURE = "Data Could not be saved";
 		public static final String VALUE_REQUIRED = "Value is required";
 		public static final String INVALID_DATE = "Start Date should be less than End Date";
-		public static final String UPDATE_SUCCESS = "Data has been updated Successfully";
+		public static final String UPDATE_SUCCESS = "Data has been updated successfully";
 		public static final String UPDATE_FAILURE = "Data could not be updated";
 		public static final String DELETE_SUCCESS = "Data has been deleted Successfully";
 		public static final String DELETE_FAILURE = "Data could not be deleted";
@@ -18,6 +18,7 @@ public final class MessageConstants {
 		public static final String FILE_UPLOAD_SUCCESS = "Selected File has been uploaded";
 		public static final String FILE_UPLOAD_FAILURE = "Error in uploading File";
 		public static final String FILE_UPLOAD_SIZE = "Max allowed file size: ";
+		public static final String REQUIRED_CRITERIA = "You did not specify any search criteria";
 		
 	}
 

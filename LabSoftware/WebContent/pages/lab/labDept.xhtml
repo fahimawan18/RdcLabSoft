@@ -28,8 +28,8 @@
  					 
  					 <p:outputLabel value="Bar Code"/>
 					 <h:panelGroup>
- 					 <h:inputText value="#{registerClientBean.toSearchClient.barcodeId}"
- 					 id="barCodeInput"/>
+ 					 <h:inputText value="#{registerClientBean.toSearchClient.barcodeId}" required="#{not empty param[search.clientId]}"
+ 					 requiredMessage="You did not specify bar code." id="barCodeInput"/>
  					 <h:selectBooleanCheckbox value="#{registerClientBean.keepBarCodeDisplayed}" rendered="false"/>
 					</h:panelGroup>
  					 <p:outputLabel value="Cash Payment Status"/>
@@ -42,7 +42,7 @@
  
  
  
-  	<h:commandButton value="Search" styleClass="richButton"  id="search"
+  	<h:commandButton value="Search" styleClass="richButton"  id="search" binding="#{search}"
   	action="#{registerClientBean.searchClients}" />
   	
   	<br/>

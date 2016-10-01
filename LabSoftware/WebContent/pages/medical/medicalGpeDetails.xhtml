@@ -125,12 +125,16 @@
 				    </h:selectOneMenu>
 				    </h:panelGroup>
 				    
-				    <h:outputText value="Lungs:" rendered="false"/>
-				    <h:panelGroup rendered="false">				    
-				    <h:selectOneMenu value="#{registerClientBean.selectedClient.gpe.lungs}">
+				    <h:outputText value="Lungs:"/>
+				    <h:panelGroup>	
+				    <h:selectOneMenu value="#{registerClientBean.selectedClient.xray.lungs}">
 				    	<f:selectItem itemLabel="Normal" itemValue="Normal"></f:selectItem>
 				    	<f:selectItem itemLabel="Abnormal" itemValue="Abnormal"></f:selectItem>
-				    </h:selectOneMenu>
+				    </h:selectOneMenu>			    
+				    <!--  h:selectOneMenu value="#{registerClientBean.selectedClient.gpe.lungs}">
+				    	<f:selectItem itemLabel="Normal" itemValue="Normal"></f:selectItem>
+				    	<f:selectItem itemLabel="Abnormal" itemValue="Abnormal"></f:selectItem>
+				    </h:selectOneMenu -->
 				    </h:panelGroup>
 				    
 				    <h:outputText value="Heart:" />
@@ -223,8 +227,14 @@
 				    <h:panelGroup>				    
 				    <h:selectOneMenu value="#{registerClientBean.selectedClient.gpe.eyeLeft}">
 				    	<f:selectItem itemLabel="6/6" itemValue="6/6"></f:selectItem>
+				    	<f:selectItem itemLabel="6/5" itemValue="6/5"></f:selectItem>
 				    	<f:selectItem itemLabel="6/9" itemValue="6/9"></f:selectItem>
-				    	<f:selectItem itemLabel="6/3" itemValue="6/3"></f:selectItem>
+				    	<f:selectItem itemLabel="6/12" itemValue="6/12"></f:selectItem>
+				    	<f:selectItem itemLabel="6/18" itemValue="6/18"></f:selectItem>
+				    	<f:selectItem itemLabel="6/24" itemValue="6/24"></f:selectItem>
+				    	<f:selectItem itemLabel="6/36" itemValue="6/36"></f:selectItem>
+				    	<f:selectItem itemLabel="6/60" itemValue="6/60"></f:selectItem>
+				    	
 				    	
 				    </h:selectOneMenu>
 				    </h:panelGroup>
@@ -233,8 +243,13 @@
 				    <h:panelGroup>				    
 				    <h:selectOneMenu value="#{registerClientBean.selectedClient.gpe.eyeRight}">
 				    	<f:selectItem itemLabel="6/6" itemValue="6/6"></f:selectItem>
+				    	<f:selectItem itemLabel="6/5" itemValue="6/5"></f:selectItem>
 				    	<f:selectItem itemLabel="6/9" itemValue="6/9"></f:selectItem>
-				    	<f:selectItem itemLabel="6/3" itemValue="6/3"></f:selectItem>
+				    	<f:selectItem itemLabel="6/12" itemValue="6/12"></f:selectItem>
+				    	<f:selectItem itemLabel="6/18" itemValue="6/18"></f:selectItem>
+				    	<f:selectItem itemLabel="6/24" itemValue="6/24"></f:selectItem>
+				    	<f:selectItem itemLabel="6/36" itemValue="6/36"></f:selectItem>
+				    	<f:selectItem itemLabel="6/60" itemValue="6/60"></f:selectItem>
 				    	
 				    </h:selectOneMenu>
 				    </h:panelGroup>
