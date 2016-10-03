@@ -1,5 +1,7 @@
 package com.lab.dal.dao;
 
+import java.util.Date;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -116,6 +118,9 @@ public class WfClientGpe
 	
 	@Column(name = "skin")
 	private String skin;
+	
+	@Column(name = "insert_date")
+	private Date insertDate;
 	
 	public WfClientGpe() {
 		// TODO Auto-generated constructor stub
@@ -391,6 +396,14 @@ public class WfClientGpe
 
 	public void setSkin(String skin) {
 		this.skin = skin;
+	}
+
+	public Date getInsertDate() {
+		return insertDate;
+	}
+
+	public void setInsertDate(Date insertDate) {
+		this.insertDate = insertDate;
 	}
 	
 	

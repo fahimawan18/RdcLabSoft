@@ -12,6 +12,9 @@ import org.primefaces.model.chart.ChartSeries;
 
 import com.iac.web.util.FacesUtils;
 import com.lab.dal.dao.WfClient;
+import com.lab.dal.dao.WfClientFinance;
+import com.lab.dal.dao.WfClientGpe;
+import com.lab.dal.dao.WfClientSamples;
 import com.lab.ui.beans.admin.CriteriaBean;
 import com.lab.utils.HibernateUtilsAnnot;
 import com.lab.utils.MessageConstants;
@@ -56,24 +59,59 @@ public class ChartBll
 		int count = 0;
 		try
 		{
+			String x = "Date Range" ;
+			
 			session = HibernateUtilsAnnot.currentSession();
 			Criteria cr = session.createCriteria(WfClient.class);
 			cr.add(Restrictions.ge("insertDate", fromDate));
 			cr.add(Restrictions.le("insertDate", toDate));
 			cr.setProjection(Projections.rowCount());
 			count = (Integer)cr.uniqueResult();
+			regnSeries.set(x, count);
 			System.out.println("Value of regnSeriesCount = "+ count);
+			
+			cr= null;
+			count =0; 
+			
+			cr = session.createCriteria(WfClientFinance.class);
+			cr.add(Restrictions.ge("cashPaidDate", fromDate));
+			cr.add(Restrictions.le("cashPaidDate", toDate));
+			cr.setProjection(Projections.rowCount());
+			count = (Integer)cr.uniqueResult();
+			cashSeries.set(x, count);
+			System.out.println("Value of cashSeriesCount = "+ count);			
+			
+			cr= null;
+			count =0; 
+			
+			cr = session.createCriteria(WfClientGpe.class);
+			cr.add(Restrictions.ge("insertDate", fromDate));
+			cr.add(Restrictions.le("insertDate", toDate));
+			cr.setProjection(Projections.rowCount());
+			count = (Integer)cr.uniqueResult();
+			gpeSeries.set(x, count);
+			System.out.println("Value of gpeSeriesCount = "+ count);
+			gpeSeries.set(x, count);
+			
+			cr= null;
+			count =0; 
+			
+			cr = session.createCriteria(WfClientSamples.class);
+			cr.add(Restrictions.ge("insertDate", fromDate));
+			cr.add(Restrictions.le("insertDate", toDate));
+			cr.setProjection(Projections.rowCount());
+			count = (Integer)cr.uniqueResult();
+			sampleSeries.set(x, count);
+			System.out.println("Value of sampleSeriesCount = "+ count);
+			sampleSeries.set(x, count);
 			
 		}
 		catch(HibernateException e)
 		{
 			e.printStackTrace();
 		}
-		String x = "Date Range" ; //fromDate.toLocaleString()+ " - "+toDate.toLocaleString();
-		regnSeries.set(x, count);
-		cashSeries.set(x, 4);
-		gpeSeries.set(x, 2);
-		sampleSeries.set(x, 6);
+		
+		
 	}
 
 }

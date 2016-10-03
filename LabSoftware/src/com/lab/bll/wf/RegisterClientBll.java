@@ -617,6 +617,7 @@ public class RegisterClientBll
 			{
 				System.out.println("saving new GPE ");
 				toAdd.getGpe().setClientId(toAdd);
+				toAdd.getGpe().setInsertDate(new Date());
 				session.save(toAdd.getGpe());				
 			}
 			else

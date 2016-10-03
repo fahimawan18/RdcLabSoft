@@ -55,7 +55,7 @@ public class ChartBean
          
         Axis xAxis = dateWiseChart.getAxis(AxisType.X);
         SimpleDateFormat formatter = new SimpleDateFormat("dd/MMM/yyyy");
-        xAxis.setLabel(formatter.format(fromDate)+ " - "+formatter.format(toDate));
+        xAxis.setLabel("From:"+formatter.format(fromDate)+ " - To: "+formatter.format(toDate));
         
         Axis yAxis = dateWiseChart.getAxis(AxisType.Y);
         yAxis.setLabel("Numbers");

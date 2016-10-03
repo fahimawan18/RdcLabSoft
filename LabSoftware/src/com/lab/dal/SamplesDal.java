@@ -3,6 +3,7 @@ package com.lab.dal;
 import java.io.File;
 import java.io.InputStream;
 import java.sql.Connection;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -111,6 +112,7 @@ public class SamplesDal {
 			{
 				System.out.println("saving new Samples ");
 				toAdd.getSamples().setClientId(toAdd);
+				toAdd.getSamples().setInsertDate(new Date());
 				session.save(toAdd.getSamples());				
 			}
 			else

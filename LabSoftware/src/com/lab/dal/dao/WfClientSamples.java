@@ -1,5 +1,7 @@
 package com.lab.dal.dao;
 
+import java.util.Date;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -35,6 +37,9 @@ public class WfClientSamples
 	
 	@Column(name = "remarks")
 	private String remarks;
+	
+	@Column(name = "insert_date")
+	private Date insertDate;
 	
 	public WfClientSamples() {
 		// TODO Auto-generated constructor stub
@@ -94,6 +99,14 @@ public class WfClientSamples
 
 	public void setRemarks(String remarks) {
 		this.remarks = remarks;
+	}
+
+	public Date getInsertDate() {
+		return insertDate;
+	}
+
+	public void setInsertDate(Date insertDate) {
+		this.insertDate = insertDate;
 	}
 
 }
