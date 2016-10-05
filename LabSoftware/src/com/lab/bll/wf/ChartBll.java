@@ -1,6 +1,8 @@
 package com.lab.bll.wf;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Iterator;
 
 import org.hibernate.Criteria;
 import org.hibernate.HibernateException;
@@ -9,6 +11,7 @@ import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
 import org.primefaces.model.chart.BarChartModel;
 import org.primefaces.model.chart.ChartSeries;
+import org.primefaces.model.chart.LineChartModel;
 
 import com.iac.web.util.FacesUtils;
 import com.lab.dal.dao.WfClient;
@@ -25,7 +28,7 @@ public class ChartBll
 	private ChartSeries cashSeries = new ChartSeries();
 	private ChartSeries gpeSeries = new ChartSeries();
 	private ChartSeries sampleSeries = new ChartSeries();
-	
+	private ChartSeries dayWiseCashSeries = new ChartSeries();
 	
 	private CriteriaBean cb = ((CriteriaBean)FacesUtils.getManagedBean("crit"));
 	
@@ -42,7 +45,7 @@ public class ChartBll
 		gpeSeries.setLabel(MessageConstants.Constants.ChartLabels.GPE);
 		sampleSeries.setLabel(MessageConstants.Constants.ChartLabels.SAMPLES);
 		
-		populateSeries(fromDate,toDate);
+		populateDateWiseSeries(fromDate, toDate);
 		
 		model.addSeries(regnSeries);
 		model.addSeries(cashSeries);
@@ -53,13 +56,13 @@ public class ChartBll
 		
 	}
 	
-	private void populateSeries(Date fromDate, Date toDate)
+	private void populateDateWiseSeries(Date fromDate, Date toDate)
 	{
 		Session session = null;
 		int count = 0;
 		try
 		{
-			String x = "Date Range" ;
+			String x = "Activity" ;
 			
 			session = HibernateUtilsAnnot.currentSession();
 			Criteria cr = session.createCriteria(WfClient.class);
@@ -113,5 +116,60 @@ public class ChartBll
 		
 		
 	}
+	
+	
+	public LineChartModel populateDayWiseCashChart(LineChartModel model, Date fromDate, Date toDate)
+	{	
+		dayWiseCashSeries.setLabel(MessageConstants.Constants.ChartLabels.CASH);		
+		populateDayWiseSeries(fromDate,toDate, model);
+		model.addSeries(dayWiseCashSeries);		
+		return model;		
+	}
+	
+	private void populateDayWiseSeries(Date fromDate, Date toDate, LineChartModel model)
+	{
+		Session session = null;
+		try
+		{
+			String x = "Date Range" ;
+			
+			session = HibernateUtilsAnnot.currentSession();
+			Criteria cr = session.createCriteria(WfClientFinance.class);
+			cr.add(Restrictions.ge("cashPaidDate", fromDate));
+			cr.add(Restrictions.le("cashPaidDate", toDate));
+			cr.add(Restrictions.isNotNull("cashPaidDate"));
+			cr.setProjection(Projections.projectionList()
+					.add(Projections.sum("cashAmount"))
+					.add(Projections.groupProperty("cashPaidDate"))
+					);
+					
+			
+			if(cr.list().size()>0)
+			{
+				SimpleDateFormat formatter = new SimpleDateFormat("dd/MMM/yyyy");
+				
+				Iterator<Object> iter = cr.list().iterator();
+				while(iter.hasNext())
+				{
+					Object[] o = (Object[])iter.next();
+					
+//					System.out.println(o[0] +" ===== "+ o[1]);
+					String label = formatter.format(o[1]);
+//					System.out.println(o[0] +" ===== "+label );
+					dayWiseCashSeries.set(label,(Integer.valueOf(o[0].toString())));
+					
+				}
+			}
+			
+			
+		}
+		catch(HibernateException e)
+		{
+			e.printStackTrace();
+		}
+		
+		
+	}
 
 }
+
