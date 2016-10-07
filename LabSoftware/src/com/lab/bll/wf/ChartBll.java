@@ -155,17 +155,29 @@ public class ChartBll
 					
 //					System.out.println(o[0] +" ===== "+ o[1]);
 					String label = formatter.format(o[1]);
-//					System.out.println(o[0] +" ===== "+label );
-					dayWiseCashSeries.set(label,(Integer.valueOf(o[0].toString())));
-					
-				}
+					System.out.println(o[0] +" ===== "+label );
+					dayWiseCashSeries.set(label,(Integer.valueOf(o[0].toString())));					
+				}				
 			}
-			
+			else
+			{
+				SimpleDateFormat formatter = new SimpleDateFormat("dd/MMM/yyyy");
+				String label = formatter.format(fromDate);
+				dayWiseCashSeries.set(label,0);
+				label = formatter.format(toDate);
+				dayWiseCashSeries.set(label,0);
+			}
+	        
+//			model.addSeries(dayWiseCashSeries);
 			
 		}
 		catch(HibernateException e)
 		{
 			e.printStackTrace();
+		}
+		finally
+		{
+			HibernateUtilsAnnot.closeSession();
 		}
 		
 		

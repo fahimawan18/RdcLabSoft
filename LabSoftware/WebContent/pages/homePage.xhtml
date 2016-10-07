@@ -18,7 +18,13 @@
 		<ui:define name="content">
 			<h:form id="homeform1">
   					<div align="center">
-					<p:graphicImage name="/images/homeImage2.jpg" title="RDC Lab Software" />
+					<p:graphicImage name="/images/homeImage2.jpg" 
+					title="RDC Lab Software" rendered="#{userBean.currentUser.roleDirector!='Y'}"/>
+					
+					<p:panelGrid columns="1" style="width:100%;" rendered="#{userBean.currentUser.roleDirector=='Y'}">
+					<ui:include src="/pages/includes/directorSummary.xhtml">
+					</ui:include>
+					</p:panelGrid>
 				</div>
 			</h:form>
 		</ui:define>
