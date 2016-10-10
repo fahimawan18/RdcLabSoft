@@ -11,26 +11,22 @@
   	
   		<h:outputText value="From :"/>
   				<h:panelGroup>
-    <p:calendar value="#{chartBean.fromDate}" navigator="true"
-    pattern="dd-MM-yy" mask="true"
-    maxdate="#{userBean.currDate}">
-    <p:ajax event="dateSelect" listener="#{chartBean.onDateSelect}" update="chart1" />
+    <p:calendar id="barFrom" value="#{chartBean.fromDate}"   navigator="true"  mask="true" pattern="dd-MM-yy"  maxdate="#{userBean.currDate}">
+    	<p:ajax event="dateSelect" listener="#{chartBean.onDateSelect}" update="panel2" />
     </p:calendar>
     
     </h:panelGroup>
     
     <h:outputText value="To :"/>
   	<h:panelGroup>
-    <p:calendar value="#{chartBean.toDate}" navigator="true"
-    pattern="dd-MM-yy" mask="true" 
-    maxdate="#{userBean.currDate}">
-    <p:ajax event="dateSelect" listener="#{chartBean.onDateSelect}" update="chart1" />
+    <p:calendar id="barTo" value="#{chartBean.toDate}" navigator="true" mask="true" pattern="dd-MM-yy"  maxdate="#{userBean.currDate}">
+   <p:ajax event="dateSelect" listener="#{chartBean.onDateSelect}" update="panel2" />
     </p:calendar>
     
     </h:panelGroup>
   				
 					<p:chart type="bar" model="#{chartBean.dateWiseChart}" style="height:300px"
-					responsive="true" id="chart1"/>
+					responsive="true" id="chart1" />
 					
 			<br/>					
 	</p:panel>
@@ -40,20 +36,20 @@
   	
   		<h:outputText value="From :"/>
   				<h:panelGroup>
-    <p:calendar value="#{chartBean.fromDate2}" navigator="true"
+    <p:calendar value="#{chartBean.fromDate2}" navigator="true" id="lineFrom"
     pattern="dd-MM-yy" mask="true"
     maxdate="#{userBean.currDate}">
-    <p:ajax event="dateSelect" listener="#{chartBean.onDateSelect2}" update="chart2" />
-    </p:calendar>
+    <p:ajax event="dateSelect" listener="#{chartBean.onDateSelect2}" update="panel3" />
+        </p:calendar>
     
     </h:panelGroup>
     
     <h:outputText value="To :"/>
   	<h:panelGroup>
-    <p:calendar value="#{chartBean.toDate2}" navigator="true"
+    <p:calendar value="#{chartBean.toDate2}" navigator="true" id="lineTo"
     pattern="dd-MM-yy" mask="true" 
     maxdate="#{userBean.currDate}">
-    <p:ajax event="dateSelect" listener="#{chartBean.onDateSelect2}" update="chart2" />
+   <p:ajax event="dateSelect" listener="#{chartBean.onDateSelect2}" update="panel3" />
     </p:calendar>
     
     </h:panelGroup>

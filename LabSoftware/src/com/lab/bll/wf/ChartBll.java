@@ -1,6 +1,7 @@
 package com.lab.bll.wf;
 
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.Iterator;
 
@@ -17,7 +18,10 @@ import com.iac.web.util.FacesUtils;
 import com.lab.dal.dao.WfClient;
 import com.lab.dal.dao.WfClientFinance;
 import com.lab.dal.dao.WfClientGpe;
+import com.lab.dal.dao.WfClientProgress;
 import com.lab.dal.dao.WfClientSamples;
+import com.lab.dal.dao.WfClientXray;
+import com.lab.dal.dao.WfLabResultBlood;
 import com.lab.ui.beans.admin.CriteriaBean;
 import com.lab.utils.HibernateUtilsAnnot;
 import com.lab.utils.MessageConstants;
@@ -28,9 +32,14 @@ public class ChartBll
 	private ChartSeries cashSeries = new ChartSeries();
 	private ChartSeries gpeSeries = new ChartSeries();
 	private ChartSeries sampleSeries = new ChartSeries();
+	private ChartSeries xraySeries = new ChartSeries();
+	private ChartSeries radiologistSeries = new ChartSeries();
+	private ChartSeries labSeries = new ChartSeries();
+	private ChartSeries pathologistSeries = new ChartSeries();
+	private ChartSeries directorSeries = new ChartSeries();
 	private ChartSeries dayWiseCashSeries = new ChartSeries();
 	
-	private CriteriaBean cb = ((CriteriaBean)FacesUtils.getManagedBean("crit"));
+//	private CriteriaBean cb = ((CriteriaBean)FacesUtils.getManagedBean("crit"));
 	
 	public ChartBll() 
 	{
@@ -44,6 +53,11 @@ public class ChartBll
 		cashSeries.setLabel(MessageConstants.Constants.ChartLabels.CASH);
 		gpeSeries.setLabel(MessageConstants.Constants.ChartLabels.GPE);
 		sampleSeries.setLabel(MessageConstants.Constants.ChartLabels.SAMPLES);
+		xraySeries.setLabel(MessageConstants.Constants.ChartLabels.XRAY);
+		radiologistSeries.setLabel(MessageConstants.Constants.ChartLabels.RADIOLOGIST);
+		labSeries.setLabel(MessageConstants.Constants.ChartLabels.LAB);
+		pathologistSeries.setLabel(MessageConstants.Constants.ChartLabels.PATHOLOGIST);
+		directorSeries.setLabel(MessageConstants.Constants.ChartLabels.DIRECTOR);
 		
 		populateDateWiseSeries(fromDate, toDate);
 		
@@ -51,21 +65,41 @@ public class ChartBll
 		model.addSeries(cashSeries);
 		model.addSeries(gpeSeries);
 		model.addSeries(sampleSeries);
+		model.addSeries(xraySeries);
+		model.addSeries(radiologistSeries);
+		model.addSeries(labSeries);
+		model.addSeries(pathologistSeries);
+		model.addSeries(directorSeries);
 		
 		return model;
 		
 	}
 	
-	private void populateDateWiseSeries(Date fromDate, Date toDate)
+	private void populateDateWiseSeries(Date fromDate, Date toDateNew)
 	{
+		Date toDate = Calendar.getInstance().getTime();
+		toDate.setTime( toDateNew.getTime());
+//		toDate.setDate(toDateNew.getDate());
+		if(fromDate.getTime() == toDate.getTime()){
+			System.out.println("Dates are same ==> from ="+toDate);
+//			toDate.setDate(fromDate.getDate()+1);
+			Calendar tocalendar = Calendar.getInstance();
+			tocalendar.set(Calendar.HOUR_OF_DAY, 0);
+			tocalendar.set(Calendar.MINUTE, 0);
+			tocalendar.set(Calendar.SECOND, 0);
+			tocalendar.setTime(toDate);
+			tocalendar.set(Calendar.DATE, tocalendar.get(Calendar.DATE)+1);
+			toDate = tocalendar.getTime();
+		}
 		Session session = null;
 		int count = 0;
 		try
 		{
 			String x = "Activity" ;
-			
+			System.out.println("Date selected are in dal ==> from ="+fromDate.getTime()+ " and to ="+toDate.getTime());
 			session = HibernateUtilsAnnot.currentSession();
 			Criteria cr = session.createCriteria(WfClient.class);
+//			cr.add(Restrictions.between("insertDate", fromDate, toDate));
 			cr.add(Restrictions.ge("insertDate", fromDate));
 			cr.add(Restrictions.le("insertDate", toDate));
 			cr.setProjection(Projections.rowCount());
@@ -94,7 +128,7 @@ public class ChartBll
 			count = (Integer)cr.uniqueResult();
 			gpeSeries.set(x, count);
 			System.out.println("Value of gpeSeriesCount = "+ count);
-			gpeSeries.set(x, count);
+			//gpeSeries.set(x, count);
 			
 			cr= null;
 			count =0; 
@@ -106,13 +140,78 @@ public class ChartBll
 			count = (Integer)cr.uniqueResult();
 			sampleSeries.set(x, count);
 			System.out.println("Value of sampleSeriesCount = "+ count);
-			sampleSeries.set(x, count);
+			//sampleSeries.set(x, count);
 			
+			
+			cr= null;
+			count =0; 
+			
+			cr = session.createCriteria(WfClientXray.class);
+			cr.add(Restrictions.ge("xrayInsertDate", fromDate));
+			cr.add(Restrictions.le("xrayInsertDate", toDate));
+			cr.setProjection(Projections.rowCount());
+			count = (Integer)cr.uniqueResult();
+			xraySeries.set(x, count);
+			System.out.println("Value of xraySeriesCount = "+ count);
+			//sampleSeries.set(x, count);
+			
+			cr= null;
+			count =0; 
+			
+			cr = session.createCriteria(WfClientXray.class);
+			cr.add(Restrictions.ge("radiologyInsertDate", fromDate));
+			cr.add(Restrictions.le("radiologyInsertDate", toDate));
+			cr.setProjection(Projections.rowCount());
+			count = (Integer)cr.uniqueResult();
+			radiologistSeries.set(x, count);
+			System.out.println("Value of radiologySeriesCount = "+ count);
+			//sampleSeries.set(x, count);
+			
+			cr= null;
+			count =0; 
+			
+			cr = session.createCriteria(WfLabResultBlood.class);
+			cr.add(Restrictions.ge("labInsertDate", fromDate));
+			cr.add(Restrictions.le("labInsertDate", toDate));
+			cr.setProjection(Projections.rowCount());
+			count = (Integer)cr.uniqueResult();
+			labSeries.set(x, count);
+			System.out.println("Value of labSeriesCount = "+ count);
+			//sampleSeries.set(x, count);
+			
+			cr= null;
+			count =0; 
+			
+			cr = session.createCriteria(WfClientProgress.class);
+			cr.add(Restrictions.ge("pathologistInsertDate", fromDate));
+			cr.add(Restrictions.le("pathologistInsertDate", toDate));
+			cr.setProjection(Projections.rowCount());
+			count = (Integer)cr.uniqueResult();
+			pathologistSeries.set(x, count);
+			System.out.println("Value of pathologySeriesCount = "+ count);
+			//sampleSeries.set(x, count);
+			
+			cr= null;
+			count =0; 
+			
+			cr = session.createCriteria(WfClient.class);
+			cr.add(Restrictions.ge("finalDeclaredDate", fromDate));
+			cr.add(Restrictions.le("finalDeclaredDate", toDate));
+			cr.setProjection(Projections.rowCount());
+			count = (Integer)cr.uniqueResult();
+			directorSeries.set(x, count);
+			System.out.println("Value of directorSeriesCount = "+ count);
+			//sampleSeries.set(x, count);
 		}
 		catch(HibernateException e)
 		{
 			e.printStackTrace();
 		}
+		finally
+		{
+			HibernateUtilsAnnot.closeSession();
+		}
+		
 		
 		
 	}

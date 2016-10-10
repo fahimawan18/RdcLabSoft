@@ -184,6 +184,11 @@ public final class MessageConstants {
 			public static final String CASH = "Cash";
 			public static final String GPE = "GPE";
 			public static final String SAMPLES = "Samples";
+			public static final String XRAY = "X-Ray";
+			public static final String RADIOLOGIST = "Radiologist";
+			public static final String LAB = "Lab";
+			public static final String PATHOLOGIST = "Pathologist";
+			public static final String DIRECTOR = "Director";
 						
 		}
 	}

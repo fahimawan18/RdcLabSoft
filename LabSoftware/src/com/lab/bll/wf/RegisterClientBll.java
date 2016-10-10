@@ -686,10 +686,12 @@ public class RegisterClientBll
 					WfClientXray xrayObj = new WfClientXray();
 					xrayObj.setClientId(toUpdate);
 					xrayObj.setXrayStatus(toUpdate.getXray().getXrayStatus());
+					xrayObj.setXrayInsertDate(new Date());
 					session.save(xrayObj);
 				}
 				else
 				{
+					//toUpdate.getXray().setXrayInsertDate(new Date());
 					session.update(toUpdate.getXray());
 				}
 				
@@ -751,11 +753,13 @@ public class RegisterClientBll
 			{
 				System.out.println("saving new Radiology");
 				toUpdate.getXray().setClientId(toUpdate);
+				toUpdate.getXray().setRadiologyInsertDate(new Date());
 				session.save(toUpdate.getXray());				
 			}
 			else
 			{
 				System.out.println("updating Radiology ");
+				toUpdate.getXray().setRadiologyInsertDate(new Date());
 				session.update(toUpdate.getXray());
 			}
 			
@@ -896,11 +900,13 @@ public class RegisterClientBll
 			{
 				
 				toAdd.getBlood().setClientId(toAdd);
+				toAdd.getBlood().setLabInsertDate(new Date());
 				session.save(toAdd.getBlood());
 			}
 			else
 			{
 				System.out.println("updating lab results (blood");
+				toAdd.getBlood().setLabInsertDate(new Date());
 				session.update(toAdd.getBlood());
 			}
 			
@@ -1024,10 +1030,12 @@ public class RegisterClientBll
 				WfClientProgress progress = new WfClientProgress();
 				progress.setClientId(toAdd);
 				progress.setPathologist(status);
+				progress.setPathologistInsertDate(new Date());
 				session.save(progress);					
 			}
 			else
 			{
+				toAdd.getProgress().setPathologistInsertDate(new Date());
 				toAdd.getProgress().setPathologist(status);
 				session.update(toAdd.getProgress());
 			}	
@@ -1079,11 +1087,13 @@ public class RegisterClientBll
 				WfClientProgress progress = new WfClientProgress();
 				progress.setClientId(toAdd);
 				progress.setPathologist(toAdd.getClientStatus());
+				progress.setPathologistInsertDate(new Date());
 				session.save(progress);					
 			}
 			else
 			{
 				toAdd.getProgress().setPathologist(toAdd.getClientStatus());
+				toAdd.getProgress().setPathologistInsertDate(new Date());
 				session.update(toAdd.getProgress());
 			}	
 			saveTrackReport(MessageConstants.Constants.TrackActions.PATHOLOGIST, toAdd, session);

@@ -1,5 +1,7 @@
 package com.lab.dal.dao;
 
+import java.util.Date;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -38,6 +40,10 @@ public class WfClientProgress
 	
 	@Column(name = "pathologist")
 	private String pathologist;
+	
+	@Column(name = "path_insert_date")
+	private Date pathologistInsertDate;
+	
 	
 	public WfClientProgress() {
 		// TODO Auto-generated constructor stub
@@ -105,5 +111,13 @@ public class WfClientProgress
 
 	public void setPathologist(String pathologist) {
 		this.pathologist = pathologist;
+	}
+
+	public Date getPathologistInsertDate() {
+		return pathologistInsertDate;
+	}
+
+	public void setPathologistInsertDate(Date pathologistInsertDate) {
+		this.pathologistInsertDate = pathologistInsertDate;
 	}
 }

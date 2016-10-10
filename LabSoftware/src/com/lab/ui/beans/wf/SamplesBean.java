@@ -25,6 +25,11 @@ public class SamplesBean {
 	private String viewUrl;
 	private WfClient selectedClient;
 	private UserBean ub = ((UserBean)FacesUtils.getManagedBean("userBean"));
+	
+	public SamplesBean(){
+		selectedClient = new WfClient();
+	}
+	
 	public String getClientDetails() {
 		
 		

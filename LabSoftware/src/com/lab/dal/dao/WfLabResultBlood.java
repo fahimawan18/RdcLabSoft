@@ -1,5 +1,7 @@
 package com.lab.dal.dao;
 
+import java.util.Date;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -69,6 +71,11 @@ public class WfLabResultBlood
 	
 	@Column(name = "tpha")
 	private String tpha;
+	
+	@Column(name = "lab_insert_date")
+	private Date labInsertDate;
+	
+
 	
 	
 	public WfLabResultBlood() 
@@ -255,5 +262,20 @@ public class WfLabResultBlood
 	public void setRft(String rft) {
 		this.rft = rft;
 	}
+
+
+	public Date getLabInsertDate() {
+		return labInsertDate;
+	}
+
+
+	public void setLabInsertDate(Date labInsertDate) {
+		this.labInsertDate = labInsertDate;
+	}
+
+
+
+
+
 
 }

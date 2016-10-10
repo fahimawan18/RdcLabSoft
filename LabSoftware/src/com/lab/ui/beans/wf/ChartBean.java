@@ -1,9 +1,12 @@
 package com.lab.ui.beans.wf;
 
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 
+import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.RequestScoped;
 import javax.faces.bean.SessionScoped;
 
 import org.primefaces.event.SelectEvent;
@@ -32,19 +35,44 @@ public class ChartBean
 	
 	public ChartBean() 
 	{
-		this.toDate = new Date();
-		this.fromDate = new Date();
-		this.fromDate.setHours(0);
-		this.fromDate.setMinutes(0);
-		this.fromDate.setSeconds(0);
-		this.toDate2 = new Date();
-		this.fromDate2 = new Date();
-		this.fromDate2.setHours(0);
-		this.fromDate2.setMinutes(0);
-		this.fromDate2.setSeconds(0);
+		Calendar calendar = Calendar.getInstance();
+		calendar.set(Calendar.HOUR_OF_DAY, 0);
+		calendar.set(Calendar.MINUTE, 0);
+		calendar.set(Calendar.SECOND, 0);
+		calendar.set(Calendar.MILLISECOND, 0);
+		fromDate = calendar.getTime();
+		
+		Calendar tocalendar = Calendar.getInstance();
+		tocalendar.set(Calendar.HOUR_OF_DAY, 0);
+		tocalendar.set(Calendar.MINUTE, 0);
+		tocalendar.set(Calendar.SECOND, 0);
+		calendar.set(Calendar.MILLISECOND, 0);
+		toDate = tocalendar.getTime();
+		
+//		this.toDate = new Date();
+////		toDate.setDate(toDate.getDate()+1);
+//		this.toDate.setHours(0);
+//		this.toDate.setMinutes(0);
+//		this.toDate.setSeconds(0);
+//		
+//		this.fromDate = new Date();
+//		this.fromDate.setHours(0);
+//		this.fromDate.setMinutes(0);
+//		this.fromDate.setSeconds(0);
+		this.toDate2 = tocalendar.getTime();
+		calendar.set(Calendar.DATE, calendar.get(Calendar.DATE)-7);
+		this.fromDate2 = calendar.getTime();
+//		this.fromDate2.setHours(0);
+//		this.fromDate2.setMinutes(0);
+//		this.fromDate2.setSeconds(0);
 		initDateWiseChart();
 		initDayWiseChart();
 	}
+//	@PostConstruct
+//	public void init() {
+//		initDateWiseChart();
+//		initDayWiseChart();
+//	}
 	
 	 public void onDateSelect(SelectEvent event) 
 	 {
@@ -66,6 +94,8 @@ public class ChartBean
 		this.dateWiseChart = new BarChartModel();
 		ChartBll bll = new ChartBll();
 		System.out.println("Date selected are ==> from ="+fromDate+ " and to ="+toDate);
+		
+		System.out.println("Date selected are ==> from ="+fromDate.getTime()+ " and to ="+toDate.getTime());
 		this.dateWiseChart = bll.populateDateWiseChart(dateWiseChart, fromDate, toDate);
 		
 		
@@ -80,7 +110,7 @@ public class ChartBean
         xAxis.setLabel("From:"+formatter.format(fromDate)+ " - To: "+formatter.format(toDate));
         
         Axis yAxis = dateWiseChart.getAxis(AxisType.Y);
-        yAxis.setLabel("Numbers");
+        yAxis.setLabel("Count");
         yAxis.setMin(0);
 //        yAxis.setMax(20);
 	}
@@ -108,6 +138,7 @@ public class ChartBean
 	}
 
 	public BarChartModel getDateWiseChart() {
+		System.out.println("^^^^^^^^^^^^^^^^^^^^^^^^^^^^ getDateWiseChart " + dateWiseChart.getSeries().size());
 		return dateWiseChart;
 	}
 
@@ -159,3 +190,4 @@ public class ChartBean
 		this.fromDate2 = fromDate2;
 	}
 }
+

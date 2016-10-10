@@ -1,5 +1,7 @@
 package com.lab.dal.dao;
 
+import java.util.Date;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -33,6 +35,11 @@ public class WfClientXray
 	@Column(name = "opinion")
 	private String opinion;
 	
+	@Column(name = "xray_insert_date")
+	private Date xrayInsertDate;
+	
+	@Column(name = "radiology_insert_date")
+	private Date radiologyInsertDate;
 	
 	public WfClientXray() 
 	{
@@ -85,6 +92,22 @@ public class WfClientXray
 
 	public void setOpinion(String opinion) {
 		this.opinion = opinion;
+	}
+
+	public Date getXrayInsertDate() {
+		return xrayInsertDate;
+	}
+
+	public void setXrayInsertDate(Date xrayInsertDate) {
+		this.xrayInsertDate = xrayInsertDate;
+	}
+
+	public Date getRadiologyInsertDate() {
+		return radiologyInsertDate;
+	}
+
+	public void setRadiologyInsertDate(Date radiologyInsertDate) {
+		this.radiologyInsertDate = radiologyInsertDate;
 	}
 
 }
