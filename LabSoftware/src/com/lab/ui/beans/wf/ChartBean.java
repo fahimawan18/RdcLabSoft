@@ -46,7 +46,7 @@ public class ChartBean
 		tocalendar.set(Calendar.HOUR_OF_DAY, 0);
 		tocalendar.set(Calendar.MINUTE, 0);
 		tocalendar.set(Calendar.SECOND, 0);
-		calendar.set(Calendar.MILLISECOND, 0);
+		tocalendar.set(Calendar.MILLISECOND, 0);
 		toDate = tocalendar.getTime();
 		
 //		this.toDate = new Date();
