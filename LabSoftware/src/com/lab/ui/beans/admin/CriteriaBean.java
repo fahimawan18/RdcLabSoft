@@ -17,6 +17,7 @@ import com.lab.utils.MessageConstants;
 public class CriteriaBean 
 {
 	private List<SelectItem> twoOptionsList; //Yes, No
+	private List<SelectItem> threeOptionsList; //NA, Yes, No
 	private List<SelectItem> npOptionsList; // Nil, Present
 	private List<SelectItem> ntpOptionsList; // Nil, trace, present
 	private List<SelectItem> microOptionsList; //
@@ -39,6 +40,7 @@ public class CriteriaBean
 	{
 		// TODO Auto-generated constructor stub
 		this.twoOptionsList = new ArrayList<SelectItem>();
+		this.threeOptionsList = new ArrayList<SelectItem>();
 		this.npOptionsList = new ArrayList<SelectItem>();
 		this.ntpOptionsList = new ArrayList<SelectItem>();
 		this.microOptionsList = new ArrayList<SelectItem>();
@@ -348,6 +350,27 @@ public class CriteriaBean
 
 	public void setInvalidFileSizeMessage(String invalidFileSizeMessage) {
 		this.invalidFileSizeMessage = invalidFileSizeMessage;
+	}
+
+
+
+
+	public List<SelectItem> getThreeOptionsList() 
+	{
+		if(this.threeOptionsList.size()==0)
+		{
+			this.threeOptionsList.add(new SelectItem(MessageConstants.Constants.NA_STRING,MessageConstants.Constants.NA_STRING));
+			this.threeOptionsList.add(new SelectItem(MessageConstants.Constants.YES_STRING,MessageConstants.Constants.YES_STRING));
+			this.threeOptionsList.add(new SelectItem(MessageConstants.Constants.NO_STRING,MessageConstants.Constants.NO_STRING));
+		}
+		return threeOptionsList;
+	}
+
+
+
+
+	public void setThreeOptionsList(List<SelectItem> threeOptionsList) {
+		this.threeOptionsList = threeOptionsList;
 	}
 	
 	

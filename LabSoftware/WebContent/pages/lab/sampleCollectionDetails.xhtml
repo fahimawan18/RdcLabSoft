@@ -48,28 +48,28 @@
 					 <h:outputText value="Blood Sample Collected:" />
 				    <h:panelGroup>
 				    <h:selectOneMenu value="#{registerClientBean.selectedClient.samples.bloodSample}">				    	
-				    	<f:selectItems value="#{crit.twoOptionsList}"></f:selectItems>
+				    	<f:selectItems value="#{crit.threeOptionsList}"></f:selectItems>
 				    </h:selectOneMenu>
 				    </h:panelGroup>
 				    
 				    <h:outputText value="Urine Sample Collected:" />
 				    <h:panelGroup>
 				    <h:selectOneMenu value="#{registerClientBean.selectedClient.samples.urineSample}">				    	
-				    	<f:selectItems value="#{crit.twoOptionsList}"></f:selectItems>
+				    	<f:selectItems value="#{crit.threeOptionsList}"></f:selectItems>
 				    </h:selectOneMenu>
 				    </h:panelGroup>
 				    
 				     <h:outputText value="Sputum Sample Collected:" />
 				    <h:panelGroup>
 				    <h:selectOneMenu value="#{registerClientBean.selectedClient.samples.sputumSample}">				    	
-				    	<f:selectItems value="#{crit.twoOptionsList}"></f:selectItems>
+				    	<f:selectItems value="#{crit.threeOptionsList}"></f:selectItems>
 				    </h:selectOneMenu>
 				    </h:panelGroup>
 				     
 				    <h:outputText value="Stool Sample Collected:" />
 				    <h:panelGroup>
 				    <h:selectOneMenu value="#{registerClientBean.selectedClient.samples.stoolSample}">				    	
-				    	<f:selectItems value="#{crit.twoOptionsList}"></f:selectItems>
+				    	<f:selectItems value="#{crit.threeOptionsList}"></f:selectItems>
 				    </h:selectOneMenu>
 				    </h:panelGroup>
 				    
@@ -87,7 +87,8 @@
     						<p:printer target="barCodeMedia" />
 						</p:commandButton -->
 						
-						<p:media id="barCodeMedia" value="#{samplesBean.printUrl}" width="250" height="150"> 
+						<p:media id="barCodeMedia" value="#{samplesBean.printUrl}" width="250" height="150"
+						rendered="true"> 
 						</p:media>
 				    </h:panelGroup>
 				  
