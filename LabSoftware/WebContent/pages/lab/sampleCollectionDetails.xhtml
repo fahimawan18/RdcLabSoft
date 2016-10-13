@@ -48,6 +48,7 @@
 					 <h:outputText value="Blood Sample Collected:" />
 				    <h:panelGroup>
 				    <h:selectOneMenu value="#{registerClientBean.selectedClient.samples.bloodSample}">				    	
+				    	<f:selectItem itemLabel="Select One" itemValue=""></f:selectItem>
 				    	<f:selectItems value="#{crit.threeOptionsList}"></f:selectItems>
 				    </h:selectOneMenu>
 				    </h:panelGroup>
@@ -55,6 +56,7 @@
 				    <h:outputText value="Urine Sample Collected:" />
 				    <h:panelGroup>
 				    <h:selectOneMenu value="#{registerClientBean.selectedClient.samples.urineSample}">				    	
+				    	<f:selectItem itemLabel="Select One" itemValue=""></f:selectItem>
 				    	<f:selectItems value="#{crit.threeOptionsList}"></f:selectItems>
 				    </h:selectOneMenu>
 				    </h:panelGroup>
@@ -62,13 +64,15 @@
 				     <h:outputText value="Sputum Sample Collected:" />
 				    <h:panelGroup>
 				    <h:selectOneMenu value="#{registerClientBean.selectedClient.samples.sputumSample}">				    	
+				    	<f:selectItem itemLabel="Select One" itemValue=""></f:selectItem>
 				    	<f:selectItems value="#{crit.threeOptionsList}"></f:selectItems>
 				    </h:selectOneMenu>
 				    </h:panelGroup>
 				     
 				    <h:outputText value="Stool Sample Collected:" />
 				    <h:panelGroup>
-				    <h:selectOneMenu value="#{registerClientBean.selectedClient.samples.stoolSample}">				    	
+				    <h:selectOneMenu value="#{registerClientBean.selectedClient.samples.stoolSample}">		
+				   		 <f:selectItem itemLabel="Select One" itemValue=""></f:selectItem>		    	
 				    	<f:selectItems value="#{crit.threeOptionsList}"></f:selectItems>
 				    </h:selectOneMenu>
 				    </h:panelGroup>
