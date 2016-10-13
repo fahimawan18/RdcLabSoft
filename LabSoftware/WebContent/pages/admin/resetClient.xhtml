@@ -103,7 +103,7 @@
 					<p:column headerText="Director Status" sortBy="#{mylist.clientStatus}">
 						<h:outputText value="#{mylist.clientStatus}  " />
 						
-						<p:commandLink action="#{resetClientBean.resetDirectorStatus}" rendered="#{mylist.clientStatus=='Fit'}" update="tbl1">
+						<p:commandLink action="#{resetClientBean.resetDirectorStatus}" rendered="#{mylist.clientStatus!='Registered'}" update="tbl1">
 							<p:confirm header="Confirmation" message="Are you sure?" icon="ui-icon-alert" />
 							<p:graphicImage name="/images/resetbutton.png" height="100%" width="80px"></p:graphicImage>
 							<f:setPropertyActionListener target="#{resetClientBean.selectedClient}" value="#{mylist}" />

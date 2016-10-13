@@ -25,9 +25,188 @@
 							
 				</p:panel>
 				</p:column>
-				
 				<p:column>
-					<p:panel id="panel1" header="Endorsements">
+					<p:panel id="panelEndorsements" header="Endorsements">
+					<p:panelGrid style="margin-top:20px; width: 100%; margin: 0 auto"
+					  columnClasses="labels tw-five-percent,contents tw-five-percent">
+						<p:row>
+						<p:column>
+						<h:outputText value="GPE" />
+						</p:column>
+						<p:column  style="#{registerClientBean.selectedClient.progress.gpe == 'Fit' ? 'background-color:green;':'background-color:red;'}">
+						<h:outputText value="#{registerClientBean.selectedClient.progress.gpe}"	style="color:white" />
+						</p:column>
+						</p:row>
+						<p:row>
+						<p:column>
+						<h:outputText value="Pathologist"/>
+						</p:column>
+						<p:column  style="#{registerClientBean.selectedClient.progress.pathologist == 'Fit' ? 'background-color:green;':'background-color:red;'}">
+						<h:outputText value="#{registerClientBean.selectedClient.progress.pathologist}" style="color:white"/>
+						</p:column>
+						</p:row>
+						<p:row>
+						<p:column rowspan="2">
+						<h:outputText value="Radiologist"/>
+						</p:column>
+						<p:column  style="#{registerClientBean.selectedClient.xray.chest == 'Normal' ? 'background-color:green;':'background-color:red;'}">
+						<h:outputText value="Chest: #{registerClientBean.selectedClient.xray.chest}" style="color:white"/>
+						</p:column>
+						</p:row>
+						<p:row><p:column>
+						<h:outputText value="Opinion: #{registerClientBean.selectedClient.xray.opinion}"/>
+						</p:column>
+						</p:row>
+					</p:panelGrid>
+					<!--  h3> 
+					<h:outputText value="#{registerClientBean.selectedClient.progress.pathologist}"/>
+						(Endorsed by Pathologist)</h3 -->
+				</p:panel>
+				</p:column>
+				<p:column>
+				
+					<p:panel id="gpepanel" header="Client GPE Details">
+					
+					
+					<p:panelGrid style="margin-top:10px; width: 100%; margin: 0 auto"
+					columns="1" id="gpeprintGrid">
+					<h:panelGroup>
+						<h3>GENERAL PHYSICIAN EXAMINATION</h3>
+						
+					</h:panelGroup>
+					 
+ 					
+					</p:panelGrid>
+					
+					
+					<p:panelGrid style="margin-top:20px; width: 100%; margin: 0 auto" columnClasses="labels tw-five-percent,contents tw-five-percent,
+					labels tw-five-percent,contents tw-five-percent"
+					columns="4" id="gpeGrid">					 
+					 
+					 
+					 <h:outputText value="BP:" />
+				    <h:outputText value="#{registerClientBean.selectedClient.gpe.bp}"/>
+				    
+				    <h:outputText value="Temperature:" />
+				   
+				    <h:outputText value="#{registerClientBean.selectedClient.gpe.temperature}#{registerClientBean.selectedClient.gpe.temperatureScale}"/>
+				    
+				     <h:outputText value="Height:" />
+				   
+				    <h:outputText value="#{registerClientBean.selectedClient.gpe.height}#{registerClientBean.selectedClient.gpe.heightScale}"/>
+				     
+				     <h:outputText value="Weight:" />
+				    
+				    <h:outputText value="#{registerClientBean.selectedClient.gpe.weight}#{registerClientBean.selectedClient.gpe.weightScale}"/>
+				    <h:outputText value="Skin:" />
+				    				    
+				    <h:outputText value="#{registerClientBean.selectedClient.gpe.skin}"/>
+				    <h:outputText value="Fingers:" />
+				    <h:outputText value="#{registerClientBean.selectedClient.gpe.extFingers}"/>
+				    
+				    <h:outputText value="Deformity:" />
+				    				    
+				    <h:outputText value="#{registerClientBean.selectedClient.gpe.extDeformity}" />
+				    					    
+				    <h:outputText value="Varicose Veins:" />
+				    <h:outputText value="#{registerClientBean.selectedClient.gpe.extVericose}" />
+				    					    
+				    <h:outputText value="Neck:" />
+				    				    
+				    <h:outputText value="#{registerClientBean.selectedClient.gpe.neck}" />
+				    					    
+				    <h:outputText value="Neuro PE" />
+				    				    
+				    <h:outputText value="#{registerClientBean.selectedClient.gpe.neuroPe}"/>
+				    					    
+				    <h:outputText value="CNS:" />
+				    				    
+				    <h:outputText value="#{registerClientBean.selectedClient.gpe.cns}"/> 
+				    	
+				    <h:outputText value="Lungs:"/>
+				    	
+				    <h:outputText value="#{registerClientBean.selectedClient.xray.lungs}" />
+				    
+				    <h:outputText value="Heart:" />
+				    				    
+				    <h:outputText value="#{registerClientBean.selectedClient.gpe.heart}" />
+				    <h:outputText value="Abdominal:" />
+				    				    
+				    <h:outputText value="#{registerClientBean.selectedClient.gpe.abdominal}"/>
+				    
+				    <h:outputText value="Liver:" />
+				    				    
+				    <h:outputText value="#{registerClientBean.selectedClient.gpe.liver}"/>
+				    	
+				    <h:outputText value="Kidneys:" />
+				    				    
+				    <h:outputText value="#{registerClientBean.selectedClient.gpe.kidneys}"/> 
+				    <h:outputText value="Spleen:" />
+				    				    
+				    <h:outputText value="#{registerClientBean.selectedClient.gpe.spleen}"/>
+				    	
+				    <h:outputText value="Hernia:" />
+				    				    
+				    <h:outputText value="#{registerClientBean.selectedClient.gpe.hernia}"/>
+				    <h:outputText value="Venereal:" />
+				    				    
+				    <h:outputText value="#{registerClientBean.selectedClient.gpe.venereal}"/>
+				    
+				    <h:outputText value="Allergy:" />
+				    				    
+				    <h:outputText value="#{registerClientBean.selectedClient.gpe.allergy}"/>
+				    
+				    
+				    <h:outputText value="Any other abnormality:" />
+				   			    
+				    <h:outputText value="#{registerClientBean.selectedClient.gpe.other}"/>
+				   
+				    
+				    <h:outputText value="Psychiatry:" />
+				  				    
+				    <h:outputText value="#{registerClientBean.selectedClient.gpe.psychiatry}"/>
+				  
+				    
+				    <h:outputText value="Ear(Left):" />
+				    			    
+				    <h:outputText value="#{registerClientBean.selectedClient.gpe.earLeft}"/>
+				    
+				    <h:outputText value="Ear(Right):" />
+				    				    
+				    <h:outputText value="#{registerClientBean.selectedClient.gpe.earRight}"/>
+				    
+				    <h:outputText value="Eye(Left):" />
+				    				    
+				    <h:outputText value="#{registerClientBean.selectedClient.gpe.eyeLeft}"/>
+				    
+				    
+				    <h:outputText value="Eye(Right):" />
+				   				    
+				    <h:outputText value="#{registerClientBean.selectedClient.gpe.eyeRight}"/>
+				    <h:outputText value="Pregnancy:" />
+				   				    
+				    <h:outputText value="#{registerClientBean.selectedClient.gpe.pregnancy}"/>
+				   			    
+				    </p:panelGrid>
+				    
+				    <p:panelGrid style="margin-top:20px; width: 70%; margin: 0 auto"
+					columns="2" id="addGrid2">
+					
+					 <h:outputText value="Remarks/Observation:" />
+				    <h:panelGroup>				    
+				    <h:inputTextarea value="#{registerClientBean.selectedClient.gpe.remarks}"/>
+				    </h:panelGroup>	
+					
+					</p:panelGrid>
+					
+				</p:panel>
+					
+				
+				
+				
+				
+				
+					<!--  p:panel id="panel1" header="Endorsements">
 					<p:panelGrid style="margin-top:20px; width: 100%; margin: 0 auto"
 					columns="2" id="statusGrid" columnClasses="labels tw-five-percent,contents tw-five-percent">
 					
@@ -41,37 +220,50 @@
 						<h:outputText value="Chest: #{registerClientBean.selectedClient.xray.chest} - Opinion: #{registerClientBean.selectedClient.xray.opinion}"/>
 					
 					</p:panelGrid>
-					<!--  h3> 
-					<h:outputText value="#{registerClientBean.selectedClient.progress.pathologist}"/>
-						(Endorsed by Pathologist)</h3 -->
-				</p:panel>
+					
+				</p:panel -->
 				</p:column>
 				
-				<p:column>
-					<ui:include src="/pages/includes/trackReport.xhtml" />				
-				</p:column>
+				
 				
 				
 				
 				</p:row>
-				
-				
+				<p:row>
+				<!--  p:column>
+					<p:panel id="panelEndorsements" header="Endorsements">
+					<p:panelGrid style="margin-top:20px; width: 100%; margin: 0 auto"
+					columns="2"  columnClasses="labels tw-five-percent,contents tw-five-percent">
+					
+						<h:outputText value="GPE"/>
+						<h:outputText value="#{registerClientBean.selectedClient.progress.gpe}"/>
+						
+						<h:outputText value="Pathologist"/>
+						<h:outputText value="#{registerClientBean.selectedClient.progress.pathologist}"/>
+						
+						<h:outputText value="Radiologist"/>
+						<h:outputText value="Chest: #{registerClientBean.selectedClient.xray.chest} - Opinion: #{registerClientBean.selectedClient.xray.opinion}"/>
+					
+					</p:panelGrid>
+					
+				</p:panel>
+				</p:column -->
 				
 				<p:panel id="panel3" header="Lab Deatils">
 					
 					
-					<p:panelGrid style="margin-top:10px; width: 100%; margin: 0 auto"
+					<!--  p:panelGrid style="width: 100%;"
 					columns="1" id="printGrid1">
-					<h:panelGroup>
-						<h2>URINE R/E</h2>
+					
+						<h4>URINE R/E </h4>
 						
-					</h:panelGroup>
+				
 					 
  					
-					</p:panelGrid>
+					</p:panelGrid -->
+					 <p:fieldset legend="URINE R/E" toggleable="true" toggleSpeed="500">
 					
-					
-					<p:panelGrid style="margin-top:20px; width: 100%; margin: 0 auto"
+					<p:panelGrid style="width: 100%; margin: 0 auto"
 					columns="4" id="addGrid" columnClasses="labels tw-five-percent,contents tw-five-percent,
 					labels tw-five-percent,contents tw-five-percent">
 					 
@@ -85,19 +277,20 @@
 				    <h:outputText value="#{registerClientBean.selectedClient.urine.albumin}"/>
 				    </h:panelGroup>
 				    </p:panelGrid>
+				     </p:fieldset>
 				    
-				    <p:panelGrid style="margin-top:10px; width: 100%; margin: 0 auto"
+				    <!--  p:panelGrid style="margin-top:5px; width: 100%; margin: 0 auto"
 					columns="1">
 					<h:panelGroup>
-						<h2>MICROSCOPY</h2>
+						<h3>MICROSCOPY</h3>
 						
 					</h:panelGroup>
 					 
  					
-					</p:panelGrid>
+					</p:panelGrid -->
 					
-					
-					<p:panelGrid style="margin-top:20px; width: 100%; margin: 0 auto"
+					 <p:fieldset legend="MICROSCOPY" toggleable="true" toggleSpeed="500">
+					<p:panelGrid style="margin-top:5px; width: 100%; margin: 0 auto"
 					columns="4" columnClasses="labels tw-five-percent,contents tw-five-percent,
 					labels tw-five-percent,contents tw-five-percent">					 
 					 
@@ -122,19 +315,19 @@
 				    
 				    </p:panelGrid>
 				    
-				    
-				    <p:panelGrid style="margin-top:10px; width: 100%; margin: 0 auto"
+				    </p:fieldset>
+				    <!--  p:panelGrid style="margin-top:5px; width: 100%; margin: 0 auto"
 					columns="1" >
 					<h:panelGroup>
-						<h2>BLOOD REPORTS</h2>
+						<h3>BLOOD REPORTS</h3>
 						
 					</h:panelGroup>
 					 
  					
-					</p:panelGrid>
+					</p:panelGrid -->
 					
-					
-					<p:panelGrid style="margin-top:20px; width: 100%; margin: 0 auto"
+					 <p:fieldset legend="BLOOD REPORTS" toggleable="true" toggleSpeed="500">
+					<p:panelGrid style="margin-top:5px; width: 100%; margin: 0 auto"
 					columns="4" columnClasses="labels tw-five-percent,contents tw-five-percent,
 					labels tw-five-percent,contents tw-five-percent">					 
 					 
@@ -227,19 +420,20 @@
 				  
 				    	    
 				    </p:panelGrid>
+				    </p:fieldset>
 				    
-				    <p:panelGrid style="margin-top:10px; width: 100%; margin: 0 auto"
+				    <!--  p:panelGrid style="margin-top:5px; width: 100%; margin: 0 auto"
 					columns="1">
 					<h:panelGroup>
-						<h2>SPUTUM</h2>
+						<h3>SPUTUM</h3>
 						
 					</h:panelGroup>
 					 
  					
-					</p:panelGrid>
+					</p:panelGrid --> 
+					 <p:fieldset legend="SPUTUM" toggleable="true" toggleSpeed="500">
 					
-					
-					<p:panelGrid style="margin-top:20px; width: 100%; margin: 0 auto"
+					<p:panelGrid style="margin-top:5px; width: 100%; margin: 0 auto"
 					columns="4" columnClasses="labels tw-five-percent,contents tw-five-percent,
 					labels tw-five-percent,contents tw-five-percent">					 
 					 
@@ -249,19 +443,20 @@
 				    <h:outputText value="#{registerClientBean.selectedClient.sputum.afb}"/>
 				    </h:panelGroup>
 				    </p:panelGrid>
+				    </p:fieldset>
 				    
-				    <p:panelGrid style="margin-top:10px; width: 100%; margin: 0 auto"
+				    <!--  p:panelGrid style="margin-top:5px; width: 100%; margin: 0 auto"
 					columns="1">
 					<h:panelGroup>
-						<h2>STOOL RE</h2>
+						<h3>STOOL RE</h3>
 						
 					</h:panelGroup>
 					 
  					
-					</p:panelGrid>
+					</p:panelGrid -->
 					
-					
-					<p:panelGrid style="margin-top:20px; width: 100%; margin: 0 auto"
+					 <p:fieldset legend="STOOL RE" toggleable="true" toggleSpeed="500">
+					<p:panelGrid style="margin-top:5px; width: 100%; margin: 0 auto"
 					columns="4" columnClasses="labels tw-five-percent,contents tw-five-percent,
 					labels tw-five-percent,contents tw-five-percent">					 
 					 
@@ -301,11 +496,14 @@
 				    
 				    
 				    </p:panelGrid>
+				    </p:fieldset>
 					
 				</p:panel>
+				<p:column>
+					<ui:include src="/pages/includes/trackReport.xhtml" />				
+				</p:column>
 				
-				
-				
+				</p:row>
 					
 		
 				
@@ -316,12 +514,15 @@
 				
 				
 				
-				<p:panelGrid style="margin-top:10px; width: 25%; margin: 0 auto"
-					columns="2">
-				
+				<p:panelGrid style="margin-top:10px; width: 25%; margin: 0 auto;"
+					>
+				<p:row>
+				<p:column>
 				<p:commandButton value="Declare " styleClass="richButton" 
 				 action="#{registerClientBean.declareFinalResults}">
 				</p:commandButton>
+				</p:column>
+				<p:column>
 				<p:selectOneMenu style="font-size:15px;" 
 				value="#{registerClientBean.selectedClient.clientStatus}">
 					<f:selectItem itemLabel="Fit" itemValue="Fit"/>
@@ -331,10 +532,17 @@
 					<f:selectItem itemLabel="Repeat after 3 Week" itemValue="Repeat after 3 Week"/>
 					<f:selectItem itemLabel="Repeat after 4 Week" itemValue="Repeat after 4 Week"/>					
 				</p:selectOneMenu>
-				
-				<p:commandButton value="Back " styleClass="richButton" 
+				</p:column>
+				</p:row>
+				<p:row >
+				<p:column colspan="2" style="text-align: center;">
+				<p:commandButton value="Back " styleClass="richButton" style="text-align: center;" 
 				 action="finalDeclaration"/>
+				 </p:column>
+				 </p:row>
 				</p:panelGrid>
+				
+				
 				
 				
 </h:form>
