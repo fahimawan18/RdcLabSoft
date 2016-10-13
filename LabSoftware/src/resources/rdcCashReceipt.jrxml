@@ -2,7 +2,7 @@
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="rdcCashReceipt" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="dae0d09f-9b2d-4806-8194-42db847e9111">
 	<property name="ireport.zoom" value="1.0"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="240"/>
+	<property name="ireport.y" value="200"/>
 	<parameter name="clientId" class="java.lang.String"/>
 	<queryString>
 		<![CDATA[SELECT
@@ -13,12 +13,18 @@ w.applied_for_position, rect_agency,
  f.id as cash_receipt_id, date_format(f.cash_paid_Date,'%d/%b/%Y') as cash_DATE,
 date_format(w.insert_Date,'%d/%b/%Y') as REGN_DATE,
 f.cash_amount,
-w.repeat_status
+w.repeat_status,
+s.scanned_photo,
+s.scanned_passport,
+s2.scanned_photo as sp
 
 FROM
-     wf_client w, wf_client_finance f
+     wf_client w, wf_client_finance f, wf_client_scanned_files s
+, wf_client_scanned_files s2
 where
 w.id = f.client_id
+and w.id = s.client_id
+and w.id = s2.client_id
 and w.id = $P{clientId}]]>
 	</queryString>
 	<field name="client_id" class="java.lang.Integer"/>
@@ -59,6 +65,13 @@ and w.id = $P{clientId}]]>
 	<field name="repeat_status" class="java.lang.String">
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
+	<field name="scanned_photo" class="java.io.InputStream">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="scanned_passport" class="java.io.InputStream">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="sp" class="java.io.InputStream"/>
 	<background>
 		<band splitType="Stretch"/>
 	</background>
@@ -98,6 +111,10 @@ and w.id = $P{clientId}]]>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{client_id}]]></textFieldExpression>
 			</textField>
+			<image>
+				<reportElement x="159" y="8" width="100" height="50" uuid="53d49cb1-9572-463a-b9c6-ccd4e21c3efe"/>
+				<imageExpression><![CDATA[$F{sp}]]></imageExpression>
+			</image>
 		</band>
 	</title>
 	<pageHeader>
@@ -158,7 +175,7 @@ and w.id = $P{clientId}]]>
 		</band>
 	</pageHeader>
 	<detail>
-		<band height="255" splitType="Stretch">
+		<band height="287" splitType="Stretch">
 			<staticText>
 				<reportElement x="0" y="0" width="310" height="21" uuid="eb77bfcf-39bc-4ab0-a263-cd414ee69f44"/>
 				<textElement>
@@ -184,7 +201,7 @@ and w.id = $P{clientId}]]>
 				<textFieldExpression><![CDATA[$F{cash_amount}+" /- PKR"]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="410" y="222" width="145" height="33" uuid="2db5c1e8-5d95-4d22-a7a0-b0bddcfed992"/>
+				<reportElement x="410" y="253" width="145" height="33" uuid="2db5c1e8-5d95-4d22-a7a0-b0bddcfed992"/>
 				<textElement textAlignment="Center">
 					<font size="12" isUnderline="false"/>
 				</textElement>
@@ -192,7 +209,7 @@ and w.id = $P{clientId}]]>
 Signed By]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="206" y="236" width="145" height="19" uuid="aa8c8e23-7b00-43a9-8f82-74e6ec4a2003"/>
+				<reportElement x="206" y="267" width="145" height="19" uuid="aa8c8e23-7b00-43a9-8f82-74e6ec4a2003"/>
 				<textElement textAlignment="Center">
 					<font size="10" isBold="true" isUnderline="false"/>
 				</textElement>
@@ -318,6 +335,111 @@ Agent:]]></text>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{repeat_status}]]></textFieldExpression>
 			</textField>
+			<staticText>
+				<reportElement x="0" y="207" width="69" height="20" uuid="42214f6f-03a8-4b68-81f4-8f741b985da1"/>
+				<textElement verticalAlignment="Middle">
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[Cashier]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="227" width="69" height="20" uuid="3b36e775-43c2-462a-a774-3d70875cefc5"/>
+				<textElement verticalAlignment="Middle">
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[Eyes]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="247" width="69" height="20" uuid="d1e137f8-bcf5-4b8e-8efa-18b228f35006"/>
+				<textElement verticalAlignment="Middle">
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[GPE]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="141" y="207" width="69" height="20" uuid="dfe8a9a7-536c-44d5-9116-fdb9e275fd1e"/>
+				<textElement verticalAlignment="Middle">
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[X-Ray]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="141" y="227" width="69" height="20" uuid="ad6bb468-a53b-4291-a308-5974bf867c4f"/>
+				<textElement verticalAlignment="Middle">
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[Sampling]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="69" y="207" width="69" height="20" uuid="64036a05-a53a-4903-b5da-4e19d2ebd20c"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="69" y="227" width="69" height="20" uuid="c85315fb-6dba-4bbd-aba8-86ef21cf6458"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="69" y="247" width="69" height="20" uuid="483ced77-005d-4c57-9c09-c8d0d48a63c3"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="210" y="207" width="69" height="20" uuid="499b9e81-3be5-4721-95d5-21bc3176fa7d"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="210" y="227" width="69" height="20" uuid="1ac145a6-9af8-4d5f-979d-bc965537ef49"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[]]></text>
+			</staticText>
 		</band>
 		<band height="28">
 			<staticText>
@@ -361,6 +483,10 @@ Agent:]]></text>
 				</textElement>
 				<text><![CDATA[626, Street No 8, Chaklala Scheme 3, Rawalpindi]]></text>
 			</staticText>
+			<image>
+				<reportElement x="159" y="9" width="100" height="50" uuid="07ca5adc-8c1f-4d90-a70b-8a681d31c157"/>
+				<imageExpression><![CDATA[$F{scanned_photo}]]></imageExpression>
+			</image>
 		</band>
 		<band height="35">
 			<staticText>
@@ -417,7 +543,7 @@ Agent:]]></text>
 				<text><![CDATA[]]></text>
 			</staticText>
 		</band>
-		<band height="255">
+		<band height="287">
 			<staticText>
 				<reportElement x="0" y="1" width="310" height="21" uuid="40287d26-c353-43ca-91c3-4801e0d325a3"/>
 				<textElement>
@@ -443,7 +569,7 @@ Agent:]]></text>
 				<textFieldExpression><![CDATA[$F{cash_amount}+" /- PKR"]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="410" y="222" width="145" height="33" uuid="8e31476a-d4e4-43c8-b77a-c07d27b81fa7"/>
+				<reportElement x="410" y="254" width="145" height="33" uuid="8e31476a-d4e4-43c8-b77a-c07d27b81fa7"/>
 				<textElement textAlignment="Center">
 					<font size="12" isUnderline="false"/>
 				</textElement>
@@ -451,7 +577,7 @@ Agent:]]></text>
 Signed By]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="206" y="236" width="145" height="19" uuid="2174547e-3e55-4a33-9e65-1e3a4f9fa1b8"/>
+				<reportElement x="206" y="268" width="145" height="19" uuid="2174547e-3e55-4a33-9e65-1e3a4f9fa1b8"/>
 				<textElement textAlignment="Center">
 					<font size="10" isBold="true" isUnderline="false"/>
 				</textElement>
@@ -577,6 +703,111 @@ Agent:]]></text>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{repeat_status}]]></textFieldExpression>
 			</textField>
+			<staticText>
+				<reportElement x="141" y="228" width="69" height="20" uuid="02571668-7880-4b92-8e12-a45709bf7d37"/>
+				<textElement verticalAlignment="Middle">
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[Sampling]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="3" y="249" width="69" height="20" uuid="c5560cc2-d32b-4505-a039-7eeb28f3d934"/>
+				<textElement verticalAlignment="Middle">
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[GPE]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="72" y="209" width="69" height="20" uuid="2537590b-ecac-49a0-b822-b723306b6280"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="141" y="208" width="69" height="20" uuid="4cf05b32-b5a3-442a-8bb4-47babb5e1dd8"/>
+				<textElement verticalAlignment="Middle">
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[X-Ray]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="210" y="228" width="69" height="20" uuid="24fd937a-c224-4ce6-bd29-c281577332c3"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="210" y="208" width="69" height="20" uuid="fc2e44d9-ac6d-4be4-b1f7-661171bc827e"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="72" y="229" width="69" height="20" uuid="d4504602-c6b1-4eaf-a26f-53fa09c12e34"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="72" y="249" width="69" height="20" uuid="9c94f26d-4e63-4d09-9e6b-a388b05896e6"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="3" y="209" width="69" height="20" uuid="39a3d5ea-1ab7-4966-8b9f-eb89e6c1d3db"/>
+				<textElement verticalAlignment="Middle">
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[Cashier]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="3" y="229" width="69" height="20" uuid="3037f827-d856-476d-b4a6-97bd025ee7f9"/>
+				<textElement verticalAlignment="Middle">
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[Eyes]]></text>
+			</staticText>
 		</band>
 	</detail>
 </jasperReport>
