@@ -17,15 +17,15 @@
 					paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
 					id="tblTracking">
 
-					<p:column headerText="Activity">
+					<p:column headerText="Activity" style="width: 40%">
 						<h:outputText value="#{mylist.activity}" />
 					</p:column>
 					
-					<p:column headerText="Operator">
+					<p:column headerText="Operator" style="width: 30%">
 						<h:outputText value="#{mylist.operator.loggedUserString}" />
 					</p:column>
 
-					<p:column headerText="Time" sortable="true" sortBy="#{mylist.activityTime}">
+					<p:column headerText="Time" sortable="true" sortBy="#{mylist.activityTime}" style="width: 30%">
 						<h:outputText value="#{mylist.activityTime}" >
 							<f:convertDateTime 
 							pattern="dd-MMM-yy hh:mm:ss a"></f:convertDateTime>
