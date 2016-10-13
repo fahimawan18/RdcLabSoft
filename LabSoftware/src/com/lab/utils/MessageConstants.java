@@ -9,6 +9,7 @@ public final class MessageConstants {
 		public static final String SAVE_SUCCESS = "Data Saved Successfully";
 		public static final String SAVE_FAILURE = "Data Could not be saved";
 		public static final String VALUE_REQUIRED = "Value is required";
+		public static final String MANDATORY_REQUIRED = "Mandatory fields are required";
 		public static final String INVALID_DATE = "Start Date should be less than End Date";
 		public static final String UPDATE_SUCCESS = "Data has been updated successfully";
 		public static final String UPDATE_FAILURE = "Data could not be updated";

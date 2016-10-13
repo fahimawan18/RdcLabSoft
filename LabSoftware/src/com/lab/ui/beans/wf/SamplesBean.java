@@ -55,7 +55,12 @@ public class SamplesBean {
 		System.out.println("in add client Samples bean method");
 //		new SamplesBll().addSamples(toAdd, ub.getCurrentUser());
 		
-		if(new SamplesBll().addSamples(this.selectedClient, ub.getCurrentUser()))
+		if(validateData() == false)
+		{
+			MessageUtils.error(MessageConstants.Messages.MANDATORY_REQUIRED);
+			
+		}
+		else if(new SamplesBll().addSamples(this.selectedClient, ub.getCurrentUser()))
 		{
 //			FacesUtils.addInfoMessage("Samples Details added successfully");
 			MessageUtils.info(MessageConstants.Messages.UPDATE_SUCCESS);
@@ -73,6 +78,33 @@ public class SamplesBean {
 		return "";
 	}
 	
+	private boolean validateData()
+	{
+		
+		if(this.selectedClient.getSamples()==null || this.selectedClient.getSamples().getId()==null 
+			|| this.selectedClient.getSamples().getId()<=0)
+		{
+			return false;
+		}
+		if(this.selectedClient.getSamples().getBloodSample()==null || this.selectedClient.getSamples().getBloodSample().trim().length()<=0)
+		{
+			return false;
+		}
+		if(this.selectedClient.getSamples().getUrineSample()==null || this.selectedClient.getSamples().getUrineSample().trim().length()<=0)
+		{
+			return false;
+		}
+		if(this.selectedClient.getSamples().getSputumSample()==null || this.selectedClient.getSamples().getSputumSample().trim().length()<=0)
+		{
+			return false;
+		}
+		if(this.selectedClient.getSamples().getStoolSample()==null || this.selectedClient.getSamples().getStoolSample().trim().length()<=0)
+		{
+			return false;
+		}
+		
+		return true;
+	}
 
 	public String getPrintUrl() {
 		return printUrl;
