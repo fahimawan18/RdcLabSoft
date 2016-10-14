@@ -47,7 +47,7 @@
 					 
 					 <h:outputText value="Blood Sample Collected:" />
 				    <h:panelGroup>
-				    <h:selectOneMenu value="#{registerClientBean.selectedClient.samples.bloodSample}">				    	
+				    <h:selectOneMenu value="#{samplesBean.selectedClient.samples.bloodSample}">				    	
 				    	<f:selectItem itemLabel="Select One" itemValue=""></f:selectItem>
 				    	<f:selectItems value="#{crit.threeOptionsList}"></f:selectItems>
 				    </h:selectOneMenu>
@@ -55,7 +55,7 @@
 				    
 				    <h:outputText value="Urine Sample Collected:" />
 				    <h:panelGroup>
-				    <h:selectOneMenu value="#{registerClientBean.selectedClient.samples.urineSample}">				    	
+				    <h:selectOneMenu value="#{samplesBean.selectedClient.samples.urineSample}">				    	
 				    	<f:selectItem itemLabel="Select One" itemValue=""></f:selectItem>
 				    	<f:selectItems value="#{crit.threeOptionsList}"></f:selectItems>
 				    </h:selectOneMenu>
@@ -63,7 +63,7 @@
 				    
 				     <h:outputText value="Sputum Sample Collected:" />
 				    <h:panelGroup>
-				    <h:selectOneMenu value="#{registerClientBean.selectedClient.samples.sputumSample}">				    	
+				    <h:selectOneMenu value="#{samplesBean.selectedClient.samples.sputumSample}">				    	
 				    	<f:selectItem itemLabel="Select One" itemValue=""></f:selectItem>
 				    	<f:selectItems value="#{crit.threeOptionsList}"></f:selectItems>
 				    </h:selectOneMenu>
@@ -71,7 +71,7 @@
 				     
 				    <h:outputText value="Stool Sample Collected:" />
 				    <h:panelGroup>
-				    <h:selectOneMenu value="#{registerClientBean.selectedClient.samples.stoolSample}">		
+				    <h:selectOneMenu value="#{samplesBean.selectedClient.samples.stoolSample}">		
 				   		 <f:selectItem itemLabel="Select One" itemValue=""></f:selectItem>		    	
 				    	<f:selectItems value="#{crit.threeOptionsList}"></f:selectItems>
 				    </h:selectOneMenu>
@@ -98,7 +98,7 @@
 				  
 				    <h:outputText value="Remarks/Observation:" />
 				    <h:panelGroup>				    
-				    <h:inputTextarea style="width:150px;height:150px;" value="#{registerClientBean.selectedClient.samples.remarks}"/>
+				    <h:inputTextarea style="width:150px;height:150px;" value="#{samplesBean.selectedClient.samples.remarks}"/>
 				    </h:panelGroup>
 				    
 				   
