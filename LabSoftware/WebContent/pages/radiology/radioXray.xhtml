@@ -17,10 +17,10 @@
 					<ui:include src="/pages/includes/basicSearchFields.xhtml"></ui:include>
 					
 					<p:panelGrid style="margin-top:20px; width: 60%; margin: 0 auto"
-					columns="2" columnClasses="fifty-percent, fifty-percent">
+					columns="4" >
 					
 					 
- 					 <p:outputLabel value="Cash Payment Status"/>
+ 					 <p:outputLabel value="Cash Status"/>
  					 <h:selectOneMenu value="#{registerClientBean.toSearchClient.cashPayment.cashPaidStatus}">
  					 	<f:selectItem itemLabel="Paid" itemValue="Paid"></f:selectItem>
  					 </h:selectOneMenu>
@@ -36,8 +36,8 @@
  
  
   	<h:commandButton value="Search" styleClass="richButton" action="#{registerClientBean.searchClients}"/>
+  	<p:poll interval="5" rendered="true" listener="#{registerClientBean.searchRadiologistClients}" update="tbl1,panel2" />
   	
-  	<br/>
   	
   	<p:dataTable value="#{registerClientBean.clientsList}" var="mylist"
 					paginatorPosition="top" editable="true" rows="12" paginator="true"
@@ -66,9 +66,13 @@
 						<h:outputText value="#{mylist.passportNo}" />
 					</p:column>
 					
+					<p:column headerText="Radiology Status">
+						<h:outputText value="#{mylist.xray.chest == null ? 'Not Saved' : 'Saved'}" />
+					</p:column>
+					
 					<p:column headerText="Radiology Details">
 						<p:commandButton action="#{navBean.navRadioXrayDetails}" 
-						value="Update Details">
+						value="Update Details" disabled="#{mylist.xray.chest != null}">
 							<f:setPropertyActionListener target="#{registerClientBean.selectedClient}" value="#{mylist}" />
 						</p:commandButton>
 					</p:column>

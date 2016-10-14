@@ -391,6 +391,137 @@ public class RegisterClientBll
 		return list;
 	}
 	
+	
+	public List<WfClient> searchRadiologistClients(WfClient toSearchClient)
+	{
+		Session session = null;
+		List<WfClient> list = new ArrayList<WfClient>();
+		System.out.println("In search client Method bll");
+		try
+		{
+			session = HibernateUtilsAnnot.currentSession();			
+			Criteria cr = session.createCriteria(WfClient.class);
+			
+			if(toSearchClient!=null)
+			{
+				if(toSearchClient.getId()!=null && toSearchClient.getId()>0)
+				{
+					cr.add(Restrictions.eq("id", toSearchClient.getId()));
+				}
+				
+				
+				if(toSearchClient.getGamcaSlipNo()!=null && toSearchClient.getGamcaSlipNo().trim().length()>0)
+				{
+					cr.add(Restrictions.ilike("gamcaSlipNo", toSearchClient.getGamcaSlipNo()));
+				}
+				
+				if(toSearchClient.getPassportNo()!=null && toSearchClient.getPassportNo().trim().length()>0)
+				{
+					cr.add(Restrictions.ilike("passportNo", toSearchClient.getPassportNo()));
+				}
+				
+				if(toSearchClient.getClientStatus()!=null && 
+						toSearchClient.getClientStatus().contains(MessageConstants.Constants.ClientStatus.REPEATER))
+				{
+					cr.add(Restrictions.ilike("clientStatus", MessageConstants.Constants.ClientStatus.REPEATER+"%"));
+				}
+				else if(toSearchClient.getClientStatus()!=null && toSearchClient.getClientStatus().trim().length()>0)
+				{
+					cr.add(Restrictions.eq("clientStatus", toSearchClient.getClientStatus()));
+				}
+				else
+				{
+					
+					cr.add(Restrictions.disjunction()
+//	                        .add(Restrictions.ilike("clientStatus", MessageConstants.Constants.ClientStatus.REPEATER+"%"))
+	                        .add(Restrictions.eq("clientStatus", MessageConstants.Constants.ClientStatus.REGISTERED))
+	                        );
+				}
+				if(toSearchClient.getCashPayment()!=null 
+						)
+				{
+					System.out.println("*************** Adding cash payment");
+//					Criteria cr2 = cr.createCriteria("cashPayment",Criteria.LEFT_JOIN);
+					cr.createAlias("cashPayment", "cashP");
+					
+					if(toSearchClient.getCashPayment().getId()!=null && 
+							toSearchClient.getCashPayment().getId()>0)
+					{
+//						cr2.add(Restrictions.eq("id", toSearchClient.getCashPayment().getId()));
+						cr.add(Restrictions.eq("cashP.id", toSearchClient.getCashPayment().getId()));
+						
+					}
+					if(toSearchClient.getCashPayment().getCashPaidStatus()!=null &&
+							toSearchClient.getCashPayment().getCashPaidStatus().trim().length()>0)
+					{
+						if(toSearchClient.getCashPayment().getCashPaidStatus().equals(MessageConstants.Constants.CashPaymentStatus.PAID))
+						{
+//							cr2.add(Restrictions.like("cashPaidStatus", MessageConstants.Constants.CashPaymentStatus.PAID));
+							cr.add(Restrictions.like("cashP.cashPaidStatus", MessageConstants.Constants.CashPaymentStatus.PAID));
+//							cr2.add(Restrictions.isNotNull("cashAmount"));
+							cr.add(Restrictions.isNotNull("cashP.cashAmount"));
+						}
+						else
+						{
+//							cr2.add(Restrictions.like("cashPaidStatus", MessageConstants.Constants.CashPaymentStatus.UNPAID));
+							cr.add(Restrictions.like("cashP.cashPaidStatus", MessageConstants.Constants.CashPaymentStatus.UNPAID));
+						}
+						
+		                        
+					}
+					
+				}
+				
+				if(toSearchClient.getProgress()!=null 
+						)
+				{
+					System.out.println("*************** Adding progress");
+//					Criteria cr2 = cr.createCriteria("progress",Criteria.LEFT_JOIN);
+					cr.createAlias("progress", "pro");
+					
+					if(toSearchClient.getProgress().getId()!=null && 
+							toSearchClient.getProgress().getId()>0)
+					{
+//						cr2.add(Restrictions.eq("id", toSearchClient.getProgress().getId()));
+						cr.add(Restrictions.eq("pro.id", toSearchClient.getProgress().getId()));
+					}
+					if(toSearchClient.getProgress().getPathologist()!=null &&
+							toSearchClient.getProgress().getPathologist().trim().length()>0)
+					{
+//						cr2.add(Restrictions.ilike("pathologist", toSearchClient.getProgress().getPathologist()+"%"));
+						cr.add(Restrictions.ilike("pro.pathologist", toSearchClient.getProgress().getPathologist()+"%"));
+					}
+					
+				}
+			}
+			cr.createAlias("xray", "x");
+			cr.add(Restrictions.isNull("x.chest"));
+			//cr.setFetchMode("scannedFiles", FetchMode.LAZY);
+			
+			list = cr.list();
+			
+			for(WfClient c:list)
+			{
+				Hibernate.initialize(c.getTrackReport());
+				
+			}
+	
+		}
+		catch(HibernateException e)
+		{
+			e.printStackTrace();
+			return null;
+		}
+		finally
+		{
+			HibernateUtilsAnnot.closeSession();
+		}
+		
+		return list;
+	}
+	
+	
+	
 	public boolean uploadFiles(WfClient toUpdate, FileUploadView fileView)
 	{
 		System.out.println("in upload gamca bll method");

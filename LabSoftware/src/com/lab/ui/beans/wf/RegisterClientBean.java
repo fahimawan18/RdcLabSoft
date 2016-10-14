@@ -205,6 +205,22 @@ public class RegisterClientBean
 		return "";
 	}
 	
+	
+	public String searchRadiologistClients()
+	{	
+		RegisterClientBll bll =new RegisterClientBll();
+			this.toSearchClient.setId(null);
+			this.toSearchClient.setPassportNo("");
+			this.toSearchClient.setGamcaSlipNo("");
+			this.clientsList = bll.searchRadiologistClients(toSearchClient);
+			System.out.println("**************** List retreived ... " + clientsList.size());
+			
+			initializeNullObjs();
+		
+		
+		return "";
+	}
+	
 	public String uploadScannedFiles()
 	{		
 		RegisterClientBll bll =new RegisterClientBll();
@@ -346,7 +362,7 @@ public class RegisterClientBean
 //			FacesUtils.addInfoMessage("Samples Details added successfully");
 			MessageUtils.info(MessageConstants.Messages.UPDATE_SUCCESS);
 			this.selectedClient = new WfClient();
-			searchClients();
+			searchRadiologistClients();
 			return NavigationConstants.RADIO_XRAY_NAVIGATION;
 			
 		}
