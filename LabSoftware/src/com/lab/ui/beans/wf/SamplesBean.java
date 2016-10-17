@@ -81,8 +81,8 @@ public class SamplesBean {
 	private boolean validateData()
 	{
 		
-		if(this.selectedClient.getSamples()==null || this.selectedClient.getSamples().getId()==null 
-			|| this.selectedClient.getSamples().getId()<=0)
+		if(this.selectedClient.getSamples()==null )//|| this.selectedClient.getSamples().getId()==null 
+			//|| this.selectedClient.getSamples().getId()<=0)
 		{
 			return false;
 		}
