@@ -425,6 +425,7 @@ public class RegisterClientBean
 	{
 		System.out.println("in verify results method Fit");
 		bll =new RegisterClientBll();
+		bll.addLabResults(this.selectedClient);
 		if(bll.verifyResultsFitOrUnfit(selectedClient, MessageConstants.Constants.PathologistStatus.FIT))
 		{
 //			FacesUtils.addInfoMessage("Lab Results verified successfully");
@@ -448,6 +449,7 @@ public class RegisterClientBean
 	{
 		System.out.println("in verify results method Unfit");
 		bll =new RegisterClientBll();
+		bll.addLabResults(this.selectedClient);
 		if(bll.verifyResultsFitOrUnfit(selectedClient, MessageConstants.Constants.PathologistStatus.UNFIT))
 		{
 //			FacesUtils.addInfoMessage("Lab Results verified successfully");
@@ -471,6 +473,7 @@ public class RegisterClientBean
 	{
 		System.out.println("in repeat with fresh samples method");
 		bll =new RegisterClientBll();
+		bll.addLabResults(this.selectedClient);
 		if(bll.repeatWithFreshSamples(this.selectedClient))
 		{
 //			FacesUtils.addInfoMessage("Data saved successfully");

@@ -63,6 +63,10 @@ public class ApplicationUsers
 	@Column(name="PROFILE_STATUS")
 	private String profileStatus;
 	
+	@Column(name="THEME", insertable=false)
+	private String theme;
+	
+	
 	
 	public ApplicationUsers() 
 	{
@@ -244,6 +248,16 @@ public class ApplicationUsers
 
 	public void setRolePrintRoom(String rolePrintRoom) {
 		this.rolePrintRoom = rolePrintRoom;
+	}
+
+
+	public String getTheme() {
+		return theme;
+	}
+
+
+	public void setTheme(String theme) {
+		this.theme = theme;
 	}
 
 

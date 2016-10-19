@@ -18,7 +18,7 @@
 					
 				</p:panel>
  
-<h:commandButton value="Search" styleClass="richButton" 
+<p:commandButton value="Search" styleClass="richButton" icon="fa fa-fw fa-search" update="tbl1"
   	action="#{registerClientBean.searchClients}"/> 
  
   	
@@ -31,25 +31,25 @@
 					id="tbl1">
 
 					<p:column headerText="Client ID ">
-						<h:outputText value="#{mylist.id}" />
+						<p:outputLabel value="#{mylist.id}" />
 					</p:column>
 					
 					<p:column headerText="RDC Token / GAMCA Slip">
-						<h:outputText value="#{mylist.rdcTokenNo}" /> / 
-						<h:outputText value="#{mylist.gamcaSlipNo}" />
+						<p:outputLabel value="#{mylist.rdcTokenNo}" /> / 
+						<p:outputLabel value="#{mylist.gamcaSlipNo}" />
 					</p:column>
 
 					<p:column headerText="First Name / Last Name">
-						<h:outputText value="#{mylist.firstName}" />/
-						<h:outputText value="#{mylist.lastName}" />
+						<p:outputLabel value="#{mylist.firstName}" />/
+						<p:outputLabel value="#{mylist.lastName}" />
 					</p:column>
 
 					<p:column headerText="CNIC">
-						<h:outputText value="#{mylist.cnicNo}" />
+						<p:outputLabel value="#{mylist.cnicNo}" />
 					</p:column>
 					
 					<p:column headerText="Passport No">
-						<h:outputText value="#{mylist.passportNo}" />
+						<p:outputLabel value="#{mylist.passportNo}" />
 					</p:column>
 					
 				
@@ -58,7 +58,7 @@
 					
 					
 					<p:column headerText="Update">
-						<p:commandButton action="#{navBean.navUpdateClientDetails}" icon="ui-icon-update" value="Update Details">
+						<p:commandButton action="#{navBean.navUpdateClientDetails}" icon="fa fa-fw fa-edit" value="Update Details">
 							<f:setPropertyActionListener target="#{registerClientBean.toAddClient}" value="#{mylist}" />
 						</p:commandButton>
 					</p:column>		

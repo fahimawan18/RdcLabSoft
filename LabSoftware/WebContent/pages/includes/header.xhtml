@@ -14,93 +14,93 @@
 					update=":content" icon="ui-icon-home" rendered="false">
 				</p:menuitem>
 
-				<p:submenu label="Registration" icon="ui-icon-clock" rendered="#{userBean.currentUser.roleRegn=='Y'}">
-					<p:menuitem value="Register New Client" icon="ui-icon-plusthick"
+				<p:submenu label="Registration" icon="fa fa-fw fa-users" rendered="#{userBean.currentUser.roleRegn=='Y'}">
+					<p:menuitem value="Register New Client" icon="fa fa-fw fa-plus-square"
 						ajax="true" name="pageViewID"
 						action="#{navBean.navRegisterClient}" update=":content" />
 					<p:separator />
-					<p:menuitem value="Update Existing Client" icon="ui-icon-plusthick"
+					<p:menuitem value="Update Existing Client" icon="fa fa-fw fa-edit"
 						ajax="true" name="pageViewID"
 						action="#{navBean.navUpdateClient}" update=":content" />
 					<p:separator />
-					<p:menuitem value="Upload Scanned Data" icon="ui-icon-plusthick"
+					<p:menuitem value="Upload Scanned Data" icon="fa fa-fw fa-upload"
 						ajax="true" name="pageViewID"
 						action="#{navBean.navUploadScanned}" update=":content" />
 					<p:separator />
-					<p:menuitem value="Reset Repeater Clients" icon="ui-icon-plusthick"
+					<p:menuitem value="Reset Repeater Clients" icon="fa fa-fw fa-refresh"
 						ajax="true" name="pageViewID"
 						action="#{navBean.navResetRepeater}" update=":content" />				
 				</p:submenu>
 				
-				<p:submenu label="Cashier" icon="ui-icon-clock" rendered="#{userBean.currentUser.roleFinance=='Y'}">
+				<p:submenu label="Cashier" icon="fa fa-fw fa-money" rendered="#{userBean.currentUser.roleFinance=='Y'}">
 					
-					<p:menuitem value="Cash Payment" icon="ui-icon-plusthick"
+					<p:menuitem value="Cash Payment" icon="fa fa-fw fa-money"
 						ajax="true" name="pageViewID"
 						action="#{navBean.navCashPayment}" update=":content" />				
 				</p:submenu>
 				
-				<p:submenu label="Medical" icon="ui-icon-plushthick" 
+				<p:submenu label="Medical" icon="fa fa-fw fa-stethoscope" 
 				rendered="#{userBean.currentUser.roleMedical=='Y'}">
-					<p:menuitem value="GPE" icon="ui-icon-plusthick"
+					<p:menuitem value="GPE" icon="fa fa-fw fa-stethoscope" 
 						ajax="true" name="pageViewID"
 						action="#{navBean.navMedicalGpe}" update=":content" />
 				</p:submenu>
 				
-				<p:submenu label="Radiology" icon="ui-icon-plushthick" 
+				<p:submenu label="Radiology" icon="fa fa-fw fa-hospital-o" 
 				rendered="#{(userBean.currentUser.roleRadiologist=='Y') || (userBean.currentUser.roleXray=='Y')}">
-					<p:menuitem value="X-Ray Room" icon="ui-icon-plusthick"
+					<p:menuitem value="X-Ray Room" icon="fa fa-fw fa-hospital-o" 
 						ajax="true" name="pageViewID" rendered="#{userBean.currentUser.roleXray=='Y'}"
 						action="#{navBean.navMedicalXray}" update=":content" />
 					<p:separator />
-					<p:menuitem value="Radiologist" icon="ui-icon-plusthick"
+					<p:menuitem value="Radiologist" icon="fa fa-fw fa-hospital-o" 
 						ajax="true" name="pageViewID" rendered="#{userBean.currentUser.roleRadiologist=='Y'}"
 						action="#{navBean.navRadioXray}" update=":content" />
 								
 				</p:submenu>
 				
-				<p:submenu label="Sampling &amp; Lab" icon="ui-icon-plushthick" 
+				<p:submenu label="Sampling &amp; Lab" icon="fa fa-fw fa-hospital-o" 
 				rendered="#{(userBean.currentUser.roleSample=='Y') || (userBean.currentUser.roleLab=='Y')}">
-					<p:menuitem value="Sampling Room" icon="ui-icon-plusthick"
+					<p:menuitem value="Sampling Room" icon="fa fa-fw fa-hospital-o"
 						ajax="true" name="pageViewID" rendered="#{userBean.currentUser.roleSample=='Y'}"
 						action="#{navBean.navSample}" update=":content" />
 					<p:separator />
-					<p:menuitem value="Lab Management" icon="ui-icon-plusthick"
+					<p:menuitem value="Lab Management" icon="fa fa-fw fa-hospital-o"
 						ajax="true" name="pageViewID" rendered="#{userBean.currentUser.roleLab=='Y'}"
 						action="#{navBean.navLab}" update=":content" />
 								
 				</p:submenu>
 				
-				<p:submenu label="Pathologist" icon="ui-icon-plushthick" 
+				<p:submenu label="Pathologist" icon="fa fa-fw fa-hospital-o" 
 				rendered="#{userBean.currentUser.rolePathology=='Y'}">
 					
 					
-					<p:menuitem value="Verify Lab Results" icon="ui-icon-plusthick"
+					<p:menuitem value="Verify Lab Results" icon="fa fa-fw fa-hospital-o" 
 						ajax="true" name="pageViewID"
 						action="#{navBean.navPathoVerifyLabResult}" update=":content" />
 										
 								
 				</p:submenu>
 				
-				<p:submenu label="Medical Director" icon="ui-icon-plushthick" 
+				<p:submenu label="Medical Director" icon="fa fa-fw fa-user" 
 				rendered="#{userBean.currentUser.roleDirector=='Y'}">
 					
-					<p:menuitem value="Final Declaration" icon="ui-icon-plusthick"
+					<p:menuitem value="Final Declaration" icon="fa fa-fw fa-user" 
 						ajax="true" name="pageViewID"
 						action="#{navBean.navDirectorFinal}" update=":content" />
 						<p:separator/>
 					
 				</p:submenu>
 				
-				<p:submenu label="Reporting Room" icon="ui-icon-plushthick" 
+				<p:submenu label="Reporting Room" icon="fa fa-fw fa-print" 
 				rendered="#{userBean.currentUser.rolePrintRoom=='Y'}">
 					
-					<p:menuitem value="Print Report" icon="ui-icon-print"
+					<p:menuitem value="Print Report" icon="fa fa-fw fa-print" 
 						ajax="true" name="pageViewID"
 						action="#{navBean.navPrintReport}" update=":content" />	
 					
 				</p:submenu>
 				
-				<p:submenu label="Advance Search" icon="ui-icon-search"
+				<p:submenu label="Advance Search" icon="fa fa-fw fa-search" 
 				rendered="#{(userBean.currentUser.roleRegn=='Y') || (userBean.currentUser.roleAdmin=='Y')}"
 				>
 					
@@ -108,32 +108,32 @@
 						ajax="true" name="pageViewID"
 						action="#{navBean.navAdvanceSearch}" update=":content" />
 						<p:separator/>
-					<p:menuitem value="Client Status List" icon="ui-icon-plusthick"
+					<p:menuitem value="Client Status List" icon="ui-icon-search"
 						ajax="true" name="pageViewID"
 						action="#{navBean.navPathoStatusList}" update=":content" />
 						
 					
 				</p:submenu>				
 
-				<p:submenu label="Admin" icon="ui-icon-gear"
+				<p:submenu label="Admin" icon="fa fa-fw fa-gear"
 					>
 					
-						<p:menuitem value="Add New Users" rendered="#{userBean.currentUser.roleAdmin == 'Y'}"
+						<p:menuitem value="Add New Users" rendered="#{userBean.currentUser.roleAdmin == 'Y'}" 
 						action="#{navBean.navAdminAddUsersPage}" update=":content"
-						icon=" ui-icon-wrench" />	
+						icon="fa fa-fw fa-plus-square" />	
 						<p:separator />
 						<p:menuitem value="Manage Users" rendered="#{userBean.currentUser.roleAdmin == 'Y'}"
 						action="#{navBean.navAdminManageUsersPage}" update=":content"
-						icon=" ui-icon-wrench" />					
+						icon="fa fa-fw fa-wrench" />					
 					
 					<p:separator />
 					<p:menuitem value="Change Password"
 						action="#{navBean.navAdminChangePassword}" update=":content"
-						icon=" ui-icon-wrench" />
+						icon="fa fa-fw fa-wrench"/>
 					<p:separator />
 					<p:menuitem value="Reset Client Status" rendered="#{userBean.currentUser.roleAdmin == 'Y'}"
 						action="#{navBean.navAdminResetClient}" update=":content"
-						icon=" ui-icon-wrench" />
+						icon="fa fa-fw fa-refresh" />
 					
 				</p:submenu>
 
@@ -146,7 +146,7 @@
   		<br/>
   		
   		<div align="center">
-				<em>	<h:outputText value="#{crit.pageTitle}" style="font-size:25px"/> </em>
+				<em>	<p:outputLabel value="#{crit.pageTitle}" style="font-size:25px"/> </em>
 				</div>
 	</h:form>
 </h:body>

@@ -19,14 +19,14 @@
 					<p:panelGrid style="margin-top:20px; width: 60%; margin: 0 auto"
 					columns="2" columnClasses="fifty-percent, fifty-percent">
  					 <p:outputLabel value="Client Status"/>
- 					 <h:selectOneMenu value="#{registerClientBean.toSearchClient.clientStatus}">
+ 					 <p:selectOneMenu value="#{registerClientBean.toSearchClient.clientStatus}">
  					 	<f:selectItem itemLabel="Repeat" itemValue="Repeat"></f:selectItem>
- 					 </h:selectOneMenu>
+ 					 </p:selectOneMenu>
  					
 					</p:panelGrid>
 				</p:panel>
  
-<h:commandButton value="Search" styleClass="richButton" 
+<p:commandButton value="Search" ajax="false" icon="fa fa-fw fa-search" 
   	action="#{registerClientBean.searchClients}"/> 
  
   	
@@ -39,31 +39,31 @@
 					id="tbl1">
 
 					<p:column headerText="Client ID ">
-						<h:outputText value="#{mylist.id}" />
+						<h:outputLabel value="#{mylist.id}" />
 					</p:column>
 					
 					<p:column headerText="GAMCA Slip">						 
-						<h:outputText value="#{mylist.gamcaSlipNo}" />
+						<h:outputLabel value="#{mylist.gamcaSlipNo}" />
 					</p:column>
 
 					<p:column headerText="First Name / Last Name">
-						<h:outputText value="#{mylist.firstName}" />/
-						<h:outputText value="#{mylist.lastName}" />
+						<h:outputLabel value="#{mylist.firstName}" />/
+						<h:outputLabel value="#{mylist.lastName}" />
 					</p:column>
 
 					<p:column headerText="CNIC">
-						<h:outputText value="#{mylist.cnicNo}" />
+						<h:outputLabel value="#{mylist.cnicNo}" />
 					</p:column>
 					
 					<p:column headerText="Passport No">
-						<h:outputText value="#{mylist.passportNo}" />
+						<h:outputLabel value="#{mylist.passportNo}" />
 					</p:column>
 	
 				</p:dataTable>
 				
 
 						<p:commandButton action="#{registerClientBean.resetRepeater}" 
-						icon="ui-icon-update" value="Reset Status" update="tbl1">
+						icon="fa fa-fw fa-undo" value="Reset Status" update="tbl1">
 						</p:commandButton>
 				<br/>
 				

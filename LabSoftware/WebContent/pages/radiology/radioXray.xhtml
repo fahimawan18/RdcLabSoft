@@ -21,22 +21,22 @@
 					
 					 
  					 <p:outputLabel value="Cash Status"/>
- 					 <h:selectOneMenu value="#{registerClientBean.toSearchClient.cashPayment.cashPaidStatus}">
+ 					 <p:selectOneMenu value="#{registerClientBean.toSearchClient.cashPayment.cashPaidStatus}">
  					 	<f:selectItem itemLabel="Paid" itemValue="Paid"></f:selectItem>
- 					 </h:selectOneMenu>
+ 					 </p:selectOneMenu>
  					 
  					 <p:outputLabel value="X-Ray Taken"/>
- 					 <h:selectOneMenu value="#{registerClientBean.toSearchClient.xray.xrayStatus}">
+ 					 <p:selectOneMenu value="#{registerClientBean.toSearchClient.xray.xrayStatus}">
  					 	<f:selectItem itemLabel="Yes" itemValue="Yes"></f:selectItem>
- 					 </h:selectOneMenu>
+ 					 </p:selectOneMenu>
  					
 					</p:panelGrid>
 				</p:panel>
  
  
  
-  	<h:commandButton value="Search" styleClass="richButton" action="#{registerClientBean.searchClients}"/>
-  	<p:poll interval="5" rendered="true" listener="#{registerClientBean.searchRadiologistClients}" update="tbl1,panel2" />
+  	<p:commandButton value="Search" icon="fa fa-fw fa-search" ajax="false" action="#{registerClientBean.searchClients}"/>
+  	<p:poll interval="10" rendered="true" listener="#{registerClientBean.searchRadiologistClients}" update="tbl1,panel2" />
   	
   	
   	<p:dataTable value="#{registerClientBean.clientsList}" var="mylist"
@@ -45,33 +45,33 @@
 					id="tbl1">
 
 					<p:column headerText="Client ID">
-						<h:outputText value="#{mylist.id}" />
+						<p:outputLabel value="#{mylist.id}" />
 					</p:column>
 					
 					<p:column headerText="RDC Token / GAMCA Slip">
-						<h:outputText value="#{mylist.rdcTokenNo}" /> / 
-						<h:outputText value="#{mylist.gamcaSlipNo}" />
+						<p:outputLabel value="#{mylist.rdcTokenNo}" /> / 
+						<p:outputLabel value="#{mylist.gamcaSlipNo}" />
 					</p:column>
 
 					<p:column headerText="First Name / Last Name">
-						<h:outputText value="#{mylist.firstName}" />/
-						<h:outputText value="#{mylist.lastName}" />
+						<p:outputLabel value="#{mylist.firstName}" />/
+						<p:outputLabel value="#{mylist.lastName}" />
 					</p:column>
 
 					<p:column headerText="CNIC">
-						<h:outputText value="#{mylist.cnicNo}" />
+						<p:outputLabel value="#{mylist.cnicNo}" />
 					</p:column>
 					
 					<p:column headerText="Passport No">
-						<h:outputText value="#{mylist.passportNo}" />
+						<p:outputLabel value="#{mylist.passportNo}" />
 					</p:column>
 					
 					<p:column headerText="Radiology Status">
-						<h:outputText value="#{mylist.xray.chest == null ? 'Not Saved' : 'Saved'}" />
+						<p:outputLabel value="#{mylist.xray.chest == null ? 'Not Saved' : 'Saved'}" />
 					</p:column>
 					
 					<p:column headerText="Radiology Details">
-						<p:commandButton action="#{navBean.navRadioXrayDetails}" 
+						<p:commandButton action="#{navBean.navRadioXrayDetails}" icon="fa fa-fw fa-edit"
 						value="Update Details" disabled="#{mylist.xray.chest != null}">
 							<f:setPropertyActionListener target="#{registerClientBean.selectedClient}" value="#{mylist}" />
 						</p:commandButton>

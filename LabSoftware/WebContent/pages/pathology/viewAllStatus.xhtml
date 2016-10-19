@@ -17,14 +17,14 @@
 					columns="2">
 					
 					<p:outputLabel value="Client ID"></p:outputLabel>
- 					 <h:inputText value="#{registerClientBean.toSearchClient.id}"></h:inputText>
+ 					 <p:inputText value="#{registerClientBean.toSearchClient.id}"></p:inputText>
 					 
 					<p:outputLabel value="RDC Token"></p:outputLabel>
- 					 <h:inputText value="#{registerClientBean.toSearchClient.rdcTokenNo}"></h:inputText>
+ 					 <p:inputText value="#{registerClientBean.toSearchClient.rdcTokenNo}"></p:inputText>
  					 <p:outputLabel value="Passport No"></p:outputLabel>
- 					 <h:inputText value="#{registerClientBean.toSearchClient.passportNo}"></h:inputText>
+ 					 <p:inputText value="#{registerClientBean.toSearchClient.passportNo}"></p:inputText>
  					 <p:outputLabel value="GAMCA Slip"></p:outputLabel>
- 					 <h:inputText value="#{registerClientBean.toSearchClient.gamcaSlipNo}"></h:inputText>
+ 					 <p:inputText value="#{registerClientBean.toSearchClient.gamcaSlipNo}"></p:inputText>
  					 
  					
 					</p:panelGrid>
@@ -32,7 +32,7 @@
  
  
  
-  	<h:commandButton value="Search" styleClass="richButton" 
+  	<p:commandButton value="Search" icon="fa fa-fw fa-search" update="tbl1"
   	action="#{registerClientBean.searchClients}"/>
   	
   	<br/>
@@ -43,47 +43,47 @@
 					id="tbl1">
 
 					<p:column headerText="Client ID">
-						<h:outputText value="#{mylist.id}" />
+						<p:outputLabel value="#{mylist.id}" />
 					</p:column>
 					
 					<p:column headerText="GAMCA Slip">
 						 
-						<h:outputText value="#{mylist.gamcaSlipNo}" />
+						<p:outputLabel value="#{mylist.gamcaSlipNo}" />
 					</p:column>
 
 					<p:column headerText="First Name / Last Name">
-						<h:outputText value="#{mylist.firstName}" />/
-						<h:outputText value="#{mylist.lastName}" />
+						<p:outputLabel value="#{mylist.firstName}" />/
+						<p:outputLabel value="#{mylist.lastName}" />
 					</p:column>
 
 					<p:column headerText="CNIC">
-						<h:outputText value="#{mylist.cnicNo}" />
+						<p:outputLabel value="#{mylist.cnicNo}" />
 					</p:column>
 					
 					<p:column headerText="Passport No">
-						<h:outputText value="#{mylist.passportNo}" />
+						<p:outputLabel value="#{mylist.passportNo}" />
 					</p:column>
 					
 					
 					<p:column headerText="Registration">
-						<h:outputText value="#{mylist.progress.regn}" />
+						<p:outputLabel value="#{mylist.progress.regn}" />
 					</p:column>
 					
 					<p:column headerText="Cash Payment">
-						<h:outputText value="#{mylist.progress.cash}" />
+						<p:outputLabel value="#{mylist.progress.cash}" />
 					</p:column>		
 					<p:column headerText="GPE">
-						<h:outputText value="#{mylist.progress.gpe}" />
+						<p:outputLabel value="#{mylist.progress.gpe}" />
 					</p:column>
 					<p:column headerText="X-Ray">
-						<h:outputText value="#{mylist.progress.xray}" />
+						<p:outputLabel value="#{mylist.progress.xray}" />
 					</p:column>
 					<p:column headerText="Samples">
-						<h:outputText value="#{mylist.progress.sample}" />
+						<p:outputLabel value="#{mylist.progress.sample}" />
 					</p:column>
 					
 					<p:column headerText="Pathology">
-						<h:outputText value="#{mylist.progress.pathologist}" />
+						<p:outputLabel value="#{mylist.progress.pathologist}" />
 					</p:column>
 
 				</p:dataTable>

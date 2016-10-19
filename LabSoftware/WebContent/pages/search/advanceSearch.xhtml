@@ -18,16 +18,16 @@
 					
 					 
 					<p:outputLabel value="Client ID"></p:outputLabel>
- 					 <h:inputText value="#{advSearchBean.toSearchClient.id}"></h:inputText>
+ 					 <p:inputText value="#{advSearchBean.toSearchClient.id}"></p:inputText>
 					<p:outputLabel value="RDC Token"></p:outputLabel>
-					<h:inputText value="#{advSearchBean.toSearchClient.rdcTokenNo}"></h:inputText>
+					<p:inputText value="#{advSearchBean.toSearchClient.rdcTokenNo}"></p:inputText>
  					 <p:outputLabel value="Passport No"></p:outputLabel>
- 					 <h:inputText value="#{advSearchBean.toSearchClient.passportNo}"></h:inputText>
+ 					 <p:inputText value="#{advSearchBean.toSearchClient.passportNo}"></p:inputText>
  					 <p:outputLabel value="GAMCA Slip"></p:outputLabel>
- 					 <h:inputText value="#{advSearchBean.toSearchClient.gamcaSlipNo}"></h:inputText>
+ 					 <p:inputText value="#{advSearchBean.toSearchClient.gamcaSlipNo}"></p:inputText>
  					
  					<p:outputLabel value="Client Status" />
- 					 <h:selectOneMenu  
+ 					 <p:selectOneMenu  
  					 value="#{advSearchBean.toSearchClient.clientStatus}">
  					 	<f:selectItem itemLabel="Select" itemValue="#{null}"/>
  					 	<f:selectItem itemLabel="Registered" itemValue="Registered"/> 					 	
@@ -37,38 +37,38 @@
 					<f:selectItem itemLabel="Repeat after 2 Week" itemValue="Repeat after 2 Week"/>
 					<f:selectItem itemLabel="Repeat after 3 Week" itemValue="Repeat after 3 Week"/>
 					<f:selectItem itemLabel="Repeat after 4 Week" itemValue="Repeat after 4 Week"/>
- 					 </h:selectOneMenu>
+ 					 </p:selectOneMenu>
  					 
  					 <p:outputLabel value="Cash Payment Status" />
- 					 <h:selectOneMenu  
+ 					 <p:selectOneMenu  
  					 value="#{advSearchBean.toSearchClient.cashPayment.cashPaidStatus}">
  					 	<f:selectItem itemLabel="Select" itemValue="#{null}"/>
  					 	<f:selectItem itemLabel="Paid" itemValue="Paid"/> 					 	
  					 	<f:selectItem itemLabel="Unpaid" itemValue="Unpaid"/>
- 					 </h:selectOneMenu>
+ 					 </p:selectOneMenu>
  					 
  					 <p:outputLabel value="Pathologist Remarks"/>
- 					 <h:selectOneMenu value="#{advSearchBean.toSearchClient.progress.pathologist}">
+ 					 <p:selectOneMenu value="#{advSearchBean.toSearchClient.progress.pathologist}">
  					 	<f:selectItem itemLabel="Select" itemValue="#{null}"/>
  					 	<!--  f:selectItem itemLabel="Verified" itemValue="Verified"></f:selectItem -->
  					 	<f:selectItem itemLabel="Fit" itemValue="Fit"></f:selectItem>
  					 	<f:selectItem itemLabel="Unfit" itemValue="Unfit"></f:selectItem>
  					 	<f:selectItem itemLabel="Repeat" itemValue="Repeat"></f:selectItem>
- 					 </h:selectOneMenu>
+ 					 </p:selectOneMenu>
  					 
  					 
  					 <p:outputLabel value="Applied Country"/>
- 					 <h:selectOneMenu value="#{advSearchBean.toSearchClient.appliedForCountry}">
+ 					 <p:selectOneMenu value="#{advSearchBean.toSearchClient.appliedForCountry}">
  					 	<f:selectItem itemLabel="Select" itemValue="#{null}"/>
  					 	<f:selectItems value="#{crit.gccCountryList}"/>
- 					 </h:selectOneMenu>
+ 					 </p:selectOneMenu>
  					
 					</p:panelGrid>
 				</p:panel>
  
  
  
-  	<h:commandButton value="Search" styleClass="richButton"
+  	<p:commandButton value="Search" icon="fa fa-fw fa-search" update="tbl1"
   	action="#{advSearchBean.advacneSearchClients}"/>
   	
   	<br/>
@@ -79,69 +79,69 @@
 					id="tbl1">
 
 					<p:column headerText="Client ID" sortBy="#{mylist.id}">
-						<h:outputText value="#{mylist.id}" />
+						<p:outputLabel value="#{mylist.id}" />
 					</p:column>
 					
 					<p:column headerText="RDC Token / GAMCA Slip" sortBy="#{mylist.rdcTokenNo}/#{mylist.gamcaSlipNo}">
-						<h:outputText value="#{mylist.rdcTokenNo}" /> / 
-						<h:outputText value="#{mylist.gamcaSlipNo}" />
+						<p:outputLabel value="#{mylist.rdcTokenNo}" /> / 
+						<p:outputLabel value="#{mylist.gamcaSlipNo}" />
 					</p:column>
 
 					<p:column headerText="First Name / Last Name" sortBy="#{mylist.firstName}/#{mylist.lastName}">
-						<h:commandLink value="#{mylist.firstName}/#{mylist.lastName}" style="color:blue;"
+						<p:commandLink value="#{mylist.firstName}/#{mylist.lastName}" style="color:blue;"
 							action="#{navBean.navAdvanceSearchDetails}">
 							<f:setPropertyActionListener target="#{advSearchBean.selectedClient}" value="#{mylist}" />
 							
-						</h:commandLink>
-					<!--  	<h:outputText value="#{mylist.firstName}" />/
-						<h:outputText value="#{mylist.lastName}" /> -->
+						</p:commandLink>
+					<!--  	<p:outputLabel value="#{mylist.firstName}" />/
+						<p:outputLabel value="#{mylist.lastName}" /> -->
 					</p:column>
 					
 					<p:column headerText="Father Name" sortBy="#{mylist.fatherName}">
-						<h:outputText value="#{mylist.fatherName}" />
+						<p:outputLabel value="#{mylist.fatherName}" />
 					</p:column>
 
 					<p:column headerText="CNIC" sortBy="#{mylist.cnicNo}">
-						<h:outputText value="#{mylist.cnicNo}" />
+						<p:outputLabel value="#{mylist.cnicNo}" />
 					</p:column>
 					
 					<p:column headerText="Passport No" sortBy="#{mylist.passportNo}">
-						<h:outputText value="#{mylist.passportNo}"/>
+						<p:outputLabel value="#{mylist.passportNo}"/>
 					</p:column>
 					
 					<p:column headerText="Client Status" sortBy="#{mylist.clientStatus}">
-						<h:outputText value="#{mylist.clientStatus}" />
+						<p:outputLabel value="#{mylist.clientStatus}" />
 					</p:column>	
 					
 					<p:column headerText="View GAMCA">
-						<h:commandLink value="GAMCA" target="_blank" 
+						<p:commandLink value="GAMCA" target="_blank" ajax="false"
 						action="#{adminBean.viewScannedFile}">
 							<f:setPropertyActionListener target="#{adminBean.selectedClient}" value="#{mylist}" />
 							<f:setPropertyActionListener target="#{adminBean.scannedFileType}" value="gamca" />
-						</h:commandLink>
+						</p:commandLink>
 					</p:column>
 					<p:column headerText="View Passport">
-						<h:commandLink value="Passport" target="_blank" 
+						<p:commandLink value="Passport" target="_blank" ajax="false"
 						action="#{adminBean.viewScannedFile}">
 							<f:setPropertyActionListener target="#{adminBean.selectedClient}" value="#{mylist}" />
 							<f:setPropertyActionListener target="#{adminBean.scannedFileType}" value="passport" />
-						</h:commandLink>
+						</p:commandLink>
 					</p:column>
 					<p:column headerText="View Photo" rendered="false">
-						<h:commandLink value="Photo" target="_blank" 
+						<p:commandLink value="Photo" target="_blank" ajax="false" 
 						action="#{adminBean.viewScannedFile}">
 							<f:setPropertyActionListener target="#{adminBean.selectedClient}" value="#{mylist}" />
 							<f:setPropertyActionListener target="#{adminBean.scannedFileType}" value="photo" />
-						</h:commandLink>
+						</p:commandLink>
 					</p:column>
 					
 					<p:column headerText="View Photo">
-						<h:commandLink value="Photo" 
+						<p:commandLink value="Photo" ajax="false"
 						onclick="window.open('../includes/clientPic.jsf', 'Pic','status=1, location = 0')" 
 						>
 							<f:setPropertyActionListener target="#{adminBean.selectedClient}" value="#{mylist}" />
 							<f:setPropertyActionListener target="#{adminBean.scannedFileType}" value="photo" />
-						</h:commandLink>
+						</p:commandLink>
 					</p:column>		
 
 				</p:dataTable>

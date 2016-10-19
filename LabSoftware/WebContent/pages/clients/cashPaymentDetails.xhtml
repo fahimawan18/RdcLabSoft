@@ -36,29 +36,29 @@
 					columns="2" id="addGrid">					 
 					 
 					 
-					 <h:outputText value="Payment Status:" />
+					 <p:outputLabel value="Payment Status:" />
 				    <h:panelGroup>				    
-				    <h:selectOneMenu value="#{registerClientBean.selectedClient.cashPayment.cashPaidStatus}">
+				    <p:selectOneMenu value="#{registerClientBean.selectedClient.cashPayment.cashPaidStatus}">
 							<f:selectItem itemLabel="Paid" itemValue="Paid"/>
 							<f:selectItem itemLabel="Unpaid" itemValue="Unpaid"/>
-						</h:selectOneMenu>
+						</p:selectOneMenu>
 				    </h:panelGroup>
 				    
-				    <h:outputText value="Cash Amount:" />
+				    <p:outputLabel value="Cash Amount:" />
 				    <h:panelGroup>
-				   	<h:inputText converterMessage="Please enter a valid amount" 
+				   	<p:inputText converterMessage="Please enter a valid amount" 
 				   	value="#{registerClientBean.selectedClient.cashPayment.cashAmount}"/>
 				    </h:panelGroup>
 				    
 				    
-				    <h:outputText value="View/Print Receipt:" />
+				    <p:outputLabel value="View/Print Receipt:" />
 				    <h:panelGroup>				    
-				    <h:commandLink value="View/Print" target="_blank" title="Applicable if Payment Status is 'Paid' and Amount is 'Valid' "
+				    <p:commandLink value="View/Print" target="_blank" title="Applicable if Payment Status is 'Paid' and Amount is 'Valid' " icon="fa fa-fw fa-print" ajax="false"
 						action="#{registerClientBean.printCashReceipt}"
 						disabled="#{!(registerClientBean.selectedClient.cashPayment.cashPaidStatus == 'Paid' and registerClientBean.selectedClient.cashPayment.cashAmount!=null)}"
 						>
 							
-						</h:commandLink>
+						</p:commandLink>
 				    </h:panelGroup>
 				   
 				    
@@ -68,13 +68,13 @@
 				</p:panel>
 				
 				
-				<h:commandButton value="Save" styleClass="richButton"
+				<p:commandButton value="Save" icon="fa fa-fw fa-save" ajax="false"
 				 action="#{registerClientBean.updateCashStatus}">
-				</h:commandButton>
+				</p:commandButton>
 				
-				<h:commandButton value="Back" styleClass="richButton"
+				<p:commandButton value="Back" icon="fa fa-fw fa-arrow-left"
 				 action="cashPayment">
-				</h:commandButton>
+				</p:commandButton>
 				
 				
 </h:form>

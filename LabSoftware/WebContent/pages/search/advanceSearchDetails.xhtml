@@ -27,55 +27,55 @@
 					columns="4" id="clientDetaislGrid" columnClasses="top-alg, contents top-alg, top-alg, contents top-alg">					 
 					 
 					
-					 <h:outputText value="GAMCA Slip No:" />
-    				<h:outputText value="#{advSearchBean.selectedClient.gamcaSlipNo}"/>
+					 <p:outputLabel value="GAMCA Slip No:" />
+    				<p:outputLabel value="#{advSearchBean.selectedClient.gamcaSlipNo}"/>
     				
-					 <h:outputText value="Passport No:" />
-   					 <h:outputText value="#{advSearchBean.selectedClient.passportNo}"/>
+					 <p:outputLabel value="Passport No:" />
+   					 <p:outputLabel value="#{advSearchBean.selectedClient.passportNo}"/>
  
     				
  
-    				<h:outputText value="First Name/ Last Name:" />
-    				<h:outputText value="#{advSearchBean.selectedClient.firstName} / #{advSearchBean.selectedClient.lastName}"/>
+    				<p:outputLabel value="First Name/ Last Name:" />
+    				<p:outputLabel value="#{advSearchBean.selectedClient.firstName} / #{advSearchBean.selectedClient.lastName}"/>
     				
-    				<h:outputText value="Father Name:" />
-    				<h:outputText value="#{advSearchBean.selectedClient.fatherName}"/>
+    				<p:outputLabel value="Father Name:" />
+    				<p:outputLabel value="#{advSearchBean.selectedClient.fatherName}"/>
     				
-    				<h:outputText value="Nationality:" />
-    				<h:outputText value="#{advSearchBean.selectedClient.nationality}"/>
+    				<p:outputLabel value="Nationality:" />
+    				<p:outputLabel value="#{advSearchBean.selectedClient.nationality}"/>
     				
-    				<h:outputText value="Date of Birth:" />
-    				<h:outputText value="#{advSearchBean.selectedClient.dob}">
+    				<p:outputLabel value="Date of Birth:" />
+    				<p:outputLabel value="#{advSearchBean.selectedClient.dob}">
     				<f:convertDateTime pattern="MM-dd-yyyy" />
-    				</h:outputText>
+    				</p:outputLabel>
     				
-    				<h:outputText value="Passport Issue Date:" />
-    				<h:outputText value="#{advSearchBean.selectedClient.passportIssueDate}">
+    				<p:outputLabel value="Passport Issue Date:" />
+    				<p:outputLabel value="#{advSearchBean.selectedClient.passportIssueDate}">
     				<f:convertDateTime pattern="MM-dd-yyyy" />
-    				</h:outputText>
+    				</p:outputLabel>
     				
-    				<h:outputText value="Passport Expiry Date:" />
-    				<h:outputText value="#{advSearchBean.selectedClient.passportExpiryDate}">
+    				<p:outputLabel value="Passport Expiry Date:" />
+    				<p:outputLabel value="#{advSearchBean.selectedClient.passportExpiryDate}">
     				<f:convertDateTime pattern="MM-dd-yyyy" />
-    				</h:outputText>
+    				</p:outputLabel>
     				
-    				<h:outputText value="Gender:" />
-    				<h:outputText value="#{advSearchBean.selectedClient.gender}"/>
+    				<p:outputLabel value="Gender:" />
+    				<p:outputLabel value="#{advSearchBean.selectedClient.gender}"/>
     				
-    				<h:outputText value="Marital Status:" />
-    				<h:outputText value="#{advSearchBean.selectedClient.maritalStatus}"/>
+    				<p:outputLabel value="Marital Status:" />
+    				<p:outputLabel value="#{advSearchBean.selectedClient.maritalStatus}"/>
     				
-    				<h:outputText value="CNIC:" />
-    				<h:outputText value="#{advSearchBean.selectedClient.cnicNo}"/>
+    				<p:outputLabel value="CNIC:" />
+    				<p:outputLabel value="#{advSearchBean.selectedClient.cnicNo}"/>
     				
-    				<h:outputText value="Mob/Tel:" />
-    				<h:outputText value="#{advSearchBean.selectedClient.mobileNo}"/>
+    				<p:outputLabel value="Mob/Tel:" />
+    				<p:outputLabel value="#{advSearchBean.selectedClient.mobileNo}"/>
     				
-    				<h:outputText value="Recruiting Agency:" />
-    				<h:outputText value="#{advSearchBean.selectedClient.rectAgency}"/>
+    				<p:outputLabel value="Recruiting Agency:" />
+    				<p:outputLabel value="#{advSearchBean.selectedClient.rectAgency}"/>
     				
-    				<h:outputText value="Applied For/Position:" />
-    				<h:outputText value="#{advSearchBean.selectedClient.appliedForCountry} /  #{advSearchBean.selectedClient.appliedForPosition}"/>
+    				<p:outputLabel value="Applied For/Position:" />
+    				<p:outputLabel value="#{advSearchBean.selectedClient.appliedForCountry} /  #{advSearchBean.selectedClient.appliedForPosition}"/>
     				
     									
 					</p:panelGrid>	
@@ -96,23 +96,41 @@
   				
 				
 				<p:column>
-					<p:panel id="panel1" header="Endorsements">
+					<p:panel id="panelEndorsements" header="Endorsements">
 					<p:panelGrid style="margin-top:20px; width: 100%; margin: 0 auto"
-					columns="2" id="statusGrid" columnClasses="labels tw-five-percent,contents tw-five-percent">
-					
-						<h:outputText value="GPE"/>
-						<h:outputText value="#{registerClientBean.selectedClient.progress.gpe}"/>
-						
-						<h:outputText value="Pathologist"/>
-						<h:outputText value="#{registerClientBean.selectedClient.progress.pathologist}"/>
-						
-						<h:outputText value="Radiologist"/>
-						<h:outputText value="Chest: #{registerClientBean.selectedClient.xray.chest} - Opinion: #{registerClientBean.selectedClient.xray.opinion}"/>
-					
+					  columnClasses="labels tw-five-percent,contents tw-five-percent">
+						<p:row>
+						<p:column>
+						<p:outputLabel value="GPE" />
+						</p:column>
+						<p:column  style="#{advSearchBean.selectedClient.progress.gpe == 'Fit' ? 'background-color:green;':'background-color:red;'}">
+						<p:outputLabel value="#{advSearchBean.selectedClient.progress.gpe}"	style="color:white" />
+						</p:column>
+						</p:row>
+						<p:row>
+						<p:column>
+						<p:outputLabel value="Pathologist"/>
+						</p:column>
+						<p:column  style="#{advSearchBean.selectedClient.progress.pathologist == 'Fit' ? 'background-color:green;':'background-color:red;'}">
+						<p:outputLabel value="#{advSearchBean.selectedClient.progress.pathologist}" style="color:white"/>
+						</p:column>
+						</p:row>
+						<p:row>
+						<p:column rowspan="2">
+						<p:outputLabel value="Radiologist"/>
+						</p:column>
+						<p:column  style="#{advSearchBean.selectedClient.xray.chest == 'Normal' ? 'background-color:green;':'background-color:red;'}">
+						<p:outputLabel value="Chest: #{advSearchBean.selectedClient.xray.chest}" style="color:white"/>
+						</p:column>
+						</p:row>
+						<p:row><p:column>
+						<p:outputLabel value="Opinion: #{advSearchBean.selectedClient.xray.opinion}"/>
+						</p:column>
+						</p:row>
 					</p:panelGrid>
 					<!--  h3> 
-					<h:outputText value="#{advSearchBean.selectedClient.progress.pathologist}"/>
-						(Endorsed by Pathologist)</h3 --> 
+					<p:outputLabel value="#{registerClientBean.selectedClient.progress.pathologist}"/>
+						(Endorsed by Pathologist)</h3 -->
 				</p:panel>
 				</p:column>
 				
@@ -121,7 +139,7 @@
 					columns="1" id="trackReport">					 
 					 
 					<f:facet name="header" >
-					 <h:outputText value="Track Report"/>
+					 <p:outputLabel value="Track Report"/>
 					</f:facet>					 
 					
 					<p:dataTable value="#{advSearchBean.selectedClient.trackReport}" var="mylist"
@@ -130,18 +148,18 @@
 					id="tblTracking">
 
 					<p:column headerText="Activity">
-						<h:outputText value="#{mylist.activity}" />
+						<p:outputLabel value="#{mylist.activity}" />
 					</p:column>
 					
 					<p:column headerText="Operator">
-						<h:outputText value="#{mylist.operator.loggedUserString}" />
+						<p:outputLabel value="#{mylist.operator.loggedUserString}" />
 					</p:column>
 
 					<p:column headerText="Time" sortable="true" sortBy="#{mylist.activityTime}">
-						<h:outputText value="#{mylist.activityTime}" >
+						<p:outputLabel value="#{mylist.activityTime}" >
 							<f:convertDateTime 
 							pattern="dd-MMM-yy hh:mm:ss a"></f:convertDateTime>
-						</h:outputText>						
+						</p:outputLabel>						
 					</p:column>		
 
 				</p:dataTable>				
@@ -172,14 +190,14 @@
 					columns="4" id="addGrid" columnClasses="labels tw-five-percent,contents tw-five-percent,
 					labels tw-five-percent,contents tw-five-percent">
 					 
-					 <h:outputText value="Sugar:" />
+					 <p:outputLabel value="Sugar:" />
 				    <h:panelGroup>
-				    <h:outputText value="#{advSearchBean.selectedClient.urine.sugar}"/>
+				    <p:outputLabel value="#{advSearchBean.selectedClient.urine.sugar}"/>
 				    </h:panelGroup>
 				    
-				    <h:outputText value="Albumin:" />
+				    <p:outputLabel value="Albumin:" />
 				    <h:panelGroup>
-				    <h:outputText value="#{advSearchBean.selectedClient.urine.albumin}"/>
+				    <p:outputLabel value="#{advSearchBean.selectedClient.urine.albumin}"/>
 				    </h:panelGroup>
 				    </p:panelGrid>
 				    
@@ -199,21 +217,21 @@
 					labels tw-five-percent,contents tw-five-percent">					 
 					 
 					 
-					 <h:outputText value="Pus Cells:" />
+					 <p:outputLabel value="Pus Cells:" />
 				    <h:panelGroup>
-				    <h:outputText value="#{advSearchBean.selectedClient.micro.pusCels}"/>
+				    <p:outputLabel value="#{advSearchBean.selectedClient.micro.pusCels}"/>
 				    HPF
 				    </h:panelGroup>
 				    
-				    <h:outputText value="RBC's:" />
+				    <p:outputLabel value="RBC's:" />
 				    <h:panelGroup>
-				    <h:outputText value="#{advSearchBean.selectedClient.micro.rbc}"/>
+				    <p:outputLabel value="#{advSearchBean.selectedClient.micro.rbc}"/>
 				    HPF
 				    </h:panelGroup>
 				    
-				    <h:outputText value="Others:" />
+				    <p:outputLabel value="Others:" />
 				    <h:panelGroup>
-				    <h:outputText value="#{advSearchBean.selectedClient.micro.others}"/>			    	
+				    <p:outputLabel value="#{advSearchBean.selectedClient.micro.others}"/>			    	
 				    	
 				    </h:panelGroup>
 				    
@@ -236,89 +254,89 @@
 					labels tw-five-percent,contents tw-five-percent">					 
 					 
 					 
-					<h:outputText value="Haemoglobin:" />
+					<p:outputLabel value="Haemoglobin:" />
 				    <h:panelGroup>
-				    <h:outputText value="#{advSearchBean.selectedClient.blood.haemoglobin}"/>
+				    <p:outputLabel value="#{advSearchBean.selectedClient.blood.haemoglobin}"/>
 				    g/dl
 				    </h:panelGroup>
 				    
-				    <h:outputText value="Blood Gp:" />
+				    <p:outputLabel value="Blood Gp:" />
 				    <h:panelGroup>
-				    <h:outputText value="#{advSearchBean.selectedClient.blood.bloodGp}"/>
+				    <p:outputLabel value="#{advSearchBean.selectedClient.blood.bloodGp}"/>
 				    </h:panelGroup>
 				    
-				    <h:outputText value="Thick Film for(Malaria):" />
+				    <p:outputLabel value="Thick Film for(Malaria):" />
 				    <h:panelGroup>
-				    <h:outputText value="#{advSearchBean.selectedClient.blood.tfMalaria}"/>
+				    <p:outputLabel value="#{advSearchBean.selectedClient.blood.tfMalaria}"/>
 				    </h:panelGroup>
 				    
 				    
-				    <h:outputText value="Thick Film for(Micro Filalaria):" />
+				    <p:outputLabel value="Thick Film for(Micro Filalaria):" />
 				    <h:panelGroup>
-				    <h:outputText value="#{advSearchBean.selectedClient.blood.tfMicroFilaria}"/>
+				    <p:outputLabel value="#{advSearchBean.selectedClient.blood.tfMicroFilaria}"/>
 				    </h:panelGroup>
 				    
-				    <h:outputText value="Blood Glucose:" />
+				    <p:outputLabel value="Blood Glucose:" />
 				    <h:panelGroup>
-				    <h:outputText value="#{advSearchBean.selectedClient.blood.bloodGlucose}"/>
+				    <p:outputLabel value="#{advSearchBean.selectedClient.blood.bloodGlucose}"/>
 				    	mg/dl
 				    </h:panelGroup>
 				    
-				     <h:outputText value="L.F.Ts:" />
+				     <p:outputLabel value="L.F.Ts:" />
 				    <h:panelGroup>
-				    <h:outputText value="#{advSearchBean.selectedClient.blood.lft}"/>
+				    <p:outputLabel value="#{advSearchBean.selectedClient.blood.lft}"/>
 				    </h:panelGroup>
 				    
-				    <h:outputText value="SGOT/AST:" />
+				    <p:outputLabel value="SGOT/AST:" />
 				    <h:panelGroup>
-				    <h:outputText value="#{advSearchBean.selectedClient.blood.sgot}"/>
+				    <p:outputLabel value="#{advSearchBean.selectedClient.blood.sgot}"/>
 				    	mg/dl
 				    </h:panelGroup>
 				    
-				    <h:outputText value="SGPT/ALT:" />
+				    <p:outputLabel value="SGPT/ALT:" />
 				    <h:panelGroup>
-				    <h:outputText value="#{advSearchBean.selectedClient.blood.sgpt}"/>
+				    <p:outputLabel value="#{advSearchBean.selectedClient.blood.sgpt}"/>
 				    	mg/dl
 				    </h:panelGroup>
 				    
-				    <h:outputText value="Urea:" />
+				    <p:outputLabel value="Urea:" />
 				    <h:panelGroup>
-				    <h:outputText value="#{advSearchBean.selectedClient.blood.urea}"/>
+				    <p:outputLabel value="#{advSearchBean.selectedClient.blood.urea}"/>
 				    	mg/dl
 				    </h:panelGroup>
 				    
-				    <h:outputText value="Creatinine:" />
+				    <p:outputLabel value="Creatinine:" />
 				    <h:panelGroup>
-				    <h:outputText value="#{advSearchBean.selectedClient.blood.creatinine}"/>
+				    <p:outputLabel value="#{advSearchBean.selectedClient.blood.creatinine}"/>
 				    	mg/dl
 				    </h:panelGroup>
 				    
-				    <h:outputText value="Anti HIV:" />
+				    <p:outputLabel value="Anti HIV:" />
 				    <h:panelGroup>
-				    <h:outputText value="#{advSearchBean.selectedClient.blood.antiHiv}"/>
+				    <p:outputLabel value="#{advSearchBean.selectedClient.blood.antiHiv}"/>
 				    </h:panelGroup>
 				    
-				    <h:outputText value="Anti HCV:" />
+				    <p:outputLabel value="Anti HCV:" />
 				    <h:panelGroup>
-				    <h:outputText value="#{advSearchBean.selectedClient.blood.antiHcv}"/>
+				    <p:outputLabel value="#{advSearchBean.selectedClient.blood.antiHcv}"/>
 				    </h:panelGroup>
 				    
-				    <h:outputText value="HbsAg:" />
+				    <p:outputLabel value="HbsAg:" />
 				    <h:panelGroup>
-				    <h:outputText value="#{advSearchBean.selectedClient.blood.hbsAg}"/>
+				    <p:outputLabel value="#{advSearchBean.selectedClient.blood.hbsAg}"/>
 				    </h:panelGroup>
 				    
-				    <h:outputText value="VDRL:" />
+				    <p:outputLabel value="VDRL:" />
 				    <h:panelGroup>
-				    <h:outputText value="#{advSearchBean.selectedClient.blood.vdrl}"/>
+				    <p:outputLabel value="#{advSearchBean.selectedClient.blood.vdrl}"/>
 				    </h:panelGroup>
 				    
-				    <h:outputText id="_tpha_out" 
+				    <p:outputLabel id="_tpha_out" 
 				    rendered="#{advSearchBean.selectedClient.blood.vdrl=='Positive'}"
 				     value="TPHA (if VDRL is positive)"/>
 				    <h:panelGroup rendered="#{advSearchBean.selectedClient.blood.vdrl=='Positive'}" 
 				    id="_tpha_panel">
-				    <h:outputText value="#{advSearchBean.selectedClient.blood.tpha}"/>
+				    <p:outputLabel value="#{advSearchBean.selectedClient.blood.tpha}"/>
 				    </h:panelGroup>		
 				    
 				  
@@ -341,9 +359,9 @@
 					labels tw-five-percent,contents tw-five-percent">					 
 					 
 					 
-					 <h:outputText value="AFB:" />
+					 <p:outputLabel value="AFB:" />
 				    <h:panelGroup>
-				    <h:outputText value="#{advSearchBean.selectedClient.sputum.afb}"/>
+				    <p:outputLabel value="#{advSearchBean.selectedClient.sputum.afb}"/>
 				    </h:panelGroup>
 				    </p:panelGrid>
 				    
@@ -363,36 +381,36 @@
 					labels tw-five-percent,contents tw-five-percent">					 
 					 
 					 
-					 <h:outputText value="Helminthes:" />
+					 <p:outputLabel value="Helminthes:" />
 				    <h:panelGroup>
-				    <h:outputText value="#{advSearchBean.selectedClient.stool.helminthes}"/>
+				    <p:outputLabel value="#{advSearchBean.selectedClient.stool.helminthes}"/>
 				    </h:panelGroup>
 				    
-				    <h:outputText value="Giardia:" />
+				    <p:outputLabel value="Giardia:" />
 				    <h:panelGroup>
-				    <h:outputText value="#{advSearchBean.selectedClient.stool.giardia}"/>
+				    <p:outputLabel value="#{advSearchBean.selectedClient.stool.giardia}"/>
 				    </h:panelGroup>
 				    
-				    <h:outputText value="Bilharzias (if endemic culture):" />
+				    <p:outputLabel value="Bilharzias (if endemic culture):" />
 				    <h:panelGroup>
-				    <h:outputText value="#{advSearchBean.selectedClient.stool.bilharzias}"/>
+				    <p:outputLabel value="#{advSearchBean.selectedClient.stool.bilharzias}"/>
 				    </h:panelGroup>
 				    
-				    <h:outputText value="Salmonella:" />
+				    <p:outputLabel value="Salmonella:" />
 				    <h:panelGroup>
-				    <h:outputText value="#{advSearchBean.selectedClient.stool.salmonella}"/>				    	
+				    <p:outputLabel value="#{advSearchBean.selectedClient.stool.salmonella}"/>				    	
 				    	
 				    </h:panelGroup>
 				    
-				    <h:outputText value="Shigella:" />
+				    <p:outputLabel value="Shigella:" />
 				    <h:panelGroup>
-				    <h:outputText value="#{advSearchBean.selectedClient.stool.shigella}"/>
+				    <p:outputLabel value="#{advSearchBean.selectedClient.stool.shigella}"/>
 				    
 				    </h:panelGroup>
 				    
-				    <h:outputText value="V.Cholera:" />
+				    <p:outputLabel value="V.Cholera:" />
 				    <h:panelGroup>
-				    <h:outputText value="#{advSearchBean.selectedClient.stool.cholera}"/>
+				    <p:outputLabel value="#{advSearchBean.selectedClient.stool.cholera}"/>
 				    </h:panelGroup>
 				    
 				    
@@ -417,7 +435,7 @@
 					columns="1">
 				
 				
-				<p:commandButton value="Back " styleClass="richButton" 
+				<p:commandButton value="Back " icon="fa fa-fw fa-arrow-left"
 				 action="advanceSearch"/>
 				
 				</p:panelGrid>

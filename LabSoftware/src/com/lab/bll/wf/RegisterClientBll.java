@@ -81,7 +81,7 @@ public class RegisterClientBll
 		// TODO Auto-generated constructor stub
 	}
 	
-	public boolean addCient(WfClient toAdd)
+	public boolean addCient(WfClient toAdd) throws Exception
 	{
 		System.out.println("in add client bll method");
 		boolean flag = true;
@@ -152,12 +152,15 @@ public class RegisterClientBll
 			e.printStackTrace();
 			tx.rollback();
 			flag = false;
+			throw new Exception(e.getMessage());
 		}
 		catch(Exception e)
 		{
 			e.printStackTrace();
 			tx.rollback();
 			flag = false;
+			throw new Exception(e.getMessage());
+			
 		}
 		finally
 		{

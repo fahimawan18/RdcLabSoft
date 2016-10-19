@@ -14,21 +14,39 @@
 	<p:layout fullPage="true"> 
 
 		<p:layoutUnit position="center" style="margin-top:70px;">
+		
 			<f:facet name="header">
-
-				<div style="float: left;">
+<h:form>
+				
+				<p:toolbar>	
+				<f:facet name="left">
 				<p:commandLink action="#{navBean.navHomePage}" style="color:white;font-size:25px">	<em>Rawalpindi Diagnostic Center</em> </p:commandLink>
-				</div>
+				</f:facet>
 
-				<div align="right">
-
+				
+				
+				<f:facet name="right">
 					<p:outputLabel value="#{userBean.loggedUserString}"></p:outputLabel>
-					
 					<p:spacer width="30" height="20" />
-					<p:commandLink style="color:white;text-decoration: none;"
-						action="#{userBean.logoutUser}">LogOut</p:commandLink>
-				</div>
+					
+					<p:outputLabel for="basic" value="Theme:" /> 
+					<p:themeSwitcher id="basic" style="width:150px;" value="#{themeSwitcherView.selectedTheme}" >
+            			<f:selectItems value="#{themeSwitcherView.themes}" var="theme" itemLabel="#{theme.displayName}" itemValue="#{theme.name}"></f:selectItems>
+            			<p:ajax listener="#{themeSwitcherView.saveTheme}" />
+        			</p:themeSwitcher>
+    
+					<p:spacer width="30" height="20" />
+					
+					<p:commandLink id="nonAjax" action="#{userBean.logoutUser}" ajax="false">
+					        <h:outputText value="Logout" />
+					    </p:commandLink>
+						</f:facet>
+						</p:toolbar>
+				
+				
+				</h:form>
 			</f:facet>
+			
 			<ui:include src="/pages/includes/header.xhtml" />
 
 			<br></br>

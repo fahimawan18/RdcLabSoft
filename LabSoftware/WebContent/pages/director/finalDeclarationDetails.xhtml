@@ -31,35 +31,35 @@
 					  columnClasses="labels tw-five-percent,contents tw-five-percent">
 						<p:row>
 						<p:column>
-						<h:outputText value="GPE" />
+						<p:outputLabel value="GPE" />
 						</p:column>
 						<p:column  style="#{registerClientBean.selectedClient.progress.gpe == 'Fit' ? 'background-color:green;':'background-color:red;'}">
-						<h:outputText value="#{registerClientBean.selectedClient.progress.gpe}"	style="color:white" />
+						<p:outputLabel value="#{registerClientBean.selectedClient.progress.gpe}"	style="color:white" />
 						</p:column>
 						</p:row>
 						<p:row>
 						<p:column>
-						<h:outputText value="Pathologist"/>
+						<p:outputLabel value="Pathologist"/>
 						</p:column>
 						<p:column  style="#{registerClientBean.selectedClient.progress.pathologist == 'Fit' ? 'background-color:green;':'background-color:red;'}">
-						<h:outputText value="#{registerClientBean.selectedClient.progress.pathologist}" style="color:white"/>
+						<p:outputLabel value="#{registerClientBean.selectedClient.progress.pathologist}" style="color:white"/>
 						</p:column>
 						</p:row>
 						<p:row>
 						<p:column rowspan="2">
-						<h:outputText value="Radiologist"/>
+						<p:outputLabel value="Radiologist"/>
 						</p:column>
 						<p:column  style="#{registerClientBean.selectedClient.xray.chest == 'Normal' ? 'background-color:green;':'background-color:red;'}">
-						<h:outputText value="Chest: #{registerClientBean.selectedClient.xray.chest}" style="color:white"/>
+						<p:outputLabel value="Chest: #{registerClientBean.selectedClient.xray.chest}" style="color:white"/>
 						</p:column>
 						</p:row>
 						<p:row><p:column>
-						<h:outputText value="Opinion: #{registerClientBean.selectedClient.xray.opinion}"/>
+						<p:outputLabel value="Opinion: #{registerClientBean.selectedClient.xray.opinion}"/>
 						</p:column>
 						</p:row>
 					</p:panelGrid>
 					<!--  h3> 
-					<h:outputText value="#{registerClientBean.selectedClient.progress.pathologist}"/>
+					<p:outputLabel value="#{registerClientBean.selectedClient.progress.pathologist}"/>
 						(Endorsed by Pathologist)</h3 -->
 				</p:panel>
 				</p:column>
@@ -84,117 +84,117 @@
 					columns="4" id="gpeGrid">					 
 					 
 					 
-					 <h:outputText value="BP:" />
-				    <h:outputText value="#{registerClientBean.selectedClient.gpe.bp}"/>
+					 <p:outputLabel value="BP:" />
+				    <p:outputLabel value="#{registerClientBean.selectedClient.gpe.bp}"/>
 				    
-				    <h:outputText value="Temperature:" />
+				    <p:outputLabel value="Temperature:" />
 				   
-				    <h:outputText value="#{registerClientBean.selectedClient.gpe.temperature}#{registerClientBean.selectedClient.gpe.temperatureScale}"/>
+				    <p:outputLabel value="#{registerClientBean.selectedClient.gpe.temperature}#{registerClientBean.selectedClient.gpe.temperatureScale}"/>
 				    
-				     <h:outputText value="Height:" />
+				     <p:outputLabel value="Height:" />
 				   
-				    <h:outputText value="#{registerClientBean.selectedClient.gpe.height}#{registerClientBean.selectedClient.gpe.heightScale}"/>
+				    <p:outputLabel value="#{registerClientBean.selectedClient.gpe.height}#{registerClientBean.selectedClient.gpe.heightScale}"/>
 				     
-				     <h:outputText value="Weight:" />
+				     <p:outputLabel value="Weight:" />
 				    
-				    <h:outputText value="#{registerClientBean.selectedClient.gpe.weight}#{registerClientBean.selectedClient.gpe.weightScale}"/>
-				    <h:outputText value="Skin:" />
+				    <p:outputLabel value="#{registerClientBean.selectedClient.gpe.weight}#{registerClientBean.selectedClient.gpe.weightScale}"/>
+				    <p:outputLabel value="Skin:" />
 				    				    
-				    <h:outputText value="#{registerClientBean.selectedClient.gpe.skin}"/>
-				    <h:outputText value="Fingers:" />
-				    <h:outputText value="#{registerClientBean.selectedClient.gpe.extFingers}"/>
+				    <p:outputLabel value="#{registerClientBean.selectedClient.gpe.skin}"/>
+				    <p:outputLabel value="Fingers:" />
+				    <p:outputLabel value="#{registerClientBean.selectedClient.gpe.extFingers}"/>
 				    
-				    <h:outputText value="Deformity:" />
+				    <p:outputLabel value="Deformity:" />
 				    				    
-				    <h:outputText value="#{registerClientBean.selectedClient.gpe.extDeformity}" />
+				    <p:outputLabel value="#{registerClientBean.selectedClient.gpe.extDeformity}" />
 				    					    
-				    <h:outputText value="Varicose Veins:" />
-				    <h:outputText value="#{registerClientBean.selectedClient.gpe.extVericose}" />
+				    <p:outputLabel value="Varicose Veins:" />
+				    <p:outputLabel value="#{registerClientBean.selectedClient.gpe.extVericose}" />
 				    					    
-				    <h:outputText value="Neck:" />
+				    <p:outputLabel value="Neck:" />
 				    				    
-				    <h:outputText value="#{registerClientBean.selectedClient.gpe.neck}" />
+				    <p:outputLabel value="#{registerClientBean.selectedClient.gpe.neck}" />
 				    					    
-				    <h:outputText value="Neuro PE" />
+				    <p:outputLabel value="Neuro PE" />
 				    				    
-				    <h:outputText value="#{registerClientBean.selectedClient.gpe.neuroPe}"/>
+				    <p:outputLabel value="#{registerClientBean.selectedClient.gpe.neuroPe}"/>
 				    					    
-				    <h:outputText value="CNS:" />
+				    <p:outputLabel value="CNS:" />
 				    				    
-				    <h:outputText value="#{registerClientBean.selectedClient.gpe.cns}"/> 
+				    <p:outputLabel value="#{registerClientBean.selectedClient.gpe.cns}"/> 
 				    	
-				    <h:outputText value="Lungs:"/>
+				    <p:outputLabel value="Lungs:"/>
 				    	
-				    <h:outputText value="#{registerClientBean.selectedClient.xray.lungs}" />
+				    <p:outputLabel value="#{registerClientBean.selectedClient.xray.lungs}" />
 				    
-				    <h:outputText value="Heart:" />
+				    <p:outputLabel value="Heart:" />
 				    				    
-				    <h:outputText value="#{registerClientBean.selectedClient.gpe.heart}" />
-				    <h:outputText value="Abdominal:" />
+				    <p:outputLabel value="#{registerClientBean.selectedClient.gpe.heart}" />
+				    <p:outputLabel value="Abdominal:" />
 				    				    
-				    <h:outputText value="#{registerClientBean.selectedClient.gpe.abdominal}"/>
+				    <p:outputLabel value="#{registerClientBean.selectedClient.gpe.abdominal}"/>
 				    
-				    <h:outputText value="Liver:" />
+				    <p:outputLabel value="Liver:" />
 				    				    
-				    <h:outputText value="#{registerClientBean.selectedClient.gpe.liver}"/>
+				    <p:outputLabel value="#{registerClientBean.selectedClient.gpe.liver}"/>
 				    	
-				    <h:outputText value="Kidneys:" />
+				    <p:outputLabel value="Kidneys:" />
 				    				    
-				    <h:outputText value="#{registerClientBean.selectedClient.gpe.kidneys}"/> 
-				    <h:outputText value="Spleen:" />
+				    <p:outputLabel value="#{registerClientBean.selectedClient.gpe.kidneys}"/> 
+				    <p:outputLabel value="Spleen:" />
 				    				    
-				    <h:outputText value="#{registerClientBean.selectedClient.gpe.spleen}"/>
+				    <p:outputLabel value="#{registerClientBean.selectedClient.gpe.spleen}"/>
 				    	
-				    <h:outputText value="Hernia:" />
+				    <p:outputLabel value="Hernia:" />
 				    				    
-				    <h:outputText value="#{registerClientBean.selectedClient.gpe.hernia}"/>
-				    <h:outputText value="Venereal:" />
+				    <p:outputLabel value="#{registerClientBean.selectedClient.gpe.hernia}"/>
+				    <p:outputLabel value="Venereal:" />
 				    				    
-				    <h:outputText value="#{registerClientBean.selectedClient.gpe.venereal}"/>
+				    <p:outputLabel value="#{registerClientBean.selectedClient.gpe.venereal}"/>
 				    
-				    <h:outputText value="Allergy:" />
+				    <p:outputLabel value="Allergy:" />
 				    				    
-				    <h:outputText value="#{registerClientBean.selectedClient.gpe.allergy}"/>
+				    <p:outputLabel value="#{registerClientBean.selectedClient.gpe.allergy}"/>
 				    
 				    
-				    <h:outputText value="Any other abnormality:" />
+				    <p:outputLabel value="Any other abnormality:" />
 				   			    
-				    <h:outputText value="#{registerClientBean.selectedClient.gpe.other}"/>
+				    <p:outputLabel value="#{registerClientBean.selectedClient.gpe.other}"/>
 				   
 				    
-				    <h:outputText value="Psychiatry:" />
+				    <p:outputLabel value="Psychiatry:" />
 				  				    
-				    <h:outputText value="#{registerClientBean.selectedClient.gpe.psychiatry}"/>
+				    <p:outputLabel value="#{registerClientBean.selectedClient.gpe.psychiatry}"/>
 				  
 				    
-				    <h:outputText value="Ear(Left):" />
+				    <p:outputLabel value="Ear(Left):" />
 				    			    
-				    <h:outputText value="#{registerClientBean.selectedClient.gpe.earLeft}"/>
+				    <p:outputLabel value="#{registerClientBean.selectedClient.gpe.earLeft}"/>
 				    
-				    <h:outputText value="Ear(Right):" />
+				    <p:outputLabel value="Ear(Right):" />
 				    				    
-				    <h:outputText value="#{registerClientBean.selectedClient.gpe.earRight}"/>
+				    <p:outputLabel value="#{registerClientBean.selectedClient.gpe.earRight}"/>
 				    
-				    <h:outputText value="Eye(Left):" />
+				    <p:outputLabel value="Eye(Left):" />
 				    				    
-				    <h:outputText value="#{registerClientBean.selectedClient.gpe.eyeLeft}"/>
+				    <p:outputLabel value="#{registerClientBean.selectedClient.gpe.eyeLeft}"/>
 				    
 				    
-				    <h:outputText value="Eye(Right):" />
+				    <p:outputLabel value="Eye(Right):" />
 				   				    
-				    <h:outputText value="#{registerClientBean.selectedClient.gpe.eyeRight}"/>
-				    <h:outputText value="Pregnancy:" />
+				    <p:outputLabel value="#{registerClientBean.selectedClient.gpe.eyeRight}"/>
+				    <p:outputLabel value="Pregnancy:" />
 				   				    
-				    <h:outputText value="#{registerClientBean.selectedClient.gpe.pregnancy}"/>
+				    <p:outputLabel value="#{registerClientBean.selectedClient.gpe.pregnancy}"/>
 				   			    
 				    </p:panelGrid>
 				    
 				    <p:panelGrid style="margin-top:20px; width: 70%; margin: 0 auto"
 					columns="2" id="addGrid2">
 					
-					 <h:outputText value="Remarks/Observation:" />
+					 <p:outputLabel value="Remarks/Observation:" />
 				    <h:panelGroup>				    
-				    <h:inputTextarea value="#{registerClientBean.selectedClient.gpe.remarks}"/>
+				    <p:inputTextarea value="#{registerClientBean.selectedClient.gpe.remarks}"/>
 				    </h:panelGroup>	
 					
 					</p:panelGrid>
@@ -210,14 +210,14 @@
 					<p:panelGrid style="margin-top:20px; width: 100%; margin: 0 auto"
 					columns="2" id="statusGrid" columnClasses="labels tw-five-percent,contents tw-five-percent">
 					
-						<h:outputText value="GPE"/>
-						<h:outputText value="#{registerClientBean.selectedClient.progress.gpe}"/>
+						<p:outputLabel value="GPE"/>
+						<p:outputLabel value="#{registerClientBean.selectedClient.progress.gpe}"/>
 						
-						<h:outputText value="Pathologist"/>
-						<h:outputText value="#{registerClientBean.selectedClient.progress.pathologist}"/>
+						<p:outputLabel value="Pathologist"/>
+						<p:outputLabel value="#{registerClientBean.selectedClient.progress.pathologist}"/>
 						
-						<h:outputText value="Radiologist"/>
-						<h:outputText value="Chest: #{registerClientBean.selectedClient.xray.chest} - Opinion: #{registerClientBean.selectedClient.xray.opinion}"/>
+						<p:outputLabel value="Radiologist"/>
+						<p:outputLabel value="Chest: #{registerClientBean.selectedClient.xray.chest} - Opinion: #{registerClientBean.selectedClient.xray.opinion}"/>
 					
 					</p:panelGrid>
 					
@@ -235,14 +235,14 @@
 					<p:panelGrid style="margin-top:20px; width: 100%; margin: 0 auto"
 					columns="2"  columnClasses="labels tw-five-percent,contents tw-five-percent">
 					
-						<h:outputText value="GPE"/>
-						<h:outputText value="#{registerClientBean.selectedClient.progress.gpe}"/>
+						<p:outputLabel value="GPE"/>
+						<p:outputLabel value="#{registerClientBean.selectedClient.progress.gpe}"/>
 						
-						<h:outputText value="Pathologist"/>
-						<h:outputText value="#{registerClientBean.selectedClient.progress.pathologist}"/>
+						<p:outputLabel value="Pathologist"/>
+						<p:outputLabel value="#{registerClientBean.selectedClient.progress.pathologist}"/>
 						
-						<h:outputText value="Radiologist"/>
-						<h:outputText value="Chest: #{registerClientBean.selectedClient.xray.chest} - Opinion: #{registerClientBean.selectedClient.xray.opinion}"/>
+						<p:outputLabel value="Radiologist"/>
+						<p:outputLabel value="Chest: #{registerClientBean.selectedClient.xray.chest} - Opinion: #{registerClientBean.selectedClient.xray.opinion}"/>
 					
 					</p:panelGrid>
 					
@@ -267,14 +267,14 @@
 					columns="4" id="addGrid" columnClasses="labels tw-five-percent,contents tw-five-percent,
 					labels tw-five-percent,contents tw-five-percent">
 					 
-					 <h:outputText value="Sugar:" />
+					 <p:outputLabel value="Sugar:" />
 				    <h:panelGroup>
-				    <h:outputText value="#{registerClientBean.selectedClient.urine.sugar}"/>
+				    <p:outputLabel value="#{registerClientBean.selectedClient.urine.sugar}"/>
 				    </h:panelGroup>
 				    
-				    <h:outputText value="Albumin:" />
+				    <p:outputLabel value="Albumin:" />
 				    <h:panelGroup>
-				    <h:outputText value="#{registerClientBean.selectedClient.urine.albumin}"/>
+				    <p:outputLabel value="#{registerClientBean.selectedClient.urine.albumin}"/>
 				    </h:panelGroup>
 				    </p:panelGrid>
 				     </p:fieldset>
@@ -295,21 +295,21 @@
 					labels tw-five-percent,contents tw-five-percent">					 
 					 
 					 
-					 <h:outputText value="Pus Cells:" />
+					 <p:outputLabel value="Pus Cells:" />
 				    <h:panelGroup>
-				    <h:outputText value="#{registerClientBean.selectedClient.micro.pusCels}"/>
+				    <p:outputLabel value="#{registerClientBean.selectedClient.micro.pusCels}"/>
 				    HPF
 				    </h:panelGroup>
 				    
-				    <h:outputText value="RBC's:" />
+				    <p:outputLabel value="RBC's:" />
 				    <h:panelGroup>
-				    <h:outputText value="#{registerClientBean.selectedClient.micro.rbc}"/>
+				    <p:outputLabel value="#{registerClientBean.selectedClient.micro.rbc}"/>
 				    HPF
 				    </h:panelGroup>
 				    
-				    <h:outputText value="Others:" />
+				    <p:outputLabel value="Others:" />
 				    <h:panelGroup>
-				    <h:outputText value="#{registerClientBean.selectedClient.micro.others}"/>			    	
+				    <p:outputLabel value="#{registerClientBean.selectedClient.micro.others}"/>			    	
 				    	
 				    </h:panelGroup>
 				    
@@ -332,89 +332,89 @@
 					labels tw-five-percent,contents tw-five-percent">					 
 					 
 					 
-					<h:outputText value="Haemoglobin:" />
+					<p:outputLabel value="Haemoglobin:" />
 				    <h:panelGroup>
-				    <h:outputText value="#{registerClientBean.selectedClient.blood.haemoglobin}"/>
+				    <p:outputLabel value="#{registerClientBean.selectedClient.blood.haemoglobin}"/>
 				    g/dl
 				    </h:panelGroup>
 				    
-				    <h:outputText value="Blood Gp:" />
+				    <p:outputLabel value="Blood Gp:" />
 				    <h:panelGroup>
-				    <h:outputText value="#{registerClientBean.selectedClient.blood.bloodGp}"/>
+				    <p:outputLabel value="#{registerClientBean.selectedClient.blood.bloodGp}"/>
 				    </h:panelGroup>
 				    
-				    <h:outputText value="Thick Film for(Malaria):" />
+				    <p:outputLabel value="Thick Film for(Malaria):" />
 				    <h:panelGroup>
-				    <h:outputText value="#{registerClientBean.selectedClient.blood.tfMalaria}"/>
+				    <p:outputLabel value="#{registerClientBean.selectedClient.blood.tfMalaria}"/>
 				    </h:panelGroup>
 				    
 				    
-				    <h:outputText value="Thick Film for(Micro Filalaria):" />
+				    <p:outputLabel value="Thick Film for(Micro Filalaria):" />
 				    <h:panelGroup>
-				    <h:outputText value="#{registerClientBean.selectedClient.blood.tfMicroFilaria}"/>
+				    <p:outputLabel value="#{registerClientBean.selectedClient.blood.tfMicroFilaria}"/>
 				    </h:panelGroup>
 				    
-				    <h:outputText value="Blood Glucose:" />
+				    <p:outputLabel value="Blood Glucose:" />
 				    <h:panelGroup>
-				    <h:outputText value="#{registerClientBean.selectedClient.blood.bloodGlucose}"/>
+				    <p:outputLabel value="#{registerClientBean.selectedClient.blood.bloodGlucose}"/>
 				    	mg/dl
 				    </h:panelGroup>
 				    
-				     <h:outputText value="L.F.Ts:" />
+				     <p:outputLabel value="L.F.Ts:" />
 				    <h:panelGroup>
-				    <h:outputText value="#{registerClientBean.selectedClient.blood.lft}"/>
+				    <p:outputLabel value="#{registerClientBean.selectedClient.blood.lft}"/>
 				    </h:panelGroup>
 				    
-				    <h:outputText value="SGOT/AST:" />
+				    <p:outputLabel value="SGOT/AST:" />
 				    <h:panelGroup>
-				    <h:outputText value="#{registerClientBean.selectedClient.blood.sgot}"/>
+				    <p:outputLabel value="#{registerClientBean.selectedClient.blood.sgot}"/>
 				    	mg/dl
 				    </h:panelGroup>
 				    
-				    <h:outputText value="SGPT/ALT:" />
+				    <p:outputLabel value="SGPT/ALT:" />
 				    <h:panelGroup>
-				    <h:outputText value="#{registerClientBean.selectedClient.blood.sgpt}"/>
+				    <p:outputLabel value="#{registerClientBean.selectedClient.blood.sgpt}"/>
 				    	mg/dl
 				    </h:panelGroup>
 				    
-				    <h:outputText value="Urea:" />
+				    <p:outputLabel value="Urea:" />
 				    <h:panelGroup>
-				    <h:outputText value="#{registerClientBean.selectedClient.blood.urea}"/>
+				    <p:outputLabel value="#{registerClientBean.selectedClient.blood.urea}"/>
 				    	mg/dl
 				    </h:panelGroup>
 				    
-				    <h:outputText value="Creatinine:" />
+				    <p:outputLabel value="Creatinine:" />
 				    <h:panelGroup>
-				    <h:outputText value="#{registerClientBean.selectedClient.blood.creatinine}"/>
+				    <p:outputLabel value="#{registerClientBean.selectedClient.blood.creatinine}"/>
 				    	mg/dl
 				    </h:panelGroup>
 				    
-				    <h:outputText value="Anti HIV:" />
+				    <p:outputLabel value="Anti HIV:" />
 				    <h:panelGroup>
-				    <h:outputText value="#{registerClientBean.selectedClient.blood.antiHiv}"/>
+				    <p:outputLabel value="#{registerClientBean.selectedClient.blood.antiHiv}"/>
 				    </h:panelGroup>
 				    
-				    <h:outputText value="Anti HCV:" />
+				    <p:outputLabel value="Anti HCV:" />
 				    <h:panelGroup>
-				    <h:outputText value="#{registerClientBean.selectedClient.blood.antiHcv}"/>
+				    <p:outputLabel value="#{registerClientBean.selectedClient.blood.antiHcv}"/>
 				    </h:panelGroup>
 				    
-				    <h:outputText value="HbsAg:" />
+				    <p:outputLabel value="HbsAg:" />
 				    <h:panelGroup>
-				    <h:outputText value="#{registerClientBean.selectedClient.blood.hbsAg}"/>
+				    <p:outputLabel value="#{registerClientBean.selectedClient.blood.hbsAg}"/>
 				    </h:panelGroup>
 				    
-				    <h:outputText value="VDRL:" />
+				    <p:outputLabel value="VDRL:" />
 				    <h:panelGroup>
-				    <h:outputText value="#{registerClientBean.selectedClient.blood.vdrl}"/>
+				    <p:outputLabel value="#{registerClientBean.selectedClient.blood.vdrl}"/>
 				    </h:panelGroup>
 				    
-				    <h:outputText id="_tpha_out" 
+				    <p:outputLabel id="_tpha_out" 
 				    rendered="#{registerClientBean.selectedClient.blood.vdrl=='Positive'}"
 				     value="TPHA (if VDRL is positive)"/>
 				    <h:panelGroup rendered="#{registerClientBean.selectedClient.blood.vdrl=='Positive'}" 
 				    id="_tpha_panel">
-				    <h:outputText value="#{registerClientBean.selectedClient.blood.tpha}"/>
+				    <p:outputLabel value="#{registerClientBean.selectedClient.blood.tpha}"/>
 				    </h:panelGroup>		
 				    
 				  
@@ -438,9 +438,9 @@
 					labels tw-five-percent,contents tw-five-percent">					 
 					 
 					 
-					 <h:outputText value="AFB:" />
+					 <p:outputLabel value="AFB:" />
 				    <h:panelGroup>
-				    <h:outputText value="#{registerClientBean.selectedClient.sputum.afb}"/>
+				    <p:outputLabel value="#{registerClientBean.selectedClient.sputum.afb}"/>
 				    </h:panelGroup>
 				    </p:panelGrid>
 				    </p:fieldset>
@@ -461,36 +461,36 @@
 					labels tw-five-percent,contents tw-five-percent">					 
 					 
 					 
-					 <h:outputText value="Helminthes:" />
+					 <p:outputLabel value="Helminthes:" />
 				    <h:panelGroup>
-				    <h:outputText value="#{registerClientBean.selectedClient.stool.helminthes}"/>
+				    <p:outputLabel value="#{registerClientBean.selectedClient.stool.helminthes}"/>
 				    </h:panelGroup>
 				    
-				    <h:outputText value="Giardia:" />
+				    <p:outputLabel value="Giardia:" />
 				    <h:panelGroup>
-				    <h:outputText value="#{registerClientBean.selectedClient.stool.giardia}"/>
+				    <p:outputLabel value="#{registerClientBean.selectedClient.stool.giardia}"/>
 				    </h:panelGroup>
 				    
-				    <h:outputText value="Bilharzias (if endemic culture):" />
+				    <p:outputLabel value="Bilharzias (if endemic culture):" />
 				    <h:panelGroup>
-				    <h:outputText value="#{registerClientBean.selectedClient.stool.bilharzias}"/>
+				    <p:outputLabel value="#{registerClientBean.selectedClient.stool.bilharzias}"/>
 				    </h:panelGroup>
 				    
-				    <h:outputText value="Salmonella:" />
+				    <p:outputLabel value="Salmonella:" />
 				    <h:panelGroup>
-				    <h:outputText value="#{registerClientBean.selectedClient.stool.salmonella}"/>				    	
+				    <p:outputLabel value="#{registerClientBean.selectedClient.stool.salmonella}"/>				    	
 				    	
 				    </h:panelGroup>
 				    
-				    <h:outputText value="Shigella:" />
+				    <p:outputLabel value="Shigella:" />
 				    <h:panelGroup>
-				    <h:outputText value="#{registerClientBean.selectedClient.stool.shigella}"/>
+				    <p:outputLabel value="#{registerClientBean.selectedClient.stool.shigella}"/>
 				    
 				    </h:panelGroup>
 				    
-				    <h:outputText value="V.Cholera:" />
+				    <p:outputLabel value="V.Cholera:" />
 				    <h:panelGroup>
-				    <h:outputText value="#{registerClientBean.selectedClient.stool.cholera}"/>
+				    <p:outputLabel value="#{registerClientBean.selectedClient.stool.cholera}"/>
 				    </h:panelGroup>
 				    
 				    
@@ -518,7 +518,7 @@
 					>
 				<p:row>
 				<p:column>
-				<p:commandButton value="Declare " styleClass="richButton" 
+				<p:commandButton value="Declare " icon="fa fa-fw fa-thumbs-o-up"
 				 action="#{registerClientBean.declareFinalResults}">
 				</p:commandButton>
 				</p:column>
@@ -536,7 +536,7 @@
 				</p:row>
 				<p:row >
 				<p:column colspan="2" style="text-align: center;">
-				<p:commandButton value="Back " styleClass="richButton" style="text-align: center;" 
+				<p:commandButton value="Back "  icon="fa fa-fw fa-arrow-left" style="text-align: center;" 
 				 action="finalDeclaration"/>
 				 </p:column>
 				 </p:row>

@@ -24,89 +24,89 @@
 					columns="4">
 					
 					<h:outputText value="RDC Token No:" />
-    <h:inputText value="#{registerClientBean.toAddClient.rdcTokenNo}"></h:inputText>
+    <p:inputText value="#{registerClientBean.toAddClient.rdcTokenNo}"></p:inputText>
  
-    <h:outputText value="GAMCA Slip No:" />
-    <h:inputText value="#{registerClientBean.toAddClient.gamcaSlipNo}"></h:inputText>
+    <p:outputLabel value="GAMCA Slip No:" />
+    <p:inputText value="#{registerClientBean.toAddClient.gamcaSlipNo}"></p:inputText>
  
-    <h:outputText value="First Name:" />
-    <h:inputText value="#{registerClientBean.toAddClient.firstName}"></h:inputText>
+    <p:outputLabel value="First Name:" />
+    <p:inputText value="#{registerClientBean.toAddClient.firstName}"></p:inputText>
  
-    <h:outputText value="Last Name:" />
-    <h:inputText value="#{registerClientBean.toAddClient.lastName}"></h:inputText>
+    <p:outputLabel value="Last Name:" />
+    <p:inputText value="#{registerClientBean.toAddClient.lastName}"></p:inputText>
     
-    <h:outputText value="Father Name:" />
-    <h:inputText value="#{registerClientBean.toAddClient.fatherName}"/>
+    <p:outputLabel value="Father Name:" />
+    <p:inputText value="#{registerClientBean.toAddClient.fatherName}"/>
     
-    <h:outputText value="Gender:" />
-    <h:selectOneMenu value="#{registerClientBean.toAddClient.gender}">
+    <p:outputLabel value="Gender:" />
+    <p:selectOneMenu value="#{registerClientBean.toAddClient.gender}">
     	<f:selectItem itemLabel="Male" itemValue="Male"/>
     	<f:selectItem itemLabel="Female" itemValue="Female"/>
-    </h:selectOneMenu>
+    </p:selectOneMenu>
     
-    <h:outputText value="Nationality:" />
-    <h:selectOneMenu value="#{registerClientBean.toAddClient.nationality}">
+    <p:outputLabel value="Nationality:" />
+    <p:selectOneMenu value="#{registerClientBean.toAddClient.nationality}">
     	<f:selectItem itemLabel="Pakistani" itemValue="Pakistani"/>
     	
-    </h:selectOneMenu>
+    </p:selectOneMenu>
     
-    <h:outputText value="Date of Birth:" />
+    <p:outputLabel value="Date of Birth:" />
     <h:panelGroup>
     <p:calendar value="#{registerClientBean.toAddClient.dob}" navigator="true"
     pattern="dd-MM-yy" mask="true" 
     maxdate="#{userBean.currDate}">
     </p:calendar>
-    <h:outputText value="dd-mm-yy"/>
+    <p:outputLabel value="dd-mm-yy"/>
     </h:panelGroup>
     
-    <h:outputText value="Passport No:" />
-    <h:inputText value="#{registerClientBean.toAddClient.passportNo}"/>
+    <p:outputLabel value="Passport No:" />
+    <p:inputText value="#{registerClientBean.toAddClient.passportNo}"/>
     
-    <h:outputText value="Passport Issue Date:" />
+    <p:outputLabel value="Passport Issue Date:" />
     <h:panelGroup>
     <p:calendar value="#{registerClientBean.toAddClient.passportIssueDate}" navigator="true"
     pattern="dd-MM-yy" mask="true"
     maxdate="#{userBean.currDate}">
     </p:calendar>
-    <h:outputText value="dd-mm-yy"/>
+    <p:outputLabel value="dd-mm-yy"/>
     </h:panelGroup>
     
-    <h:outputText value="Passport Expiry Date:" />
+    <p:outputLabel value="Passport Expiry Date:" />
     <h:panelGroup>
     <p:calendar value="#{registerClientBean.toAddClient.passportExpiryDate}" navigator="true"
     pattern="dd-MM-yy" mask="true"  
     mindate="#{userBean.currDate}">
     </p:calendar>
-    <h:outputText value="dd-mm-yy"/>
+    <p:outputLabel value="dd-mm-yy"/>
     </h:panelGroup>
     
-    <h:outputText value="Place of Issue:" />
-    <h:selectOneMenu value="#{registerClientBean.toAddClient.passportIssuePlace}">
+    <p:outputLabel value="Place of Issue:" />
+    <p:selectOneMenu value="#{registerClientBean.toAddClient.passportIssuePlace}">
     	<f:selectItem itemLabel="Pakistan" itemValue="Pakistan"/>    	
-    </h:selectOneMenu>
+    </p:selectOneMenu>
     
-    <h:outputText value="CNIC:" />
+    <p:outputLabel value="CNIC:" />
     <p:inputMask value="#{registerClientBean.toAddClient.cnicNo}" mask="99999-9999999-9"/>
     
-    <h:outputText value="Marital Status:" />
-    <h:selectOneMenu value="#{registerClientBean.toAddClient.maritalStatus}">
+    <p:outputLabel value="Marital Status:" />
+    <p:selectOneMenu value="#{registerClientBean.toAddClient.maritalStatus}">
     	<f:selectItem itemLabel="Single" itemValue="Single"/>
     	<f:selectItem itemLabel="Married" itemValue="Married"/>
-    </h:selectOneMenu>
+    </p:selectOneMenu>
     
-    <h:outputText value="Mob/Tel:" />
+    <p:outputLabel value="Mob/Tel:" />
     <p:inputText value="#{registerClientBean.toAddClient.mobileNo}"/>
     
-    <h:outputText value="Country Applied For:" />
-    <h:selectOneMenu value="#{registerClientBean.toAddClient.appliedForCountry}">
+    <p:outputLabel value="Country Applied For:" />
+    <p:selectOneMenu value="#{registerClientBean.toAddClient.appliedForCountry}">
     	<f:selectItems value="#{crit.gccCountryList}"/>
-    </h:selectOneMenu>
+    </p:selectOneMenu>
     
-    <h:outputText value="Position Applied For:" />
-    <h:inputText value="#{registerClientBean.toAddClient.appliedForPosition}"/>
+    <p:outputLabel value="Position Applied For:" />
+    <p:inputText value="#{registerClientBean.toAddClient.appliedForPosition}"/>
     
-    <h:outputText value="Recruiting Agency:" />
-    <h:inputText  value="#{registerClientBean.toAddClient.rectAgency}"/>
+    <p:outputLabel value="Recruiting Agency:" />
+    <p:inputText  value="#{registerClientBean.toAddClient.rectAgency}"/>
     
     </p:panelGrid>
     <p:panelGrid style="margin-top:20px; width: 90%; margin: 0 auto"

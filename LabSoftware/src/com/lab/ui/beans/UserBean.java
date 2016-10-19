@@ -151,7 +151,7 @@ public class UserBean
 		return null;
 	}
 	
-	public String logoutUser() throws java.io.IOException 
+	public String logoutUser()  
 	{
 		System.out.println("Logging out");
 		UserBean.KEY_CURRENT_USER = null;
@@ -160,6 +160,20 @@ public class UserBean
 		this.checkSession = false;
 		//return ((PageNavigationBean)FacesUtils.getManagedBean("navBean")).navLogOut();
 		return "/pages/login.xhtml?faces-redirect=true";
+		
+	}
+	
+	
+	
+	public void logout()  
+	{
+		System.out.println("Logging out");
+		UserBean.KEY_CURRENT_USER = null;
+		FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
+//		FacesContext.getCurrentInstance().getExternalContext().redirect("logout.xhtml");
+		this.checkSession = false;
+		//return ((PageNavigationBean)FacesUtils.getManagedBean("navBean")).navLogOut();
+		//return "/pages/login.xhtml?faces-redirect=true";
 		
 	}
 

@@ -18,16 +18,16 @@
 					
 					 
 					<p:outputLabel value="Client ID"></p:outputLabel>
- 					 <h:inputText value="#{resetClientBean.toSearchClient.id}"></h:inputText>
+ 					 <p:inputText value="#{resetClientBean.toSearchClient.id}"></p:inputText>
 					<p:outputLabel value="RDC Token"></p:outputLabel>
-					<h:inputText value="#{resetClientBean.toSearchClient.rdcTokenNo}"></h:inputText>
+					<p:inputText value="#{resetClientBean.toSearchClient.rdcTokenNo}"></p:inputText>
  					 <p:outputLabel value="Passport No"></p:outputLabel>
- 					 <h:inputText value="#{resetClientBean.toSearchClient.passportNo}"></h:inputText>
+ 					 <p:inputText value="#{resetClientBean.toSearchClient.passportNo}"></p:inputText>
  					 <p:outputLabel value="GAMCA Slip"></p:outputLabel>
- 					 <h:inputText value="#{resetClientBean.toSearchClient.gamcaSlipNo}"></h:inputText>
+ 					 <p:inputText value="#{resetClientBean.toSearchClient.gamcaSlipNo}"></p:inputText>
  					
  					<p:outputLabel value="Client Status" />
- 					 <h:selectOneMenu  
+ 					 <p:selectOneMenu  
  					 value="#{resetClientBean.toSearchClient.clientStatus}">
  					 	<f:selectItem itemLabel="Select" itemValue="#{null}"/>
  					 	<f:selectItem itemLabel="Registered" itemValue="Registered"/> 					 	
@@ -37,38 +37,38 @@
 					<f:selectItem itemLabel="Repeat after 2 Week" itemValue="Repeat after 2 Week"/>
 					<f:selectItem itemLabel="Repeat after 3 Week" itemValue="Repeat after 3 Week"/>
 					<f:selectItem itemLabel="Repeat after 4 Week" itemValue="Repeat after 4 Week"/>
- 					 </h:selectOneMenu>
+ 					 </p:selectOneMenu>
  					 
  					 <p:outputLabel value="Cash Payment Status" />
- 					 <h:selectOneMenu  
+ 					 <p:selectOneMenu  
  					 value="#{resetClientBean.toSearchClient.cashPayment.cashPaidStatus}">
  					 	<f:selectItem itemLabel="Select" itemValue="#{null}"/>
  					 	<f:selectItem itemLabel="Paid" itemValue="Paid"/> 					 	
  					 	<f:selectItem itemLabel="Unpaid" itemValue="Unpaid"/>
- 					 </h:selectOneMenu>
+ 					 </p:selectOneMenu>
  					 
  					 <p:outputLabel value="Pathologist Remarks"/>
- 					 <h:selectOneMenu value="#{resetClientBean.toSearchClient.progress.pathologist}">
+ 					 <p:selectOneMenu value="#{resetClientBean.toSearchClient.progress.pathologist}">
  					 	<f:selectItem itemLabel="Select" itemValue="#{null}"/>
  					 	<!--  f:selectItem itemLabel="Verified" itemValue="Verified"></f:selectItem -->
  					 	<f:selectItem itemLabel="Fit" itemValue="Fit"></f:selectItem>
  					 	<f:selectItem itemLabel="Unfit" itemValue="Unfit"></f:selectItem>
  					 	<f:selectItem itemLabel="Repeat" itemValue="Repeat"></f:selectItem>
- 					 </h:selectOneMenu>
+ 					 </p:selectOneMenu>
  					 
  					 
  					 <p:outputLabel value="Applied Country"/>
- 					 <h:selectOneMenu value="#{resetClientBean.toSearchClient.appliedForCountry}">
+ 					 <p:selectOneMenu value="#{resetClientBean.toSearchClient.appliedForCountry}">
  					 	<f:selectItem itemLabel="Select" itemValue="#{null}"/>
  					 	<f:selectItems value="#{crit.gccCountryList}"/>
- 					 </h:selectOneMenu>
+ 					 </p:selectOneMenu>
  					
 					</p:panelGrid>
 				</p:panel>
  
  
  
-  	<h:commandButton value="Search" styleClass="richButton"
+  	<p:commandButton value="Search" icon="fa fa-fw fa-search" update="tbl1"
   	action="#{resetClientBean.advacneSearchClients}"/>
   	
   	<br/>
@@ -79,29 +79,29 @@
 					id="tbl1">
 
 					<p:column headerText="Client ID" sortBy="#{mylist.id}">
-						<h:outputText value="#{mylist.id}" />
+						<p:outputLabel value="#{mylist.id}" />
 					</p:column>
 					
 					<p:column headerText="RDC Token / GAMCA Slip" sortBy="#{mylist.rdcTokenNo}/#{mylist.gamcaSlipNo}">
-						<h:outputText value="#{mylist.rdcTokenNo}" /> / 
-						<h:outputText value="#{mylist.gamcaSlipNo}" />
+						<p:outputLabel value="#{mylist.rdcTokenNo}" /> / 
+						<p:outputLabel value="#{mylist.gamcaSlipNo}" />
 					</p:column>
 
 					<p:column headerText="First Name / Last Name" sortBy="#{mylist.firstName}/#{mylist.lastName}">
 						
-					 	<h:outputText value="#{mylist.firstName}" />/
-						<h:outputText value="#{mylist.lastName}" />
+					 	<p:outputLabel value="#{mylist.firstName}" />/
+						<p:outputLabel value="#{mylist.lastName}" />
 					</p:column>
 					
 					<p:column headerText="Passport No" sortBy="#{mylist.passportNo}">
-						<h:outputText value="#{mylist.passportNo}"/>
+						<p:outputLabel value="#{mylist.passportNo}"/>
 					</p:column>
 					<p:column headerText="Barcode ID" sortBy="#{mylist.barcodeId}">
-						<h:outputText value="#{mylist.barcodeId}"/>
+						<p:outputLabel value="#{mylist.barcodeId}"/>
 					</p:column>
 					
 					<p:column headerText="Director Status" sortBy="#{mylist.clientStatus}">
-						<h:outputText value="#{mylist.clientStatus}  " />
+						<p:outputLabel value="#{mylist.clientStatus}  " />
 						
 						<p:commandLink action="#{resetClientBean.resetDirectorStatus}" rendered="#{mylist.clientStatus!='Registered'}" update="tbl1">
 							<p:confirm header="Confirmation" message="Are you sure?" icon="ui-icon-alert" />
@@ -111,7 +111,7 @@
 					</p:column>	
 					
 					<p:column headerText="Pathology" sortBy="#{mylist.progress.pathologist}">
-						<h:outputText value="#{mylist.progress.pathologist}  " />
+						<p:outputLabel value="#{mylist.progress.pathologist}  " />
 						<p:commandLink action="#{resetClientBean.resetPathologyStatus}" rendered="#{mylist.progress.pathologist!=NULL}" update="tbl1">
 							<p:confirm header="Confirmation" message="Are you sure?" icon="ui-icon-alert" />
 							<p:graphicImage name="/images/resetbutton.png" height="100%" width="80px"></p:graphicImage>
@@ -119,7 +119,7 @@
 						</p:commandLink>
 					</p:column>
 					<p:column headerText="GPE" sortBy="#{mylist.progress.gpe}">
-						<h:outputText value="#{mylist.progress.gpe}  " />
+						<p:outputLabel value="#{mylist.progress.gpe}  " />
 						<p:commandLink action="#{resetClientBean.resetGpeStatus}" rendered="#{mylist.progress.gpe!=NULL}" update="tbl1">
 							<p:confirm header="Confirmation" message="Are you sure?" icon="ui-icon-alert" />
 							<p:graphicImage name="/images/resetbutton.png" height="100%" width="80px"></p:graphicImage>

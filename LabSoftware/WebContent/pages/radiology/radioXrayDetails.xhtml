@@ -29,16 +29,16 @@
 					 
 
 				    
-				    <h:outputText value="Chest X-Ray:" />
+				    <p:outputLabel value="Chest X-Ray:" />
 				    <h:panelGroup>
-				    <h:selectOneMenu value="#{registerClientBean.selectedClient.xray.chest}">
+				    <p:selectOneMenu value="#{registerClientBean.selectedClient.xray.chest}">
 				    	<f:selectItem itemLabel="Normal" itemValue="Normal"></f:selectItem>
 				    	<f:selectItem itemLabel="Abnormal" itemValue="Abnormal"></f:selectItem>
-				    </h:selectOneMenu>
+				    </p:selectOneMenu>
 				    </h:panelGroup>
 				    
-				    <h:outputText value="Opinion:" />
-				    <h:inputTextarea value="#{registerClientBean.selectedClient.xray.opinion}"/>
+				    <p:outputLabel value="Opinion:" />
+				    <p:inputTextarea value="#{registerClientBean.selectedClient.xray.opinion}"/>
 				    
 				    
 				    
@@ -50,13 +50,13 @@
 				</p:panel>
 				
 				
-				<h:commandButton value="Save" styleClass="richButton"
+				<p:commandButton value="Save" styleClass="richButton" icon="fa fa-fw fa-save"
 				 action="#{registerClientBean.saveRadiology}">
-				</h:commandButton>
+				</p:commandButton>
 				
-				<h:commandButton value="Back" styleClass="richButton"
+				<p:commandButton value="Back" styleClass="richButton" icon="fa fa-fw fa-arrow-left"
 				 action="radioXray">
-				</h:commandButton>
+				</p:commandButton>
 				
 				
 </h:form>

@@ -44,6 +44,9 @@ public class WfClientProgress
 	@Column(name = "path_insert_date")
 	private Date pathologistInsertDate;
 	
+	@Column(name = "path_remarks")
+	private String pathologistRemarks;
+	
 	
 	public WfClientProgress() {
 		// TODO Auto-generated constructor stub
@@ -120,4 +123,14 @@ public class WfClientProgress
 	public void setPathologistInsertDate(Date pathologistInsertDate) {
 		this.pathologistInsertDate = pathologistInsertDate;
 	}
+
+	public String getPathologistRemarks() {
+		return pathologistRemarks;
+	}
+
+	public void setPathologistRemarks(String pathologistRemarks) {
+		this.pathologistRemarks = pathologistRemarks;
+	}
+
+	
 }

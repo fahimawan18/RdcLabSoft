@@ -28,21 +28,21 @@
  					 
  					 <p:outputLabel value="Bar Code"/>
 					 <h:panelGroup>
- 					 <h:inputText value="#{registerClientBean.toSearchClient.barcodeId}" required="#{not empty param[search.clientId]}"
+ 					 <p:inputText value="#{registerClientBean.toSearchClient.barcodeId}" required="#{not empty param[search.clientId]}"
  					 requiredMessage="You did not specify bar code." id="barCodeInput"/>
  					 <h:selectBooleanCheckbox value="#{registerClientBean.keepBarCodeDisplayed}" rendered="false"/>
 					</h:panelGroup>
  					 <p:outputLabel value="Cash Payment Status"/>
- 					 <h:selectOneMenu value="#{registerClientBean.toSearchClient.cashPayment.cashPaidStatus}">
+ 					 <p:selectOneMenu value="#{registerClientBean.toSearchClient.cashPayment.cashPaidStatus}">
  					 	<f:selectItem itemLabel="Paid" itemValue="Paid"></f:selectItem>
- 					 </h:selectOneMenu>
+ 					 </p:selectOneMenu>
  					
 					</p:panelGrid>
 				</p:panel>
  
  
- 
-  	<h:commandButton value="Search" styleClass="richButton"  id="search" binding="#{search}"
+  	<br/>
+  	<p:commandButton value="Search"  id="search" binding="#{search}" icon="fa fa-fw fa-search" update="tbl1"
   	action="#{registerClientBean.searchClients}" />
   	
   	<br/>
@@ -52,32 +52,36 @@
 					paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
 					id="tbl1">
 
-					<p:column headerText="Bar Code ID">
-						<h:outputText value="#{mylist.barcodeId}" />
+					<p:column headerText="Bar Code ID" style="text-align:center;">
+						<p:outputLabel  value="#{mylist.barcodeId}" />
 					</p:column>
 					
 					<p:column headerText="RDC Token / GAMCA Slip" rendered="false">
-						<h:outputText value="#{mylist.rdcTokenNo}" /> / 
-						<h:outputText value="#{mylist.gamcaSlipNo}" />
+						<p:outputLabel  value="#{mylist.rdcTokenNo}" /> / 
+						<p:outputLabel  value="#{mylist.gamcaSlipNo}" />
 					</p:column>
 
 					<p:column headerText="First Name / Last Name" rendered="false">
-						<h:outputText value="#{mylist.firstName}" />/
-						<h:outputText value="#{mylist.lastName}" />
+						<p:outputLabel  value="#{mylist.firstName}" />/
+						<p:outputLabel  value="#{mylist.lastName}" />
 					</p:column>
 
 					<p:column headerText="CNIC" rendered="false">
-						<h:outputText value="#{mylist.cnicNo}" />
+						<p:outputLabel  value="#{mylist.cnicNo}" />
 					</p:column>
 					
 					<p:column headerText="Passport No" rendered="false">
-						<h:outputText value="#{mylist.passportNo}" />
+						<p:outputLabel  value="#{mylist.passportNo}" />
 					</p:column>
 					
 					
-					<p:column headerText="Lab Results Details">
-						<p:commandButton value="Update Details" title="Applicable if not verified by Pathologist"
-						disabled="#{mylist.progress.pathologist != null}" 
+					<p:column headerText="Lab Status" style="text-align:center;">
+						<p:outputLabel  value="#{mylist.blood.labInsertDate == null ? 'Not Saved' : 'Saved'}" />
+					</p:column>
+					
+					<p:column headerText="Lab Results Details" style="text-align:center;">
+						<p:commandButton value="Update Details" title="Applicable if result not saved already." icon="fa fa-fw fa-edit"
+						disabled="#{mylist.blood.labInsertDate!=null}" 
 						action="#{navBean.navLabDetails}">
 							<f:setPropertyActionListener target="#{registerClientBean.selectedClient}" value="#{mylist}" />
 						</p:commandButton>

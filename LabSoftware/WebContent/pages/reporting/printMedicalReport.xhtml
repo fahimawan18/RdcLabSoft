@@ -20,21 +20,21 @@
 					columns="2" columnClasses="fifty-percent, fifty-percent">
  					 
  					 <p:outputLabel value="Medical Director Status"/>
- 					 <h:selectOneMenu value="#{registerClientBean.toSearchClient.clientStatus}">
+ 					 <p:selectOneMenu value="#{registerClientBean.toSearchClient.clientStatus}">
 					<f:selectItem itemLabel="Fit" itemValue="Fit"/>
 					<f:selectItem itemLabel="Unfit" itemValue="Unfit"/>
 					<f:selectItem itemLabel="Repeat after 1 Week" itemValue="Repeat after 1 Week"/>
 					<f:selectItem itemLabel="Repeat after 2 Week" itemValue="Repeat after 2 Week"/>
 					<f:selectItem itemLabel="Repeat after 3 Week" itemValue="Repeat after 3 Week"/>
 					<f:selectItem itemLabel="Repeat after 4 Week" itemValue="Repeat after 4 Week"/>					
-				</h:selectOneMenu>
+				</p:selectOneMenu>
  					
 					</p:panelGrid>
 				</p:panel>
  
  
  
-  	<h:commandButton value="Search" styleClass="richButton"
+  	<p:commandButton value="Search" icon="fa fa-fw fa-search" update="tbl1"
   	action="#{registerClientBean.searchClients}"/>
   	
   	<br/>
@@ -45,37 +45,37 @@
 					id="tbl1">
 
 					<p:column headerText="Client ID">
-						<h:outputText value="#{mylist.id}" />
+						<p:outputLabel value="#{mylist.id}" />
 					</p:column>
 					
 					<p:column headerText="RDC Token / GAMCA Slip">
-						<h:outputText value="#{mylist.rdcTokenNo}" /> / 
-						<h:outputText value="#{mylist.gamcaSlipNo}" />
+						<p:outputLabel value="#{mylist.rdcTokenNo}" /> / 
+						<p:outputLabel value="#{mylist.gamcaSlipNo}" />
 					</p:column>
 
 					<p:column headerText="First Name / Last Name">
-						<h:outputText value="#{mylist.firstName}" />/
-						<h:outputText value="#{mylist.lastName}" />
+						<p:outputLabel value="#{mylist.firstName}" />/
+						<p:outputLabel value="#{mylist.lastName}" />
 					</p:column>
 
 					<p:column headerText="CNIC">
-						<h:outputText value="#{mylist.cnicNo}" />
+						<p:outputLabel value="#{mylist.cnicNo}" />
 					</p:column>
 					
 					<p:column headerText="Passport No">
-						<h:outputText value="#{mylist.passportNo}" />
+						<p:outputLabel value="#{mylist.passportNo}" />
 					</p:column>
 					
 					<p:column headerText="Pathologist's Status">
-						<h:outputText value="#{mylist.progress.pathologist}" />
+						<p:outputLabel value="#{mylist.progress.pathologist}" />
 					</p:column>
 					
 					<p:column headerText="Director's Declaration">
-						<h:outputText value="#{mylist.clientStatus}" />
+						<p:outputLabel value="#{mylist.clientStatus}" />
 					</p:column>
 					
 					<p:column headerText="Report">
-						<h:commandLink value="View/Print" target="_blank" 
+						<h:commandLink value="View/Print" target="_blank" icon="fa fa-fw fa-print"
 						action="#{registerClientBean.printMedicalReport}">
 							<f:setPropertyActionListener 
 							target="#{registerClientBean.selectedClient.id}" value="#{mylist.id}" />

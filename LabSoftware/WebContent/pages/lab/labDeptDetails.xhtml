@@ -10,11 +10,12 @@
 		<ui:define name="content">
 
 <h:form>
+<center>
 				 	
   	<p:panel id="panel2" header="Bar Code ID">
 					
 							<h2>
-						<h:outputLabel value="#{registerClientBean.selectedClient.barcodeId}"/>	
+						<p:outputLabel value="#{registerClientBean.selectedClient.barcodeId}"/>	
 							</h2>	
 				</p:panel>
 				
@@ -37,18 +38,18 @@
 					columns="4" id="addGrid">					 
 					 
 					 
-					 <h:outputText value="Sugar:" />
+					 <p:outputLabel value="Sugar:" />
 				    <h:panelGroup>
-				    <h:selectOneMenu value="#{registerClientBean.selectedClient.urine.sugar}">				    	
+				    <p:selectOneMenu value="#{registerClientBean.selectedClient.urine.sugar}">				    	
 				    	<f:selectItems value="#{crit.npOptionsList}"></f:selectItems>
-				    </h:selectOneMenu>
+				    </p:selectOneMenu>
 				    </h:panelGroup>
 				    
-				    <h:outputText value="Albumin:" />
+				    <p:outputLabel value="Albumin:" />
 				    <h:panelGroup>
-				    <h:selectOneMenu value="#{registerClientBean.selectedClient.urine.albumin}">				    	
+				    <p:selectOneMenu value="#{registerClientBean.selectedClient.urine.albumin}">				    	
 				    	<f:selectItems value="#{crit.ntpOptionsList}"></f:selectItems>
-				    </h:selectOneMenu>
+				    </p:selectOneMenu>
 				    </h:panelGroup>
 				    </p:panelGrid>
 				    
@@ -67,25 +68,25 @@
 					columns="4">					 
 					 
 					 
-					 <h:outputText value="Pus Cells:" />
+					 <p:outputLabel value="Pus Cells:" />
 				    <h:panelGroup>
-				    <h:selectOneMenu value="#{registerClientBean.selectedClient.micro.pusCels}">				    	
+				    <p:selectOneMenu value="#{registerClientBean.selectedClient.micro.pusCels}">				    	
 				    	<f:selectItems value="#{crit.microOptionsList}"></f:selectItems>
-				    </h:selectOneMenu>
+				    </p:selectOneMenu>
 				    HPF
 				    </h:panelGroup>
 				    
-				    <h:outputText value="RBC's:" />
+				    <p:outputLabel value="RBC's:" />
 				    <h:panelGroup>
-				    <h:selectOneMenu value="#{registerClientBean.selectedClient.micro.rbc}">				    	
+				    <p:selectOneMenu value="#{registerClientBean.selectedClient.micro.rbc}">				    	
 				    	<f:selectItems value="#{crit.microOptionsList}"></f:selectItems>
-				    </h:selectOneMenu>
+				    </p:selectOneMenu>
 				    HPF
 				    </h:panelGroup>
 				    
-				    <h:outputText value="Others:" />
+				    <p:outputLabel value="Others:" />
 				    <h:panelGroup>
-				    <h:inputTextarea value="#{registerClientBean.selectedClient.micro.others}"/>			    	
+				    <p:inputTextarea value="#{registerClientBean.selectedClient.micro.others}"/>			    	
 				    	
 				    </h:panelGroup>
 				    
@@ -107,102 +108,102 @@
 					columns="4">					 
 					 
 					 
-					<h:outputText value="Haemoglobin:" />
+					<p:outputLabel value="Haemoglobin:" />
 				    <h:panelGroup>
-				    <h:inputText value="#{registerClientBean.selectedClient.blood.haemoglobin}"/>
+				    <p:inputText value="#{registerClientBean.selectedClient.blood.haemoglobin}"/>
 				    g/dl
 				    </h:panelGroup>
 				    
-				    <h:outputText value="Blood Gp:" />
+				    <p:outputLabel value="Blood Gp:" />
 				    <h:panelGroup>
-				    <h:selectOneMenu value="#{registerClientBean.selectedClient.blood.bloodGp}">				    	
+				    <p:selectOneMenu value="#{registerClientBean.selectedClient.blood.bloodGp}">				    	
 				    	<f:selectItems value="#{crit.bloodGpList}"></f:selectItems>
-				    </h:selectOneMenu>
+				    </p:selectOneMenu>
 				   
 				    </h:panelGroup>
 				    
-				    <h:outputText value="Thick Film for(Malaria):" />
+				    <p:outputLabel value="Thick Film for(Malaria):" />
 				    <h:panelGroup>
-				    <h:selectOneMenu value="#{registerClientBean.selectedClient.blood.tfMalaria}">				    	
+				    <p:selectOneMenu value="#{registerClientBean.selectedClient.blood.tfMalaria}">				    	
 				    	<f:selectItems value="#{crit.snsOptionsList}"></f:selectItems>
-				    </h:selectOneMenu>
+				    </p:selectOneMenu>
 				    </h:panelGroup>
 				    
 				    
-				    <h:outputText value="Thick Film for(Micro Filalaria):" />
+				    <p:outputLabel value="Thick Film for(Micro Filalaria):" />
 				    <h:panelGroup>
-				    <h:selectOneMenu value="#{registerClientBean.selectedClient.blood.tfMicroFilaria}">				    	
+				    <p:selectOneMenu value="#{registerClientBean.selectedClient.blood.tfMicroFilaria}">				    	
 				    	<f:selectItems value="#{crit.snsOptionsList}"></f:selectItems>
-				    </h:selectOneMenu>
+				    </p:selectOneMenu>
 				    </h:panelGroup>
 				    
-				    <h:outputText value="Blood Glucose:" />
+				    <p:outputLabel value="Blood Glucose:" />
 				    <h:panelGroup>
-				    <h:inputText value="#{registerClientBean.selectedClient.blood.bloodGlucose}"/>
+				    <p:inputText value="#{registerClientBean.selectedClient.blood.bloodGlucose}"/>
 				    	mg/dl
 				    </h:panelGroup>
 				    
-				    <h:outputText value="L.F.Ts:" />
+				    <p:outputLabel value="L.F.Ts:" />
 				    <h:panelGroup>
-				    <h:selectOneMenu value="#{registerClientBean.selectedClient.blood.lft}">				    	
+				    <p:selectOneMenu value="#{registerClientBean.selectedClient.blood.lft}">				    	
 				    	<f:selectItem itemLabel="Select One" itemValue=""/>
 				    	<f:selectItem itemLabel="Normal" itemValue="Normal"/>
 				    	<f:selectItem itemLabel="Raised" itemValue="Raised"/>
-				    </h:selectOneMenu>
+				    </p:selectOneMenu>
 				    </h:panelGroup>
 				    
-				    <h:outputText value="SGOT/AST:" />
+				    <p:outputLabel value="SGOT/AST:" />
 				    <h:panelGroup>
-				    <h:inputText value="#{registerClientBean.selectedClient.blood.sgot}"/>
+				    <p:inputText value="#{registerClientBean.selectedClient.blood.sgot}"/>
 				    	mg/dl
 				    </h:panelGroup>
 				    
-				    <h:outputText value="SGPT/ALT:" />
+				    <p:outputLabel value="SGPT/ALT:" />
 				    <h:panelGroup>
-				    <h:inputText value="#{registerClientBean.selectedClient.blood.sgpt}"/>
+				    <p:inputText value="#{registerClientBean.selectedClient.blood.sgpt}"/>
 				    	mg/dl
 				    </h:panelGroup>
 				    
-				    <h:outputText value="R.F.Ts:" />
+				    <p:outputLabel value="R.F.Ts:" />
 				    <h:panelGroup>
-				    <h:selectOneMenu value="#{registerClientBean.selectedClient.blood.rft}">				    	
+				    <p:selectOneMenu value="#{registerClientBean.selectedClient.blood.rft}">				    	
 				    	<f:selectItem itemLabel="Select One" itemValue=""/>
 				    	<f:selectItem itemLabel="Normal" itemValue="Normal"/>
 				    	<f:selectItem itemLabel="Raised" itemValue="Raised"/>
-				    </h:selectOneMenu>
+				    </p:selectOneMenu>
 				    </h:panelGroup>
 				    
-				    <h:outputText value="Urea:" />
+				    <p:outputLabel value="Urea:" />
 				    <h:panelGroup>
-				    <h:inputText value="#{registerClientBean.selectedClient.blood.urea}"/>
+				    <p:inputText value="#{registerClientBean.selectedClient.blood.urea}"/>
 				    	mg/dl
 				    </h:panelGroup>
 				    
-				    <h:outputText value="Creatinine:" />
+				    <p:outputLabel value="Creatinine:" />
 				    <h:panelGroup>
-				    <h:inputText value="#{registerClientBean.selectedClient.blood.creatinine}"/>
+				    <p:inputText value="#{registerClientBean.selectedClient.blood.creatinine}"/>
 				    	mg/dl
 				    </h:panelGroup>
 				    
-				    <h:outputText value="Anti HIV:" />
+				    <p:outputLabel value="Anti HIV:" />
 				    <h:panelGroup>
-				    <h:selectOneMenu value="#{registerClientBean.selectedClient.blood.antiHiv}">				    	
+				    <p:selectOneMenu value="#{registerClientBean.selectedClient.blood.antiHiv}">				    	
 				    	<f:selectItems value="#{crit.npwOptionsList}"></f:selectItems>
-				    </h:selectOneMenu>
+				    </p:selectOneMenu>
 				    </h:panelGroup>
 				    
-				    <h:outputText value="Anti HCV:" />
+				    <p:outputLabel value="Anti HCV:" />
 				    <h:panelGroup>
-				    <h:selectOneMenu value="#{registerClientBean.selectedClient.blood.antiHcv}">				    	
+				    <p:selectOneMenu value="#{registerClientBean.selectedClient.blood.antiHcv}">				    	
 				    	<f:selectItems value="#{crit.npwOptionsList}"></f:selectItems>
-				    </h:selectOneMenu>
+				    </p:selectOneMenu>
 				    </h:panelGroup>
 				    
-				    <h:outputText value="HbsAg:" />
+				    <p:outputLabel value="HbsAg:" />
 				    <h:panelGroup>
-				    <h:selectOneMenu value="#{registerClientBean.selectedClient.blood.hbsAg}">				    	
+				    <p:selectOneMenu value="#{registerClientBean.selectedClient.blood.hbsAg}">				    	
 				    	<f:selectItems value="#{crit.npwOptionsList}"></f:selectItems>
-				    </h:selectOneMenu>
+				    </p:selectOneMenu>
 				    </h:panelGroup>
 				    
 				    </p:panelGrid>
@@ -210,7 +211,7 @@
 				    
 				    <p:panelGrid columns="4" style="margin-top:20px; width: 70%; margin: 0 auto" 
 				    id="vdrl_panel">
-				    <h:outputText value="VDRL:" />
+				    <p:outputLabel value="VDRL:" />
 				    <h:panelGroup>
 				    <p:selectOneMenu value="#{registerClientBean.selectedClient.blood.vdrl}"
 				    valueChangeListener="#{registerClientBean.stateChangeListener}">				    	
@@ -219,14 +220,14 @@
 				    </p:selectOneMenu>
 				    </h:panelGroup>
 				    
-				    <h:outputText id="_tpha_out" 
+				    <p:outputLabel id="_tpha_out" 
 				    rendered="#{registerClientBean.selectedClient.blood.vdrl=='Positive'}"
 				     value="TPHA (if VDRL is positive)"/>
 				    <h:panelGroup rendered="#{registerClientBean.selectedClient.blood.vdrl=='Positive'}" 
 				    id="_tpha_panel">
-				    <h:selectOneMenu value="#{registerClientBean.selectedClient.blood.tpha}">				    	
+				    <p:selectOneMenu value="#{registerClientBean.selectedClient.blood.tpha}">				    	
 				    	<f:selectItems value="#{crit.negPosOptionsList}"></f:selectItems>
-				    </h:selectOneMenu>
+				    </p:selectOneMenu>
 				    </h:panelGroup>		
 				    
 				  
@@ -248,11 +249,11 @@
 					columns="4">					 
 					 
 					 
-					 <h:outputText value="AFB:" />
+					 <p:outputLabel value="AFB:" />
 				    <h:panelGroup>
-				    <h:selectOneMenu value="#{registerClientBean.selectedClient.sputum.afb}">				    	
+				    <p:selectOneMenu value="#{registerClientBean.selectedClient.sputum.afb}">				    	
 				    	<f:selectItems value="#{crit.snsOptionsList}"></f:selectItems>
-				    </h:selectOneMenu>
+				    </p:selectOneMenu>
 				    </h:panelGroup>
 				    </p:panelGrid>
 				    
@@ -271,49 +272,49 @@
 					columns="4">					 
 					 
 					 
-					 <h:outputText value="Helminthes:" />
+					 <p:outputLabel value="Helminthes:" />
 				    <h:panelGroup>
-				    <h:selectOneMenu value="#{registerClientBean.selectedClient.stool.helminthes}">				    	
+				    <p:selectOneMenu value="#{registerClientBean.selectedClient.stool.helminthes}">				    	
 				    	<f:selectItems value="#{crit.snsOptionsList}"></f:selectItems>
-				    </h:selectOneMenu>
+				    </p:selectOneMenu>
 				    </h:panelGroup>
 				    
-				    <h:outputText value="Giardia:" />
+				    <p:outputLabel value="Giardia:" />
 				    <h:panelGroup>
-				    <h:selectOneMenu value="#{registerClientBean.selectedClient.stool.giardia}">				    	
+				    <p:selectOneMenu value="#{registerClientBean.selectedClient.stool.giardia}">				    	
 				    	<f:selectItems value="#{crit.snsOptionsList}"></f:selectItems>
-				    </h:selectOneMenu>
+				    </p:selectOneMenu>
 				    </h:panelGroup>
 				    
-				    <h:outputText value="Bilharzias (if endemic culture):" />
+				    <p:outputLabel value="Bilharzias (if endemic culture):" />
 				    <h:panelGroup>
-				    <h:selectOneMenu value="#{registerClientBean.selectedClient.stool.bilharzias}">				    	
+				    <p:selectOneMenu value="#{registerClientBean.selectedClient.stool.bilharzias}">				    	
 				    	<f:selectItem itemLabel="Select One" itemValue=""/>
 				    	<f:selectItem itemLabel="NA" itemValue="NA"/>
 				    	<f:selectItem itemLabel="Nil" itemValue="Nil"/>
 				    	<f:selectItem itemLabel="Present" itemValue="Present"/>
-				    </h:selectOneMenu>
+				    </p:selectOneMenu>
 				    </h:panelGroup>
 				    
-				    <h:outputText value="Salmonella:" />
+				    <p:outputLabel value="Salmonella:" />
 				    <h:panelGroup>
-				    <h:selectOneMenu value="#{registerClientBean.selectedClient.stool.salmonella}">				    	
+				    <p:selectOneMenu value="#{registerClientBean.selectedClient.stool.salmonella}">				    	
 				    	<f:selectItems value="#{crit.npOptionsList}"></f:selectItems>
-				    </h:selectOneMenu>
+				    </p:selectOneMenu>
 				    </h:panelGroup>
 				    
-				    <h:outputText value="Shigella:" />
+				    <p:outputLabel value="Shigella:" />
 				    <h:panelGroup>
-				    <h:selectOneMenu value="#{registerClientBean.selectedClient.stool.shigella}">				    	
+				    <p:selectOneMenu value="#{registerClientBean.selectedClient.stool.shigella}">				    	
 				    	<f:selectItems value="#{crit.npOptionsList}"></f:selectItems>
-				    </h:selectOneMenu>
+				    </p:selectOneMenu>
 				    </h:panelGroup>
 				    
-				    <h:outputText value="V.Cholera:" />
+				    <p:outputLabel value="V.Cholera:" />
 				    <h:panelGroup>
-				    <h:selectOneMenu value="#{registerClientBean.selectedClient.stool.cholera}">				    	
+				    <p:selectOneMenu value="#{registerClientBean.selectedClient.stool.cholera}">				    	
 				    	<f:selectItems value="#{crit.npOptionsList}"></f:selectItems>
-				    </h:selectOneMenu>
+				    </p:selectOneMenu>
 				    </h:panelGroup>
 				    
 				    
@@ -321,17 +322,25 @@
 				    </p:panelGrid>
 					
 				</p:panel>
-				
-				
-				<h:commandButton value="Save" styleClass="richButton"
-				 action="#{registerClientBean.addLabResults}">
-				</h:commandButton>
-				
-				<h:commandButton value="Back" styleClass="richButton"
+				<p:panelGrid style="align:center;margin:20px; padding:20px;" 
+					>
+				<p:column  style="padding:10px;border: none;" > 
+				<p:commandButton value="Save"  action="#{registerClientBean.addLabResults}" icon="fa fa-fw fa-save">
+					<p:confirm header="Confirmation" message="Are you sure?" icon="ui-icon-alert" />
+				 		
+				</p:commandButton>
+				</p:column>
+				<p:column  style="padding:10px;border: none;">
+				<p:commandButton value="Back"  icon="fa fa-fw fa-arrow-left"
 				 action="labDept">
-				</h:commandButton>
-				
-				
+				</p:commandButton>
+				</p:column>
+				</p:panelGrid>		
+				 <p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+				        <p:commandButton value="Yes" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+				        <p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+    			</p:confirmDialog>
+</center>
 </h:form>
 </ui:define>
 	</ui:composition>

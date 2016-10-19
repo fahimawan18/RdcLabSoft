@@ -17,80 +17,82 @@
 					columns="2">
 					
 					<p:outputLabel value="Enter Username"></p:outputLabel>
-  <h:inputText value="#{adminBean.toAddUser.userName}"></h:inputText>
+  <p:inputText value="#{adminBean.toAddUser.userName}"></p:inputText>
  
   <p:outputLabel value="Enter Name"></p:outputLabel>
-  <h:inputText value="#{adminBean.toAddUser.name}"></h:inputText>
+  <p:inputText value="#{adminBean.toAddUser.name}"></p:inputText>
   
   <p:outputLabel value="Enter Appt/Designation"></p:outputLabel>
-  <h:inputText value="#{adminBean.toAddUser.appointment}"></h:inputText>
- 
+  <p:inputText value="#{adminBean.toAddUser.appointment}"></p:inputText>
+ </p:panelGrid>
+ <p:panelGrid style="margin-top:20px; width: 90%; margin: 0 auto"
+					columns="4">
   <p:outputLabel value="System Admin"></p:outputLabel>
-  <h:selectOneMenu value="#{adminBean.toAddUser.roleAdmin}">
+  <p:selectOneMenu value="#{adminBean.toAddUser.roleAdmin}">
   	<f:selectItem itemLabel="N" itemValue="N"></f:selectItem>
   	<f:selectItem itemLabel="Y" itemValue="Y"></f:selectItem>
-  </h:selectOneMenu>
+  </p:selectOneMenu>
   
  
   <p:outputLabel value="Regn Counter"></p:outputLabel>
-  <h:selectOneMenu value="#{adminBean.toAddUser.roleRegn}">
+  <p:selectOneMenu value="#{adminBean.toAddUser.roleRegn}">
   	<f:selectItem itemLabel="N" itemValue="N"></f:selectItem>
   	<f:selectItem itemLabel="Y" itemValue="Y"></f:selectItem>
-  </h:selectOneMenu>
+  </p:selectOneMenu>
   
   <p:outputLabel value="Cashier"></p:outputLabel>
-  <h:selectOneMenu value="#{adminBean.toAddUser.roleFinance}">
+  <p:selectOneMenu value="#{adminBean.toAddUser.roleFinance}">
   	<f:selectItem itemLabel="N" itemValue="N"></f:selectItem>
   	<f:selectItem itemLabel="Y" itemValue="Y"></f:selectItem>
-  </h:selectOneMenu>
+  </p:selectOneMenu>
   
   <p:outputLabel value="Medical (GPE)"></p:outputLabel>
-  <h:selectOneMenu value="#{adminBean.toAddUser.roleMedical}">
+  <p:selectOneMenu value="#{adminBean.toAddUser.roleMedical}">
   	<f:selectItem itemLabel="N" itemValue="N"></f:selectItem>
   	<f:selectItem itemLabel="Y" itemValue="Y"></f:selectItem>
-  </h:selectOneMenu>
+  </p:selectOneMenu>
   
   <p:outputLabel value="X-Ray Room"></p:outputLabel>
-  <h:selectOneMenu value="#{adminBean.toAddUser.roleXray}">
+  <p:selectOneMenu value="#{adminBean.toAddUser.roleXray}">
   	<f:selectItem itemLabel="N" itemValue="N"></f:selectItem>
   	<f:selectItem itemLabel="Y" itemValue="Y"></f:selectItem>
-  </h:selectOneMenu>
+  </p:selectOneMenu>
   
   <p:outputLabel value="Radiologist"></p:outputLabel>
-  <h:selectOneMenu value="#{adminBean.toAddUser.roleRadiologist}">
+  <p:selectOneMenu value="#{adminBean.toAddUser.roleRadiologist}">
   	<f:selectItem itemLabel="N" itemValue="N"></f:selectItem>
   	<f:selectItem itemLabel="Y" itemValue="Y"></f:selectItem>
-  </h:selectOneMenu>
+  </p:selectOneMenu>
   
   <p:outputLabel value="Sample Collector"></p:outputLabel>
-  <h:selectOneMenu value="#{adminBean.toAddUser.roleSample}">
+  <p:selectOneMenu value="#{adminBean.toAddUser.roleSample}">
   	<f:selectItem itemLabel="N" itemValue="N"></f:selectItem>
   	<f:selectItem itemLabel="Y" itemValue="Y"></f:selectItem>
-  </h:selectOneMenu>
+  </p:selectOneMenu>
   
   <p:outputLabel value="Lab Manager"></p:outputLabel>
-  <h:selectOneMenu value="#{adminBean.toAddUser.roleLab}">
+  <p:selectOneMenu value="#{adminBean.toAddUser.roleLab}">
   	<f:selectItem itemLabel="N" itemValue="N"></f:selectItem>
   	<f:selectItem itemLabel="Y" itemValue="Y"></f:selectItem>
-  </h:selectOneMenu>
+  </p:selectOneMenu>
 	
 	<p:outputLabel value="Printer Room"></p:outputLabel>
-  <h:selectOneMenu value="#{adminBean.toAddUser.rolePrintRoom}">
+  <p:selectOneMenu value="#{adminBean.toAddUser.rolePrintRoom}">
   	<f:selectItem itemLabel="N" itemValue="N"></f:selectItem>
   	<f:selectItem itemLabel="Y" itemValue="Y"></f:selectItem>
-  </h:selectOneMenu>
+  </p:selectOneMenu>
 					
 <p:outputLabel value="Pathology"></p:outputLabel>
-  <h:selectOneMenu value="#{adminBean.toAddUser.rolePathology}">
+  <p:selectOneMenu value="#{adminBean.toAddUser.rolePathology}">
   	<f:selectItem itemLabel="N" itemValue="N"></f:selectItem>
   	<f:selectItem itemLabel="Y" itemValue="Y"></f:selectItem>
-  </h:selectOneMenu>
+  </p:selectOneMenu>
   
   <p:outputLabel value="Director"></p:outputLabel>
-  <h:selectOneMenu value="#{adminBean.toAddUser.roleDirector}">
+  <p:selectOneMenu value="#{adminBean.toAddUser.roleDirector}">
   	<f:selectItem itemLabel="N" itemValue="N"></f:selectItem>
   	<f:selectItem itemLabel="Y" itemValue="Y"></f:selectItem>
-  </h:selectOneMenu>
+  </p:selectOneMenu>
   
   
 					</p:panelGrid>
@@ -98,7 +100,7 @@
  
  
  
-  	<p:commandButton value="Save" action="#{adminBean.addNewUser}"></p:commandButton>
+  	<p:commandButton value="Save" action="#{adminBean.addNewUser}" icon="fa fa-fw fa-save" ajax="false"></p:commandButton>
   	
 </h:form>
 </ui:define>

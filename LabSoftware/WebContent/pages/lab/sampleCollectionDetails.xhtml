@@ -45,40 +45,40 @@
 					columns="4" id="addGrid">					 
 					 
 					 
-					 <h:outputText value="Blood Sample Collected:" />
+					 <p:outputLabel value="Blood Sample Collected:" />
 				    <h:panelGroup>
-				    <h:selectOneMenu value="#{samplesBean.selectedClient.samples.bloodSample}">				    	
+				    <p:selectOneMenu value="#{samplesBean.selectedClient.samples.bloodSample}">				    	
 				    	<f:selectItem itemLabel="Select One" itemValue=""></f:selectItem>
 				    	<f:selectItems value="#{crit.threeOptionsList}"></f:selectItems>
-				    </h:selectOneMenu>
+				    </p:selectOneMenu>
 				    </h:panelGroup>
 				    
-				    <h:outputText value="Urine Sample Collected:" />
+				    <p:outputLabel value="Urine Sample Collected:" />
 				    <h:panelGroup>
-				    <h:selectOneMenu value="#{samplesBean.selectedClient.samples.urineSample}">				    	
+				    <p:selectOneMenu value="#{samplesBean.selectedClient.samples.urineSample}">				    	
 				    	<f:selectItem itemLabel="Select One" itemValue=""></f:selectItem>
 				    	<f:selectItems value="#{crit.threeOptionsList}"></f:selectItems>
-				    </h:selectOneMenu>
+				    </p:selectOneMenu>
 				    </h:panelGroup>
 				    
-				     <h:outputText value="Sputum Sample Collected:" />
+				     <p:outputLabel value="Sputum Sample Collected:" />
 				    <h:panelGroup>
-				    <h:selectOneMenu value="#{samplesBean.selectedClient.samples.sputumSample}">				    	
+				    <p:selectOneMenu value="#{samplesBean.selectedClient.samples.sputumSample}">				    	
 				    	<f:selectItem itemLabel="Select One" itemValue=""></f:selectItem>
 				    	<f:selectItems value="#{crit.threeOptionsList}"></f:selectItems>
-				    </h:selectOneMenu>
+				    </p:selectOneMenu>
 				    </h:panelGroup>
 				     
-				    <h:outputText value="Stool Sample Collected:" />
+				    <p:outputLabel value="Stool Sample Collected:" />
 				    <h:panelGroup>
-				    <h:selectOneMenu value="#{samplesBean.selectedClient.samples.stoolSample}">		
+				    <p:selectOneMenu value="#{samplesBean.selectedClient.samples.stoolSample}">		
 				   		 <f:selectItem itemLabel="Select One" itemValue=""></f:selectItem>		    	
 				    	<f:selectItems value="#{crit.threeOptionsList}"></f:selectItems>
-				    </h:selectOneMenu>
+				    </p:selectOneMenu>
 				    </h:panelGroup>
 				    
 				    
-				    <h:outputText value="Bar Code:" />
+				    <p:outputLabel value="Bar Code:" />
 				    <h:panelGroup>	
 				    	<!--  p:barcode id="testbarcode" value="0123456789" type="code39" />
 				    	<iframe id="barCode" name="barCode" src="#{samplesBean.printUrl}"   width="300" height="200"></iframe>			    
@@ -96,9 +96,9 @@
 						</p:media>
 				    </h:panelGroup>
 				  
-				    <h:outputText value="Remarks/Observation:" />
+				    <p:outputLabel value="Remarks/Observation:" />
 				    <h:panelGroup>				    
-				    <h:inputTextarea style="width:150px;height:150px;" value="#{samplesBean.selectedClient.samples.remarks}"/>
+				    <p:inputTextarea style="width:150px;height:150px;" value="#{samplesBean.selectedClient.samples.remarks}"/>
 				    </h:panelGroup>
 				    
 				   
@@ -109,13 +109,13 @@
 				</p:panel>
 				
 				
-				<h:commandButton value="Save" styleClass="richButton"
+				<p:commandButton value="Save"  icon="fa fa-fw fa-save"
 				 action="#{samplesBean.addSamples}">
-				</h:commandButton>
+				</p:commandButton>
 				
-				<h:commandButton value="Back" styleClass="richButton"
+				<p:commandButton value="Back" icon="fa fa-fw fa-arrow-left"
 				 action="sampleCollection">
-				</h:commandButton>
+				</p:commandButton>
 				
 				<!--  script type="text/javascript">
 					function printIt(){

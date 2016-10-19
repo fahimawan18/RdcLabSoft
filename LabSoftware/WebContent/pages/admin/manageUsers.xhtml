@@ -17,13 +17,13 @@
 					columns="2">
 					
 					<p:outputLabel value="Enter ID"></p:outputLabel>
- 					 <h:inputText value="#{adminBean.toSearchUser.id}"></h:inputText>
+ 					 <p:inputText value="#{adminBean.toSearchUser.id}"></p:inputText>
  					 
 					<p:outputLabel value="Enter Username"></p:outputLabel>
- 					 <h:inputText value="#{adminBean.toSearchUser.userName}"></h:inputText>
+ 					 <p:inputText value="#{adminBean.toSearchUser.userName}"></p:inputText>
  
   						<p:outputLabel value="Enter Name"></p:outputLabel>
-  						<h:inputText value="#{adminBean.toSearchUser.name}"></h:inputText>
+  						<p:inputText value="#{adminBean.toSearchUser.name}"></p:inputText>
   						
   						<p:outputLabel value="Select Profile Status"></p:outputLabel>
   						<p:selectOneMenu value="#{adminBean.toSearchUser.profileStatus}">
@@ -39,11 +39,11 @@
  
  
  
-  	<h:commandButton value="Search" action="#{adminBean.searchUsers}"/>
+  	<p:commandButton value="Search" action="#{adminBean.searchUsers}" icon="fa fa-fw fa-search" update="tbl1"/>
   	
   	<br/>
   	
-  	<p:dataTable value="#{adminBean.usersList}" var="mylist"
+  	<p:dataTable value="#{adminBean.usersList}" var="mylist" id="tbl1"
 					paginatorPosition="top" editable="true" rows="12" paginator="true"
 					paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
 					>
@@ -57,7 +57,7 @@
 					</p:column>
 
 					<p:column headerText="Name">
-						<h:inputText value="#{mylist.name}" />
+						<p:inputText value="#{mylist.name}" />
 					</p:column>
 
 					<p:column headerText="Appointment">
@@ -65,80 +65,80 @@
 					</p:column>
 
 					 <p:column headerText="System Admin">
-					  <h:selectOneMenu value="#{mylist.roleAdmin}">
+					  <p:selectOneMenu value="#{mylist.roleAdmin}">
   						<f:selectItem itemLabel="N" itemValue="N"></f:selectItem>
   						<f:selectItem itemLabel="Y" itemValue="Y"></f:selectItem>
-  						</h:selectOneMenu>
+  						</p:selectOneMenu>
   					</p:column>
   					
   					<p:column headerText="Regn Counter">
-					  <h:selectOneMenu value="#{mylist.roleRegn}">
+					  <p:selectOneMenu value="#{mylist.roleRegn}">
   						<f:selectItem itemLabel="N" itemValue="N"></f:selectItem>
   						<f:selectItem itemLabel="Y" itemValue="Y"></f:selectItem>
-  						</h:selectOneMenu>
+  						</p:selectOneMenu>
   					</p:column>
   					
   					<p:column headerText="Cashier">
-					  <h:selectOneMenu value="#{mylist.roleFinance}">
+					  <p:selectOneMenu value="#{mylist.roleFinance}">
   						<f:selectItem itemLabel="N" itemValue="N"></f:selectItem>
   						<f:selectItem itemLabel="Y" itemValue="Y"></f:selectItem>
-  						</h:selectOneMenu>
+  						</p:selectOneMenu>
   					</p:column>
   					
   					<p:column headerText="Medical (GPE)">
-					  <h:selectOneMenu value="#{mylist.roleMedical}">
+					  <p:selectOneMenu value="#{mylist.roleMedical}">
   						<f:selectItem itemLabel="N" itemValue="N"></f:selectItem>
   						<f:selectItem itemLabel="Y" itemValue="Y"></f:selectItem>
-  						</h:selectOneMenu>
+  						</p:selectOneMenu>
   					</p:column>
   					
   					<p:column headerText="Radiologist">
-					  <h:selectOneMenu value="#{mylist.roleRadiologist}">
+					  <p:selectOneMenu value="#{mylist.roleRadiologist}">
   						<f:selectItem itemLabel="N" itemValue="N"></f:selectItem>
   						<f:selectItem itemLabel="Y" itemValue="Y"></f:selectItem>
-  						</h:selectOneMenu>
+  						</p:selectOneMenu>
   					</p:column>
   					
   					<p:column headerText="X-Ray Room">
-					  <h:selectOneMenu value="#{mylist.roleXray}">
+					  <p:selectOneMenu value="#{mylist.roleXray}">
   						<f:selectItem itemLabel="N" itemValue="N"></f:selectItem>
   						<f:selectItem itemLabel="Y" itemValue="Y"></f:selectItem>
-  						</h:selectOneMenu>
+  						</p:selectOneMenu>
   					</p:column>
   					
   					<p:column headerText="Sample Collector">
-					  <h:selectOneMenu value="#{mylist.roleSample}">
+					  <p:selectOneMenu value="#{mylist.roleSample}">
   						<f:selectItem itemLabel="N" itemValue="N"></f:selectItem>
   						<f:selectItem itemLabel="Y" itemValue="Y"></f:selectItem>
-  						</h:selectOneMenu>
+  						</p:selectOneMenu>
   					</p:column>
   					
   					<p:column headerText="Lab Manager">
-					  <h:selectOneMenu value="#{mylist.roleLab}">
+					  <p:selectOneMenu value="#{mylist.roleLab}">
   						<f:selectItem itemLabel="N" itemValue="N"></f:selectItem>
   						<f:selectItem itemLabel="Y" itemValue="Y"></f:selectItem>
-  						</h:selectOneMenu>
+  						</p:selectOneMenu>
   					</p:column>
   					
   					<p:column headerText="Printer Room">
-					  <h:selectOneMenu value="#{mylist.rolePrintRoom}">
+					  <p:selectOneMenu value="#{mylist.rolePrintRoom}">
   						<f:selectItem itemLabel="N" itemValue="N"></f:selectItem>
   						<f:selectItem itemLabel="Y" itemValue="Y"></f:selectItem>
-  						</h:selectOneMenu>
+  						</p:selectOneMenu>
   					</p:column>
   					
   					<p:column headerText="Pathology">
-					  <h:selectOneMenu value="#{mylist.rolePathology}">
+					  <p:selectOneMenu value="#{mylist.rolePathology}">
   						<f:selectItem itemLabel="N" itemValue="N"></f:selectItem>
   						<f:selectItem itemLabel="Y" itemValue="Y"></f:selectItem>
-  						</h:selectOneMenu>
+  						</p:selectOneMenu>
   					</p:column>
   					
   					<p:column headerText="Director">
-					  <h:selectOneMenu value="#{mylist.roleDirector}">
+					  <p:selectOneMenu value="#{mylist.roleDirector}">
   						<f:selectItem itemLabel="N" itemValue="N"></f:selectItem>
   						<f:selectItem itemLabel="Y" itemValue="Y"></f:selectItem>
-  						</h:selectOneMenu>
+  						</p:selectOneMenu>
   					</p:column>
   					
 					<p:column headerText="Profile Status">
@@ -149,8 +149,7 @@
 					</p:column>		
 					
 					<p:column headerText="Reset Password">
-					<p:commandButton action="#{adminBean.resetPassword}" icon="ui-icon-refresh" value="Reset"
-					>
+					<p:commandButton action="#{adminBean.resetPassword}" icon="fa fa-fw fa-refresh"	>
 							<f:setPropertyActionListener target="#{adminBean.toSearchUser}" value="#{mylist}" />
 						</p:commandButton>
 						
@@ -161,7 +160,7 @@
 				
 				<br/>
 				
-					<h:commandButton value="Update" action="#{adminBean.updateUsers}" ></h:commandButton>
+					<p:commandButton value="Update" action="#{adminBean.updateUsers}" icon="fa fa-fw fa-save" ajax="false"></p:commandButton>
 </h:form>
 </ui:define>
 	</ui:composition>
