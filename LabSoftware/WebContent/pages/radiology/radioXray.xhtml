@@ -36,7 +36,7 @@
  
  
   	<p:commandButton value="Search" icon="fa fa-fw fa-search" ajax="false" action="#{registerClientBean.searchClients}"/>
-  	<p:poll interval="10" rendered="true" listener="#{registerClientBean.searchRadiologistClients}" update="tbl1,panel2" />
+  	<p:poll interval="5" rendered="true" listener="#{registerClientBean.searchRadiologistClients}" update="tbl1,panel2" />
   	
   	
   	<p:dataTable value="#{registerClientBean.clientsList}" var="mylist"
