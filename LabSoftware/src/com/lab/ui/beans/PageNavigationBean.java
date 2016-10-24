@@ -128,6 +128,7 @@ public class PageNavigationBean implements Serializable
 	public String navMedicalXray() {
 //		System.out.println("PageNavigationBean uploadScanned.xhtml");
 		FacesUtils.resetManagedBean("registerClientBean");
+		
 		pageName = NavigationConstants.MEDICAL_XRAY_NAVIGATION;
 		cb.setPageTitle(MessageConstants.Constants.PageTitles.RADIOLOGY);
 		return pageName;
@@ -136,6 +137,7 @@ public class PageNavigationBean implements Serializable
 	public String navRadioXray() 
 	{
 		FacesUtils.resetManagedBean("registerClientBean");
+		((RegisterClientBean)FacesUtils.getManagedBean("registerClientBean")).searchRadiologistClients();
 		pageName = NavigationConstants.RADIO_XRAY_NAVIGATION;
 		cb.setPageTitle(MessageConstants.Constants.PageTitles.RADIOLOGY);
 		return pageName;

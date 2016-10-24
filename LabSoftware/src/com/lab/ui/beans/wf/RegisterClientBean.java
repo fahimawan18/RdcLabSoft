@@ -31,6 +31,7 @@ import com.lab.utils.Environment;
 import com.lab.utils.MessageConstants;
 import com.lab.utils.MessageUtils;
 import com.lab.utils.NavigationConstants;
+import com.lab.utils.MessageConstants.Constants;
 
 @ManagedBean(name="registerClientBean")
 @SessionScoped
@@ -212,6 +213,27 @@ public class RegisterClientBean
 			this.toSearchClient.setId(null);
 			this.toSearchClient.setPassportNo("");
 			this.toSearchClient.setGamcaSlipNo("");
+//			if(toSearchClient==null){
+//				this.toSearchClient = new WfClient();
+//			}
+//			if(this.toSearchClient.getCashPayment()==null || 
+//					this.toSearchClient.getCashPayment().getId()==null )
+//			{
+//				this.toSearchClient.setCashPayment(new WfClientFinance());
+				this.toSearchClient.getCashPayment().setCashPaidStatus("Paid");
+//			}
+//			if(this.toSearchClient.getProgress() == null || 
+//					this.toSearchClient.getProgress().getId()==null)
+//			{
+//				this.toSearchClient.setProgress(new WfClientProgress());
+//			}
+//			
+//			if(this.toSearchClient.getXray() == null || 
+//					this.toSearchClient.getXray().getId()==null)
+//			{
+//				this.toSearchClient.setXray(new WfClientXray());
+				this.toSearchClient.getXray().setXrayStatus(Constants.YES_STRING);
+//			}
 			this.clientsList = bll.searchRadiologistClients(toSearchClient);
 			System.out.println("**************** List retreived ... " + clientsList.size());
 			

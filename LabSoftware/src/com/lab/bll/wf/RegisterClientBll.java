@@ -50,6 +50,7 @@ import org.hibernate.Hibernate;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Restrictions;
 import org.primefaces.model.UploadedFile;
 
@@ -498,9 +499,9 @@ public class RegisterClientBll
 				}
 			}
 			cr.createAlias("xray", "x");
-			cr.add(Restrictions.isNull("x.chest"));
+			cr.add(Restrictions.or(Restrictions.isNull("x.chest"), Restrictions.ilike("x.chest", "On Hold")));
 			//cr.setFetchMode("scannedFiles", FetchMode.LAZY);
-			
+			cr.addOrder(Order.desc("id"));
 			list = cr.list();
 			
 			for(WfClient c:list)

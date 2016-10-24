@@ -36,12 +36,16 @@
  
  
   	<p:commandButton value="Search" icon="fa fa-fw fa-search" ajax="false" action="#{registerClientBean.searchClients}"/>
-  	<p:poll interval="5" rendered="true" listener="#{registerClientBean.searchRadiologistClients}" update="tbl1,panel2" />
+  	<p:poll interval="40" rendered="true" listener="#{registerClientBean.searchRadiologistClients}" update="tbl1,panel2" />
   	
   	
-  	<p:dataTable value="#{registerClientBean.clientsList}" var="mylist"
+  	<!--  p:dataTable value="#{registerClientBean.clientsList}" var="mylist"
 					paginatorPosition="top" editable="true" rows="12" paginator="true"
 					paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+					id="tbl1" -->
+					
+	<p:dataTable value="#{registerClientBean.clientsList}" var="mylist"
+					editable="true" 
 					id="tbl1">
 
 					<p:column headerText="Client ID">
@@ -67,12 +71,12 @@
 					</p:column>
 					
 					<p:column headerText="Radiology Status">
-						<p:outputLabel value="#{mylist.xray.chest == null ? 'Not Saved' : 'Saved'}" />
+						<p:outputLabel value="#{mylist.xray.chest == null ? 'Not Saved' : mylist.xray.chest}" />
 					</p:column>
 					
 					<p:column headerText="Radiology Details">
 						<p:commandButton action="#{navBean.navRadioXrayDetails}" icon="fa fa-fw fa-edit"
-						value="Update Details" disabled="#{mylist.xray.chest != null}">
+						value="Update Details" disabled="#{!(mylist.xray.chest == null or mylist.xray.chest == 'On Hold')}">
 							<f:setPropertyActionListener target="#{registerClientBean.selectedClient}" value="#{mylist}" />
 						</p:commandButton>
 					</p:column>
