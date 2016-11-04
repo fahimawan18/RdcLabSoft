@@ -100,12 +100,13 @@ public class ChartBean
 		
 		
 		dateWiseChart.setTitle("Date Wise Summary");
-		dateWiseChart.setLegendPosition("ne");
-		dateWiseChart.setLegendPlacement(LegendPlacement.OUTSIDEGRID);
+		//dateWiseChart.setLegendPosition("ne");
+		//dateWiseChart.setLegendPlacement(LegendPlacement.OUTSIDEGRID);
 		dateWiseChart.setShowPointLabels(true);
 		dateWiseChart.setShowDatatip(true);
          
         Axis xAxis = dateWiseChart.getAxis(AxisType.X);
+        
         SimpleDateFormat formatter = new SimpleDateFormat("dd/MMM/yyyy");
         xAxis.setLabel("From:"+formatter.format(fromDate)+ " - To: "+formatter.format(toDate));
         

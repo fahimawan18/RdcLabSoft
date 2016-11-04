@@ -48,29 +48,29 @@
 					editable="true" 
 					id="tbl1">
 
-					<p:column headerText="Client ID">
+					<p:column headerText="Client ID" sortBy="#{mylist.id}">
 						<p:outputLabel value="#{mylist.id}" />
 					</p:column>
 					
-					<p:column headerText="RDC Token / GAMCA Slip">
+					<p:column headerText="RDC Token / GAMCA Slip" sortBy="#{mylist.rdcTokenNo}/#{mylist.gamcaSlipNo}">
 						<p:outputLabel value="#{mylist.rdcTokenNo}" /> / 
 						<p:outputLabel value="#{mylist.gamcaSlipNo}" />
 					</p:column>
 
-					<p:column headerText="First Name / Last Name">
+					<p:column headerText="First Name / Last Name" sortBy="#{mylist.firstName}/#{mylist.lastName}">
 						<p:outputLabel value="#{mylist.firstName}" />/
 						<p:outputLabel value="#{mylist.lastName}" />
 					</p:column>
 
-					<p:column headerText="CNIC">
+					<p:column headerText="CNIC" sortBy="#{mylist.cnicNo}">
 						<p:outputLabel value="#{mylist.cnicNo}" />
 					</p:column>
 					
-					<p:column headerText="Passport No">
+					<p:column headerText="Passport No" sortBy="#{mylist.passportNo}">
 						<p:outputLabel value="#{mylist.passportNo}" />
 					</p:column>
 					
-					<p:column headerText="Radiology Status">
+					<p:column headerText="Radiology Status"  sortBy="#{mylist.xray.chest}">
 						<p:outputLabel value="#{mylist.xray.chest == null ? 'Not Saved' : mylist.xray.chest}" />
 					</p:column>
 					

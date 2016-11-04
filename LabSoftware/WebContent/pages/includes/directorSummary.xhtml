@@ -24,8 +24,8 @@
     </p:calendar>
     
     </h:panelGroup>
-  				
-					<p:chart type="bar" model="#{chartBean.dateWiseChart}" style="height:300px"
+  				 
+					<p:chart  type="bar" model="#{chartBean.dateWiseChart}" style="height:300px" 
 					responsive="true" id="chart1" />
 					
 			<br/>					
@@ -53,7 +53,13 @@
     </p:calendar>
     
     </h:panelGroup>
-  				
+  				<h:outputScript>
+         function chartExtender() {
+             // this = chart widget instance
+             // this.cfg = options
+             this.cfg.seriesDefaults.rendererOptions.varyBarColor = true;
+         }
+     </h:outputScript>
 					<p:chart type="line" model="#{chartBean.dayWiseChart}" style="height:300px"
 					responsive="true" id="chart2"/>
 	<br/>

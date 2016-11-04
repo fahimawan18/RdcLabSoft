@@ -760,6 +760,22 @@ public class RegisterClientBll
 				System.out.println("updating GPE ");
 				session.update(toAdd.getGpe());
 			}
+			//Saving Lungs status
+			if(toAdd.getXray()==null || toAdd.getXray().getId()==null)
+//				|| toUpdate.getXray().getId()<1)
+
+			{
+				WfClientXray xrayObj = new WfClientXray();
+				xrayObj.setClientId(toAdd);
+				xrayObj.setLungs(toAdd.getXray().getLungs());
+				//xrayObj.setXrayInsertDate(new Date());
+				session.save(xrayObj);
+			}
+			else
+			{
+				//toUpdate.getXray().setXrayInsertDate(new Date());
+				session.update(toAdd.getXray());
+			}
 			
 			if(toAdd.getProgress() == null || toAdd.getProgress().getId()==null)
 			{
@@ -827,6 +843,7 @@ public class RegisterClientBll
 				else
 				{
 					//toUpdate.getXray().setXrayInsertDate(new Date());
+					toUpdate.getXray().setXrayInsertDate(new Date());
 					session.update(toUpdate.getXray());
 				}
 				

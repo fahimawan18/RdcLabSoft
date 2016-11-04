@@ -50,26 +50,26 @@ public class ChartBll
 	{
 		
 		regnSeries.setLabel(MessageConstants.Constants.ChartLabels.REGN);
-		cashSeries.setLabel(MessageConstants.Constants.ChartLabels.CASH);
-		gpeSeries.setLabel(MessageConstants.Constants.ChartLabels.GPE);
-		sampleSeries.setLabel(MessageConstants.Constants.ChartLabels.SAMPLES);
-		xraySeries.setLabel(MessageConstants.Constants.ChartLabels.XRAY);
-		radiologistSeries.setLabel(MessageConstants.Constants.ChartLabels.RADIOLOGIST);
-		labSeries.setLabel(MessageConstants.Constants.ChartLabels.LAB);
-		pathologistSeries.setLabel(MessageConstants.Constants.ChartLabels.PATHOLOGIST);
-		directorSeries.setLabel(MessageConstants.Constants.ChartLabels.DIRECTOR);
+//		cashSeries.setLabel(MessageConstants.Constants.ChartLabels.CASH);
+//		gpeSeries.setLabel(MessageConstants.Constants.ChartLabels.GPE);
+//		sampleSeries.setLabel(MessageConstants.Constants.ChartLabels.SAMPLES);
+//		xraySeries.setLabel(MessageConstants.Constants.ChartLabels.XRAY);
+//		radiologistSeries.setLabel(MessageConstants.Constants.ChartLabels.RADIOLOGIST);
+//		labSeries.setLabel(MessageConstants.Constants.ChartLabels.LAB);
+//		pathologistSeries.setLabel(MessageConstants.Constants.ChartLabels.PATHOLOGIST);
+//		directorSeries.setLabel(MessageConstants.Constants.ChartLabels.DIRECTOR);
 		
 		populateDateWiseSeries(fromDate, toDate);
-		
+		model.setExtender("chartExtender");
 		model.addSeries(regnSeries);
-		model.addSeries(cashSeries);
-		model.addSeries(gpeSeries);
-		model.addSeries(sampleSeries);
-		model.addSeries(xraySeries);
-		model.addSeries(radiologistSeries);
-		model.addSeries(labSeries);
-		model.addSeries(pathologistSeries);
-		model.addSeries(directorSeries);
+//		model.addSeries(cashSeries);
+//		model.addSeries(gpeSeries);
+//		model.addSeries(sampleSeries);
+//		model.addSeries(xraySeries);
+//		model.addSeries(radiologistSeries);
+//		model.addSeries(labSeries);
+//		model.addSeries(pathologistSeries);
+//		model.addSeries(directorSeries);
 		
 		return model;
 		
@@ -95,7 +95,7 @@ public class ChartBll
 		int count = 0;
 		try
 		{
-			String x = "Activity" ;
+			//String x = "Activity" ;
 			System.out.println("Date selected are in dal ==> from ="+fromDate.getTime()+ " and to ="+toDate.getTime());
 			session = HibernateUtilsAnnot.currentSession();
 			Criteria cr = session.createCriteria(WfClient.class);
@@ -104,7 +104,7 @@ public class ChartBll
 			cr.add(Restrictions.le("insertDate", toDate));
 			cr.setProjection(Projections.rowCount());
 			count = (Integer)cr.uniqueResult();
-			regnSeries.set(x, count);
+			regnSeries.set(MessageConstants.Constants.ChartLabels.REGN, count);
 			System.out.println("Value of regnSeriesCount = "+ count);
 			
 			cr= null;
@@ -115,7 +115,7 @@ public class ChartBll
 			cr.add(Restrictions.le("cashPaidDate", toDate));
 			cr.setProjection(Projections.rowCount());
 			count = (Integer)cr.uniqueResult();
-			cashSeries.set(x, count);
+			regnSeries.set(MessageConstants.Constants.ChartLabels.CASH, count);
 			System.out.println("Value of cashSeriesCount = "+ count);			
 			
 			cr= null;
@@ -126,7 +126,7 @@ public class ChartBll
 			cr.add(Restrictions.le("insertDate", toDate));
 			cr.setProjection(Projections.rowCount());
 			count = (Integer)cr.uniqueResult();
-			gpeSeries.set(x, count);
+			regnSeries.set(MessageConstants.Constants.ChartLabels.GPE, count);
 			System.out.println("Value of gpeSeriesCount = "+ count);
 			//gpeSeries.set(x, count);
 			
@@ -138,7 +138,7 @@ public class ChartBll
 			cr.add(Restrictions.le("insertDate", toDate));
 			cr.setProjection(Projections.rowCount());
 			count = (Integer)cr.uniqueResult();
-			sampleSeries.set(x, count);
+			regnSeries.set(MessageConstants.Constants.ChartLabels.SAMPLES, count);
 			System.out.println("Value of sampleSeriesCount = "+ count);
 			//sampleSeries.set(x, count);
 			
@@ -151,7 +151,7 @@ public class ChartBll
 			cr.add(Restrictions.le("xrayInsertDate", toDate));
 			cr.setProjection(Projections.rowCount());
 			count = (Integer)cr.uniqueResult();
-			xraySeries.set(x, count);
+			regnSeries.set(MessageConstants.Constants.ChartLabels.XRAY, count);
 			System.out.println("Value of xraySeriesCount = "+ count);
 			//sampleSeries.set(x, count);
 			
@@ -163,7 +163,7 @@ public class ChartBll
 			cr.add(Restrictions.le("radiologyInsertDate", toDate));
 			cr.setProjection(Projections.rowCount());
 			count = (Integer)cr.uniqueResult();
-			radiologistSeries.set(x, count);
+			regnSeries.set(MessageConstants.Constants.ChartLabels.RADIOLOGIST, count);
 			System.out.println("Value of radiologySeriesCount = "+ count);
 			//sampleSeries.set(x, count);
 			
@@ -175,7 +175,7 @@ public class ChartBll
 			cr.add(Restrictions.le("labInsertDate", toDate));
 			cr.setProjection(Projections.rowCount());
 			count = (Integer)cr.uniqueResult();
-			labSeries.set(x, count);
+			regnSeries.set(MessageConstants.Constants.ChartLabels.LAB, count);
 			System.out.println("Value of labSeriesCount = "+ count);
 			//sampleSeries.set(x, count);
 			
@@ -187,7 +187,7 @@ public class ChartBll
 			cr.add(Restrictions.le("pathologistInsertDate", toDate));
 			cr.setProjection(Projections.rowCount());
 			count = (Integer)cr.uniqueResult();
-			pathologistSeries.set(x, count);
+			regnSeries.set(MessageConstants.Constants.ChartLabels.PATHOLOGIST, count);
 			System.out.println("Value of pathologySeriesCount = "+ count);
 			//sampleSeries.set(x, count);
 			
@@ -199,7 +199,7 @@ public class ChartBll
 			cr.add(Restrictions.le("finalDeclaredDate", toDate));
 			cr.setProjection(Projections.rowCount());
 			count = (Integer)cr.uniqueResult();
-			directorSeries.set(x, count);
+			regnSeries.set(MessageConstants.Constants.ChartLabels.DIRECTOR, count);
 			System.out.println("Value of directorSeriesCount = "+ count);
 			//sampleSeries.set(x, count);
 		}
