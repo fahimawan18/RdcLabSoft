@@ -116,6 +116,7 @@ public final class MessageConstants {
 			public static final String KSA = "KSA";
 			public static final String OMAN = "Oman";
 			public static final String KUWAIT = "Kuwait";
+			public static final String UAE = "UAE";
 		}
 
 		public static final class LabMicro 

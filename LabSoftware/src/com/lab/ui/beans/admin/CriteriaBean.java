@@ -252,6 +252,7 @@ public class CriteriaBean
 			this.gccCountryList.add(new SelectItem(MessageConstants.Constants.GCCCountries.KSA,MessageConstants.Constants.GCCCountries.KSA));
 			this.gccCountryList.add(new SelectItem(MessageConstants.Constants.GCCCountries.OMAN,MessageConstants.Constants.GCCCountries.OMAN));
 			this.gccCountryList.add(new SelectItem(MessageConstants.Constants.GCCCountries.KUWAIT,MessageConstants.Constants.GCCCountries.KUWAIT));
+			this.gccCountryList.add(new SelectItem(MessageConstants.Constants.GCCCountries.UAE,MessageConstants.Constants.GCCCountries.UAE));
 		}
 		return gccCountryList;
 	}

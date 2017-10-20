@@ -2,7 +2,7 @@
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="rdcCashReceipt" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="dae0d09f-9b2d-4806-8194-42db847e9111">
 	<property name="ireport.zoom" value="1.0"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="200"/>
+	<property name="ireport.y" value="0"/>
 	<parameter name="clientId" class="java.lang.String"/>
 	<queryString>
 		<![CDATA[SELECT
@@ -78,18 +78,18 @@ and w.id = $P{clientId}]]>
 	<title>
 		<band height="60" splitType="Stretch">
 			<staticText>
-				<reportElement x="310" y="0" width="245" height="24" backcolor="#CCCCCC" uuid="dd530e90-69af-4916-acd8-a1539c92a9c4"/>
+				<reportElement x="298" y="0" width="257" height="24" backcolor="#CCCCCC" uuid="dd530e90-69af-4916-acd8-a1539c92a9c4"/>
 				<textElement>
 					<font size="14" isBold="true"/>
 				</textElement>
 				<text><![CDATA[RAWALPINDI DIAGNOSTIC CENTRE]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="310" y="24" width="245" height="34" uuid="8bea4e1b-434f-45ca-ba06-b01c2217b91f"/>
-				<textElement>
+				<reportElement x="298" y="24" width="257" height="34" uuid="8bea4e1b-434f-45ca-ba06-b01c2217b91f"/>
+				<textElement markup="html">
 					<font isBold="true"/>
 				</textElement>
-				<text><![CDATA[626, Street No 8, Chaklala Scheme 3, Rawalpindi]]></text>
+				<text><![CDATA[Building No 1025/D, Al-hafeez plaza, college chowk, <br/>Saidpur road Rawalpindi. (Contact: 051-9291023)]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="0" y="24" width="145" height="34" uuid="df519f9b-e441-456d-900c-df171f191781"/>
@@ -470,18 +470,18 @@ Agent:]]></text>
 				<text><![CDATA[CLIENT ID #  ]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="310" y="5" width="245" height="24" backcolor="#CCCCCC" uuid="457e9bbe-9aa9-41c3-b615-2b18cb88a69b"/>
+				<reportElement x="298" y="5" width="257" height="24" backcolor="#CCCCCC" uuid="457e9bbe-9aa9-41c3-b615-2b18cb88a69b"/>
 				<textElement>
 					<font size="14" isBold="true"/>
 				</textElement>
 				<text><![CDATA[RAWALPINDI DIAGNOSTIC CENTRE]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="310" y="29" width="245" height="31" uuid="baa88da6-8242-4a1c-bdbf-d902d381b015"/>
-				<textElement>
+				<reportElement x="298" y="29" width="257" height="31" uuid="baa88da6-8242-4a1c-bdbf-d902d381b015"/>
+				<textElement markup="html">
 					<font isBold="true"/>
 				</textElement>
-				<text><![CDATA[626, Street No 8, Chaklala Scheme 3, Rawalpindi]]></text>
+				<text><![CDATA[Building No 1025/D, Al-hafeez plaza, college chowk, <br/>Saidpur road Rawalpindi. (Contact: 051-9291023)]]></text>
 			</staticText>
 			<image>
 				<reportElement x="159" y="9" width="100" height="50" uuid="07ca5adc-8c1f-4d90-a70b-8a681d31c157"/>
