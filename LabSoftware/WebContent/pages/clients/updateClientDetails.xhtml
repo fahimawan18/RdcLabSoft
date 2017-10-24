@@ -95,12 +95,7 @@
     
     <p:outputLabel value="Country Applied For:" />
     <p:selectOneMenu value="#{registerClientBean.toAddClient.appliedForCountry}">
-    	<f:selectItem itemLabel="Bahrain" itemValue="Bahrain"/>
-    	<f:selectItem itemLabel="Qatar" itemValue="Qatar"/>
-    	<f:selectItem itemLabel="KSA" itemValue="KSA"/>
-    	<f:selectItem itemLabel="Oman" itemValue="Oman"/>
-    	<f:selectItem itemLabel="Kuwait" itemValue="Kuwait"/>
-    	<f:selectItem itemLabel="UAE" itemValue="UAE"/>
+    	<f:selectItems value="#{crit.gccCountryList}"/>
     </p:selectOneMenu>
     
     <p:outputLabel value="Position Applied For:" />
